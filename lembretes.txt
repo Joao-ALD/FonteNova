@@ -1,0 +1,5 @@
+composer create-project laravel/laravel nome-do-projeto --> comando para criar um projeto laravel, na última versão do laravel através do composer
+
+php artisan make:controller nome-do-controller --> comando em terminal para a criação de um controller por meio do artisan
+
+php artisan serve --> exibe

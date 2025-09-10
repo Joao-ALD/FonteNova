@@ -92,13 +92,13 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
    DB_PASSWORD=sua_senha_do_banco
    ```
 
-**6. Executar as "Migrations"**
+**--NÃO EXECUTAR POR AGORA --6. Executar as "Migrations"**
    Este comando irá criar todas as tabelas necessárias no banco de dados que você acabou de configurar.
 
    ```bash
    php artisan migrate
    ```
-
+**--**
 **7. Iniciar o Servidor de Desenvolvimento**
    Pronto! Agora você pode iniciar o servidor local do Laravel.
 

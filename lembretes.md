@@ -4,6 +4,20 @@ php artisan make:controller nome-do-controller --> comando em terminal para a cr
 
 php artisan serve --> exibe
 
+para criar um projeto
+c:/laravel
+c:/Documents/projects_laravel/composer create-project laravel/laravel nome-do-projeto
+ 
+composer create-project laravel/laravel nome-do-projeto
+cd nome-do-projeto
+ 
+executando o projeto
+php artisan serve
+ 
+criando controller
+php artisan make:controller NomeController
+
+
 Tutorial do gemini de como "re-ativar" o artisan depois de clonar o repositório do git hub (aparentemente alguns arquivos não saõ enviados por questões de segurança)
 Olá\! Fique tranquilo, isso que está acontecendo é o comportamento **correto e esperado** ao trabalhar com Laravel e Git. É um ponto crucial no fluxo de trabalho de qualquer desenvolvedor moderno.
 

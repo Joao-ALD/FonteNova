@@ -18,7 +18,9 @@ criando controller
 php artisan make:controller NomeController
 
 
-Tutorial do gemini de como "re-ativar" o artisan depois de clonar o repositório do git hub (aparentemente alguns arquivos não saõ enviados por questões de segurança)
+Explicação do Gemini sobre o artisan e o gitHub
+
+
 Olá\! Fique tranquilo, isso que está acontecendo é o comportamento **correto e esperado** ao trabalhar com Laravel e Git. É um ponto crucial no fluxo de trabalho de qualquer desenvolvedor moderno.
 
 Vou te explicar o porquê e como resolver.

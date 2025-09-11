@@ -33,7 +33,7 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
 * PHP (versão 8.1 ou superior)
 * Composer
 * Git
-* Um SGBD local (ex: MySQL, MariaDB, PostgreSQL)
+* Um SGBD local (ex: MySQL, MariaDB, PostgreSQL, ou XAMPP que já inclui apache e mySql )
 
 ---
 

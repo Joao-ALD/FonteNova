@@ -4,6 +4,10 @@ php artisan make:controller nome-do-controller --> comando em terminal para a cr
 
 php artisan serve --> exibe
 
+o laravel EXIGE o método PUT para ALTERAÇÕES 
+o laravel EXIGE o método DELETE para DELETAR algo 
+
+
 para criar um projeto
 c:/laravel
 c:/Documents/projects_laravel/composer create-project laravel/laravel nome-do-projeto

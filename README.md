@@ -33,7 +33,7 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
 * PHP (versão 8.1 ou superior)
 * Composer
 * Git
-* Um SGBD local (ex: MySQL, MariaDB, PostgreSQL)
+* Um SGBD local (ex: MySQL, MariaDB, PostgreSQL, ou XAMPP que já inclui apache e mySql )
 
 ---
 
@@ -87,9 +87,9 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
    DB_CONNECTION=mysql
    DB_HOST=127.0.0.1
    DB_PORT=3306
-   DB_DATABASE=nome_do_seu_banco_de_dados
-   DB_USERNAME=seu_usuario_do_banco
-   DB_PASSWORD=sua_senha_do_banco
+   DB_DATABASE=fontenova
+   DB_USERNAME=root
+   DB_PASSWORD=""
    ```
 
 **--NÃO EXECUTAR POR AGORA --6. Executar as "Migrations"**

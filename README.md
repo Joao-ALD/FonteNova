@@ -16,7 +16,7 @@ Seguindo os passos abaixo, você irá recriar esses arquivos e configurar o proj
 
 ### 💡 Dica: Usando Extensões do VS Code
 
-Muitos de nós usamos extensões no VS Code (como a aba "Source Control", GitLens, GitHub Pull Requests, etc.) para facilitar o trabalho com o Git. Elas são ótimas para clonar, visualizar alterações, fazer commits e enviar seu código (`push`).
+Muitos de nós usamos extensões no VS Code **(como a aba "GitGraph (Source Control)", GitLens, GitHub Pull Requests, etc.)** para facilitar o trabalho com o Git. Elas são ótimas para clonar, visualizar alterações, fazer commits e enviar seu código (`push`).
 
 Você pode perfeitamente usar sua extensão preferida para realizar o **Passo 1 (Clonar o Repositório)**.
 

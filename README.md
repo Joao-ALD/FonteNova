@@ -96,7 +96,7 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
    Este comando irá criar todas as tabelas necessárias no banco de dados que você acabou de configurar.
 
    ```bash
-   ~~php artisan migrate~~
+   php artisan migrate
    ```
 **--**
 **7. Iniciar o Servidor de Desenvolvimento**

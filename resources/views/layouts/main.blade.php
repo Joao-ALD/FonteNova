@@ -5,11 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>FonteNova</title>
 </head>
+
 <body>
-       
+
     <nav class="navbar navbar-expand-lg    ">
         <!-- //- 'container-fluid' faz com que o conteúdo da barra ocupe toda a largura da tela. -->
         <div class="container-fluid text-white bg-nav nav-h">
@@ -18,7 +21,8 @@
 
             <!-- //- Este é o botão "hambúrguer" que aparece em telas pequenas. -->
             <!-- //- 'data-bs-toggle="collapse"' e 'data-bs-target' o conectam ao nav que deve ser mostrado/escondido. -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -57,10 +61,13 @@
     </nav>
 
     <section class="container">
-    @yield('content')
+        @yield('content')
     </section>
 
     <script src="assets/js/script.js"></script>
+   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

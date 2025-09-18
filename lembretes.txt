@@ -9,7 +9,7 @@ o laravel EXIGE o método DELETE para DELETAR algo
 
 ao utilizar o php artisan serve, os assets devem ficar na pasta public>assets
 
-
+~~~~ --- ~~~~
 para criar um projeto
 c:/laravel
 c:/Documents/projects_laravel/composer create-project laravel/laravel nome-do-projeto

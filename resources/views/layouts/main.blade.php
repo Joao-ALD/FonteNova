@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any"> <!-- ícone extra para navegadores antigos -->
 
     {{-- Bootsrap CSS TEMPORÁRIO (site) --}}

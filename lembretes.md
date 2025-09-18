@@ -182,3 +182,5 @@ php artisan serve
 - Configure `.env` e gere a key com `php artisan key:generate`.
 
 ---
+> **Nota**: Se estiver no VSCode utilize 'ctrl + shift + v' para pré-visualizar o arquivo.
+---

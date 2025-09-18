@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid text-white bg-nav nav-h">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/img/LogoReduzida.svg') }}" alt="LogoFonteNova">
+                <img src="{{ asset('assets/img/icon_logo.svg') }}" alt="LogoFonteNova">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

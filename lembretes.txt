@@ -7,6 +7,8 @@ php artisan serve --> exibe as views
 o laravel EXIGE o método PUT para ALTERAÇÕES 
 o laravel EXIGE o método DELETE para DELETAR algo 
 
+ao utilizar o php artisan serve, os assets devem ficar na pasta public>assets
+
 
 para criar um projeto
 c:/laravel

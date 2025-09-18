@@ -2,7 +2,7 @@ composer create-project laravel/laravel nome-do-projeto --> comando para criar u
 
 php artisan make:controller nome-do-controller --> comando em terminal para a criação de um controller por meio do artisan
 
-php artisan serve --> exibe
+php artisan serve --> exibe as views
 
 o laravel EXIGE o método PUT para ALTERAÇÕES 
 o laravel EXIGE o método DELETE para DELETAR algo 

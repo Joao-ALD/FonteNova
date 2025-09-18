@@ -10,11 +10,11 @@
 </head>
 <body>
        
-    <nav class="navbar navbar-expand-lg  bs-primary  ">
+    <nav class="navbar navbar-expand-lg    ">
         <!-- //- 'container-fluid' faz com que o conteúdo da barra ocupe toda a largura da tela. -->
         <div class="container-fluid text-white bg-nav nav-h">
             <!-- //- 'navbar-brand' é usado para o nome do site ou logo. -->
-            <a class="navbar-brand" href="index "><img src="assets\img\LogoReduzida.png" alt="LogoFonteNova"></a>
+            <a class="navbar-brand" href="index "><img src="assets\img\LogoReduzida.svg" alt="LogoFonteNova"></a>
 
             <!-- //- Este é o botão "hambúrguer" que aparece em telas pequenas. -->
             <!-- //- 'data-bs-toggle="collapse"' e 'data-bs-target' o conectam ao nav que deve ser mostrado/escondido. -->

@@ -35,11 +35,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active " href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active " href="#">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link active " href="#">Galeria</a></li>
-                    <li class="nav-item"><a class="nav-link active " href="#">Mapa</a></li>
-                    <li class="nav-item"><a class="nav-link active " href="#">Curso</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Galeria</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Mapa</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Curso</a></li>
                 </ul>
             </div>
         </div>
@@ -50,11 +50,10 @@
         @yield('content')
     </main>
 
-    {{-- Scripts personalizados --}}
-    <script src="{{ asset('assets/js/script.js') }}"></script>
-
     {{-- Bootstrap JS (local) --}}
     <script src="{{ asset('assets/bootstrap/js/bootstrapLink.js') }}"></script>
+    {{-- Scripts personalizados --}}
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 
 </html>

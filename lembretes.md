@@ -1,5 +1,6 @@
 composer create-project laravel/laravel nome-do-projeto --> comando para criar um projeto laravel, na última versão do laravel através do composer
 
+-----
 Criando o Model, Migration e Controller 
 php artisan make:model Nome-do-model -mc
 
@@ -14,9 +15,10 @@ class nome-do-model extends Model
 {
   pretected $fillable =['nome-da-coluna', 'nome-da-coluna']
 }
+-----
 
-
-php artisan serve --> exibe as views
+php artisan serve --> exibe as views (para este os assets devem estar em public)
+npm run dev --> exibe as views porem sem carregar o back-end (para este os assets devem estar em resources)
 
 o laravel EXIGE o método PUT para ALTERAÇÕES 
 o laravel EXIGE o método DELETE para DELETAR algo 

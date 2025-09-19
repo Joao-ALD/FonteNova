@@ -38,7 +38,7 @@
 <div class="collapse" id="collapseClima" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
+      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 90%; height: 15rem;">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Impacto do Clima na Água</h5>
           <p class="card-text text-white text-center" style="margin-top: 20px;">O clima desempenha um papel central na disponibilidade e na qualidade da água no planeta. Mudanças climáticas provocam eventos extremos como secas prolongadas, enchentes e variações de temperatura, que afetam rios, lagos e aquíferos. Regiões com chuvas irregulares enfrentam escassez, enquanto áreas com excesso de precipitação podem sofrer inundações. Entender essas mudanças permite planejar o uso consciente da água e desenvolver estratégias de adaptação em escolas, comunidades e residências.</p>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
+      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 90%; height: 15rem;">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Clima</h5>
           <p class="card-text text-white text-center">Aqui vai a informação sobre o clima. Este é o primeiro card</p>
@@ -62,7 +62,7 @@
 <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
+      <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 15rem;">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Card de Coleta 1</h5>
           <p class="card-text text-white text-center">Informações sobre como a coleta da água funciona.</p>
@@ -76,7 +76,7 @@
 <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
+      <div class="card text-start card text-bg-info mb-3 mx-auto " style="width: 90%; height: 19rem; ">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Card de Consumo 1</h5>
           <p class="card-text text-white text-center">Dados e dicas sobre o consumo consciente da água.</p>
@@ -90,7 +90,7 @@
 <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
+      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 90%; height: 15rem;">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Card de Preservação 1</h5>
           <p class="card-text text-white text-center">A importância de preservar nossos recursos hídricos.</p>

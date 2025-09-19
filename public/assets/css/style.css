@@ -9,3 +9,21 @@
 
     --FontePrincipal: 'poppins';
 }
+
+.px-custom {
+    padding-left: 135px;
+    padding-right: 135px;
+}
+
+.bg-nav {
+    background-color: var(--AzulEscuro); 
+}
+
+.nav-h {
+    height: 100px;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff; /* cor do texto */
+    margin-left: 15px;
+}

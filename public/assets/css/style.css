@@ -1,0 +1,39 @@
+:root{
+    --AzulEscuro: rgba(1, 75, 160, 1);
+    --Azul2: rgba(10, 92, 184, 1);
+    --Azul3: rgba(20, 102, 195, 1);
+    --Azul4: rgba(33, 116, 212, 1);
+    --AzulClaro: rgba(59, 142, 237, 1);
+    --BrancoPuro: #ffffff;
+    --Preto: #000000;
+
+    --FontePrincipal: 'poppins';
+}
+
+.px-custom {
+    padding-left: 135px;
+    padding-right: 135px;
+}
+
+.bg-nav {
+    background-color: var(--AzulEscuro); 
+}
+
+.nav-h {
+    height: 100px;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff; /* cor do texto */
+    margin-left: 15px;
+}
+
+/* Limita o tamanho da logo da navbar */
+.navbar-brand img {
+    height: 97px; /* Ajuste conforme necessário */
+    width: auto;  /* Mantém proporção da imagem */
+}
+
+.bg-card{
+    background-color: var(--AzulClaro);
+}

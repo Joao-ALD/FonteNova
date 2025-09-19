@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3" style="width: 80%; height: 15rem;">
+      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Clima</h5>
           <p class="card-text text-white text-center">Aqui vai a informação sobre o clima. Este é o primeiro card</p>
@@ -62,7 +62,7 @@
 <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3" style="width: 80%; height: 15rem;">
+      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Card de Coleta 1</h5>
           <p class="card-text text-white text-center">Informações sobre como a coleta da água funciona.</p>
@@ -76,7 +76,7 @@
 <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3" style="width: 80%; height: 15rem;">
+      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Card de Consumo 1</h5>
           <p class="card-text text-white text-center">Dados e dicas sobre o consumo consciente da água.</p>
@@ -90,7 +90,7 @@
 <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
-      <div class="card text-start card text-bg-info mb-3" style="width: 80%; height: 15rem;">
+      <div class="card text-start card text-bg-info mb-3 mx-auto" style="width: 80%; height: 15rem;">
         <div class="card-body">
           <h5 class="card-title text-white text-end">Card de Preservação 1</h5>
           <p class="card-text text-white text-center">A importância de preservar nossos recursos hídricos.</p>

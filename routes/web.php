@@ -20,4 +20,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/', [AguaController::class, 'index'])->name('home.index');
+Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');

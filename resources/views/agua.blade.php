@@ -51,7 +51,7 @@
     <div class="col-12">
       <div class="card text-start card text-bg-info mb-3" style="width: 100%; height: 20rem;">
         <div class="card-body">
-          <h5 class="card-title text-white text-and">Clima</h5>
+          <h5 class="card-title text-white text-start">Clima</h5>
           <p class="card-text text-white text-center">O clima desempenha um papel fundamental na disponibilidade de água no planeta. Mudanças climáticas intensificam eventos extremos como secas prolongadas e enchentes, afetando diretamente rios, lagos e aquíferos subterrâneos. Regiões com chuvas irregulares enfrentam escassez, enquanto áreas com excesso de precipitação correm risco de inundações. Assim, o clima é o primeiro fator que determina a quantidade e a qualidade da água disponível.</p>
         </div>
       </div>

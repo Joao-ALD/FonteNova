@@ -41,7 +41,7 @@
     <div class="col-12">
       <div class="card text-start card text-bg-info mb-3" style="width: 100%; height: 20rem;">
         <div class="card-body">
-          <h5 class="card-title text-white ">Card de Clima 1</h5>
+          <h5 class="card-title text-white text-start ">Card de Clima 1</h5>
           <p class="card-text text-white text-center">Aqui vai a informação sobre o clima. Este é o primeiro card.</p>
         </div>
       </div>

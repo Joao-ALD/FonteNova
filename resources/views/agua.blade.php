@@ -51,7 +51,7 @@
       <div class="card text-start card text-bg-info mb-3" style="width: 100%; height: 20rem;">
         <div class="card-body">
           <h5 class="card-title text-white">Card de Clima 2</h5>
-          <p class="card-text text-white">Mais detalhes climáticos podem ser adicionados aqui neste segundo card.</p>
+          <p class="card-text text-white text-center">Mais detalhes climáticos podem ser adicionados aqui neste segundo card.</p>
         </div>
       </div>
     </div>

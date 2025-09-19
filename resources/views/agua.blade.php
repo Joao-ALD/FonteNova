@@ -13,56 +13,107 @@
 
     <!-- Botões do topicos Clima,Coleta,Consumo,Preservacao -->
     <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
-        @foreach($topics as $key => $cards)
-            <button class="btn btn-outline-primary btn-lg px-4" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapse{{ $key }}" aria-expanded="false" aria-controls="collapse{{ $key }}">
-                {{ ucfirst($key) }}
-            </button>
-        @endforeach
+      <button class="btn btn-outline-primary btn-lg px-4" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseClima" aria-expanded="false" aria-controls="collapseClima">
+        Clima
+      </button>
+
+      <button class="btn btn-outline-primary btn-lg px-4" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseColeta" aria-expanded="false" aria-controls="collapseColeta">
+        Coleta
+      </button>
+
+      <button class="btn btn-outline-primary btn-lg px-4" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapseConsumo" aria-expanded="false" aria-controls="collapseConsumo">
+        Consumo
+      </button>
+
+      <button class="btn btn-outline-primary btn-lg px-4" type="button" data-bs-toggle="collapse"
+        data-bs-target="#collapsePreservacao" aria-expanded="false" aria-controls="collapsePreservacao">
+        Preservação
+      </button>
     </div>
 
-    <!-- Panels de cards -->
+
+
     <div class="container mt-5" id="infoPanels">
-        @foreach($topics as $key => $cards)
-            <div class="collapse" id="collapse{{ $key }}" data-bs-parent="#infoPanels">
-                <div class="row g-4">
-                    @foreach($cards as $card)
-                        <div class="col-12">
-                            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 15rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title text-white text-end">{{ $card['title'] }}</h5>
-                                    <p class="card-text text-white text-center">{{ $card['text'] }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+
+      <!-- card Clima -->
+      <div class="collapse" id="collapseClima" data-bs-parent="#infoPanels">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Impacto do Clima na Água</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">O clima desempenha um papel central
+                  na disponibilidade e na qualidade da água no planeta. Mudanças climáticas provocam eventos extremos como
+                  secas prolongadas, enchentes e variações de temperatura, que afetam rios, lagos e aquíferos. Regiões com
+                  chuvas irregulares enfrentam escassez, enquanto áreas com excesso de precipitação podem sofrer
+                  inundações. Entender essas mudanças permite planejar o uso consciente da água e desenvolver estratégias
+                  de adaptação em escolas, comunidades e residências.</p>
+              </div>
             </div>
-        @endforeach
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Clima</h5>
+                <p class="card-text text-white text-center">Aqui vai a informação sobre o clima. Este é o primeiro card
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Card Coleta -->
+      <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Card de Coleta 1</h5>
+                <p class="card-text text-white text-center">Informações sobre como a coleta da água funciona.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Comsumo -->
+      <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="card text-start card bg-card mb-3 mx-auto " style="width: 90%; height: 15rem; ">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Card de Consumo 1</h5>
+                <p class="card-text text-white text-center">Dados e dicas sobre o consumo consciente da água.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Preservação -->
+      <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Card de Preservação 1</h5>
+                <p class="card-text text-white text-center">A importância de preservar nossos recursos hídricos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-</section>
 
-@endsection
-
-@section('scripts')
-<script>
-  const buttons = document.querySelectorAll('.btn[data-bs-toggle="collapse"]');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Toggle: se já ativo, remove
-      if(this.classList.contains('active')) {
-        this.classList.remove('active');
-      } else {
-        // Remove active de todos os outros
-        buttons.forEach(b => b.classList.remove('active'));
-        // Adiciona active ao clicado
-        this.classList.add('active');
-      }
-    });
-  });
-</script>
+  </section>
 
   <script>
   const buttons = document.querySelectorAll('.btn[data-bs-toggle="collapse"]');

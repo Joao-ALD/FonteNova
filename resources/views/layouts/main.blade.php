@@ -6,6 +6,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<<<<<<< HEAD
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>FonteNova</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg    ">
+        <!-- //- 'container-fluid' faz com que o conteúdo da barra ocupe toda a largura da tela. -->
+        <div class="container-fluid text-white bg-nav nav-h">
+            <!-- //- 'navbar-brand' é usado para o nome do site ou logo. -->
+            <a class="navbar-brand" href="index "><img src="assets\img\LogoReduzida.svg" alt="LogoFonteNova"></a>
+
+            <!-- //- Este é o botão "hambúrguer" que aparece em telas pequenas. -->
+            <!-- //- 'data-bs-toggle="collapse"' e 'data-bs-target' o conectam ao nav que deve ser mostrado/escondido. -->
+=======
 
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any"> <!-- ícone extra para navegadores antigos -->
@@ -30,6 +48,7 @@
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('assets/img/icon_logo.svg') }}" alt="LogoFonteNova">
             </a>
+>>>>>>> 3de535625479fe107faef9fb66afb573b54ebd74
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -46,6 +65,16 @@
         </div>
     </nav>
 
+<<<<<<< HEAD
+    <section class="container">
+        @yield('content')
+    </section>
+
+    <script src="assets/js/script.js"></script>
+   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+=======
     {{-- Conteúdo das páginas --}}
     <main class="container mt-4">
         @yield('content')
@@ -55,6 +84,7 @@
     <script src="{{ asset('assets/bootstrap/js/bootstrapLink.js') }}"></script>
     {{-- Scripts personalizados --}}
     <script src="{{ asset('assets/js/script.js') }}"></script>
+>>>>>>> 3de535625479fe107faef9fb66afb573b54ebd74
 </body>
 
 </html>

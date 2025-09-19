@@ -27,3 +27,9 @@
     color: #ffffff; /* cor do texto */
     margin-left: 15px;
 }
+
+/* Limita o tamanho da logo da navbar */
+.navbar-brand img {
+    height: 97px; /* Ajuste conforme necessário */
+    width: auto;  /* Mantém proporção da imagem */
+}

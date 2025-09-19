@@ -105,3 +105,19 @@
     
     </section>
 @endsection
+<script>
+  // Seleciona todos os botões de tópico
+  const buttons = document.querySelectorAll('.btn[data-bs-toggle="collapse"]');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Remove a classe 'ativo' de todos os botões
+      buttons.forEach(b => b.classList.remove('btn-primary'));
+      buttons.forEach(b => b.classList.add('btn-outline-primary'));
+
+      // Adiciona 'ativo' ao botão clicado
+      this.classList.remove('btn-outline-primary');
+      this.classList.add('btn-primary');
+    });
+  });
+</script>

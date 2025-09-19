@@ -36,6 +36,7 @@
 
   <div class="container mt-5" id="infoPanels">
 
+  <!-- card Coleta -->
 <div class="collapse" id="collapseClima" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
@@ -58,6 +59,8 @@
   </div>
 </div>
 
+
+<!-- Card Coleta -->
 <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">
@@ -71,6 +74,7 @@
   </div>
 </div>
 
+<!-- Card Comsumo -->
 <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">

@@ -88,6 +88,7 @@
   </div>
 </div>
 
+<!-- Card Preservação -->
 <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
   <div class="row g-4">
     <div class="col-12">

@@ -33,3 +33,7 @@
     height: 97px; /* Ajuste conforme necessário */
     width: auto;  /* Mantém proporção da imagem */
 }
+
+.bg-card{
+    background-color: var(--AzulClaro);
+}

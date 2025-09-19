@@ -24,7 +24,7 @@
 <body>
 
     {{-- NAVBAR aqui ou em @include('layouts.header') --}}
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container-fluid text-white bg-nav nav-h">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('assets/img/icon_logo.svg') }}" alt="LogoFonteNova">
@@ -36,7 +36,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="route{{('sobre.index')}}">Sobre</a></li>
                     <li class="nav-item"><a class="nav-link active" href="#">Galeria</a></li>
                     <li class="nav-item"><a class="nav-link active" href="#">Mapa</a></li>
                     <li class="nav-item"><a class="nav-link active" href="#">Curso</a></li>

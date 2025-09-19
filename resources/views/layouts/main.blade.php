@@ -43,11 +43,11 @@
                 <!-- Links à direita -->
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active dark" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active dark" href="#">Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link active dark" href="#">Galeria</a></li>
-                        <li class="nav-item"><a class="nav-link active dark" href="#">Mapa</a></li>
-                        <li class="nav-item"><a class="nav-link active dark" href="#">Curso</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="#">Sobre</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="#">Galeria</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="#">Mapa</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="#">Curso</a></li>
                     </ul>
                 </div>
             </div>

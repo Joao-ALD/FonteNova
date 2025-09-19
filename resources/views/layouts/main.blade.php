@@ -26,33 +26,35 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid bg-nav nav-h px-0"> <!-- px-0 para evitar conflito -->
-            <div class="w-100 d-flex justify-content-between align-items-center px-custom">
-                <!-- Logo à esquerda -->
-                <a class="navbar-brand" href="#">
-                    <img src="{{ asset('assets/img/icon_logo.svg') }}" alt="LogoFonteNova">
-                </a>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid bg-nav nav-h px-0">
+        <div class="w-100 d-flex justify-content-between align-items-center px-custom">
+            <!-- Logo alinhada ao centro -->
+            <a class="navbar-brand d-flex align-items-center text-white" href="#">
+                <img src="{{ asset('assets/img/icon_logo.svg') }}" alt="LogoFonteNova" class="logo-img">FonteNova
+            </a>
 
-                <!-- Botão mobile -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <!-- Botão mobile (hamburguer) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- Links à direita -->
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active text-white" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="#">Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="#">Galeria</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="#">Mapa</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="#">Curso</a></li>
-                    </ul>
-                </div>
+            <!-- Links de navegação -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active text-white" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white" href="#">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white" href="#">Galeria</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white" href="#">Mapa</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white" href="#">Curso</a></li>
+                </ul>
             </div>
+
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     {{-- Conteúdo das páginas --}}
     <main class="container mt-4">

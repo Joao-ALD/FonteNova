@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AguaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SobreController;
 /*
@@ -20,4 +21,5 @@ use App\Http\Controllers\SobreController;
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('/',[SobreController::class, 'index'])->name('sobre.index');
+Route::get('/sobre',[SobreController::class, 'index'])->name('sobre.index');
+Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');

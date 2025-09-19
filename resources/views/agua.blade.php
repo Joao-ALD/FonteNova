@@ -22,7 +22,7 @@
     <!-- Conteúdos dos cards -->
     <div class="container mt-5">
         <!-- Clima -->
-        <div id="clima" class="tab-content d-block">
+        <div id="clima" class="tab-content fade show">
             <div class="row g-4">
                 <div class="col-12">
                     <div class="card text-bg-info mb-3" style="height: 20rem;">
@@ -44,7 +44,7 @@
         </div>
  
         <!-- Coleta -->
-        <div id="coleta" class="tab-content d-none">
+        <div id="coleta" class="tab-content fade">
             <div class="row g-4">
                 <div class="col-12">
                     <div class="card text-bg-info mb-3" style="height: 20rem;">
@@ -58,7 +58,7 @@
         </div>
  
         <!-- Consumo -->
-        <div id="consumo" class="tab-content d-none">
+        <div id="consumo" class="tab-content fade">
             <div class="row g-4">
                 <div class="col-12">
                     <div class="card text-bg-info mb-3" style="height: 20rem;">
@@ -72,7 +72,7 @@
         </div>
  
         <!-- Preservação -->
-        <div id="preservacao" class="tab-content d-none">
+        <div id="preservacao" class="tab-content fade">
             <div class="row g-4">
                 <div class="col-12">
                     <div class="card text-bg-info mb-3" style="height: 20rem;">
@@ -88,7 +88,21 @@
     </div>
 </section>
  
-<!-- Script para alternar tabs -->
+<!-- CSS para animação fade -->
+<style>
+.tab-content {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+    display: none;
+}
+ 
+.tab-content.show {
+    display: block;
+    opacity: 1;
+}
+</style>
+ 
+<!-- Script para alternar tabs com fade -->
 <script>
 document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -96,12 +110,18 @@ document.querySelectorAll('.btn').forEach(btn => {
         document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
  
-        // Esconde todos os conteúdos
-        document.querySelectorAll('.tab-content').forEach(tc => tc.classList.add('d-none'));
+        // Pega o alvo
+        const target = document.querySelector(btn.getAttribute('data-target'));
  
-        // Mostra o conteúdo correspondente
-        const target = btn.getAttribute('data-target');
-        document.querySelector(target).classList.remove('d-none');
+        // Remove show do card atual com fade
+        document.querySelectorAll('.tab-content.show').forEach(current => {
+            current.classList.remove('show');
+        });
+ 
+        // Aplica show ao novo card com pequeno delay para efeito fade
+        setTimeout(() => {
+            target.classList.add('show');
+        }, 50);
     });
 });
 </script>

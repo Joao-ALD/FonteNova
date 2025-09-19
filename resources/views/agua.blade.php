@@ -42,7 +42,7 @@
       <div class="card text-start card text-bg-info mb-3" style="width: 100%; height: 20rem;">
         <div class="card-body">
           <h5 class="card-title text-white ">Card de Clima 1</h5>
-          <p class="card-text text-white">Aqui vai a informação sobre o clima. Este é o primeiro card.</p>
+          <p class="card-text text-white text-center">Aqui vai a informação sobre o clima. Este é o primeiro card.</p>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
       <div class="card text-start card text-bg-info mb-3" style="width: 100%; height: 20rem;">
         <div class="card-body">
           <h5 class="card-title text-white">Card de Coleta 1</h5>
-          <p class="card-text text-white">Informações sobre como a coleta da água funciona.</p>
+          <p class="card-text text-white text-center">Informações sobre como a coleta da água funciona.</p>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@
       <div class="card text-start card text-bg-info mb-3" style="width: 100%; height: 20rem;">
         <div class="card-body">
           <h5 class="card-title text-white">Card de Consumo 1</h5>
-          <p class="card-text text-white">Dados e dicas sobre o consumo consciente da água.</p>
+          <p class="card-text text-white text-center">Dados e dicas sobre o consumo consciente da água.</p>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@
       <div class="card text-start card text-bg-info mb-3" style="width: 100%; height: 20rem;">
         <div class="card-body">
           <h5 class="card-title text-white">Card de Preservação 1</h5>
-          <p class="card-text text-white">A importância de preservar nossos recursos hídricos.</p>
+          <p class="card-text text-white text-center">A importância de preservar nossos recursos hídricos.</p>
         </div>
       </div>
     </div>

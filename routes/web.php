@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AguaController;

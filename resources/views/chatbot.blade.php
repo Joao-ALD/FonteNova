@@ -3,13 +3,16 @@
 @section('content')
 
   <section class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100">
-    <!-- Título -->
-    <h1 class="display-1 fw-bold p">ChatBot</h1>
 
     <!-- Subtítulo -->
     <p class="lead mt-3">
       Olá, quer fazer o uso sustentavel da água?
     </p>
+
+    <!-- search.php -->
+    <form method="GET" action="search.php">
+        <input type="text" name="query" placeholder="Digite sua pergunta..." required>
+    </form>
 
     <!-- Botões do topicos Clima,Coleta,Consumo,Preservacao -->
     <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
@@ -25,7 +28,7 @@
 
       <button class="btn btn-outline-primary btn-lg px-4" type="button" data-bs-toggle="collapse"
         data-bs-target="#collapseConsumo" aria-expanded="false" aria-controls="collapseConsumo">
-        Consumo
+        Conmosu
       </button>
 
       <button class="btn btn-outline-primary btn-lg px-4" type="button" data-bs-toggle="collapse"

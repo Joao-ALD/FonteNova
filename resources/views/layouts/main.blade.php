@@ -45,7 +45,6 @@
                         <li class="nav-item"><a class="nav-link active text-white" href="{{ route('chatbot.index') }}">ChatBot</a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </nav>

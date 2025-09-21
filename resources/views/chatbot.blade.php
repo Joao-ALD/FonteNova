@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100">
+<section class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100 ">
 
     <!-- Subtítulo -->
     <h3 class="mt-3">Olá, quer fazer o uso sustentável da água?</h3>

@@ -34,6 +34,10 @@
     width: auto;  /* Mantém proporção da imagem */
 }
 
+.bg-azulClaro{
+    background-color: var(--AzulClaro);
+}
+
 .bg-card{
     background-color: var(--AzulClaro);
 }

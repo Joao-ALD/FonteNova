@@ -34,7 +34,7 @@ class ChatBotController extends Controller
 
         return response()->json([
             'resumo' => "Não encontrei nada sobre isso ainda. Que tal explorar nossa galeria?",
-            'link_site' => '/galeria',
+            'link_site' => '/infoAgua',
             'link_premium' => null
         ]);
     }

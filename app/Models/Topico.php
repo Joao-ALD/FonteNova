@@ -9,8 +9,7 @@ class Topico extends Model
 {
     use HasFactory;
 
-    protected $table = 'topicos'; // nome da tabela no banco
-
+    protected $table = 'topicos';
     protected $fillable = [
         'nome',
         'palavras_chave',

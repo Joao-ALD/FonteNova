@@ -22,4 +22,8 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
+
+// Rotas ChatBot
 Route::get('/ChatBot', [ChatBotController::class, 'index'])->name('chatbot.index');
+Route::post('/chatbot/responder', [ChatbotController::class, 'responder'])->name('chatbot.responder');
+

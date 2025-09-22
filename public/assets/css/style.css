@@ -66,7 +66,7 @@
 
 .hero {
     width: 100%;
-    minheight: 413px;
+    min-height: 413px;
     padding: 64px 5vw;
     /* padding lateral relativo */
     background-color: var(--AzulClaro);

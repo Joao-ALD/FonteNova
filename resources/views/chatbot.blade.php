@@ -1,9 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-
 <section class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100 ">
-
     <!-- Subtítulo -->
     <h3 class="mt-3">Olá, quer fazer o uso sustentável da água?</h3>
 
@@ -26,8 +24,6 @@
     <div id="resposta" class="alert alert-info d-none text-start w-75 mx-auto"></div>
 
 </section>
-
-<!-- Script -->
 <script>
 document.getElementById('enviar').addEventListener('click', enviarMensagem);
 document.querySelectorAll('.sugestao').forEach(btn => {
@@ -60,5 +56,4 @@ function enviarMensagem() {
     });
 }
 </script>
-
 @endsection

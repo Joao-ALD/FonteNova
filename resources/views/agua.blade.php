@@ -86,7 +86,6 @@
         </div>
       </div>
 
-
       <!-- Card Coleta -->
       <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
         <div class="row g-4">

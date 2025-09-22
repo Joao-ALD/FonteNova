@@ -175,12 +175,54 @@
       <!-- Card Consumo -->
       <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
         <div class="row g-4">
+
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
               <div class="card-body">
-                <h5 class="card-title text-white text-end">Consumo</h5>
+                <h5 class="card-title text-white text-end">Consumo Consciente</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
-                  O consumo consciente de água é crucial para garantir sua disponibilidade futura...
+                  Repensar o uso da água em todas as atividades do dia a dia é essencial para evitar desperdícios.
+                  Atitudes simples, como reduzir banhos longos ou reutilizar a água sempre que possível, ajudam a garantir
+                  a economia e preservação desse recurso vital.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Monitoramento</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  Acompanhar de perto o consumo de água é uma forma eficiente de identificar possíveis excessos. Com esse
+                  controle, é possível adotar novas práticas, corrigir hábitos e buscar alternativas que contribuam para a
+                  redução do gasto e a melhoria do uso.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Pequenas Mudanças</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  Gestos simples fazem grande diferença. Fechar a torneira enquanto escova os dentes, reutilizar água da
+                  chuva para tarefas domésticas ou usar baldes em vez de mangueiras já representa uma economia
+                  significativa no consumo diário.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Tecnologia</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  O uso de ferramentas digitais e equipamentos inteligentes pode ser um grande aliado na preservação da
+                  água. Aplicativos, sensores e hidrômetros modernos permitem monitorar o gasto em tempo real, ajudando a
+                  controlar o consumo e promover hábitos mais sustentáveis.
                 </p>
               </div>
             </div>

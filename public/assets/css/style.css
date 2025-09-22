@@ -1,4 +1,4 @@
-:root{
+:root {
     --AzulEscuro: rgba(1, 75, 160, 1);
     --Azul2: rgba(10, 92, 184, 1);
     --Azul3: rgba(20, 102, 195, 1);
@@ -16,7 +16,7 @@
 }
 
 .bg-nav {
-    background-color: var(--AzulEscuro); 
+    background-color: var(--AzulEscuro);
 }
 
 .nav-h {
@@ -24,14 +24,17 @@
 }
 
 .navbar-nav .nav-link {
-    color: #ffffff; /* cor do texto */
+    color: #ffffff;
+    /* cor do texto */
     margin-left: 15px;
 }
 
 /* Limita o tamanho da logo da navbar */
 .navbar-brand img {
-    height: 97px; /* Ajuste conforme necessário */
-    width: auto;  /* Mantém proporção da imagem */
+    height: 97px;
+    /* Ajuste conforme necessário */
+    width: auto;
+    /* Mantém proporção da imagem */
 }
 
 /* Navbar oculta */
@@ -45,13 +48,277 @@
 
 /* Classe que esconde a navbar ao descer */
 .nav-hidden {
-    top: -100px; /* altura negativa para esconder */
+    top: -100px;
+    /* altura negativa para esconder */
 }
 
-.bg-card{
+.bg-card {
     background-color: var(--AzulClaro);
 }
 
 .titulosSobre{
     color: #21499F;
+}
+
+.navbar {
+    padding: 0%;
+}
+
+
+
+.hero {
+    width: 100%;
+    minheight: 413px;
+    padding: 64px 5vw;
+    /* padding lateral relativo */
+    background-color: var(--AzulClaro);
+    display: flex;
+    justify-content: center;
+    /* centraliza o container interno */
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.hero-inner {
+    display: flex;
+    flex-wrap: wrap;
+    /* permite empilhar no mobile */
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1920px;
+    /* limite de largura em telas grandes */
+    gap: 2rem;
+    /* espaçamento entre conteúdo e ilustração */
+}
+
+.hero-content {
+    flex: 1 1 60%;
+    /* ocupa 60% do espaço ou adapta */
+    color: #fff;
+}
+
+.hero-title {
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    font-size: clamp(28px, 4.5vw, 56px);
+    /* responsivo */
+}
+
+.hero-sub {
+    margin-bottom: 20px;
+    max-width: 60ch;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.btn-cta {
+    background: #1a5fb2;
+    border-radius: 12px;
+    padding: 10px 18px;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+}
+
+.hero-media {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-illustration {
+    width: 40vw;
+    /* escala com a viewport */
+    max-width: 520px;
+    /* tamanho máximo */
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* --- Breakpoints --- */
+@media (max-width: 1200px) {
+    .hero-illustration {
+        width: 36vw;
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .hero-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .hero-illustration {
+        width: 60%;
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-title {
+        font-size: clamp(20px, 8vw, 34px);
+    }
+
+    .hero-illustration {
+        display: none;
+    }
+
+    /* oculta em mobile */
+    .hero {
+        padding: 32px 4vw;
+    }
+}
+
+/* Gallery */
+.section {
+    padding: 56px 6vw
+}
+
+.section .section-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 28px;
+    color: var(--AzulEscuro);
+    font-weight: 800;
+}
+
+.gallery {
+    display: flex;
+    gap: 28px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-square {
+    width: 280px;
+    height: 280px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 6px 18px rgba(11, 78, 162, 0.08);
+}
+
+.card-square.small {
+    width: 140px;
+    height: 140px;
+}
+
+.card-square .icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.card-label {
+    font-size: 13px;
+    color: #ffffff;
+}
+
+/* Map section */
+.map-section {
+    background: var(--AzulClaro);
+    padding: 48px 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Mantém texto à esquerda e ilustração à direita */
+    gap: 20px;
+    flex-wrap: wrap;
+    /* Permite quebra em telas menores */
+}
+
+.map-text {
+    max-width: 720px;
+    flex: 1 1 400px;
+    /* O texto ocupa no mínimo 400px, mas encolhe se necessário */
+}
+
+.map-text h3 {
+    color: var(--accent);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.map-text p {
+    opacity: 0.95;
+}
+
+.map-illustration {
+    width: 320px;
+    flex: 0 0 320px;
+    /* Mantém a ilustração com largura fixa */
+}
+
+.map-illustration svg {
+    width: 100%;
+    height: auto;
+    opacity: 0.25;
+    filter: grayscale(1);
+}
+
+/* Media Query para telas pequenas */
+@media (max-width: 768px) {
+    .map-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 4vw;
+    }
+
+    .map-illustration {
+        margin-left: 0;
+        margin-top: 24px;
+        width: 80%;
+        /* Ajusta a largura proporcionalmente */
+        flex: 1 1 auto;
+    }
+
+    .map-text {
+        text-align: center;
+    }
+}
+
+/* Education */
+.edu {
+    background: var(--AzulEscuro);
+    color: #fff;
+    padding: 44px 6vw
+}
+
+.edu .section-title {
+    color: #fff
+}
+
+.edu .edu-cards {
+    display: flex;
+    gap: 28px;
+    justify-content: center
+}
+
+.edu-card {
+    width: 150px;
+    height: 110px;
+    border-radius: 10px;
+    background: #f0f7ff;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 700
+}
+
+.edu-card.blue {
+    background: #2f7ad9;
+    color: #fff
 }

@@ -42,7 +42,7 @@
       <div class="collapse" id="collapseClima" data-bs-parent="#infoPanels">
         <div class="row g-4">
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="clima-1" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Clima</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -56,7 +56,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="clima-2" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Coleta de Água da chuva</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -70,7 +70,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="clima-3" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Comsumo</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -84,7 +84,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div clima="clima-4" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Preservação</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -102,7 +102,7 @@
       <!-- Card Coleta (4 cards) -->
       <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
         <div class="row g-4">
-          <!-- Coleta -->
+         
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
@@ -119,7 +119,7 @@
             </div>
           </div>
 
-          <!-- Captação -->
+          
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
@@ -136,7 +136,7 @@
             </div>
           </div>
 
-          <!-- Armazenamento -->
+          
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
@@ -153,7 +153,7 @@
             </div>
           </div>
 
-          <!-- Filtragem -->
+          
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
@@ -172,7 +172,7 @@
         </div>
       </div>
 
-      <!-- Card Consumo -->
+      
       <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
         <div class="row g-4">
 

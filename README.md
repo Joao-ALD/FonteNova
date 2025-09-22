@@ -92,7 +92,7 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
    DB_PASSWORD=""
    ```
 
-6. Executar as "Migrations"**
+**6. Executar as "Migrations"**
    Este comando irá criar todas as tabelas necessárias no banco de dados que você acabou de configurar.
 
    ```bash

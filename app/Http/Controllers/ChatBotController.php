@@ -15,7 +15,7 @@ class ChatBotController extends Controller
     {
         $mensagem = strtolower($request->input('mensagem'));
 
-        // Buscar todos tópicos
+         //Buscar todos tópicos
         $topicos = Topico::all();
 
         foreach ($topicos as $topico) {

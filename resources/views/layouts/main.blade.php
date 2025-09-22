@@ -53,7 +53,7 @@
             </div>
         </div>
     </nav>
-
+    
     {{-- Conteúdo das páginas --}}
     <main class="">
         @yield('content')

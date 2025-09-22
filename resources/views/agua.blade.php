@@ -42,7 +42,7 @@
       <div class="collapse" id="collapseClima" data-bs-parent="#infoPanels">
         <div class="row g-4">
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Clima</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">

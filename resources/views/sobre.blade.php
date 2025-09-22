@@ -6,7 +6,8 @@
 @section('content')
     <div class="container bg-primary border rounded-5 text-white mb-3">
         <h2 class="">Nosso projeto</h2>
-        <img src="http://127.0.0.1:8000/assets/img/icon-balde.svg" alt="">
+        <!-- <img src="http://127.0.0.1:8000/assets/img/icon-balde.svg" alt=""> -->
+        <img src="{{ asset('assets\img\logo.svg') }}" alt="">
         <p>
             Nosso projeto tem como missão promover a conscientização sobre o uso responsável da
             água, incentivando práticas sustentáveis no cotidiano. Através de recursos digitais,

@@ -106,8 +106,8 @@
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
               <div class="card-body">
-                <h5 class="card-title text-white">Coleta</h5>
-                <p class="card-text text-white">
+                <h5 class="card-title text-white text-end">Coleta</h5>
+                <p class="card-text text-white text-center">
                   A coleta de água é o primeiro passo para garantir o acesso a esse recurso essencial. Ela representa o
                   conjunto de práticas que permitem reunir a água disponível no ambiente para posterior uso. A coleta pode
                   ser feita de forma simples, como em casas que aproveitam a chuva, ou em larga escala, por meio de
@@ -123,8 +123,8 @@
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
               <div class="card-body">
-                <h5 class="card-title text-white">Captação</h5>
-                <p class="card-text text-white">
+                <h5 class="card-title text-white text-end">Captação</h5>
+                <p class="card-text text-white text-center">
                   A captação é o processo de recolher a água da chuva ou de outras fontes naturais e artificiais. Essa
                   etapa é fundamental para iniciar o ciclo de abastecimento. Pode ser feita por meio de telhados, calhas e
                   canaletas que direcionam a água da chuva para reservatórios, além da coleta em rios, lagos e poços
@@ -140,8 +140,8 @@
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
               <div class="card-body">
-                <h5 class="card-title text-white">Armazenamento</h5>
-                <p class="card-text text-white">
+                <h5 class="card-title text-white text-end">Armazenamento</h5>
+                <p class="card-text text-white text-center">
                   Após a coleta, a água precisa ser armazenada em locais adequados para garantir disponibilidade futura.
                   Esse armazenamento pode acontecer em cisternas domésticas, reservatórios públicos urbanos, tanques
                   plásticos ou de concreto, e até em sistemas subterrâneos, como os aquíferos naturais. Essa etapa é
@@ -157,8 +157,8 @@
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
               <div class="card-body">
-                <h5 class="card-title text-white">Filtragem</h5>
-                <p class="card-text text-white">
+                <h5 class="card-title text-white text-end">Filtragem</h5>
+                <p class="card-text text-white text-center">
                   A filtragem é o passo que torna a água mais limpa e segura para uso humano e agrícola. Existem diversos
                   métodos de purificação, desde os simples até os mais avançados. Filtros de cerâmica ou carvão ativado
                   são comuns em residências, enquanto sistemas de areia e cascalho podem ser usados em comunidades rurais.

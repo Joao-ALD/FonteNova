@@ -21,11 +21,9 @@ use App\Http\Controllers\SobreController;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-
 Route::get('/sobre',[SobreController::class, 'index'])->name('sobre.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
 
 // Rotas ChatBot
 Route::get('/ChatBot', [ChatBotController::class, 'index'])->name('chatbot.index');
 Route::post('/chatbot/responder', [ChatbotController::class, 'responder'])->name('chatbot.responder');
-

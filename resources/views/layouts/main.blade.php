@@ -20,35 +20,43 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top nav-auto-hide">
-        <div class="container-fluid bg-nav nav-h px-0">
-            <div class="w-100 d-flex justify-content-between align-items-center px-custom">
-                <!-- Logo alinhada ao centro -->
-                <a class="navbar-brand d-flex align-items-center text-white" href="{{ route('home.index') }}">
-                    <img src="{{ asset('assets/img/icon_logo.svg') }}" alt="LogoFonteNova" class="logo-img">FonteNova
-                </a>
-
-                <!-- Botão mobile (hamburguer) -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Links de navegação -->
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active text-white" href="{{ route('agua.index') }}">Água</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="{{route('sobre.index')}}">Sobre</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="#">Galeria</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="#">Mapa</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="#">Curso</a></li>
-                    </ul>
-                </div>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-nav fixed-top shadow">
+        <div class="container">
+            <!-- Logo + Nome -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('home.index') }}">
+                <img src="{{ asset('assets/img/icon_logo.svg') }}" alt="Logo" width="40" height="40" class="me-2">
+                <span>FonteNova</span>
+            </a>
+    
+            <!-- Botão mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- Links -->
+            <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('agua.index')}}">Água</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('sobre.index')}}">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#galeria">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mapa">Mapa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#curso">Curso</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
-
+    
     {{-- Conteúdo das páginas --}}
     <main class="container mt-4">
         @yield('content')

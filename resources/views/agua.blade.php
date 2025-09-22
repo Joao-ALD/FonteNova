@@ -112,7 +112,7 @@
                   conjunto de práticas que permitem reunir a água disponível no ambiente para posterior uso. A coleta pode
                   ser feita de forma simples, como em casas que aproveitam a chuva, ou em larga escala, por meio de
                   estruturas construídas para abastecer comunidades inteiras. Esse processo é indispensável para dar
-                  início às etapas de captação, armazenamento e filtragem.  📌 Exemplo: Uma comunidade pode organizar um
+                  início às etapas de captação, armazenamento e filtragem.📌 Exemplo: Uma comunidade pode organizar um
                   sistema de coleta coletiva da água da chuva para reduzir a dependência de caminhões-pipa.
                 </p>
               </div>
@@ -129,7 +129,7 @@
                   etapa é fundamental para iniciar o ciclo de abastecimento. Pode ser feita por meio de telhados, calhas e
                   canaletas que direcionam a água da chuva para reservatórios, além da coleta em rios, lagos e poços
                   artesianos. Em contextos maiores, indústrias utilizam sistemas próprios de coleta, enquanto barragens e
-                  represas armazenam grandes volumes para abastecer cidades inteiras.  📌 Exemplo: Em casas rurais, o
+                  represas armazenam grandes volumes para abastecer cidades inteiras.📌 Exemplo: Em casas rurais, o
                   telhado funciona como coletor natural da água da chuva, conduzindo-a para cisternas.
                 </p>
               </div>
@@ -162,7 +162,7 @@
                   A filtragem é o passo que torna a água mais limpa e segura para uso humano e agrícola. Existem diversos
                   métodos de purificação, desde os simples até os mais avançados. Filtros de cerâmica ou carvão ativado
                   são comuns em residências, enquanto sistemas de areia e cascalho podem ser usados em comunidades rurais.
-                  Além disso, a desinfecção com cloro ou luz ultravioleta garante a eliminação de microrganismos nocivos. 
+                  Além disso, a desinfecção com cloro ou luz ultravioleta garante a eliminação de microrganismos nocivos.
                   📌 Exemplo: Uma família pode utilizar um filtro de carvão ativado para transformar a água armazenada na
                   cisterna em água potável.
                 </p>

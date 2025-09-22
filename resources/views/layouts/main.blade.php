@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Favicon SVG (principal) -->
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
-    <!-- PNG para navegadores que não suportam SVG -->
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-    <!-- ICO como fallback adicional (máxima compatibilidade) -->
-    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
-    {{-- Bootstrap CSS (local) --}}
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrapLink.css') }}">
-    {{-- CSS customizado do projeto --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- Favicon SVG -->
+        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+        <!-- PNG para navegadores que não suportam SVG -->
+        <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+        <!-- ICO como fallback adicional (navegadores ainda mais atntigos) -->
+        <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+        {{-- Bootstrap CSS (local) --}}
+        <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrapLink.css') }}">
+        {{-- CSS customizado do projeto --}}
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <title>@yield('title', 'FonteNova')</title>
 </head>
 
@@ -53,7 +57,6 @@
         @yield('content')
     </main>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <footer class="text-white footer-custom-bg">
         <div class="container p-4 px-custom">
             <div class="row my-4 gy-5">

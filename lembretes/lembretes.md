@@ -1,5 +1,9 @@
 # Guia Rápido Laravel com Composer, Artisan e GitHub
 
+> ⚠️ **Lembrete para a equipe:** Sempre mantenha este guia atualizado conforme novas versões do Laravel forem lançadas ou alterações forem feitas nos nossos fluxos.
+
+---
+
 ## 📦 Criando um Projeto Laravel
 
 Use o Composer para criar um novo projeto Laravel com a última versão disponível:
@@ -9,6 +13,10 @@ composer create-project laravel/laravel nome-do-projeto
 cd nome-do-projeto
 ```
 
+> 💡 **Dica:** Padronize o nome dos projetos com `kebab-case`, ex: `chatbot-agua-inteligente`
+
+---
+
 ## 🚀 Executando o Projeto
 
 Para rodar o servidor embutido do Laravel:
@@ -17,7 +25,7 @@ Para rodar o servidor embutido do Laravel:
 php artisan serve
 ```
 
-> **Nota**: Os assets (CSS, JS, imagens) devem estar na pasta `public/assets` para funcionar corretamente com `php artisan serve`.
+> **Nota:** Os assets (CSS, JS, imagens) devem estar na pasta `public/assets` para funcionar corretamente com `php artisan serve`.
 
 ### Alternativa com Vite (para front-end)
 
@@ -25,7 +33,7 @@ php artisan serve
 npm run dev
 ```
 
-> Este comando compila os assets que estão na pasta `resources` e serve o front-end. Não conecta diretamente com o back-end.
+> 💡 Esse comando compila os assets do `resources/` com base no `vite.config.js`.
 
 ---
 
@@ -43,6 +51,10 @@ Ou crie separadamente:
 php artisan make:controller NomeController
 ```
 
+> ⚠️ **Lembrete:** Sempre revisar os nomes e namespace criados — mantenha consistência.
+
+---
+
 ### ✏️ Editando a Migration
 
 No arquivo gerado em `database/migrations/`, edite a função `up()`:
@@ -52,6 +64,10 @@ $table->string('nome_da_coluna');
 $table->integer('idade');
 $table->boolean('ativo');
 ```
+
+> 💡 Use nomes de colunas em inglês se o projeto for internacional.
+
+---
 
 ### 💾 Editando o Model
 
@@ -76,59 +92,79 @@ php artisan migrate
 
 ---
 
+## 🌱 Executando Seeders
+
+Rodar apenas os seeders:
+
+```bash
+php artisan db:seed
+```
+
+Resetar o banco e rodar migrations + seeders:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+> ⚠️ **Atenção:** `migrate:fresh` APAGA todas as tabelas. Só use em ambiente de desenvolvimento!
+
+---
+
 ## 📤 Métodos HTTP Importantes no Laravel
 
-- `PUT`: Usado para **atualizações** (update)
-- `DELETE`: Usado para **exclusão** (delete)
+* `PUT`: Usado para **atualizações**
+* `DELETE`: Usado para **exclusões**
 
-> Certifique-se de utilizar os métodos corretos ao criar formulários no Blade.
+> 💡 No Blade, use `@method('PUT')` ou `@method('DELETE')` dentro dos formulários.
 
 ---
 
 ## 💻 Estrutura de Pastas Recomendada
 
-Exemplo de estrutura:
-
 ```
 C:/
 └── Documents/
     └── projects_laravel/
-        └── composer create-project laravel/laravel nome-do-projeto
+        └── nome-do-projeto/
 ```
+
+> ⚠️ **Padrão de equipe:** Todos os projetos Laravel devem ficar em `projects_laravel/`
 
 ---
 
-## 🧩 Integrando com GitHub e o Papel do `.gitignore`
+## 🧩 GitHub e .gitignore
 
-### ❓ Por que a pasta `vendor/` não vai para o GitHub?
+### Por que a pasta `vendor/` não vai para o GitHub?
 
-O arquivo `.gitignore` do Laravel ignora a pasta `vendor/` por motivos de:
+O `.gitignore` do Laravel ignora `vendor/` porque:
 
-1. **Tamanho** – muito grande
-2. **Redundância** – não foi escrita por você
-3. **Recriável** – pode ser gerada com `composer install`
+* É muito pesada
+* É recriada com `composer install`
+* Não é código nosso
 
-### 📦 Solução ao clonar o projeto em outro PC
+---
 
-#### 1. Instale as dependências:
+### Após clonar o projeto:
+
+1. Instale as dependências:
 
 ```bash
 composer install
 ```
 
-#### 2. Crie e configure o `.env`:
+2. Copie o `.env`:
 
 ```bash
 cp .env.example .env
 ```
 
-#### 3. Gere a chave da aplicação:
+3. Gere a chave da aplicação:
 
 ```bash
 php artisan key:generate
 ```
 
-#### 4. Configure a conexão com o banco de dados no `.env`:
+4. Configure o `.env` com os dados do banco:
 
 ```env
 DB_DATABASE=seu_banco
@@ -136,13 +172,25 @@ DB_USERNAME=seu_usuario
 DB_PASSWORD=sua_senha
 ```
 
-#### 5. Execute as migrações (opcional):
+5. Execute as migrations:
 
 ```bash
 php artisan migrate
 ```
 
-#### 6. Inicie o servidor:
+6. Rode os seeders (opcional):
+
+```bash
+php artisan db:seed
+```
+
+7. (Opcional) Rodar tudo de uma vez:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+8. Inicie o servidor:
 
 ```bash
 php artisan serve
@@ -150,7 +198,7 @@ php artisan serve
 
 ---
 
-## 🔁 Fluxo Correto de Trabalho com Git e Laravel
+## 🔁 Fluxo com Git
 
 ### No PC de origem:
 
@@ -163,24 +211,28 @@ git push
 ### No PC de destino:
 
 ```bash
-git clone <url-do-repositorio>  # ou git pull
+git clone <url-do-repositorio>
 composer install
 cp .env.example .env
 php artisan key:generate
-php artisan migrate
+php artisan migrate --seed
 php artisan serve
 ```
 
----
-
-## ✅ Resumo
-
-- Use `composer create-project` para iniciar projetos.
-- Use comandos Artisan para gerar estrutura rapidamente.
-- Nunca suba a pasta `vendor/` no GitHub.
-- Sempre use `composer install` após clonar.
-- Configure `.env` e gere a key com `php artisan key:generate`.
+> 💡 Use o GitHub Desktop se estiver aprendendo Git ainda.
 
 ---
-> **Nota**: Se estiver no VSCode utilize 'ctrl + shift + v' para pré-visualizar o arquivo.
+
+## ✅ Resumo para onboardings
+
+* `composer create-project` → cria projeto
+* `php artisan make:model -mc` → cria estrutura
+* `php artisan migrate` → cria tabelas
+* `php artisan db:seed` → insere dados de exemplo
+* `php artisan migrate:fresh --seed` → recria tudo do zero
+* Nunca suba `vendor/` no GitHub
+* Após clonar: `composer install` + `.env` + `key:generate` + `migrate`
+
 ---
+
+> 📌 **Nota para a equipe:** Use `Ctrl + Shift + V` no VSCode para pré-visualizar este `.md`.

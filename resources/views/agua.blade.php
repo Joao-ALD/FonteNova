@@ -225,7 +225,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="comsumo-4" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Tecnologia</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -246,7 +246,7 @@
       <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
         <div class="row g-4">
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="preservação-1" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Reuso Criativo</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -263,7 +263,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="preservação-2" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Educação Sustentável</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -279,7 +279,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="preservação-3" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Ação Coletiva</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -295,7 +295,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="preservação-4" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Sustentabilidade</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">

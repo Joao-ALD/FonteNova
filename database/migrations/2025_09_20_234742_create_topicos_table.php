@@ -8,29 +8,24 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('topicos', function (Blueprint $table) {
-            $table->id(); // equivale a id INT AUTO_INCREMENT PRIMARY KEY
-            $table->string('nome'); // exemplo: "Reutilização de água da chuva"
-            $table->text('palavras_chave'); // "chuva,reutilizar,conta,armazenar"
-            $table->text('resumo'); // resposta curta do chatbot
-            $table->string('link_site');
-            $table->string('link_premium')->nullable(); // pode ser nulo
-            $table->timestamps(); // cria created_at e updated_at
+            $table->id(); // ID automático
+            $table->string('titulo'); // Ex: "Reutilização de água da chuva"
+            $table->text('palavras_chave'); // Ex: "chuva,reutilizar,conta,armazenar"
+            $table->text('resumo'); // Resposta curta do chatbot
+            $table->string('link_site'); 
+            $table->string('link_premium')->nullable(); // Opcional
+            $table->timestamps(); // created_at e updated_at
         });
     }
 
-
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('topicos');
     }

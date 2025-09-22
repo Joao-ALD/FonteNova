@@ -248,13 +248,68 @@
           <div class="col-12">
             <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
               <div class="card-body">
-                <h5 class="card-title text-white text-end">Preservação</h5>
+                <h5 class="card-title text-white text-end">Reuso Criativo</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
-                  Preservar a água envolve proteger fontes naturais, como rios, nascentes e mananciais...
+                  O reaproveitamento da água é uma estratégia fundamental para reduzir o desperdício e aumentar a
+                  eficiência no uso desse recurso tão limitado. A água da máquina de lavar roupas, por exemplo, pode ser
+                  reutilizada para lavar calçadas, dar descarga ou até regar jardins, dependendo do tipo de sabão
+                  utilizado. Da mesma forma, a coleta da água da chuva pode abastecer reservatórios destinados a
+                  atividades domésticas que não exigem potabilidade. Esse reuso criativo permite que cada gota seja
+                  utilizada ao máximo, transformando o que antes era descartado em uma oportunidade de economia e
+                  preservação ambiental.
                 </p>
               </div>
             </div>
           </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Educação Sustentável</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  A conscientização começa com o aprendizado. Ensinar o valor da água desde a infância cria uma geração
+                  mais responsável e atenta à importância da preservação. Escolas, projetos comunitários e até ações
+                  dentro de casa podem incluir práticas que mostrem como pequenas atitudes fazem diferença, como fechar
+                  torneiras, evitar brincadeiras que gastam água e entender o ciclo natural desse recurso. Quanto mais
+                  cedo essa consciência for cultivada, maior será a chance de termos uma sociedade preparada para lidar
+                  com os desafios da escassez hídrica no futuro.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Ação Coletiva</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  A preservação da água se torna ainda mais poderosa quando feita em grupo. Projetos comunitários,
+                  campanhas de conscientização e mutirões para recuperar rios, nascentes e áreas verdes demonstram que a
+                  união de esforços gera resultados duradouros. Além de impactar diretamente o meio ambiente, essas ações
+                  fortalecem os laços entre as pessoas e incentivam o engajamento social. Quando famílias, escolas,
+                  empresas e comunidades se unem, o efeito multiplicador é imenso, criando uma cultura de preservação que
+                  ultrapassa fronteiras individuais.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Sustentabilidade</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  Cuidar da água não é apenas preservar o meio ambiente, mas também garantir qualidade de vida e economia
+                  no futuro. A sustentabilidade no uso desse recurso envolve práticas que unem benefícios ecológicos e
+                  financeiros, como investir em tecnologias de captação de água da chuva, utilizar sistemas de irrigação
+                  inteligentes e adotar equipamentos mais econômicos. Essas iniciativas reduzem custos a longo prazo,
+                  protegem a biodiversidade e ajudam a manter os ecossistemas em equilíbrio. A sustentabilidade, portanto,
+                  é o caminho para garantir que a água continue disponível para todos, hoje e nas próximas gerações.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 

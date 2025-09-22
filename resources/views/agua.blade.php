@@ -84,7 +84,7 @@
           </div>
 
           <div class="col-12">
-            <div clima="clima-4" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="clima-4" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Preservação</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -104,7 +104,7 @@
         <div class="row g-4">
          
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="coleta-1" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Coleta</h5>
                 <p class="card-text text-white text-center">
@@ -121,7 +121,7 @@
 
           
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="coleta-2" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Captação</h5>
                 <p class="card-text text-white text-center">
@@ -138,7 +138,7 @@
 
           
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="coleta-3" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Armazenamento</h5>
                 <p class="card-text text-white text-center">
@@ -146,7 +146,7 @@
                   Esse armazenamento pode acontecer em cisternas domésticas, reservatórios públicos urbanos, tanques
                   plásticos ou de concreto, e até em sistemas subterrâneos, como os aquíferos naturais. Essa etapa é
                   essencial para enfrentar períodos de estiagem e evitar a falta de água, tanto em áreas rurais quanto em
-                  grandes cidades.  📌 Dica: Manter a água armazenada corretamente ajuda a prevenir desperdícios e
+                  grandes cidades.📌 Dica: Manter a água armazenada corretamente ajuda a prevenir desperdícios e
                   assegura o uso contínuo em situações de seca.
                 </p>
               </div>
@@ -155,7 +155,7 @@
 
           
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="coleta-4" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Filtragem</h5>
                 <p class="card-text text-white text-center">
@@ -177,7 +177,7 @@
         <div class="row g-4">
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="comsumo-1" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Consumo Consciente</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -193,7 +193,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="comsumo-2" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Monitoramento</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -209,7 +209,7 @@
           </div>
 
           <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
+            <div id="" class="card text-start bg-card mb-3 mx-auto" style="width: 70%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Pequenas Mudanças</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">

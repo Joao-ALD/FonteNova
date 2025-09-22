@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg fixed-top nav-auto-hide">
         <div class="container-fluid bg-nav nav-h px-0">
             <div class="w-100 d-flex justify-content-between align-items-center px-custom">
                 <!-- Logo alinhada ao centro -->
@@ -54,12 +54,13 @@
         @yield('content')
     </main>
 
+    
     {{-- Bootstrap JS (local) --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- Scripts personalizados --}}
     <script src="{{ asset('assets/js/script.js') }}"></script>
-       {{-- Scripts específicos de cada página --}}
-       @yield('scripts')
+    {{-- Scripts específicos de cada página --}}
+    @yield('scripts')
 </body>
 
 </html>

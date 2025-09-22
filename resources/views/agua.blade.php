@@ -181,9 +181,12 @@
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Consumo Consciente</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
-                  Repensar o uso da água em todas as atividades do dia a dia é essencial para evitar desperdícios.
-                  Atitudes simples, como reduzir banhos longos ou reutilizar a água sempre que possível, ajudam a garantir
-                  a economia e preservação desse recurso vital.
+                  Adotar o consumo consciente da água significa refletir sobre como utilizamos esse recurso em todas as
+                  atividades do dia a dia. Pequenos hábitos, muitas vezes automáticos, podem estar gerando desperdícios
+                  que passam despercebidos. Ao repensar atitudes simples, como evitar banhos prolongados, reutilizar a
+                  água da máquina de lavar para limpeza ou dar preferência a torneiras com fechamento automático,
+                  garantimos não apenas economia na conta de água, mas também contribuímos para a preservação ambiental.
+                  Cada litro economizado faz diferença para o planeta e para as futuras gerações.
                 </p>
               </div>
             </div>
@@ -194,9 +197,12 @@
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Monitoramento</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
-                  Acompanhar de perto o consumo de água é uma forma eficiente de identificar possíveis excessos. Com esse
-                  controle, é possível adotar novas práticas, corrigir hábitos e buscar alternativas que contribuam para a
-                  redução do gasto e a melhoria do uso.
+                  O monitoramento constante do consumo de água é uma das formas mais eficazes de identificar desperdícios
+                  e propor melhorias. Manter o hábito de verificar hidrômetros, analisar contas mensais e até utilizar
+                  aplicativos de gestão hídrica ajuda a perceber padrões de gasto que poderiam ser ajustados. Muitas
+                  vezes, um aumento repentino no consumo pode indicar vazamentos escondidos, que passam despercebidos no
+                  dia a dia. Ter esse controle é essencial para agir de forma preventiva e transformar a forma como
+                  utilizamos a água em casa, no trabalho e em comunidades.
                 </p>
               </div>
             </div>
@@ -207,9 +213,12 @@
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Pequenas Mudanças</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
-                  Gestos simples fazem grande diferença. Fechar a torneira enquanto escova os dentes, reutilizar água da
-                  chuva para tarefas domésticas ou usar baldes em vez de mangueiras já representa uma economia
-                  significativa no consumo diário.
+                  As grandes transformações começam com pequenas atitudes. Fechar a torneira enquanto escova os dentes,
+                  juntar roupas para lavar de uma só vez, optar por regadores em vez de mangueiras ou coletar água da
+                  chuva para regar plantas são exemplos de práticas simples que reduzem significativamente o consumo. Cada
+                  mudança individual, quando multiplicada por milhões de pessoas, gera um impacto coletivo gigantesco na
+                  preservação da água. Essas ações não exigem grandes investimentos, apenas consciência e comprometimento
+                  com o futuro.
                 </p>
               </div>
             </div>
@@ -220,9 +229,12 @@
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Tecnologia</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
-                  O uso de ferramentas digitais e equipamentos inteligentes pode ser um grande aliado na preservação da
-                  água. Aplicativos, sensores e hidrômetros modernos permitem monitorar o gasto em tempo real, ajudando a
-                  controlar o consumo e promover hábitos mais sustentáveis.
+                  A tecnologia é uma grande aliada na economia e no uso inteligente da água. Hoje já existem sensores e
+                  hidrômetros digitais que monitoram em tempo real o gasto doméstico, aplicativos que alertam sobre
+                  consumos fora do padrão e sistemas inteligentes que otimizam o uso em empresas, indústrias e até nas
+                  cidades. Além disso, equipamentos como descargas de baixo consumo, torneiras automáticas e máquinas de
+                  lavar mais econômicas contribuem para um uso mais eficiente. Com essas ferramentas, é possível unir
+                  inovação e sustentabilidade para transformar nossa relação com esse recurso tão valioso.
                 </p>
               </div>
             </div>

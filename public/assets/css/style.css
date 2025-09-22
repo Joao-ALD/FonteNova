@@ -17,8 +17,8 @@
 }
 
 .bg-nav {
-    background-color: var(--AzulEscuro);
-}
+    background-color: #0033A0;
+}r
 
 .nav-h {
     height: 100px;
@@ -65,6 +65,15 @@
 
 .titulosSobre{
     color: #21499F;
+    text-align: center;
+}
+
+.textoSobre{
+    text-align: center;
+}
+
+.cNossoProjeto{
+    margin-top: 150px;
 }
 /* ESTILOS PERSONALIZADOS PARA O FOOTER BOOTSTRAP */
 .footer-custom-bg {
@@ -112,16 +121,15 @@
     text-align: center;
     line-height: inherit;
 
-
+}
 .navbar {
     padding: 0%;
 }
 
 
-
 .hero {
     width: 100%;
-    minheight: 413px;
+    min-height: 413px;
     padding: 64px 5vw;
     /* padding lateral relativo */
     background-color: var(--AzulClaro);

@@ -38,10 +38,11 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link active text-white" href="{{ route('agua.index') }}">Água</a></li>
-                        <li class="nav-item"><a class="nav-link active text-white" href="{{route('sobre.index')}}">Sobre</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="{{ route('sobre.index')}}">Sobre</a></li>
                         <li class="nav-item"><a class="nav-link active text-white" href="#">Galeria</a></li>
                         <li class="nav-item"><a class="nav-link active text-white" href="#">Mapa</a></li>
                         <li class="nav-item"><a class="nav-link active text-white" href="#">Curso</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="{{ route('quizz.index') }}">Quizz</a></li>
                     </ul>
                 </div>
 

@@ -34,6 +34,20 @@
     width: auto;  /* Mantém proporção da imagem */
 }
 
+/* Navbar oculta */
+.nav-auto-hide {
+    transition: top 0.3s;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+/* Classe que esconde a navbar ao descer */
+.nav-hidden {
+    top: -100px; /* altura negativa para esconder */
+}
+
 .bg-card{
     background-color: var(--AzulClaro);
 }

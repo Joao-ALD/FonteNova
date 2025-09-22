@@ -38,119 +38,153 @@
 
     <div class="container mt-5" id="infoPanels">
 
-  <!-- Card Clima -->
-  <div class="collapse" id="collapseClima" data-bs-parent="#infoPanels">
-    <div class="row g-4">
-      <div class="col-12">
-        <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-white text-end">Clima</h5>
-            <p class="card-text text-white text-center" style="margin-top: 20px;">
-              O clima desempenha um papel fundamental na disponibilidade de água no planeta...
-            </p>
+      <!-- Card Clima -->
+      <div class="collapse" id="collapseClima" data-bs-parent="#infoPanels">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Clima</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  O clima desempenha um papel fundamental na disponibilidade de água no planeta. Mudanças climáticas
+                  intensificam eventos extremos como secas prolongadas e enchentes, afetando diretamente rios, lagos e
+                  aquíferos subterrâneos. Regiões com chuvas irregulares enfrentam escassez, enquanto áreas com excesso de
+                  precipitação correm risco de inundações. Assim, o clima é o primeiro fator que determina a quantidade e
+                  a qualidade da água disponível. </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Coleta de Água da chuva</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  A coleta de água da chuva é uma forma sustentável de captar e armazenar água para uso doméstico,
+                  agrícola ou industrial. Técnicas como telhados coletores, cisternas e sistemas de filtragem permitem
+                  aproveitar a água pluvial, reduzindo a dependência de fontes convencionais. Essa prática é essencial em
+                  regiões com baixa disponibilidade hídrica e contribui para a autonomia hídrica das comunidades.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Comsumo</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  O consumo consciente de água é crucial para garantir sua disponibilidade futura. Desde o uso doméstico
+                  até a agricultura e a indústria, cada setor precisa otimizar seu uso. Reduzir desperdícios, manter
+                  instalações hidráulicas em bom estado e adotar tecnologias eficientes são medidas simples, mas
+                  poderosas, para preservar esse recurso vital.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Preservação</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  Preservar a água envolve proteger fontes naturais, como rios, nascentes e mananciais, além de promover
+                  práticas ambientais sustentáveis. Isso inclui a recuperação de áreas degradadas, controle da poluição e
+                  educação ambiental. A preservação garante que a água permaneça limpa, disponível e acessível para as
+                  gerações futuras.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="col-12">
-        <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-white text-end">Coleta de Água da chuva</h5>
-            <p class="card-text text-white text-center" style="margin-top: 20px;">
-              A coleta de água da chuva é uma forma sustentável...
-            </p>
+      <!-- Card Coleta (4 cards) -->
+      <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
+        <div class="row g-4">
+          <!-- Coleta -->
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white">Coleta</h5>
+                <p class="card-text text-white">
+                A coleta de água é o primeiro passo para garantir o acesso a esse recurso essencial. Ela representa o conjunto de práticas que permitem reunir a água disponível no ambiente para posterior uso. A coleta pode ser feita de forma simples, como em casas que aproveitam a chuva, ou em larga escala, por meio de estruturas construídas para abastecer comunidades inteiras. Esse processo é indispensável para dar início às etapas de captação, armazenamento e filtragem.  📌 Exemplo: Uma comunidade pode organizar um sistema de coleta coletiva da água da chuva para reduzir a dependência de caminhões-pipa.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Captação -->
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white">Captação</h5>
+                <p class="card-text text-white">
+                  A captação envolve estruturas como canais, bombas e adutoras...
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Armazenamento -->
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white">Armazenamento</h5>
+                <p class="card-text text-white">
+                  Após a coleta e captação, a água precisa ser bem armazenada...
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filtragem -->
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white">Filtragem</h5>
+                <p class="card-text text-white">
+                  A filtragem é a etapa que torna essa água mais limpa e segura para o consumo...
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Card Consumo -->
+      <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Consumo</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  O consumo consciente de água é crucial para garantir sua disponibilidade futura...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Preservação -->
+      <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title text-white text-end">Preservação</h5>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">
+                  Preservar a água envolve proteger fontes naturais, como rios, nascentes e mananciais...
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
-
-  <!-- Card Coleta (4 cards) -->
-  <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
-    <div class="row g-4">
-      <!-- Coleta -->
-      <div class="col-12">
-        <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-white">Coleta</h5>
-            <p class="card-text text-white">
-              A coleta da água é o processo inicial pelo qual a água é retirada de suas fontes naturais...
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Captação -->
-      <div class="col-12">
-        <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-white">Captação</h5>
-            <p class="card-text text-white">
-              A captação envolve estruturas como canais, bombas e adutoras...
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Armazenamento -->
-      <div class="col-12">
-        <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-white">Armazenamento</h5>
-            <p class="card-text text-white">
-              Após a coleta e captação, a água precisa ser bem armazenada...
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Filtragem -->
-      <div class="col-12">
-        <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-white">Filtragem</h5>
-            <p class="card-text text-white">
-              A filtragem é a etapa que torna essa água mais limpa e segura para o consumo...
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card Consumo -->
-  <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
-    <div class="row g-4">
-      <div class="col-12">
-        <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-white text-end">Consumo</h5>
-            <p class="card-text text-white text-center" style="margin-top: 20px;">
-              O consumo consciente de água é crucial para garantir sua disponibilidade futura...
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card Preservação -->
-  <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
-    <div class="row g-4">
-      <div class="col-12">
-        <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title text-white text-end">Preservação</h5>
-            <p class="card-text text-white text-center" style="margin-top: 20px;">
-              Preservar a água envolve proteger fontes naturais, como rios, nascentes e mananciais...
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
   </section>
 
   <script>

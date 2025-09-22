@@ -1,7 +1,5 @@
-<!-- resources/views/layouts/main.blade.php -->
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,12 +55,13 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <footer class="text-white footer-custom-bg">
-        <div class="container p-4">
-            <div class="row my-4">
+        <div class="container p-4 px-custom">
+            <div class="row my-4 gy-5">
 
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <div class="col-lg-3 col-md-6">
                     <div class="d-flex align-items-center mb-4">
-                        <img src="{{ asset('images/logo-fontenova.png') }}" alt="Logo FonteNova" style="width: 60px; height: auto; margin-right: 15px;">
+                        <img src="{{ asset('assets/img/icon_logo.svg') }}" alt="Logo FonteNova"
+                            style="width: 60px; height: auto; margin-right: 15px;">
                         <h3 class="fw-bold mb-0">FonteNova</h3>
                     </div>
                     <p class="slogan">
@@ -75,14 +74,15 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <div class="col-lg-3 col-md-6">
                     <h5 class="text-uppercase fw-bold mb-4">Sobre o Projeto</h5>
                     <p class="footer-text-dim">
-                        Uma plataforma dedicada a disseminar o conhecimento sobre o uso consciente e sustentável da água, oferecendo soluções práticas para um futuro mais azul.
+                        Uma plataforma dedicada a disseminar o conhecimento sobre o uso consciente e sustentável da água,
+                        oferecendo soluções práticas para um futuro mais azul.
                     </p>
                 </div>
 
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <div class="col-lg-3 col-md-6">
                     <h5 class="text-uppercase fw-bold mb-4">Navegação</h5>
                     <ul class="list-unstyled mb-0 footer-links">
                         <li class="mb-2"><a href="/">Home</a></li>
@@ -94,7 +94,7 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <div class="col-lg-3 col-md-6">
                     <h5 class="text-uppercase fw-bold mb-4">Contato</h5>
                     <ul class="list-unstyled">
                         <li class="mb-3 d-flex">
@@ -122,5 +122,4 @@
     {{-- Scripts específicos de cada página --}}
     @yield('scripts')
 </body>
-
 </html>

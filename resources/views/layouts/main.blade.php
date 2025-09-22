@@ -50,7 +50,7 @@
     </nav>
 
     {{-- Conteúdo das páginas --}}
-    <main class="container mt-4">
+    <main class="">
         @yield('content')
     </main>
 

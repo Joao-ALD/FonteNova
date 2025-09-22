@@ -10,6 +10,7 @@
     --FontePrincipal: 'poppins';
 }
 
+/* ESTILOS NAV */
 .px-custom {
     padding-left: 135px;
     padding-right: 135px;
@@ -36,6 +37,12 @@
     width: auto;
     /* Mantém proporção da imagem */
 }
+/* FIM ESTILOS NAV */
+
+
+.bg-azulClaro{
+    background-color: var(--AzulClaro);
+}
 
 /* Navbar oculta */
 .nav-auto-hide {
@@ -56,6 +63,51 @@
     background-color: var(--AzulClaro);
 }
 
+/* ESTILOS PERSONALIZADOS PARA O FOOTER BOOTSTRAP */
+.footer-custom-bg {
+    background-color: #0033A0; /* O mesmo azul escuro da sua imagem */
+}
+
+.footer-text-dim {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.slogan {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Estilo para os links da lista de navegação */
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+/* Ajustes nos botões de redes sociais */
+.btn-floating.btn-light {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff !important;
+}
+
+.btn-floating.btn-light:hover {
+    background-color: #fff !important;
+    color: #0033A0 !important;
+}
+
+/* Ícones de contato - Font Awesome list utility */
+.fa-li {
+    position: relative;
+    left: -2em;
+    width: 2em;
+    text-align: center;
+    line-height: inherit;
 
 
 .navbar {

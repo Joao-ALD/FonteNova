@@ -45,7 +45,12 @@
             <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Clima</h5>
-                <p class="card-text text-white text-center" style="margin-top: 20px;">O clima desempenha um papel fundamental na disponibilidade de água no planeta. Mudanças climáticas intensificam eventos extremos como secas prolongadas e enchentes, afetando diretamente rios, lagos e aquíferos subterrâneos. Regiões com chuvas irregulares enfrentam escassez, enquanto áreas com excesso de precipitação correm risco de inundações. Assim, o clima é o primeiro fator que determina a quantidade e a qualidade da água disponível.</p>
+                <p class="card-text text-white text-center" style="margin-top: 20px;">O clima desempenha um papel
+                  fundamental na disponibilidade de água no planeta. Mudanças climáticas intensificam eventos extremos
+                  como secas prolongadas e enchentes, afetando diretamente rios, lagos e aquíferos subterrâneos. Regiões
+                  com chuvas irregulares enfrentam escassez, enquanto áreas com excesso de precipitação correm risco de
+                  inundações. Assim, o clima é o primeiro fator que determina a quantidade e a qualidade da água
+                  disponível.</p>
               </div>
             </div>
           </div>
@@ -54,7 +59,11 @@
             <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Coleta de Água da chuva</h5>
-                <p class="card-text text-white text-center" style="margin-top: 20px;" >A coleta de água da chuva é uma forma sustentável de captar e armazenar água para uso doméstico, agrícola ou industrial. Técnicas como telhados coletores, cisternas e sistemas de filtragem permitem aproveitar a água pluvial, reduzindo a dependência de fontes convencionais. Essa prática é essencial em regiões com baixa disponibilidade hídrica e contribui para a autonomia hídrica das comunidades.
+                <p class="card-text text-white text-center" style="margin-top: 20px;">A coleta de água da chuva é uma
+                  forma sustentável de captar e armazenar água para uso doméstico, agrícola ou industrial. Técnicas como
+                  telhados coletores, cisternas e sistemas de filtragem permitem aproveitar a água pluvial, reduzindo a
+                  dependência de fontes convencionais. Essa prática é essencial em regiões com baixa disponibilidade
+                  hídrica e contribui para a autonomia hídrica das comunidades.
                 </p>
               </div>
             </div>
@@ -63,89 +72,95 @@
       </div>
 
       <div class="col-12">
-            <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title text-white text-end">Comsumo</h5>
-                <p class="card-text text-white text-center" style="margin-top: 20px;" >O consumo consciente de água é crucial para garantir sua disponibilidade futura. Desde o uso doméstico até a agricultura e a indústria, cada setor precisa otimizar seu uso. Reduzir desperdícios, manter instalações hidráulicas em bom estado e adotar tecnologias eficientes são medidas simples, mas poderosas, para preservar esse recurso vital.
-                </p>
-              </div>
-            </div>
+        <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title text-white text-end">Comsumo</h5>
+            <p class="card-text text-white text-center" style="margin-top: 20px;">O consumo consciente de água é crucial
+              para garantir sua disponibilidade futura. Desde o uso doméstico até a agricultura e a indústria, cada setor
+              precisa otimizar seu uso. Reduzir desperdícios, manter instalações hidráulicas em bom estado e adotar
+              tecnologias eficientes são medidas simples, mas poderosas, para preservar esse recurso vital.
+            </p>
           </div>
         </div>
       </div>
+    </div>
+    </div>
 
-      <div class="col-12">
-            <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title text-white text-end">Preservação</h5>
-                <p class="card-text text-white text-center" style="margin-top: 20px;" >Preservar a água envolve proteger fontes naturais, como rios, nascentes e mananciais, além de promover práticas ambientais sustentáveis. Isso inclui a recuperação de áreas degradadas, controle da poluição e educação ambiental. A preservação garante que a água permaneça limpa, disponível e acessível para as gerações futuras.
-                </p>
-              </div>
-            </div>
-          </div>
+    <div class="col-12">
+      <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title text-white text-end">Preservação</h5>
+          <p class="card-text text-white text-center" style="margin-top: 20px;">Preservar a água envolve proteger fontes
+            naturais, como rios, nascentes e mananciais, além de promover práticas ambientais sustentáveis. Isso inclui a
+            recuperação de áreas degradadas, controle da poluição e educação ambiental. A preservação garante que a água
+            permaneça limpa, disponível e acessível para as gerações futuras.
+          </p>
         </div>
       </div>
+    </div>
+    </div>
+    </div>
 
-      <!-- Card Coleta -->
-      <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
-        <div class="row g-4">
-          <div class="col-12">
-            <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title text-white text-end">Card de Coleta 1</h5>
-                <p class="card-text text-white text-center">Informações sobre como a coleta da água funciona.</p>
-              </div>
+    <!-- Card Coleta -->
+    <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="card text-start bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title text-white text-end">Card de Coleta 1</h5>
+              <p class="card-text text-white text-center">Informações sobre como a coleta da água funciona.</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Card Comsumo -->
-      <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
-        <div class="row g-4">
-          <div class="col-12">
-            <div class="card text-start card bg-card mb-3 mx-auto " style="width: 90%; height: 15rem; ">
-              <div class="card-body">
-                <h5 class="card-title text-white text-end">Card de Consumo 1</h5>
-                <p class="card-text text-white text-center">Dados e dicas sobre o consumo consciente da água.</p>
-              </div>
+    <!-- Card Comsumo -->
+    <div class="collapse" id="collapseConsumo" data-bs-parent="#infoPanels">
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="card text-start card bg-card mb-3 mx-auto " style="width: 90%; height: 15rem; ">
+            <div class="card-body">
+              <h5 class="card-title text-white text-end">Card de Consumo 1</h5>
+              <p class="card-text text-white text-center">Dados e dicas sobre o consumo consciente da água.</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Card Preservação -->
-      <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
-        <div class="row g-4">
-          <div class="col-12">
-            <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title text-white text-end">Card de Preservação 1</h5>
-                <p class="card-text text-white text-center">A importância de preservar nossos recursos hídricos.</p>
-              </div>
+    <!-- Card Preservação -->
+    <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="card text-start card bg-card mb-3 mx-auto" style="width: 90%; height: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title text-white text-end">Card de Preservação 1</h5>
+              <p class="card-text text-white text-center">A importância de preservar nossos recursos hídricos.</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
     </div>
   </section>
 
   <script>
-  const buttons = document.querySelectorAll('.btn[data-bs-toggle="collapse"]');
+    const buttons = document.querySelectorAll('.btn[data-bs-toggle="collapse"]');
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Se o botão já estiver ativo
-      if(this.classList.contains('active')) {
-        this.classList.remove('active'); // desativa
-      } else {
-        // Remove active de todos os outros
-        buttons.forEach(b => b.classList.remove('active'));
-        // Ativa o clicado
-        this.classList.add('active');
-      }
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        // Se o botão já estiver ativo
+        if (this.classList.contains('active')) {
+          this.classList.remove('active'); // desativa
+        } else {
+          // Remove active de todos os outros
+          buttons.forEach(b => b.classList.remove('active'));
+          // Ativa o clicado
+          this.classList.add('active');
+        }
+      });
     });
-  });
-</script>
+  </script>
 @endsection

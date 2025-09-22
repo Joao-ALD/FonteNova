@@ -55,6 +55,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#curso">Curso</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('chatbot.index')}}">Chatbot</a>
+                    </li>
                 </ul>
             </div>
         </div>

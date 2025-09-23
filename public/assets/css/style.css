@@ -25,28 +25,6 @@
     padding-bottom: 0.5rem;
 }
 
-/* Container com espaçamento lateral responsivo */
-@media (min-width: 1200px) {
-    .navbar-container {
-        padding-left: 135px;
-        padding-right: 135px;
-    }
-}
-
-@media (max-width: 1199.98px) {
-    .navbar-container {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .navbar-container {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-}
-
 .navbar-nav .nav-link {
     color: var(--BrancoPuro);
     margin-left: 15px;
@@ -61,6 +39,8 @@
 /* Botão hamburguer */
 .navbar-toggler {
     border-color: rgba(255, 255, 255, 0.5);
+    z-index: 1001;
+    position: relative;
 }
 
 .navbar-toggler-icon {
@@ -94,11 +74,33 @@
     top: -100px;
 }
 
-/* Padding antigo substituído por .navbar-container */
+/* ---------- PX-CUSTOM (Responsivo e Corrigido) ---------- */
+
 .px-custom {
-    display: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+@media (min-width: 1200px) {
+    .px-custom {
+        padding-left: 135px;
+        padding-right: 135px;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .px-custom {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .px-custom {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
 
 /* ------------- CORES GERAIS ------------- */
 
@@ -147,7 +149,6 @@
     color: #0033A0 !important;
 }
 
-/* Ícones com FontAwesome */
 .fa-li {
     position: relative;
     left: -2em;
@@ -155,7 +156,6 @@
     text-align: center;
     line-height: inherit;
 }
-
 
 /* ------------- HERO ------------- */
 
@@ -222,7 +222,6 @@
     pointer-events: none;
 }
 
-
 /* HERO RESPONSIVO */
 
 @media (max-width: 1200px) {
@@ -263,7 +262,6 @@
         padding: 32px 4vw;
     }
 }
-
 
 /* ------------- GALLERY ------------- */
 
@@ -311,7 +309,6 @@
     font-size: 13px;
     color: #ffffff;
 }
-
 
 /* ------------- MAPA ------------- */
 
@@ -371,7 +368,6 @@
     }
 }
 
-
 /* ------------- EDUCAÇÃO ------------- */
 
 .edu {
@@ -388,6 +384,7 @@
     display: flex;
     gap: 28px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .edu-card {
@@ -401,6 +398,8 @@
     justify-content: center;
     flex-direction: column;
     font-weight: 700;
+    text-align: center;
+    padding: 10px;
 }
 
 .edu-card.blue {

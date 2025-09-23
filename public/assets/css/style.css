@@ -76,22 +76,19 @@
 
 /* ---------- PX-CUSTOM (Responsivo e Corrigido) ---------- */
 
+/* Wrapper para limitar o conteúdo ao máximo de 135px das bordas */
 .px-custom {
     width: 100%;
     box-sizing: border-box;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin: 0 auto;
 }
 
 @media (min-width: 1200px) {
     .px-custom {
         padding-left: 135px;
         padding-right: 135px;
-    }
-}
-
-@media (max-width: 1199.98px) {
-    .px-custom {
-        padding-left: 24px;
-        padding-right: 24px;
     }
 }
 
@@ -102,11 +99,25 @@
     }
 }
 
-/* ------------- CORES GERAIS ------------- */
+/* Classe para fazer o fundo ocupar 100% da largura da tela */
+.bg-fullwidth {
+    width: 100%;
+}
 
-.bg-azulClaro {
+/* Variáveis de cor para usar em bg-fullwidth */
+.bg-AzulClaro {
     background-color: var(--AzulClaro);
 }
+
+.bg-AzulEscuro {
+    background-color: var(--AzulEscuro);
+}
+
+.bg-white {
+    background-color: var(--BrancoPuro);
+}
+
+/* ------------- CORES GERAIS ------------- */
 
 .bg-card {
     background-color: var(--AzulClaro);
@@ -266,7 +277,7 @@
 /* ------------- GALLERY ------------- */
 
 .section {
-    padding: 56px 6vw;
+    padding: 56px 0; /* padding vertical apenas para o wrapper, o px-custom controla o horizontal */
 }
 
 .section .section-title {
@@ -313,8 +324,7 @@
 /* ------------- MAPA ------------- */
 
 .map-section {
-    background: var(--AzulClaro);
-    padding: 48px 6vw;
+    padding: 48px 0; /* padding vertical, o px-custom controla o horizontal */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -328,7 +338,7 @@
 }
 
 .map-text h3 {
-    color: var(--accent);
+    color: var(--AzulEscuro);
     font-weight: 800;
     margin-bottom: 12px;
 }
@@ -353,7 +363,7 @@
     .map-section {
         flex-direction: column;
         align-items: center;
-        padding: 32px 4vw;
+        padding: 32px 0;
     }
 
     .map-illustration {
@@ -367,42 +377,119 @@
         text-align: center;
     }
 }
-
-/* ------------- EDUCAÇÃO ------------- */
+/* ------------- EDUCAÇÃO AMBIENTAL ------------- */
 
 .edu {
-    background: var(--AzulEscuro);
+    padding: 48px 0;
     color: #fff;
-    padding: 44px 6vw;
 }
 
 .edu .section-title {
-    color: #fff;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 28px;
+    font-weight: 800;
+    color: var(--BrancoPuro);
 }
 
-.edu .edu-cards {
-    display: flex;
-    gap: 28px;
-    justify-content: center;
+.edu-cards {
+    gap: 32px;
     flex-wrap: wrap;
 }
 
-.edu-card {
-    width: 150px;
-    height: 110px;
-    border-radius: 10px;
-    background: #f0f7ff;
-    color: var(--accent);
+.edu-cards .card-square {
+    width: 220px;
+    height: 220px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    font-weight: 700;
-    text-align: center;
-    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(11, 78, 162, 0.12);
 }
 
-.edu-card.blue {
-    background: #2f7ad9;
-    color: #fff;
+.edu-cards .card-square:hover {
+    transform: translateY(-8px);
+}
+
+.edu-cards .card-square .icon {
+    width: 88px;
+    height: 88px;
+    margin-bottom: 20px;
+}
+
+.edu-cards .card-label {
+    font-size: 20px;
+    font-weight: 700;
+    color: inherit;
+    text-align: center;
+}
+
+/* ------------- CITAÇÃO ------------- */
+
+.quote {
+    padding: 64px 0;
+    background-color: var(--BrancoPuro);
+    text-align: center;
+    color: var(--AzulEscuro);
+    font-weight: 700;
+    font-size: 24px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(11, 78, 162, 0.08);
+}
+
+.quote img {
+    max-width: 56px;
+    margin-bottom: 16px;
+}
+
+/* Responsividade geral */
+
+@media (max-width: 991.98px) {
+    .gallery {
+        justify-content: center;
+    }
+
+    .card-square {
+        width: 180px;
+        height: 180px;
+    }
+
+    .edu-cards {
+        justify-content: center;
+    }
+
+    .edu-cards .card-square {
+        width: 160px;
+        height: 160px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-title {
+        font-size: clamp(20px, 8vw, 34px);
+    }
+
+    .hero {
+        padding: 32px 4vw;
+    }
+
+    .card-square {
+        width: 140px;
+        height: 140px;
+    }
+
+    .edu-cards .card-square {
+        width: 120px;
+        height: 120px;
+    }
+
+    .map-text {
+        max-width: 100%;
+    }
 }

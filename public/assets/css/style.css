@@ -126,7 +126,8 @@
 /* ------------- FOOTER ------------- */
 
 .footer-custom-bg {
-    background-color: #0033A0;
+    /* background-color: #0033A0; */
+    background-color: var(--AzulEscuro);
 }
 
 .footer-text-dim {

@@ -5,14 +5,14 @@
 @section('content')
 <div class="container fluid">
     <div class="row">
-        <div class="col-md-2 bg-AzulClaro text-white p-1 vh-50 d-flex flex-column">
+        <div class="col-md-2 text-white p-1 vh-50 d-flex flex-column">
             <button class="btn btn-dark w-100">
                 <i class="bi bi-chevron-right"></i>
             </button>
 
             <div class="list-group list-group-flush mt-2">
                 @for ($i = 1; $i <= 24; $i++)
-                <a href="#" class="list-group-item list-group-item-action bg-AzulClaro text-white d-flex justify-content-between align-items-center">
+                <a href="#" class="list-group-item list-group-item-action bg-AzulClaro text-white d-flex justify-content-between align-items-center hover">
                 Aula {{$i}}
                 <i class="bi bi-chevron-right"></i>
                 </a>
@@ -27,7 +27,7 @@
 
             <!-- Vídeo -->
             <div class="ratio ratio-16x9 mb-4">
-                <iframe src="https://www.youtube.com/embed/jTEDNjVDuqE" title="Video player" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/xdYuEzergvE?si=ehcNs531hTU0aYwO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
 
             <p>

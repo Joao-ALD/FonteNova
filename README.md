@@ -30,10 +30,11 @@ No entanto, é importante lembrar que essas extensões gerenciam apenas o versio
 
 Antes de começar, garanta que você tenha os seguintes softwares instalados na sua máquina:
 
-* PHP (versão 8.1 ou superior)
-* Composer
+* 7-zip ou winrar
 * Git
-* Um SGBD local (ex: MySQL, MariaDB, PostgreSQL, ou XAMPP que já inclui apache e mySql )
+* Um SGBD local (ex: MySQL, MariaDB, PostgreSQL, ou XAMPP que já inclui apache e mySql)
+* PHP (versão 8.1 ou superior) -> já incluindo no xampp
+* Composer (precisa do php para instalar) 
 
 ---
 

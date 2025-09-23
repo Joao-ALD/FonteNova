@@ -107,7 +107,7 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
    ```
 **--**
 **8. Iniciar o Servidor de Desenvolvimento**
-   Pronto! Agora você pode iniciar o servidor local do Laravel.
+    Pronto! Agora você pode iniciar o servidor local do Laravel.
 
    ```bash
    php artisan serve

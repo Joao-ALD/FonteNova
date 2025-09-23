@@ -47,6 +47,20 @@
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
+/*CSS do sobre*/
+.titulosSobre{
+    color: #21499F;
+    text-align: center;
+}
+
+.textoSobre{
+    text-align: center;
+}
+
+.cNossoProjeto{
+    margin-top: 50px;
+}
+
 /* Navbar auto-hide (scroll) */
 .nav-auto-hide {
     transition: top 0.3s;

@@ -29,7 +29,7 @@
         <h2 class="titulosSobre fw-bold">Público-Alvo</h2>
         <p class="textoSobre">
             O projeto é voltado para estudantes, educadores, famílias e todas as pessoas interessadas em aprender mais
-            sobre sustentabilidade e preservação ambiental, com linguagem simples e conteúdos visuais que facilitam a
+            sobre sustentabilidade e preservação ambiental, <br> com linguagem simples e conteúdos visuais que facilitam a
             compreensão.
         </p>
         <br>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Topico;
-use Illuminate\Support\Str;
 
 class ChatBotController extends Controller
 {
@@ -15,10 +14,19 @@ class ChatBotController extends Controller
 
     public function responder(Request $request)
     {
-        // Validação simples da entrada
-        $request->validate([
+        // Validação manual com resposta JSON personalizada
+        $validated = validator($request->all(), [
             'mensagem' => 'required|string|max:255'
         ]);
+
+        if ($validated->fails()) {
+            return response()->json([
+                'resumo' => 'Mensagem inválida. Por favor, digite algo válido.',
+                'link_site' => '/infoAgua',
+                'link_premium' => null,
+                'titulo' => 'Erro de Validação'
+            ], 422);
+        }
 
         // Normaliza a mensagem (remove acentos e deixa em minúsculas)
         $mensagem = $this->normalizarTexto($request->input('mensagem'));
@@ -32,40 +40,37 @@ class ChatBotController extends Controller
         foreach ($topicos as $topico) {
             $pontuacao = 0;
 
-            // Normaliza as palavras-chave também
-            $keywords = explode(',', $this->normalizarTexto($topico->palavras_chave));
+            // Normaliza as palavras-chave
+            $keywords = array_map('trim', explode(',', $this->normalizarTexto($topico->palavras_chave)));
 
             foreach ($keywords as $kw) {
-                $kw = trim($kw);
-                
-                // Verifica se a palavra-chave está presente na mensagem (busca por palavra inteira)
+                // Busca por palavra inteira
                 if (preg_match('/\b' . preg_quote($kw, '/') . '\b/i', $mensagem)) {
                     $pontuacao++;
                 }
             }
 
-            // Guarda o tópico com maior número de palavras-chave encontradas
             if ($pontuacao > $maiorPontuacao) {
                 $maiorPontuacao = $pontuacao;
                 $topicoMaisRelevante = $topico;
             }
         }
 
-        // Se encontrou algum tópico relevante
         if ($topicoMaisRelevante) {
             return response()->json([
                 'resumo' => $topicoMaisRelevante->resumo,
                 'link_site' => $topicoMaisRelevante->link_site,
                 'link_premium' => $topicoMaisRelevante->link_premium,
-                'titulo' => $topicoMaisRelevante->titulo // opcional, pode ser útil no frontend
+                'titulo' => $topicoMaisRelevante->titulo
             ]);
         }
 
-        // Resposta padrão se nada foi encontrado
+        // Resposta padrão
         return response()->json([
             'resumo' => "Não encontrei nada sobre isso ainda. Que tal explorar nossa galeria?",
             'link_site' => '/infoAgua',
-            'link_premium' => null
+            'link_premium' => null,
+            'titulo' => 'Tópico não encontrado'
         ]);
     }
 

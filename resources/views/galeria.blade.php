@@ -67,13 +67,25 @@
     --radius:12px;
   }
   *{box-sizing:border-box;}
-  body{
+
+  /* --- ALTERAÇÃO AQUI --- */
+  body {
+    display: flex;           /* novo: flex para empurrar o footer */
+    flex-direction: column;  /* novo: header, main e footer em coluna */
+    min-height: 100vh;       /* novo: garante altura total da tela */
     font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    margin:0; background: #fff; color:#053659;
+    margin: 0;
+    background: #fff;
+    color: #053659;
   }
-  .page{
+
+  /* --- ALTERAÇÃO AQUI --- */
+  main.page {
+    flex: 1;                 /* novo: main ocupa espaço restante antes do footer */
+    padding-bottom: 40px;    /* opcional: espaço extra antes do footer */
     max-width:1200px; margin:36px auto; padding:0 24px; text-align:center;
   }
+
   h1{
     color:var(--dark-blue); margin-bottom:30px; font-size:34px; font-weight:800; letter-spacing:0.5px;
   }

@@ -6,13 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+25&display=swap" rel="stylesheet">
     <!-- Favicon SVG (principal) -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <!-- PNG para navegadores que não suportam SVG -->
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <!-- ICO como fallback adicional (máxima compatibilidade) -->
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
-    {{-- Bootstrap CSS (local) --}}
+    {{-- Bootstrap CSS --}}
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrapLink.css') }}">
     {{-- CSS customizado do projeto --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -47,20 +50,20 @@
                         <li class="nav-item"><a class="nav-link active text-white" href="{{ route('quizz.index') }}">Quizz</a></li>
 
 
-                        
+
                     </ul>
                 </div>
 
             </div>
         </div>
     </nav>
-    
+
     {{-- Conteúdo das páginas --}}
     <main class="">
         @yield('content')
     </main>
 
-    
+
     {{-- Bootstrap JS (local) --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- Scripts personalizados --}}

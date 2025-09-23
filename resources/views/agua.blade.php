@@ -36,13 +36,14 @@
 
 
 
-    <div class="container mt-5" id="infoPanels">
+    <div class="container-fluid mt-5 px-5" id="infoPanels">
+
 
       <!-- Card Clima -->
       <div class="collapse" id="collapseClima" data-bs-parent="#infoPanels">
         <div class="row g-4">
           <div class="col-12">
-            <div id="clima-1" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="clima-1" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Clima</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -56,7 +57,7 @@
           </div>
 
           <div class="col-12">
-            <div id="clima-2" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="clima-2" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Coleta de Água da chuva</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -70,7 +71,7 @@
           </div>
 
           <div class="col-12">
-            <div id="clima-3" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="clima-3" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Comsumo</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -84,7 +85,7 @@
           </div>
 
           <div class="col-12">
-            <div id="clima-4" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="clima-4" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Preservação</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -104,7 +105,7 @@
         <div class="row g-4">
          
           <div class="col-12">
-            <div id="coleta-1" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="coleta-1" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Coleta</h5>
                 <p class="card-text text-white text-center">
@@ -121,7 +122,7 @@
 
           
           <div class="col-12">
-            <div id="coleta-2" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="coleta-2" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Captação</h5>
                 <p class="card-text text-white text-center">
@@ -138,7 +139,7 @@
 
           
           <div class="col-12">
-            <div id="coleta-3" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="coleta-3" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Armazenamento</h5>
                 <p class="card-text text-white text-center">
@@ -155,7 +156,7 @@
 
           
           <div class="col-12">
-            <div id="coleta-4" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="coleta-4" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Filtragem</h5>
                 <p class="card-text text-white text-center">
@@ -177,7 +178,7 @@
         <div class="row g-4">
 
           <div class="col-12">
-            <div id="comsumo-1" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="comsumo-1" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Consumo Consciente</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -193,7 +194,7 @@
           </div>
 
           <div class="col-12">
-            <div id="comsumo-2" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="comsumo-2" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Monitoramento</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -209,7 +210,7 @@
           </div>
 
           <div class="col-12">
-            <div id="comsumo-3" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="comsumo-3" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Pequenas Mudanças</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -225,7 +226,7 @@
           </div>
 
           <div class="col-12">
-            <div id="comsumo-4" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="comsumo-4" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Tecnologia</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -246,7 +247,7 @@
       <div class="collapse" id="collapsePreservacao" data-bs-parent="#infoPanels">
         <div class="row g-4">
           <div class="col-12">
-            <div id="preservação-1" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="preservação-1" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Reuso Criativo</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -263,7 +264,7 @@
           </div>
 
           <div class="col-12">
-            <div id="preservação-2" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="preservação-2" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Educação Sustentável</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -279,7 +280,7 @@
           </div>
 
           <div class="col-12">
-            <div id="preservação-3" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="preservação-3" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Ação Coletiva</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">
@@ -295,7 +296,7 @@
           </div>
 
           <div class="col-12">
-            <div id="preservação-4" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
+            <div id="preservação-4" class="card text-start bg-card mb-3" style="width: 100%; height: 18rem;">
               <div class="card-body">
                 <h5 class="card-title text-white text-end">Sustentabilidade</h5>
                 <p class="card-text text-white text-center" style="margin-top: 20px;">

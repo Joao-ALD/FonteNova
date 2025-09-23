@@ -5,14 +5,14 @@
 @section('content')
 <div class="container fluid">
     <div class="row">
-        <div class="col-md-2 bg-primary text white p-0 vh-100 d-flex flex-column">
+        <div class="col-md-2 bg-AzulClaro text-white p-1 vh-50 d-flex flex-column">
             <button class="btn btn-dark w-100">
                 <i class="bi bi-chevron-right"></i>
             </button>
 
-            <div class="list-group list-group-flush">
-                @for ($i = 1; $i <= 9; $i++)
-                <a href="#" class="list-group-item list-group-item-action bg-primary text-white d-flex justify-content-between align-items-center">
+            <div class="list-group list-group-flush mt-2">
+                @for ($i = 1; $i <= 24; $i++)
+                <a href="#" class="list-group-item list-group-item-action bg-AzulClaro text-white d-flex justify-content-between align-items-center">
                 Aula {{$i}}
                 <i class="bi bi-chevron-right"></i>
                 </a>
@@ -43,7 +43,7 @@
             </ul>
 
             <div class="text-end mt-4">
-                <button class="btn btn-primary">Próximo</button>
+                <button class="btn text-white bg-AzulClaro">Próximo</button>
             </div>
         </div>
      </div>

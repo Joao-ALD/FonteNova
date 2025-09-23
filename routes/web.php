@@ -8,6 +8,8 @@ use App\Http\Controllers\AguaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\QuizzController;
+use App\Http\Controllers\GaleriaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/sobre',[SobreController::class, 'index'])->name('sobre.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
 Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index');
+Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');
 
 
 // Rotas ChatBot

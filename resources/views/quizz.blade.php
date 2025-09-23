@@ -1,5 +1,8 @@
 @extends('layouts.main')
 
+
+@section('title', 'Fonte Nova - Quizz')
+
 @section('content')
 
     <!DOCTYPE html>

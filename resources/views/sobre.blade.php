@@ -1,7 +1,7 @@
 {{-- resources/views/layouts/home.blade.php --}}
 @extends('layouts.main')
 
-@section('title', 'Sobre')
+@section('title', 'Fonte Nova - Sobre')
 
 @section('content')
 

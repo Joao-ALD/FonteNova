@@ -16,7 +16,7 @@ class nome-do-model extends Model
   pretected $fillable =['nome-da-coluna', 'nome-da-coluna']
 }
 -----
-
+teste
 php artisan serve --> exibe as views (para este os assets devem estar em public)
 npm run dev --> exibe as views porem sem carregar o back-end (para este os assets devem estar em resources)
 

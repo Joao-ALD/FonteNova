@@ -1,55 +1,55 @@
 @extends('layouts.main')
 
+
 @section('title', 'Fonte Nova - Quizz')
 
 @section('content')
-
 <style>
-/* Página do Quiz */
-.quiz-page {
+  body {
+    font-family: 'Arial', sans-serif;
     background: #0288d1;
-    width: 100%;
-    min-height: calc(100vh - 100px); /* Ajusta para ocupar a tela menos navbar/footer */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px 15px;
-    box-sizing: border-box;
-}
-
-/* Container do quiz */
-.quiz-container {
-    background: #0288d1;
+    min-height: 100vh;
+    margin: 0;
     color: #fff;
+  }
+
+  .container {
+    background: #0288d1;
+    color: #333;
     border-radius: 15px;
     padding: 30px;
-    max-width: 500px;
     width: 100%;
+    max-width: 500px;
     text-align: center;
     overflow: hidden;
     position: relative;
-}
+  }
 
-/* Telas do quiz */
-.screen {
+  .screen {
     display: none;
     transition: all 0.5s ease;
-}
+  }
 
-.screen.active {
+  .screen.active {
     display: block;
-}
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    font-family: "Jersey 25", sans-serif;
+  }
 
-h1, h2 {
+  h1, h2 {
     margin-bottom: 20px;
-}
+  }
 
-p {
+  p {
     font-size: 16px;
-    color: #fff;
-}
+  }
 
-button {
+  button {
     padding: 12px 25px;
     border: none;
     border-radius: 8px;
@@ -58,30 +58,30 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+  }
 
-button:hover {
+  button:hover {
     background: #2575fc;
-}
+  }
 
-.answers button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    background-color: #f1f1f1;
-    color: #333;
-    transition: background 0.3s ease;
+ .answers button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #f1f1f1;
+  color: #333;
+  transition: background 0.3s ease;
 }
 
 .answers button:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
-.answers div {
+  .answers div {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -89,50 +89,52 @@ button:hover {
     padding: 10px;
     border-radius: 8px;
     transition: background 0.3s ease;
-}
+  }
 
-.answers input {
+  .answers input {
     margin-right: 10px;
-}
+  }
 
+  
+
+  
 @import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
 
 </style>
+</head>
+<body>
 
-<div class="quiz-page">
-    <div class="quiz-container">
-        <!-- Tela inicial -->
-        <div id="start-screen" class="screen active">
-            <h1>FonteNova</h1>
-            <h3>Salve a Água</h3>
-            <br>
-            <p>Responda 5 perguntas e descubra quanto de água você consegue salvar</p>
-            <button id="start-btn">Começar</button>
-        </div>
 
-        <!-- Quiz -->
-        <div id="quiz-screen" class="screen">
-            <h2 id="question">Pergunta</h2>
-            <div class="answers">
-                <button class="answer" id="a"></button>
-                <button class="answer" id="b"></button>
-                <button class="answer" id="c"></button>
-            </div>
-            <button id="next-btn">Próxima</button>
-        </div>
 
-        <!-- Resultado -->
-        <div id="result-screen" class="screen">
-            <h2>Resultado</h2>
-            <p id="score"></p>
-            <button id="restart-btn">Refazer Quiz</button>
-        </div>
-    </div>
+  <!-- Tela inicial -->
+  <div id="start-screen" class="screen active">
+    <h1>FonteNova</h1>
+    <h3>Salve a Água</h3>
+    <br>
+    <p>responda 5 perguntas e descubra quanto de água você consegue salvar</p>
+    <button id="start-btn">Começar</button>
+  </div>
+
+ <!-- Quiz -->
+  <div id="quiz-screen" class="screen">
+    <h2 id="question">Pergunta</h2>
+    <div class="answers">
+  <button class="answer" id="a"></button>
+  <button class="answer" id="b"></button>
+  <button class="answer" id="c"></button>
 </div>
+    <button id="next-btn">Próxima</button>
+  </div>
 
-@endsection
+  <!-- Resultado -->
+  <div id="result-screen" class="screen">
+    <h2>Resultado</h2>
+    <p id="score"></p>
+    <button id="restart-btn">Refazer Quiz</button>
+  </div>
 
-@section('scripts')
+   
+</body>
 <script>
 const quizData = [
   {
@@ -221,6 +223,7 @@ answersBtns.forEach(button => {
   button.addEventListener('click', () => {
     const answer = button.id;
     
+    // Acumula litros economizados se a resposta estiver correta
     if(answer === quizData[currentQuiz].correct) {
       totalLiters += quizData[currentQuiz].liters;
     }
@@ -241,4 +244,11 @@ answersBtns.forEach(button => {
   });
 });
 </script>
+
+
+</body>
+</html>
+
+
+
 @endsection

@@ -1,86 +1,96 @@
 @extends('layouts.main')
 
 @section('content')
+
 <!-- Hero -->
-<section class="hero px-custom">
-    <div class="hero-inner">
+<section class="hero">
+    <div class="px-custom hero-inner">
         <div class="hero-content">
             <h1 class="hero-title">
                 Reimaginando o<br>Futuro Com as Águas<br>do Presente
             </h1>
-            <p class="hero-sub">Explore soluções criativas, saberes locais e tecnologias acessíveis que fazem a diferença...</p>
+            <p class="hero-sub">
+                Explore soluções criativas, saberes locais e tecnologias acessíveis que fazem a diferença...
+            </p>
             <a class="btn btn-primary btn-cta" href="{{ route('agua.index') }}">Explorar os saberes</a>
         </div>
 
         <div class="hero-media">
-            <img src="assets/img/little_house.svg" alt="casa-pequena" class="hero-illustration">
+            <img src="{{ asset('assets/img/little_house.svg') }}" alt="Ilustração casa" class="hero-illustration">
         </div>
     </div>
 </section>
 
-<!-- Gallery -->
+<!-- Galeria Interativa -->
 <section class="section bg-white px-custom">
     <h3 class="section-title">Galeria Interativa</h3>
     <div class="gallery">
-        <div class="card-square" style="background-color: #3b8eed">
-            <div class="icon"><img src="{{ asset('assets/img/icon_balde.svg') }}" alt=""></div>
-            <div class="card-label">Coleta de chuva</div>
-        </div>
-        <div class="card-square" style="background-color: #014ba0">
-            <div class="icon"><img src="{{ asset('assets/img/icon_water.svg') }}" alt=""></div>
-            <div class="card-label">Reuso de água</div>
-        </div>
-        <div class="card-square" style="background-color: #3b8eed">
-            <div class="icon"><img src="{{ asset('assets/img/icon_hands.svg') }}" alt=""></div>
-            <div class="card-label">Cuidados à água</div>
-        </div>
-        <div class="card-square" style="background-color: #014ba0">
-            <div class="icon"><img src="{{ asset('assets/img/icon_filter.svg') }}" alt=""></div>
-            <div class="card-label">Filtros naturais</div>
-        </div>
+        @php
+            $cards = [
+                ['img' => 'icon_balde.svg', 'label' => 'Coleta de chuva', 'bg' => '#3b8eed'],
+                ['img' => 'icon_water.svg', 'label' => 'Reuso de água', 'bg' => '#014ba0'],
+                ['img' => 'icon_hands.svg', 'label' => 'Cuidados à água', 'bg' => '#3b8eed'],
+                ['img' => 'icon_filter.svg', 'label' => 'Filtros naturais', 'bg' => '#014ba0'],
+            ];
+        @endphp
+        @foreach ($cards as $card)
+            <div class="card-square" style="background-color: {{ $card['bg'] }};">
+                <div class="icon gallery-icon">
+                    <img src="{{ asset('assets/img/' . $card['img']) }}" alt="">
+                </div>
+                <div class="card-label gallery-label">{{ $card['label'] }}</div>
+            </div>
+        @endforeach
     </div>
 </section>
 
-<!-- Map Section -->
+<!-- Mapa do conhecimento -->
 <section class="map-section bg-AzulClaro bg-fullwidth">
     <div class="px-custom d-flex align-items-center justify-content-between flex-wrap">
         <div class="map-text">
             <h3>Mapa do conhecimento</h3>
-            <p>Clique nos estados do mapa para descobrir iniciativas regionais que promovem o uso consciente da água. Explore soluções criativas, saberes locais e tecnologias acessíveis que fazem a diferença na preservação dos nossos recursos hídricos.</p>
+            <p>
+                Clique nos estados do mapa para descobrir iniciativas regionais que promovem o uso consciente da água.
+                Explore soluções criativas, saberes locais e tecnologias acessíveis que fazem a diferença na preservação dos nossos recursos hídricos.
+            </p>
             <p style="margin-top:8px">🚀 Cada estado tem algo a ensinar. Dê o primeiro clique!</p>
         </div>
         <div class="map-illustration">
-            <img src="{{ asset('assets/img/icon_brasil.svg') }}" alt="">
+            <img src="{{ asset('assets/img/icon_brasil.svg') }}" alt="Mapa do Brasil">
         </div>
     </div>
 </section>
 
-<!-- Education -->
+<!-- Educação Ambiental -->
 <section class="edu bg-AzulEscuro bg-fullwidth">
     <div class="px-custom">
         <h3 class="section-title">Educação Ambiental</h3>
-        <div class="edu-cards mt-4 d-flex justify-content-center">
-            <div class="card-square" style="background-color: #fff;">
-                <div class="icon"><img src="{{ asset('assets/img/icon_workshop.svg') }}" alt=""></div>
-                <div class="card-label text-black"><h3>Oficinas</h3></div>
-            </div>
-
-            <div class="card-square" style="background-color: #3b8eed;">
-                <div class="icon"><img src="{{ asset('assets/img/icon_ebook.svg') }}" alt=""></div>
-                <div class="card-label text-black"><h3>E-Book</h3></div>
-            </div>
-            <div class="card-square" style="background-color: #fff;">
-                <div class="icon"><img src="{{ asset('assets/img/icon_eventos.svg')}}" alt=""></div>
-                <div class="card-label text-black"><h3>Eventos</h3></div>
-            </div>
+        <div class="edu-cards mt-4 d-flex justify-content-center flex-wrap">
+            @php
+                $eduItems = [
+                    ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'bg' => '#ffffff', 'text' => '#000'],
+                    ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'bg' => '#3b8eed', 'text' => '#ffffff'],
+                    ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'bg' => '#ffffff', 'text' => '#000'],
+                ];
+            @endphp
+            @foreach ($eduItems as $item)
+                <div class="card-square" style="background-color: {{ $item['bg'] }};">
+                    <div class="icon edu-icon">
+                        <img src="{{ asset('assets/img/' . $item['img']) }}" alt="">
+                    </div>
+                    <div class="card-label" style="color: {{ $item['text'] }};">{{ $item['label'] }}</div>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
 
-<!-- Quote -->
+<!-- Citação -->
 <section class="quote px-custom">
-    <div class="m-4 d-flex justify-content-center">
-        <img src="{{ asset('assets/img/quote.svg')}}" alt="">
+    <div class="quote-box">
+        <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
+        <p class="quote-text">Cuidar da água é cuidar da vida. Faça parte dessa transformação.</p>
     </div>
 </section>
+
 @endsection

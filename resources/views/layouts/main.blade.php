@@ -39,7 +39,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('agua.index') }}">Água</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('sobre.index') }}">Sobre</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="#">Galeria</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{{ route('galeria.index') }}">Galeria</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="#">Mapa</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="#">Curso</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('chatbot.index') }}">ChatBot</a></li>

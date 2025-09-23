@@ -1,296 +1,119 @@
 @extends('layouts.main')
 
 @section('content')
-<!doctype html>
-<html lang="pt-br">
+<main class="page">
+  <h1>Galeria Interativa</h1>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Galeria Interativa — Economia de Água</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --AzulEscuro: rgba(1, 75, 160, 1);
-            --Azul2: rgba(10, 92, 184, 1);
-            --Azul3: rgba(20, 102, 195, 1);
-            --Azul4: rgba(33, 116, 212, 1);
-            --AzulClaro: rgba(59, 142, 237, 1);
-            --BrancoPuro: #ffffff;
-            --Preto: #000000;
+  <div class="gallery" role="list">
 
-            --FontePrincipal: 'Poppins';
-        }
+    <button class="card blueish" type="button" data-desc="Instalações simples como calhas e caixas de armazenamento permitem aproveitar a água da chuva para jardinagem e limpeza. Economiza até 30% do consumo doméstico se usado em irrigação e descargas.">
+      <div class="icon-wrap" aria-hidden="true">
+        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 4c0 0-12 12-12 20 0 8 5 12 12 12s12-4 12-12C44 16 32 4 32 4z" fill="#fff"/>
+          <rect x="14" y="40" width="36" height="12" rx="2" fill="#083e6b"/>
+        </svg>
+      </div>
+      <div class="caption">Coleta de chuva</div>
+      <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#053659;"></div>
+    </button>
 
-        * {
-            box-sizing: border-box
-        }
+    <button class="card dark" type="button" data-desc="Filtre e reutilize águas de pias e chuveiros (graywater) em sistemas de descarga ou para irrigação. Exige cuidados de tratamento simples — reduz sensivelmente o consumo de água potável.">
+      <div class="icon-wrap" aria-hidden="true">
+        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 6c-4 5-8 8-8 14 0 9 7 16 8 16s8-7 8-16c0-6-4-9-8-14z" fill="#fff" stroke="#07284a" stroke-width="2"/>
+          <path d="M28 36c3 3 7 3 10 0" stroke="#07284a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="caption">Reuso de água</div>
+      <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#fff;"></div>
+    </button>
 
-        body {
-            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-            margin: 0;
-            background: #fff;
-            color: #053659;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+    <button class="card" type="button" data-desc="Ações simples: consertar vazamentos, usar descargas econômicas e torneiras com arejador. Pequenas mudanças na rotina podem reduzir o consumo diário por pessoa em até 40 litros.">
+      <div class="icon-wrap" aria-hidden="true">
+        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="22" r="8" fill="#083e6b"/>
+          <path d="M16 44s6-6 16-6 16 6 16 6" stroke="#07284a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="caption">Cuidados à água</div>
+      <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#053659;"></div>
+    </button>
 
-        .page {
-            max-width: 1200px;
-            margin: 36px auto;
-            padding: 0 24px;
-            text-align: center;
-        }
+    <button class="card dark" type="button" data-desc="Filtros com camadas de areia, carvão e cascalho são ótimos para purificar água de reúso ou de chuva. São econômicos e fáceis de montar para uso não potável ou como pré-filtro.">
+      <div class="icon-wrap" aria-hidden="true">
+        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="12" width="28" height="40" rx="4" fill="#fff" stroke="#07284a" stroke-width="2"/>
+          <circle cx="32" cy="26" r="2" fill="#07284a"/>
+          <circle cx="32" cy="34" r="2" fill="#07284a"/>
+          <circle cx="32" cy="42" r="2" fill="#07284a"/>
+        </svg>
+      </div>
+      <div class="caption">Filtros naturais</div>
+      <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#fff;"></div>
+    </button>
 
-        h1 {
-            color: var(--AzulEscuro);
-            margin-bottom: 30px;
-            font-size: 34px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
+  </div>
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 28px;
-            align-items: start;
-        }
+  <div class="legend">Clique em qualquer opção para ver instruções e dicas práticas.</div>
+</main>
 
-        .card {
-            background-color: var(--AzulClaro);
-            border-radius: 15px;
-            padding: 34px 18px 22px;
-            cursor: pointer;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-            transition: transform .22s ease, box-shadow .22s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 260px;
-            position: relative;
-            outline: none;
-            border: none;
-        }
+<style>
+  :root{
+    --dark-blue:#003f8a;
+    --medium-blue:#0b60c7;
+    --light-blue:#4da0ff;
+    --card-bg:#1a75d8;
+    --white:#ffffff;
+    --radius:12px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    margin:0; background: #fff; color:#053659;
+  }
+  .page{
+    max-width:1200px; margin:36px auto; padding:0 24px; text-align:center;
+  }
+  h1{
+    color:var(--dark-blue); margin-bottom:30px; font-size:34px; font-weight:800; letter-spacing:0.5px;
+  }
+  .gallery{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:28px; align-items:start;
+  }
+  .card{
+    background:var(--light-blue); border-radius:var(--radius); padding:34px 18px 22px;
+    cursor:pointer; box-shadow:0 6px 14px rgba(0,0,0,0.08);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:260px;
+    transition:transform .22s ease, box-shadow .22s ease;
+    outline:none; border:none;
+  }
+  .card:active{transform:scale(.99);}
+  .card:focus{box-shadow:0 8px 22px rgba(0,0,0,.15);}
+  .card.dark{ background:var(--dark-blue); color:var(--white); }
+  .card.blueish{ background: var(--card-bg); }
+  .icon-wrap{ width:120px; height:120px; display:flex; align-items:center; justify-content:center; border-radius:14px; margin-bottom:18px; }
+  .caption{ font-size:13px; font-weight:500; color:inherit; }
+  @media (max-width:560px){
+    h1{ font-size:22px }
+    .card{ padding:22px 12px; min-height:220px }
+    .icon-wrap{ width:96px; height:96px }
+  }
+</style>
 
-        .card:active {
-            transform: scale(.99)
-        }
-
-        .card:focus {
-            box-shadow: 0 8px 22px rgba(0, 0, 0, .15);
-        }
-
-        .card.dark {
-            background: var(--AzulEscuro);
-            color: var(--white);
-        }
-
-        .card.blueish {
-            background: var(--AzulClaro);
-        }
-
-        .icon-wrap {
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 14px;
-            margin-bottom: 18px;
-        }
-
-        .caption {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.92);
-            font-weight: 500;
-        }
-
-        /* small help text under cards when focused (for keyboard users) */
-        .sr-only {
-            position: absolute;
-            left: -9999px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
-
-        /* Modal */
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 60;
-        }
-
-        .modal {
-            background: white;
-            width: min(760px, 92%);
-            border-radius: 12px;
-            padding: 22px;
-            box-shadow: 0 20px 50px rgba(6, 23, 45, 0.5);
-        }
-
-        .modal h2 {
-            margin: 0 0 8px;
-            color: var(--AzulEscuro);
-        }
-
-        .modal p {
-            color: #164155;
-            margin: 8px 0 18px;
-            line-height: 1.5
-        }
-
-        .modal .close {
-            background: var(--AzulEscuro);
-            color: white;
-            border: none;
-            padding: 10px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600
-        }
-
-        /* small footer */
-        .legend {
-            margin-top: 26px;
-            color: #2e586e;
-            font-size: 14px
-        }
-
-        /* responsive tweaks */
-        @media (max-width:560px) {
-            h1 {
-                font-size: 22px
-            }
-
-            .card {
-                padding: 22px 12px;
-                min-height: 220px
-            }
-
-            .icon-wrap {
-                width: 96px;
-                height: 96px
-            }
-        }
-
-        .icon{
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-</head>
-
-<body>
-    <main class="page">
-        <h1>Galeria Interativa</h1>
-
-        <div class="gallery" role="list">
-
-            <button class="card blueish" data-title="Coleta de chuva" data-desc="Instalações simples como calhas e caixas de armazenamento permitem aproveitar a água da chuva para jardinagem e limpeza. Economiza até 30% do consumo doméstico se usado em irrigação e descargas." aria-label="Coleta de chuva" role="listitem">
-                <div class="icon-wrap" aria-hidden="true">
-                    <!-- simple raindrop + bucket svg -->
-                    <img class="icon" src="{{ asset('assets/img/icon_balde.svg') }}" alt="">
-                </div>
-                <div class="caption">Coleta de chuva</div>
-                <span class="sr-only">Clique para ver instruções de coleta de chuva</span>
-            </button>
-
-            <button class="card dark" data-title="Reuso de água" data-desc="Filtre e reutilize águas de pias e chuveiros (graywater) em sistemas de descarga ou para irrigação. Exige cuidados de tratamento simples — reduz sensivelmente o consumo de água potável." aria-label="Reuso de água" role="listitem">
-                <div class="icon-wrap" aria-hidden="true">
-                    <!-- recycle drop icon -->
-                    <img class="icon" src="{{ asset('assets/img/icon_water.svg') }}" alt="">
-                </div>
-                <div class="caption">Reuso de água</div>
-                <span class="sr-only">Clique para ver instruções de reuso</span>
-            </button>
-
-            <button class="card" data-title="Cuidados à água" data-desc="Ações simples: consertar vazamentos, usar descargas econômicas e torneiras com arejador. Pequenas mudanças na rotina podem reduzir o consumo diário por pessoa em até 40 litros." aria-label="Cuidados à água" role="listitem">
-                <div class="icon-wrap" aria-hidden="true">
-                    <!-- hands holding drop -->
-                    <img class="icon" src="{{ asset('assets/img/icon_hands.svg') }}" alt="">
-                </div>
-                <div class="caption">Cuidados à água</div>
-                <span class="sr-only">Clique para ver instruções de cuidados</span>
-            </button>
-
-            <button class="card dark" data-title="Filtros naturais" data-desc="Filtros com camadas de areia, carvão e cascalho são ótimos para purificar água de reúso ou de chuva. São econômicos e fáceis de montar para uso não potável ou como pré-filtro." aria-label="Filtros naturais" role="listitem">
-                <div class="icon-wrap" aria-hidden="true">
-                    <!-- barrel filter -->
-                    <img class="icon" src="{{ asset('assets/img/icon_filter.svg') }}" alt="">
-                </div>
-                <div class="caption">Filtros naturais</div>
-                <span class="sr-only">Clique para ver instruções de filtros</span>
-            </button>
-
-        </div>
-
-        <div class="legend">Clique em qualquer opção para ver instruções e dicas práticas.</div>
-
-    </main>
-
-    <!-- modal -->
-    <div id="backdrop" class="modal-backdrop" role="dialog" aria-hidden="true">
-        <div class="modal" role="document">
-            <h2 id="modal-title">Título</h2>
-            <p id="modal-desc">Descrição</p>
-            <div style="text-align:right">
-                <button id="closeBtn" class="close">Fechar</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // progressive enhancement: cards behave as buttons and open a modal with instructions
-        const cards = document.querySelectorAll('.card');
-        const backdrop = document.getElementById('backdrop');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDesc = document.getElementById('modal-desc');
-        const closeBtn = document.getElementById('closeBtn');
-
-        function openModal(title, desc) {
-            modalTitle.textContent = title;
-            modalDesc.textContent = desc;
-            backdrop.style.display = 'flex';
-            backdrop.setAttribute('aria-hidden', 'false');
-            closeBtn.focus();
-        }
-
-        function closeModal() {
-            backdrop.style.display = 'none';
-            backdrop.setAttribute('aria-hidden', 'true');
-        }
-
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                openModal(card.dataset.title, card.dataset.desc);
-            });
-            card.addEventListener('keydown', (ev) => {
-                if (ev.key === 'Enter' || ev.key === ' ') {
-                    ev.preventDefault();
-                    card.click();
-                }
-            });
-        });
-
-        closeBtn.addEventListener('click', closeModal);
-        backdrop.addEventListener('click', (e) => {
-            if (e.target === backdrop) closeModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-    </script>
-</body>
-
-</html>
-
-
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const textEl = card.querySelector('.card-text');
+    card.addEventListener('click', () => {
+      if(textEl.style.display === 'none'){
+        textEl.textContent = card.dataset.desc;
+        textEl.style.display = 'block';
+      } else {
+        textEl.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
 @endsection

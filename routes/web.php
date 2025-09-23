@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\ChatBotController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AguaController;
@@ -29,6 +30,7 @@ Route::get('/sobre',[SobreController::class, 'index'])->name('sobre.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
 Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index');
 Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');
+Route::get('/curso', [CursoController::class, 'index'])->name('curso.index');
 
 
 // Rotas ChatBot

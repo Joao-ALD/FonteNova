@@ -28,35 +28,37 @@
 
 </section>
 <script>
-document.getElementById('enviar').addEventListener('click', enviarMensagem);
-document.querySelectorAll('.sugestao').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.getElementById('mensagem').value = btn.textContent;
-        enviarMensagem();
+    document.getElementById('enviar').addEventListener('click', enviarMensagem);
+    document.querySelectorAll('.sugestao').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.getElementById('mensagem').value = btn.textContent;
+            enviarMensagem();
+        });
     });
-});
 
-function enviarMensagem() {
-    const msg = document.getElementById('mensagem').value;
+    function enviarMensagem() {
+        const msg = document.getElementById('mensagem').value;
 
-    fetch("{{ route('chatbot.responder') }}", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name=\"csrf-token\"]').content
-        },
-        body: JSON.stringify({ mensagem: msg })
-    })
-    .then(res => res.json())
-    .then(data => {
-        let resposta = `<p>${data.resumo}</p>
+        fetch("{{ route('chatbot.responder') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name=\"csrf-token\"]').content
+                },
+                body: JSON.stringify({
+                    mensagem: msg
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                let resposta = `<p>${data.resumo}</p>
                         <a href="${data.link_site}" class="btn btn-sm btn-primary mt-2">Saiba mais</a>`;
-        if (data.link_premium) {
-            resposta += `<a href="${data.link_premium}" class="btn btn-sm btn-warning mt-2 ms-2">Conteúdo Premium</a>`;
-        }
-        document.getElementById('resposta').innerHTML = resposta;
-        document.getElementById('resposta').classList.remove('d-none');
-    });
-}
+                if (data.link_premium) {
+                    resposta += `<a href="${data.link_premium}" class="btn btn-sm btn-warning mt-2 ms-2">Conteúdo Premium</a>`;
+                }
+                document.getElementById('resposta').innerHTML = resposta;
+                document.getElementById('resposta').classList.remove('d-none');
+            });
+    }
 </script>
 @endsection

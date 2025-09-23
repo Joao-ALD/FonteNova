@@ -1,6 +1,7 @@
 <!-- resources/views/layouts/main.blade.php -->
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,8 +13,14 @@
 
     <!-- Fontes, Bootstrap e CSS -->
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrapLink.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">  
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -121,4 +128,5 @@
     <script src="{{ asset('assets/js/script.js') }}"></script>
     @yield('scripts')
 </body>
+
 </html>

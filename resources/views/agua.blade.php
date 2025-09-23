@@ -102,7 +102,7 @@
       <!-- Card Coleta (4 cards) -->
       <div class="collapse" id="collapseColeta" data-bs-parent="#infoPanels">
         <div class="row g-4">
-         
+        
           <div class="col-12">
             <div id="coleta-1" class="card text-start bg-card mb-3 mx-auto" style="width: 100%; height: 18rem;">
               <div class="card-body">

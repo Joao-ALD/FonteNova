@@ -17,8 +17,8 @@
 }
 
 .bg-nav {
-    background-color: #0033A0;
-}r
+    background-color: var(--AzulEscuro);
+}
 
 .nav-h {
     height: 100px;
@@ -63,18 +63,6 @@
     background-color: var(--AzulClaro);
 }
 
-.titulosSobre{
-    color: #21499F;
-    text-align: center;
-}
-
-.textoSobre{
-    text-align: center;
-}
-
-.cNossoProjeto{
-    margin-top: 150px;
-}
 /* ESTILOS PERSONALIZADOS PARA O FOOTER BOOTSTRAP */
 .footer-custom-bg {
     background-color: #0033A0; /* O mesmo azul escuro da sua imagem */
@@ -125,6 +113,7 @@
 .navbar {
     padding: 0%;
 }
+
 
 
 .hero {

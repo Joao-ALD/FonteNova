@@ -8,7 +8,7 @@
 
     <!-- Fontes, Bootstrap e CSS -->
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrapLink.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">  
 </head>
 <body>
 

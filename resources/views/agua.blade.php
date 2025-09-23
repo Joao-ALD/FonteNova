@@ -1,5 +1,8 @@
 @extends('layouts.main')
 
+
+@section('title', 'Fonte Nova - Informações sobre água')
+
 @section('content')
 
   <section class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100">

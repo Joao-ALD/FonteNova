@@ -1,0 +1,35 @@
+.sobre-container {
+    padding: 4rem 2rem;
+    margin-top: 3rem;
+}
+
+.objetivos-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.objetivos-list li {
+    padding-left: 1.2rem;
+    position: relative;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+}
+
+.objetivos-list li::before {
+    content: '•';
+    color: #0288d1;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+/* Corrige alinhamento das setas nas FAQs */
+.accordion-button::after {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(180deg);
+}

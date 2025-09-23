@@ -56,7 +56,7 @@
     </nav>
 
     <!-- Conteúdo da página -->
-    <main class="pt-5 mt-5">
+    <main class="pt-5">
         @yield('content')
     </main>
 

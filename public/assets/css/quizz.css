@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
+
+.quiz-page {
+    background: #0288d1;
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 15px;
+    box-sizing: border-box;
+    font-family: 'Jersey 25', sans-serif;
+}
+
+.quiz-container {
+    background: #0288d1;
+    color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.screen {
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+h1,
+h2 {
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    color: #fff;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #1466c3;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #2575fc;
+}
+
+.answers button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #f1f1f1;
+    color: #333;
+    transition: background 0.3s ease;
+}
+
+.answers button:hover {
+    background-color: #ddd;
+}

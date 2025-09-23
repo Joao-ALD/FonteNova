@@ -7,14 +7,10 @@
     --BrancoPuro: #ffffff;
     --Preto: #000000;
 
-    --FontePrincipal: 'poppins';
+    --FontePrincipal: 'Poppins';
 }
 
-/* ESTILOS NAV */
-.px-custom {
-    padding-left: 135px;
-    padding-right: 135px;
-}
+/* ------------- NAVBAR ------------- */
 
 .bg-nav {
     background-color: var(--AzulEscuro);
@@ -24,27 +20,54 @@
     height: 100px;
 }
 
+.navbar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Container com espaçamento lateral responsivo */
+@media (min-width: 1200px) {
+    .navbar-container {
+        padding-left: 135px;
+        padding-right: 135px;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .navbar-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .navbar-container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
 .navbar-nav .nav-link {
-    color: #ffffff;
-    /* cor do texto */
+    color: var(--BrancoPuro);
     margin-left: 15px;
 }
 
-/* Limita o tamanho da logo da navbar */
+/* Tamanho da logo ajustado */
 .navbar-brand img {
-    height: 97px;
-    /* Ajuste conforme necessário */
+    height: 48px;
     width: auto;
-    /* Mantém proporção da imagem */
-}
-/* FIM ESTILOS NAV */
-
-
-.bg-azulClaro{
-    background-color: var(--AzulClaro);
 }
 
-/* Navbar oculta */
+/* Botão hamburguer */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Navbar auto-hide (scroll) */
 .nav-auto-hide {
     transition: top 0.3s;
     top: 0;
@@ -53,19 +76,30 @@
     z-index: 999;
 }
 
-/* Classe que esconde a navbar ao descer */
 .nav-hidden {
     top: -100px;
-    /* altura negativa para esconder */
+}
+
+/* Padding antigo substituído por .navbar-container */
+.px-custom {
+    display: none;
+}
+
+
+/* ------------- CORES GERAIS ------------- */
+
+.bg-azulClaro {
+    background-color: var(--AzulClaro);
 }
 
 .bg-card {
     background-color: var(--AzulClaro);
 }
 
-/* ESTILOS PERSONALIZADOS PARA O FOOTER BOOTSTRAP */
+/* ------------- FOOTER ------------- */
+
 .footer-custom-bg {
-    background-color: #0033A0; /* O mesmo azul escuro da sua imagem */
+    background-color: #0033A0;
 }
 
 .footer-text-dim {
@@ -77,7 +111,6 @@
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Estilo para os links da lista de navegação */
 .footer-links a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
@@ -89,7 +122,6 @@
     text-decoration: underline;
 }
 
-/* Ajustes nos botões de redes sociais */
 .btn-floating.btn-light {
     background-color: rgba(255, 255, 255, 0.1) !important;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -101,7 +133,7 @@
     color: #0033A0 !important;
 }
 
-/* Ícones de contato - Font Awesome list utility */
+/* Ícones com FontAwesome */
 .fa-li {
     position: relative;
     left: -2em;
@@ -110,21 +142,16 @@
     line-height: inherit;
 }
 
-.navbar {
-    padding: 0%;
-}
 
-
+/* ------------- HERO ------------- */
 
 .hero {
     width: 100%;
     min-height: 413px;
     padding: 64px 5vw;
-    /* padding lateral relativo */
     background-color: var(--AzulClaro);
     display: flex;
     justify-content: center;
-    /* centraliza o container interno */
     align-items: center;
     box-sizing: border-box;
 }
@@ -132,19 +159,15 @@
 .hero-inner {
     display: flex;
     flex-wrap: wrap;
-    /* permite empilhar no mobile */
     align-items: center;
     justify-content: space-between;
     width: 100%;
     max-width: 1920px;
-    /* limite de largura em telas grandes */
     gap: 2rem;
-    /* espaçamento entre conteúdo e ilustração */
 }
 
 .hero-content {
     flex: 1 1 60%;
-    /* ocupa 60% do espaço ou adapta */
     color: #fff;
 }
 
@@ -153,7 +176,6 @@
     line-height: 1.05;
     margin-bottom: 16px;
     font-size: clamp(28px, 4.5vw, 56px);
-    /* responsivo */
 }
 
 .hero-sub {
@@ -180,15 +202,15 @@
 
 .hero-illustration {
     width: 40vw;
-    /* escala com a viewport */
     max-width: 520px;
-    /* tamanho máximo */
     height: auto;
     object-fit: contain;
     pointer-events: none;
 }
 
-/* --- Breakpoints --- */
+
+/* HERO RESPONSIVO */
+
 @media (max-width: 1200px) {
     .hero-illustration {
         width: 36vw;
@@ -223,15 +245,16 @@
         display: none;
     }
 
-    /* oculta em mobile */
     .hero {
         padding: 32px 4vw;
     }
 }
 
-/* Gallery */
+
+/* ------------- GALLERY ------------- */
+
 .section {
-    padding: 56px 6vw
+    padding: 56px 6vw;
 }
 
 .section .section-title {
@@ -275,23 +298,22 @@
     color: #ffffff;
 }
 
-/* Map section */
+
+/* ------------- MAPA ------------- */
+
 .map-section {
     background: var(--AzulClaro);
     padding: 48px 6vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* Mantém texto à esquerda e ilustração à direita */
     gap: 20px;
     flex-wrap: wrap;
-    /* Permite quebra em telas menores */
 }
 
 .map-text {
     max-width: 720px;
     flex: 1 1 400px;
-    /* O texto ocupa no mínimo 400px, mas encolhe se necessário */
 }
 
 .map-text h3 {
@@ -307,7 +329,6 @@
 .map-illustration {
     width: 320px;
     flex: 0 0 320px;
-    /* Mantém a ilustração com largura fixa */
 }
 
 .map-illustration svg {
@@ -317,7 +338,6 @@
     filter: grayscale(1);
 }
 
-/* Media Query para telas pequenas */
 @media (max-width: 768px) {
     .map-section {
         flex-direction: column;
@@ -329,7 +349,6 @@
         margin-left: 0;
         margin-top: 24px;
         width: 80%;
-        /* Ajusta a largura proporcionalmente */
         flex: 1 1 auto;
     }
 
@@ -338,21 +357,23 @@
     }
 }
 
-/* Education */
+
+/* ------------- EDUCAÇÃO ------------- */
+
 .edu {
     background: var(--AzulEscuro);
     color: #fff;
-    padding: 44px 6vw
+    padding: 44px 6vw;
 }
 
 .edu .section-title {
-    color: #fff
+    color: #fff;
 }
 
 .edu .edu-cards {
     display: flex;
     gap: 28px;
-    justify-content: center
+    justify-content: center;
 }
 
 .edu-card {
@@ -365,10 +386,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-weight: 700
+    font-weight: 700;
 }
 
 .edu-card.blue {
     background: #2f7ad9;
-    color: #fff
+    color: #fff;
 }

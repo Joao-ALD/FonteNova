@@ -52,15 +52,21 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
    ```bash
    cd nome-do-projeto
    ```
+**2. Atualizar o composer para a última versão**
+   Execute o Composer update para atualizar o composer para a última versão.
 
-**2. Instalar as Dependências do PHP**
+   ```bash
+   composer update
+   ```
+
+**3. Instalar as Dependências do PHP**
    Execute o Composer para baixar todas as bibliotecas necessárias que ficam na pasta `vendor/`.
 
    ```bash
    composer install
    ```
 
-**3. Criar o Arquivo de Ambiente (`.env`)**
+**4. Criar o Arquivo de Ambiente (`.env`)**
    Este arquivo é uma cópia do arquivo de exemplo `.env.example`.
 
    * Se estiver no **Windows (CMD/PowerShell)**:
@@ -72,14 +78,14 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
        cp .env.example .env
        ```
 
-**4. Gerar a Chave da Aplicação**
+**5. Gerar a Chave da Aplicação**
    O Laravel precisa de uma chave de encriptação única. Este comando irá gerá-la e inseri-la automaticamente no seu arquivo `.env`.
 
    ```bash
    php artisan key:generate
    ```
 
-**5. Configurar o Banco de Dados**
+**6. Configurar o Banco de Dados**
    - Crie um novo banco de dados no seu SGBD local (MySQL, etc.).
    - Abra o arquivo `.env` que você acabou de criar.
    - Encontre as seguintes linhas e atualize com as informações do seu banco de dados local:
@@ -93,14 +99,14 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
    DB_PASSWORD=""
    ```
 
-**6. Executar as "Migrations"**
+**7. Executar as "Migrations"**
    Este comando irá criar todas as tabelas necessárias no banco de dados que você acabou de configurar.
 
    ```bash
    php artisan migrate
    ```
 **--**
-**7. Iniciar o Servidor de Desenvolvimento**
+**8. Iniciar o Servidor de Desenvolvimento**
    Pronto! Agora você pode iniciar o servidor local do Laravel.
 
    ```bash

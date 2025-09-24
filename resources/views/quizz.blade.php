@@ -10,7 +10,13 @@
         <h1>FonteNova</h1>
         <h3>Salve a Água</h3>
         <br>
-        <p>Responda 5 perguntas e descubra quanto de água você consegue salvar</p>
+        <p>
+          A água é um dos recursos mais preciosos do planeta — e também um dos mais desperdiçados.
+        </p>
+        <p>
+          Neste quiz educativo, você irá responder a 5 perguntas simples sobre hábitos do dia a dia e descobrir quantos litros de água podem ser economizados com pequenas mudanças.
+        </p>
+        <p><strong>Prepare-se para aprender e fazer a diferença!</strong></p>
         <button id="start-btn">Começar</button>
       </div>
 
@@ -29,6 +35,12 @@
       <div id="result-screen" class="screen">
         <h2>Resultado</h2>
         <p id="score"></p>
+        <p>
+          Além de economizar água, atitudes conscientes ajudam a preservar o meio ambiente, reduzir sua conta de água e promover um futuro mais sustentável.
+        </p>
+        <p>
+          Compartilhe este quiz com seus amigos e familiares para espalhar o conhecimento!
+        </p>
         <button id="restart-btn">Refazer Quiz</button>
       </div>
     </div>

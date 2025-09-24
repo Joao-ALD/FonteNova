@@ -16,40 +16,46 @@
     background: #0288d1;
     color: #fff;
     border-radius: 15px;
-    padding: 30px;
-    max-width: 500px;
+    padding: 50px;
+    max-width: 700px;
     width: 100%;
     text-align: center;
     overflow: hidden;
     position: relative;
 }
 
-.screen {
-    display: none;
-    transition: all 0.5s ease;
+/* Títulos grandes */
+h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
 }
 
-.screen.active {
-    display: block;
-}
-
-h1,
 h2 {
-    margin-bottom: 20px;
+    font-size: 36px;
+    margin-bottom: 25px;
 }
 
+h3 {
+    font-size: 28px;
+    margin-bottom: 25px;
+}
+
+/* Texto principal maior */
 p {
-    font-size: 16px;
-    color: #fff;
+    font-size: 24px;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-bottom: 25px;
 }
 
+/* Botões principais */
 button {
-    padding: 12px 25px;
+    padding: 18px 32px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background: #1466c3;
     color: #fff;
-    font-size: 16px;
+    font-size: 22px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -58,14 +64,15 @@ button:hover {
     background: #2575fc;
 }
 
+/* Botões de resposta */
 .answers button {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 22px;
     background-color: #f1f1f1;
     color: #333;
     transition: background 0.3s ease;
@@ -74,3 +81,13 @@ button:hover {
 .answers button:hover {
     background-color: #ddd;
 }
+
+/* Controle de telas */
+.screen {
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+}   

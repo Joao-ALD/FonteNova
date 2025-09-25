@@ -26,20 +26,20 @@
     <h3 class="section-title">Galeria Interativa</h3>
     <div class="gallery">
         @php
-            $cards = [
-                ['img' => 'icon_balde.svg', 'label' => 'Coleta de chuva', 'bg' => '#3b8eed'],
-                ['img' => 'icon_water.svg', 'label' => 'Reuso de água', 'bg' => '#014ba0'],
-                ['img' => 'icon_hands.svg', 'label' => 'Cuidados à água', 'bg' => '#3b8eed'],
-                ['img' => 'icon_filter.svg', 'label' => 'Filtros naturais', 'bg' => '#014ba0'],
-            ];
+        $cards = [
+        ['img' => 'icon_balde.svg', 'label' => 'Coleta de chuva', 'bg' => '#3b8eed'],
+        ['img' => 'icon_water.svg', 'label' => 'Reuso de água', 'bg' => '#014ba0'],
+        ['img' => 'icon_hands.svg', 'label' => 'Cuidados à água', 'bg' => '#3b8eed'],
+        ['img' => 'icon_filter.svg', 'label' => 'Filtros naturais', 'bg' => '#014ba0'],
+        ];
         @endphp
         @foreach ($cards as $card)
-            <div class="card-square" style="background-color: {{ $card['bg'] }};">
-                <div class="icon gallery-icon">
-                    <img src="{{ asset('assets/img/' . $card['img']) }}" alt="">
-                </div>
-                <div class="card-label gallery-label">{{ $card['label'] }}</div>
+        <div class="card-square" style="background-color: {{ $card['bg'] }};">
+            <div class="icon gallery-icon">
+                <img src="{{ asset('assets/img/' . $card['img']) }}" alt="">
             </div>
+            <div class="card-label gallery-label">{{ $card['label'] }}</div>
+        </div>
         @endforeach
     </div>
 </section>
@@ -67,19 +67,19 @@
         <h3 class="section-title">Educação Ambiental</h3>
         <div class="edu-cards mt-4 d-flex justify-content-center flex-wrap">
             @php
-                $eduItems = [
-                    ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'bg' => '#ffffff', 'text' => '#000'],
-                    ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'bg' => '#3b8eed', 'text' => '#ffffff'],
-                    ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'bg' => '#ffffff', 'text' => '#000'],
-                ];
+            $eduItems = [
+            ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'bg' => '#ffffff', 'text' => '#000'],
+            ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'bg' => '#3b8eed', 'text' => '#ffffff'],
+            ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'bg' => '#ffffff', 'text' => '#000'],
+            ];
             @endphp
             @foreach ($eduItems as $item)
-                <div class="card-square" style="background-color: {{ $item['bg'] }};">
-                    <div class="icon edu-icon">
-                        <img src="{{ asset('assets/img/' . $item['img']) }}" alt="">
-                    </div>
-                    <div class="card-label" style="color: {{ $item['text'] }};">{{ $item['label'] }}</div>
+            <div class="card-square" style="background-color: {{ $item['bg'] }};">
+                <div class="icon edu-icon">
+                    <img src="{{ asset('assets/img/' . $item['img']) }}" alt="">
                 </div>
+                <div class="card-label" style="color: {{ $item['text'] }};">{{ $item['label'] }}</div>
+            </div>
             @endforeach
         </div>
     </div>
@@ -93,4 +93,8 @@
     </div>
 </section>
 
+@endsection
+
+@section('scripts')
+<link rel="stylesheet" href="home.css">
 @endsection

@@ -54,7 +54,6 @@
     </x-container>
 </section>
 
-
 <section class="map-section text-white">
     <x-container>
         <div class="row align-items-center">

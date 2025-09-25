@@ -1,15 +1,22 @@
 /* public/assets/css/home.css */
-/* Versão completa com todos os estilos da Home Page */
+/* Versão completa e ajustada para o design do Figma */
+
+:root {
+    /* AJUSTE FIGMA: Cores redefinidas para maior fidelidade */
+    --AzulEscuro: #0B2D5A;
+    --AzulMedio: #3b8eed;
+    --AzulClaro: #4A90E2;
+    --BrancoPuro: #ffffff;
+    --TextoEscuro: #2c3e50;
+}
 
 /* ------------- HERO ------------- */
 .hero {
     width: 100%;
-    min-height: 413px;
-    padding: 64px 0; /* Padding vertical, o px-custom controla o horizontal */
+    padding: 80px 0;
     background-color: var(--AzulClaro);
     display: flex;
     align-items: center;
-    box-sizing: border-box;
 }
 
 .hero .px-custom {
@@ -22,56 +29,56 @@
 
 .hero-content {
     flex: 1 1 60%;
-    color: #fff;
+    color: var(--BrancoPuro);
 }
 
 .hero-title {
     font-weight: 800;
-    line-height: 1.05;
-    margin-bottom: 16px;
-    font-size: clamp(28px, 4.5vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    font-size: clamp(36px, 5vw, 64px);
 }
 
 .hero-sub {
-    margin-bottom: 20px;
-    max-width: 60ch;
-    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 32px;
+    max-width: 55ch;
+    font-size: 18px;
+    opacity: 0.9;
 }
 
+/* AJUSTE FIGMA: Botão com estilo do design */
 .btn-cta {
-    background: #1a5fb2;
-    border-radius: 12px;
-    padding: 10px 18px;
-    color: #fff;
+    background: var(--AzulEscuro);
+    border-radius: 8px;
+    padding: 12px 24px;
+    color: var(--BrancoPuro);
     border: none;
     font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 0.5px;
 }
 
 .hero-media {
     flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .hero-illustration {
-    width: 40vw;
-    max-width: 520px;
+    width: 100%;
+    max-width: 500px;
     height: auto;
-    object-fit: contain;
-    pointer-events: none;
 }
 
 
-/* ------------- ESTILOS GERAIS DE SEÇÃO (usado na Galeria, etc) ------------- */
+/* ------------- ESTILOS GERAIS DE SEÇÃO ------------- */
 .section {
-    padding: 56px 0;
+    padding: 80px 0; /* Aumentando o espaçamento vertical */
 }
 
-.section .section-title {
+.section-title {
     text-align: center;
-    font-size: 28px;
-    margin-bottom: 28px;
+    font-size: 32px;
+    margin-bottom: 48px;
     color: var(--AzulEscuro);
     font-weight: 800;
 }
@@ -80,41 +87,42 @@
 /* ------------- GALERIA INTERATIVA ------------- */
 .gallery {
     display: flex;
-    gap: 28px;
+    gap: 30px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.card-square {
-    width: 280px;
-    height: 280px;
+/* AJUSTE FIGMA: Cards agora são retangulares, não quadrados */
+.gallery-card {
+    width: 260px;
+    height: 200px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    box-shadow: 0 6px 18px rgba(11, 78, 162, 0.08);
-    color: inherit;
-    text-decoration: none;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.card-square .icon {
-    font-size: 42px;
-    margin-bottom: 10px;
+.gallery-card .icon {
+    margin-bottom: 15px;
+    width: 60px; /* Tamanho do ícone */
+    height: auto;
 }
 
-.card-square .card-label {
-    font-size: clamp(14px, 2.2vw, 18px);
+.gallery-card .card-label {
+    font-size: 18px;
     text-align: center;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--BrancoPuro);
 }
 
 
-/* ------------- MAPA DO CONHECIMENTO (CORRIGIDO) ------------- */
+/* ------------- MAPA DO CONHECIMENTO ------------- */
 .map-section {
-    padding: 48px 0;
-    color: #333;
+    padding: 60px 0;
+    background-color: var(--AzulClaro);
 }
 
 .map-section .px-custom {
@@ -122,97 +130,135 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
 }
 
 .map-section .map-text {
-    max-width: 720px;
-    flex: 1 1 400px;
+    flex: 1 1 50%;
+    /* AJUSTE FIGMA: Cor do texto é branca */
+    color: var(--BrancoPuro);
 }
 
 .map-section .map-text h3 {
-    color: var(--AzulEscuro);
+    font-size: 32px;
     font-weight: 800;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    /* AJUSTE FIGMA: Título também é branco */
+    color: var(--BrancoPuro);
 }
 
 .map-section .map-text p {
-    opacity: 0.95;
+    font-size: 16px;
+    opacity: 0.9;
+    max-width: 50ch;
 }
 
 .map-section .map-illustration {
-    width: 320px;
-    flex-shrink: 0;
+    flex: 1 1 40%;
+    text-align: center;
 }
 
 .map-section .map-illustration img {
+    max-width: 400px;
     width: 100%;
     height: auto;
+    /* AJUSTE FIGMA: Deixando o mapa mais sutil */
+    opacity: 0.8;
 }
 
 
 /* ------------- EDUCAÇÃO AMBIENTAL ------------- */
 .edu {
-    padding: 48px 0;
-    color: #fff;
+    padding: 80px 0;
+    /* AJUSTE FIGMA: Fundo azul bem escuro */
+    background-color: var(--AzulEscuro);
 }
 
 .edu .section-title {
-    color: var(--BrancoPuro); /* Sobrescreve a cor padrão de .section-title */
+    color: var(--BrancoPuro);
 }
 
 .edu-cards {
-    gap: 32px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
-.edu-cards .card-square {
-    width: 220px;
+/* AJUSTE FIGMA: Estilo base dos cards é branco */
+.edu-card {
+    width: 280px;
     height: 220px;
-    cursor: pointer;
+    background-color: var(--BrancoPuro);
+    color: var(--TextoEscuro);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
-.edu-cards .card-square:hover {
-    transform: translateY(-8px);
+.edu-card:hover {
+    transform: translateY(-10px);
 }
 
-.edu-cards .card-square .icon {
-    width: 88px;
-    height: 88px;
+/* AJUSTE FIGMA: Estilo do card destacado em azul */
+.edu-card--highlighted {
+    background-color: var(--AzulMedio);
+    color: var(--BrancoPuro);
+}
+
+.edu-card .icon {
+    width: 70px;
+    height: auto;
     margin-bottom: 20px;
 }
 
-.edu-cards .card-square .card-label {
-    font-size: 20px;
+.edu-card .card-label {
+    font-size: 22px;
     font-weight: 700;
-    color: inherit; /* Herda a cor do card (preto ou branco) */
 }
 
 
-/* ------------- CITAÇÃO (CORRIGIDO) ------------- */
+/* ------------- CITAÇÃO ------------- */
 .quote-section {
-    padding: 64px 0;
-    background-color: var(--BrancoPuro);
+    padding: 80px 0;
+    background-color: #f7f9fc; /* Um branco levemente acinzentado */
 }
 
 .quote-box {
     text-align: center;
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto;
-    padding: 48px;
+    padding: 40px;
+    /* AJUSTE FIGMA: Trocando sombra por borda */
+    border: 2px solid var(--AzulClaro);
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(11, 78, 162, 0.08);
+    background-color: var(--BrancoPuro);
 }
 
 .quote-box .quote-icon {
-    max-width: 56px;
-    margin-bottom: 16px;
+    max-width: 60px;
+    margin-bottom: 24px;
 }
 
 .quote-box .quote-text {
-    font-size: clamp(20px, 3vw, 24px);
+    font-size: clamp(22px, 3vw, 28px);
     font-weight: 700;
     color: var(--AzulEscuro);
+    line-height: 1.4;
+}
+
+/* AJUSTE FIGMA: Estilo para o texto de atribuição */
+.quote-attribution {
+    text-align: center;
+    margin-top: 24px;
+    font-style: italic;
+    color: #7f8c9a;
 }
 
 
@@ -220,43 +266,13 @@
 @media (max-width: 991.98px) {
     .hero .px-custom {
         flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
+        text-align: center;
     }
     .hero-illustration {
-        width: 60%;
-        max-width: 360px;
-        margin-top: 24px;
-        align-self: center;
-    }
-    .card-square {
-        width: 180px;
-        height: 180px;
-    }
-    .edu-cards .card-square {
-        width: 160px;
-        height: 160px;
+        margin-top: 40px;
     }
     .map-section .px-custom {
         flex-direction: column;
         text-align: center;
-    }
-    .map-section .map-illustration {
-        margin-top: 24px;
-        width: 80%;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .hero-illustration {
-        display: none;
-    }
-    .card-square {
-        width: 140px;
-        height: 140px;
-    }
-    .edu-cards .card-square {
-        width: 120px;
-        height: 120px;
     }
 }

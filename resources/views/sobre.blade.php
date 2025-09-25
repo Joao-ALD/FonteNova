@@ -117,3 +117,7 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+    <link rel="stylesheet" href="sobre.css">
+@endsection

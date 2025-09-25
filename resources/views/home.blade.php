@@ -88,11 +88,20 @@
     </div>
 </section>
 
-<!-- Citação -->
-<section class="quote px-custom">
+<!-- <section class="quote px-custom">
     <div class="quote-box">
         <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
         <p class="quote-text">Cuidar da água é cuidar da vida. Faça parte dessa transformação.</p>
+    </div>
+</section> -->
+
+<!-- Citação -->
+<section class="quote-section">
+    <div class="px-custom">
+        <div class="quote-box">
+            <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
+            <p class="quote-text">Cuidar da água é cuidar da vida. Faça parte dessa transformação.</p>
+        </div>
     </div>
 </section>
 

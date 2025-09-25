@@ -15,13 +15,13 @@
 
     <!-- Fontes, Bootstrap e CSS -->
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrapLink.css') }}">
+    @stack('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
-    @stack('styles')
 </head>
 
 <body>

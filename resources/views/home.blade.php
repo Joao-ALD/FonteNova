@@ -100,13 +100,9 @@
 <section class="quote-section">
     <div class="px-custom">
         <div class="quote-box">
-            <img src="{{ asset('assets/img/icon_logo.svg')}}" alt="Ícone de citação" class="quote-icon">
+            <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
             <p class="quote-text">Cuidar da água é cuidar da vida. Faça parte dessa transformação.</p>
         </div>
-        {{-- Texto de atribuição adicionado aqui --}}
-        <p class="quote-attribution">
-            "Cuidar da água é cuidar da vida. Faça parte dessa transformação."
-        </p>
     </div>
 </section>
 

@@ -71,18 +71,17 @@
         <div class="edu-cards mt-4 d-flex justify-content-center flex-wrap">
             @php
             $eduItems = [
-            ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'highlight' => false],
-            ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'highlight' => true],
-            ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'highlight' => false],
+            ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'bg' => '#ffffff', 'text' => '#000'],
+            ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'bg' => '#3b8eed', 'text' => '#ffffff'],
+            ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'bg' => '#ffffff', 'text' => '#000'],
             ];
             @endphp
             @foreach ($eduItems as $item)
-            {{-- Usamos uma classe para o card destacado em vez de style inline --}}
-            <div class="edu-card {{ $item['highlight'] ? 'edu-card--highlighted' : '' }}">
+            <div class="card-square" style="background-color: {{ $item['bg'] }};">
                 <div class="icon edu-icon">
                     <img src="{{ asset('assets/img/' . $item['img']) }}" alt="">
                 </div>
-                <div class="card-label">{{ $item['label'] }}</div>
+                <div class="card-label" style="color: {{ $item['text'] }};">{{ $item['label'] }}</div>
             </div>
             @endforeach
         </div>

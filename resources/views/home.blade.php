@@ -1,7 +1,10 @@
 @extends('layouts.main')
 
-@section('content')
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
+@endpush
 
+@section('content')
 <!-- Hero -->
 <section class="hero">
     <div class="px-custom hero-inner">
@@ -34,7 +37,7 @@
         ];
         @endphp
         @foreach ($cards as $card)
-        <div class="card-square" style="background-color: {{ $card['bg'] }};">
+        <div class="card-square" style="background-color: {{ $card['bg'] }}">
             <div class="icon gallery-icon">
                 <img src="{{ asset('assets/img/' . $card['img']) }}" alt="">
             </div>
@@ -96,5 +99,4 @@
 @endsection
 
 @section('scripts')
-<link rel="stylesheet" href="home.css">
 @endsection

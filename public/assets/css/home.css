@@ -1,262 +1,108 @@
 /* public/assets/css/home.css */
-/* Versão completa com todos os estilos da Home Page */
+/* Versão focada no Bootstrap, apenas com estilos customizados essenciais */
 
 /* ------------- HERO ------------- */
 .hero {
-    width: 100%;
-    min-height: 413px;
-    padding: 64px 0; /* Padding vertical, o px-custom controla o horizontal */
-    background-color: var(--AzulClaro);
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-.hero .px-custom {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-}
-
-.hero-content {
-    flex: 1 1 60%;
-    color: #fff;
+    padding: 80px 0;
+    background-color: #4A90E2; /* Azul do Figma */
 }
 
 .hero-title {
-    font-weight: 800;
-    line-height: 1.05;
-    margin-bottom: 16px;
-    font-size: clamp(28px, 4.5vw, 56px);
+    font-size: clamp(2.2rem, 5vw, 3.5rem); /* Tamanho de fonte responsivo */
+    line-height: 1.1;
 }
 
 .hero-sub {
-    margin-bottom: 20px;
-    max-width: 60ch;
-    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
 .btn-cta {
-    background: #1a5fb2;
-    border-radius: 12px;
-    padding: 10px 18px;
+    background-color: #0B2D5A; /* Azul escuro do Figma */
+    border-color: #0B2D5A;
+    padding: 0.75rem 1.5rem;
     color: #fff;
-    border: none;
-    font-weight: 600;
 }
-
-.hero-media {
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-illustration {
-    width: 40vw;
-    max-width: 520px;
-    height: auto;
-    object-fit: contain;
-    pointer-events: none;
-}
-
-
-/* ------------- ESTILOS GERAIS DE SEÇÃO (usado na Galeria, etc) ------------- */
-.section {
-    padding: 56px 0;
-}
-
-.section .section-title {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 28px;
-    color: var(--AzulEscuro);
-    font-weight: 800;
+.btn-cta:hover {
+    background-color: #082245;
+    border-color: #082245;
+    color: #fff;
 }
 
 
 /* ------------- GALERIA INTERATIVA ------------- */
-.gallery {
-    display: flex;
-    gap: 28px;
-    justify-content: center;
-    flex-wrap: wrap;
+.gallery-card {
+    min-height: 200px; /* Altura mínima para consistência */
+    transition: transform 0.2s ease-in-out;
 }
-
-.card-square {
-    width: 280px;
-    height: 280px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    box-shadow: 0 6px 18px rgba(11, 78, 162, 0.08);
-    color: inherit;
-    text-decoration: none;
+.gallery-card:hover {
+    transform: translateY(-5px);
 }
-
-.card-square .icon {
-    font-size: 42px;
-    margin-bottom: 10px;
+.gallery-card-icon {
+    width: 60px;
 }
-
-.card-square .card-label {
-    font-size: clamp(14px, 2.2vw, 18px);
-    text-align: center;
-    font-weight: 600;
-    color: #ffffff;
+.gallery-card-label {
+    font-size: 1.1rem;
 }
 
 
-/* ------------- MAPA DO CONHECIMENTO (CORRIGIDO) ------------- */
+/* ------------- MAPA DO CONHECIMENTO ------------- */
 .map-section {
-    padding: 48px 0;
-    color: #333;
+    padding: 60px 0;
+    background-color: #4A90E2; /* Azul do Figma */
 }
 
-.map-section .px-custom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.map-section .map-text {
-    max-width: 720px;
-    flex: 1 1 400px;
-}
-
-.map-section .map-text h3 {
-    color: var(--AzulEscuro);
-    font-weight: 800;
-    margin-bottom: 12px;
-}
-
-.map-section .map-text p {
-    opacity: 0.95;
-}
-
-.map-section .map-illustration {
-    width: 320px;
-    flex-shrink: 0;
-}
-
-.map-section .map-illustration img {
-    width: 100%;
-    height: auto;
+.map-illustration {
+    max-width: 400px;
+    opacity: 0.9;
 }
 
 
 /* ------------- EDUCAÇÃO AMBIENTAL ------------- */
-.edu {
-    padding: 48px 0;
+.edu-section {
+    padding: 80px 0;
+    background-color: #0B2D5A; /* Azul escuro do Figma */
+}
+
+.edu-card {
+    min-height: 220px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.edu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.edu-card--highlighted {
+    background-color: #3b8eed;
     color: #fff;
 }
 
-.edu .section-title {
-    color: var(--BrancoPuro); /* Sobrescreve a cor padrão de .section-title */
+.edu-card-icon {
+    width: 70px;
 }
-
-.edu-cards {
-    gap: 32px;
-}
-
-.edu-cards .card-square {
-    width: 220px;
-    height: 220px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.edu-cards .card-square:hover {
-    transform: translateY(-8px);
-}
-
-.edu-cards .card-square .icon {
-    width: 88px;
-    height: 88px;
-    margin-bottom: 20px;
-}
-
-.edu-cards .card-square .card-label {
-    font-size: 20px;
-    font-weight: 700;
-    color: inherit; /* Herda a cor do card (preto ou branco) */
+.edu-card-label {
+    font-size: 1.5rem;
 }
 
 
-/* ------------- CITAÇÃO (CORRIGIDO) ------------- */
+/* ------------- CITAÇÃO ------------- */
 .quote-section {
-    padding: 64px 0;
-    background-color: var(--BrancoPuro);
+    background-color: #f7f9fc;
 }
 
 .quote-box {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 48px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(11, 78, 162, 0.08);
+    max-width: 750px;
+    border: 2px solid #4A90E2; /* Borda azul do Figma */
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.05);
 }
 
-.quote-box .quote-icon {
-    max-width: 56px;
-    margin-bottom: 16px;
+.quote-icon {
+    width: 60px;
 }
 
-.quote-box .quote-text {
-    font-size: clamp(20px, 3vw, 24px);
-    font-weight: 700;
-    color: var(--AzulEscuro);
-}
-
-
-/* ------------- RESPONSIVIDADE GERAL DA HOME ------------- */
-@media (max-width: 991.98px) {
-    .hero .px-custom {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
-    .hero-illustration {
-        width: 60%;
-        max-width: 360px;
-        margin-top: 24px;
-        align-self: center;
-    }
-    .card-square {
-        width: 180px;
-        height: 180px;
-    }
-    .edu-cards .card-square {
-        width: 160px;
-        height: 160px;
-    }
-    .map-section .px-custom {
-        flex-direction: column;
-        text-align: center;
-    }
-    .map-section .map-illustration {
-        margin-top: 24px;
-        width: 80%;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .hero-illustration {
-        display: none;
-    }
-    .card-square {
-        width: 140px;
-        height: 140px;
-    }
-    .edu-cards .card-square {
-        width: 120px;
-        height: 120px;
-    }
+.quote-text {
+    font-size: clamp(1.4rem, 3vw, 1.75rem);
+    color: #0B2D5A;
+    line-height: 1.4;
 }

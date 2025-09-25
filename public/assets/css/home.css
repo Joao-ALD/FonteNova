@@ -55,6 +55,12 @@
     font-size: 1.1rem;
 } */
 
+.square-card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 260px;
+}
+
 /* ------------- MAPA DO CONHECIMENTO ------------- */
 .map-section {
     padding: 60px 0;

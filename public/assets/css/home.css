@@ -153,14 +153,46 @@
 }
 
 /* ------------- MAPA ------------- */
-
 .map-section {
-    padding: 48px 0; /* padding vertical, o px-custom controla o horizontal */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    padding: 48px 0; /* Apenas espaçamento vertical */
+    color: var(--BrancoPuro); /* Adicionado para garantir a cor do texto */
+}
+
+.map-section .map-text {
+    max-width: 720px;
+    flex: 1 1 400px; /* Permite que o texto cresça e encolha */
+}
+
+.map-section .map-text h3 {
+    color: var(--AzulEscuro);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.map-section .map-text p {
+    opacity: 0.95;
+}
+
+.map-section .map-illustration {
+    width: 320px;
+    flex-shrink: 0; /* Impede que a imagem encolha demais */
+}
+
+.map-section .map-illustration img {
+    width: 100%;
+    height: auto;
+}
+
+/* Adicione esta media query para responsividade do mapa em home.css */
+@media (max-width: 768px) {
+    .map-section .px-custom {
+        flex-direction: column;
+        text-align: center;
+    }
+    .map-section .map-illustration {
+        margin-top: 24px;
+        width: 80%;
+    }
 }
 
 .map-text {

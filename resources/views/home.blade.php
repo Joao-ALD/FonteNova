@@ -71,17 +71,18 @@
         <div class="edu-cards mt-4 d-flex justify-content-center flex-wrap">
             @php
             $eduItems = [
-            ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'bg' => '#ffffff', 'text' => '#000'],
-            ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'bg' => '#3b8eed', 'text' => '#ffffff'],
-            ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'bg' => '#ffffff', 'text' => '#000'],
+            ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'highlight' => false],
+            ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'highlight' => true],
+            ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'highlight' => false],
             ];
             @endphp
             @foreach ($eduItems as $item)
-            <div class="card-square" style="background-color: {{ $item['bg'] }};">
+            {{-- Usamos uma classe para o card destacado em vez de style inline --}}
+            <div class="edu-card {{ $item['highlight'] ? 'edu-card--highlighted' : '' }}">
                 <div class="icon edu-icon">
                     <img src="{{ asset('assets/img/' . $item['img']) }}" alt="">
                 </div>
-                <div class="card-label" style="color: {{ $item['text'] }};">{{ $item['label'] }}</div>
+                <div class="card-label">{{ $item['label'] }}</div>
             </div>
             @endforeach
         </div>
@@ -99,9 +100,13 @@
 <section class="quote-section">
     <div class="px-custom">
         <div class="quote-box">
-            <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
+            <img src="{{ asset('assets/img/icon_logo.svg')}}" alt="Ícone de citação" class="quote-icon">
             <p class="quote-text">Cuidar da água é cuidar da vida. Faça parte dessa transformação.</p>
         </div>
+        {{-- Texto de atribuição adicionado aqui --}}
+        <p class="quote-attribution">
+            "Cuidar da água é cuidar da vida. Faça parte dessa transformação."
+        </p>
     </div>
 </section>
 

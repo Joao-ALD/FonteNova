@@ -97,14 +97,10 @@
 
 <section class="section quote-section">
     <x-container>
-        <div class="quote-box bg-white p-4 p-md-5 rounded-3 mx-auto text-center">
+        <div class="quote-box bg-white p-md-4 rounded-3 mx-auto text-center">
             <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
             <!-- <p class="quote-text fw-bold">Cuidar da água é cuidar da vida. Faça parte dessa transformação.</p> -->
         </div>
-        <p class="quote-attribution text-center text-muted fst-italic mt-4">
-            "Cuidar da água é cuidar da vida. Faça parte dessa transformação."
-        </p>
     </x-container>
 </section>
-
 @endsection

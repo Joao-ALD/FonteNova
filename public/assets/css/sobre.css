@@ -33,3 +33,29 @@
 .accordion-button:not(.collapsed)::after {
     transform: rotate(180deg);
 }
+
+.titulosSobre {
+    color: #21499F;
+    text-align: center;
+}
+
+.textoSobre {
+    text-align: center;
+}
+
+.cNossoProjeto {
+    margin-top: 50px;
+}
+
+/* Navbar auto-hide (scroll) */
+.nav-auto-hide {
+    transition: top 0.3s;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+.nav-hidden {
+    top: -100px;
+}

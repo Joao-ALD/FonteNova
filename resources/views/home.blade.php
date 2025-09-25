@@ -1,5 +1,4 @@
 {{-- resources/views/home.blade.php --}}
-{{-- VERSÃO CORRIGIDA USANDO APENAS O SEU `.px-custom` PARA O LAYOUT --}}
 
 @extends('layouts.main')
 
@@ -12,8 +11,7 @@
 @section('content')
 
 <section class="hero text-white">
-    {{-- CORREÇÃO: Usando apenas a sua classe .px-custom --}}
-    <div class="px-custom">
+    <x-container>
         <div class="row align-items-center">
             <div class="col-lg-7 text-center text-lg-start">
                 <h1 class="hero-title fw-bolder">
@@ -28,12 +26,11 @@
                 <img src="{{ asset('assets/img/little_house.svg') }}" alt="Ilustração casa" class="hero-illustration img-fluid">
             </div>
         </div>
-    </div>
+    </x-container>
 </section>
 
 <section class="section">
-    {{-- CORREÇÃO: Usando apenas a sua classe .px-custom --}}
-    <div class="px-custom">
+    <x-container>
         <h2 class="section-title">Galeria Interativa</h2>
         <div class="row g-4 justify-content-center">
             @php
@@ -53,12 +50,11 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </x-container>
 </section>
 
 <section class="map-section text-white">
-    {{-- CORREÇÃO: Usando apenas a sua classe .px-custom --}}
-    <div class="px-custom">
+    <x-container>
         <div class="row align-items-center">
             <div class="col-lg-7 text-center text-lg-start">
                 <h2 class="fw-bolder mb-3">Mapa do conhecimento</h2>
@@ -71,12 +67,11 @@
                 <img src="{{ asset('assets/img/icon_brasil.svg') }}" alt="Mapa do Brasil" class="map-illustration img-fluid">
             </div>
         </div>
-    </div>
+    </x-container>
 </section>
 
 <section class="section edu-section">
-    {{-- CORREÇÃO: Usando apenas a sua classe .px-custom --}}
-    <div class="px-custom">
+    <x-container>
         <h2 class="section-title text-white">Educação Ambiental</h2>
         <div class="row g-4 justify-content-center">
             @php
@@ -97,20 +92,19 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </x-container>
 </section>
 
 <section class="section quote-section">
-    {{-- CORREÇÃO: Usando apenas a sua classe .px-custom --}}
-    <div class="px-custom">
-        <div class="quote-box bg-white p-4 p-md-5 rounded-3 mx-auto">
+    <x-container>
+        <div class="quote-box bg-white p-4 p-md-5 rounded-3 mx-auto text-center">
             <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon mb-4">
             <p class="quote-text fw-bold">Cuidar da água é cuidar da vida. Faça parte dessa transformação.</p>
         </div>
         <p class="quote-attribution text-center text-muted fst-italic mt-4">
             "Cuidar da água é cuidar da vida. Faça parte dessa transformação."
         </p>
-    </div>
+    </x-container>
 </section>
 
 @endsection

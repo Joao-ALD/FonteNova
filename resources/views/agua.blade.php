@@ -11,8 +11,36 @@
       Explore o mundo água: do clima à preservação, entenda como cada ação impacta o nosso recurso mais precioso.
     </p>
 
+
+    <div class="container mt-5" id="infoPanels">
+    @foreach ($topics as $topic => $cards)
+        <div class="collapse" id="collapse{{ $topic }}" data-bs-parent="#infoPanels">
+            <div class="row g-4">
+                @foreach ($cards as $card)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 text-center bg-card">
+                            @if(!empty($card['image']))
+                                <img src="{{ asset('images/' . $card['image']) }}" 
+                                     class="card-img-top" 
+                                     alt="{{ $card['title'] }}">
+                            @endif
+                            <div class="card-body">
+                                <h5 class="card-title text-white">{{ $card['title'] }}</h5>
+                                <p class="card-text text-white">{{ $card['text'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
+</div>
+
+
+
+
     <!-- Botões do topicos Clima,Coleta,Consumo,Preservacao -->
-    <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
+    <!-- <div class="mt-4 d-flex flex-wrap justify-content-center gap-3">
       <button class="btn btn-outline-primary btn-lg px-4" type="button" data-bs-toggle="collapse"
         data-bs-target="#collapseClima" aria-expanded="false" aria-controls="collapseClima">
         Clima
@@ -314,7 +342,7 @@
       </div>
 
     </div>
-  </section>
+  </section> -->
 
   <script>
     const buttons = document.querySelectorAll('.btn[data-bs-toggle="collapse"]');

@@ -25,7 +25,6 @@
 </head>
 
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-nav nav-auto-hide fixed-top">
         <div class="px-custom w-100 d-flex align-items-center justify-content-between">

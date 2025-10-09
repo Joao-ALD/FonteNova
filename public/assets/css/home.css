@@ -1,18 +1,42 @@
 
 
 /* ------------- HERO ------------- */
+/*
+    Seção HERO (cabeçalho principal da página)
+    - Aplicada tipicamente na parte superior da home para chamar atenção.
+    - `padding: 80px 0` gera espaçamento vertical consistente acima e abaixo.
+    - `background-color` define o tom azul do bloco hero.
+    Importante: manter espaçamento suficiente para que o conteúdo não fique "encaixado".
+*/
 .hero {
-    padding: 80px 0;
-    background-color: #4A90E2;
+        padding: 80px 0;
+        background-color: #4A90E2;
 }
+/*
+    Título principal dentro do hero
+    - `clamp()` garante responsividade: o tamanho cresce com a viewport (5vw)
+        mas fica limitado entre 2.2rem e 3.5rem para preservar legibilidade.
+    - `line-height: 1.1` reduz o espaçamento entre linhas para títulos grandes.
+*/
 .hero-title {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    line-height: 1.1;
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        line-height: 1.1;
 }
+/*
+  Subtítulo/descrição no hero
+  - Tamanho fixo confortável (`1.1rem`) e leve transparência (`opacity: 0.9`)
+    para diminuir contraste visual quando comparado ao título.
+*/
 .hero-sub {
     font-size: 1.1rem;
     opacity: 0.9;
 }
+/*
+  Botão de chamada para ação (CTA)
+  - Cor de fundo escura para contraste com o hero azul.
+  - Padding suficiente para área de clique confortável em dispositivos móveis.
+  - Estado :hover escurece levemente para feedback visual ao passar o mouse.
+*/
 .btn-cta {
     background-color: #0B2D5A;
     border-color: #0B2D5A;
@@ -26,6 +50,12 @@
 }
 
 /* ------------- SEÇÕES GERAIS ------------- */
+/*
+  Regras gerais aplicadas às seções da página
+  - `padding: 80px 0` cria ritmos verticais consistentes entre blocos.
+  - `.section .section-title` centraliza e estiliza títulos de seção com
+    maior peso para hierarquia visual.
+*/
 .section {
     padding: 80px 0;
 }
@@ -37,6 +67,15 @@
     font-weight: 800;
 }
 
+/* ------------- GALERIA INTERATIVA (cards quadrados) ------------- */
+/*
+  Estrutura de cards usados na galeria interativa.
+  - `aspect-ratio: 1/1` garante que cada card seja quadrado independente do conteúdo,
+    facilitando layout grid responsivo.
+  - `transition` e `:hover` proporcionam leve elevação/âncora visual.
+  - `.gallery-card-icon` centraliza e limita o tamanho da imagem/ícone dentro do card;
+    usamos `object-fit: contain` para preservar proporção de SVGs/PNG sem recorte.
+*/
 .gallery-card {
     aspect-ratio: 1 / 1;
     width: 100%;
@@ -47,26 +86,36 @@
     transform: translateY(-5px);
 }
 .gallery-card-icon {
-    /* Force a clear, consistent visible size for gallery icons */
+    /* Tamanho fixo e consistente para ícones da galeria. */
     width: 120px;
     height: 120px;
-    max-width: 100%;
-    object-fit: contain;
+    max-width: 100%; /* garante responsividade em telas muito estreitas */
+    object-fit: contain; /* conserva proporção sem distorcer */
     display: block;
-    margin: 0 auto 0.75rem auto;
+    margin: 0 auto 0.75rem auto; /* separação abaixo do ícone para o label */
 }
 
 .gallery-card-label {
     font-size: 1.1rem;
 }
 
+/*
+    Utilitário `.square-card`
+    - Limita a largura máxima do card e mantém proporção quadrada.
+    - `max-width: 260px` evita cards muito largos em telas grandes.
+*/
 .square-card {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    max-width: 260px;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        max-width: 260px;
 }
 
 /* ------------- MAPA DO CONHECIMENTO ------------- */
+/*
+  Seção com ilustração do mapa do Brasil
+  - `background-color` reaplica o tom azul para contraste com o conteúdo branco.
+  - A ilustração tem `max-width` para limitar escala em telas grandes.
+*/
 .map-section {
     padding: 60px 0;
     background-color: #4A90E2;
@@ -80,7 +129,15 @@
     opacity: 0.9;
 }
 
-/* ------------- EDUCAÇÃO AMBIENTAL (COM PROPORÇÃO CORRETA) ------------- */
+/* ------------- EDUCAÇÃO AMBIENTAL (cards com conteúdo educacional) ------------- */
+/*
+  Estrutura específica para os cards da seção de educação ambiental.
+  - A cor de fundo escura (`#0B2D5A`) diferencia visualmente o bloco.
+  - `.edu-card` é um card flex-column (via classes utilitárias no blade) e usamos
+    `gap` para controlar espaçamento entre ícone e texto de forma consistente.
+  - `.edu-card--highlighted` altera cor e contraste para destacar um dos cards.
+  - `.edu-card-icon` usa o mesmo tamanho fixo dos ícones da galeria para consistência.
+*/
 .edu-section {
     padding: 80px 0;
     background-color: #0B2D5A;
@@ -91,6 +148,9 @@
 .edu-card {
     min-height: 240px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* gap cria espaço uniforme entre elementos filhos (ícone e label) quando o
+       card está em display:flex e flex-direction:column (definido no template). */
+    gap: 0.5rem;
 }
 .edu-card:hover {
     transform: translateY(-10px);
@@ -101,19 +161,28 @@
     color: #fff;
 }
 .edu-card-icon {
-    /* Force the same fixed size for education icons so they match the gallery */
+    /* Ícones com tamanho fixo para coincidir com a galeria e garantir
+       alinhamento visual entre as seções. `max-width:100%` protege contra
+       estouro em telas muito pequenas. */
     width: 120px;
     height: 120px;
     max-width: 100%;
     object-fit: contain;
     display: block;
-    margin: 0 auto 0.75rem auto;
+    margin: 0 auto;
 }
 .edu-card-label {
     font-size: 1.5rem;
 }
 
-/* ------------- CITAÇÃO (COM ALINHAMENTO CORRETO) ------------- */
+/* ------------- CITAÇÃO (BLOCO DE DEPOIMENTO/CITAÇÃO) ------------- */
+/*
+  Bloco de citação com borda e sombra suave.
+  - `max-width: 750px` mantém a caixa legível em telas largas.
+  - `quote-icon` é grande por design (400px) e centralizado.
+  - `quote-text` usa `clamp()` para controlar escala responsiva sem perder
+    legibilidade em diferentes viewports.
+*/
 .quote-section {
     background-color: #f7f9fc;
 }

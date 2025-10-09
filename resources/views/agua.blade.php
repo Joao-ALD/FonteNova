@@ -41,7 +41,7 @@
         <div class="collapse" id="collapse{{ $topic }}" data-bs-parent="#infoPanels">
           <div class="row g-4">
             @foreach ($cards as $card)
-              <div class="col-md-6 col-lg-4">
+              <div class="mb-4">
                 <div class="card h-100 text-center bg-card">
                   @if(!empty($card['image']))
                     <img src="{{ asset('images/' . $card['image']) }}" class="card-img-top" alt="{{ $card['title'] }}">

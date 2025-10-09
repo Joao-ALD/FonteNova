@@ -34,5 +34,6 @@ Route::get('/curso', [CursoController::class, 'index'])->name('curso.index');
 
 
 // Rotas ChatBot
-Route::get('/ChatBot', [ChatBotController::class, 'index'])->name('chatbot.index');
-Route::post('/chatbot/responder', [ChatbotController::class, 'responder'])->name('chatbot.responder');
+// Rotas do ChatBot (padronizadas em lowercase e com referência correta ao controller)
+Route::get('/chatbot', [ChatBotController::class, 'index'])->name('chatbot.index');
+Route::post('/chatbot/responder', [ChatBotController::class, 'responder'])->name('chatbot.responder');

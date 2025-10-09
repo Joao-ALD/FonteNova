@@ -14,78 +14,123 @@ class ChatBotController extends Controller
 
     public function responder(Request $request)
     {
-        // Validação manual com resposta JSON personalizada
-        $validated = validator($request->all(), [
-            'mensagem' => 'required|string|max:255'
+        // Validação via $request->validate para aproveitar mensagens padrão e segurança
+        $data = $request->validate([
+            'mensagem' => 'required|string|max:500'
         ]);
 
-        if ($validated->fails()) {
-            return response()->json([
-                'resumo' => 'Mensagem inválida. Por favor, digite algo válido.',
-                'link_site' => '/infoAgua',
-                'link_premium' => null,
-                'titulo' => 'Erro de Validação'
-            ], 422);
-        }
+        try {
+            // Normaliza a mensagem (remove acentos e deixa em minúsculas)
+            $mensagem = self::normalizarTexto($data['mensagem']);
 
-        // Normaliza a mensagem (remove acentos e deixa em minúsculas)
-        $mensagem = $this->normalizarTexto($request->input('mensagem'));
+            // Recupera todos os tópicos do banco (poderíamos paginar/filtrar em cenários maiores)
+            $topicos = Topico::all();
 
-        // Recupera todos os tópicos do banco
-        $topicos = Topico::all();
+            $topicoMaisRelevante = null;
+            $maiorPontuacao = 0;
 
-        $topicoMaisRelevante = null;
-        $maiorPontuacao = 0;
+            foreach ($topicos as $topico) {
+                $pontuacao = 0;
 
-        foreach ($topicos as $topico) {
-            $pontuacao = 0;
+                // Normaliza as palavras-chave e divide por vírgula
+                $keywords = array_filter(array_map('trim', explode(',', self::normalizarTexto($topico->palavras_chave))));
 
-            // Normaliza as palavras-chave
-            $keywords = array_map('trim', explode(',', $this->normalizarTexto($topico->palavras_chave)));
+                foreach ($keywords as $kw) {
+                    // Busca por palavra inteira na mensagem normalizada
+                    if ($kw !== '' && preg_match('/\b' . preg_quote($kw, '/') . '\b/i', $mensagem)) {
+                        $pontuacao++;
+                    }
+                }
 
-            foreach ($keywords as $kw) {
-                // Busca por palavra inteira
-                if (preg_match('/\b' . preg_quote($kw, '/') . '\b/i', $mensagem)) {
-                    $pontuacao++;
+                if ($pontuacao > $maiorPontuacao) {
+                    $maiorPontuacao = $pontuacao;
+                    $topicoMaisRelevante = $topico;
                 }
             }
 
-            if ($pontuacao > $maiorPontuacao) {
-                $maiorPontuacao = $pontuacao;
-                $topicoMaisRelevante = $topico;
+            if ($topicoMaisRelevante) {
+                return response()->json([
+                    'success' => true,
+                    'status' => 200,
+                    'data' => [
+                        'titulo' => $topicoMaisRelevante->titulo,
+                        'resumo' => $topicoMaisRelevante->resumo,
+                        'link_site' => $topicoMaisRelevante->link_site,
+                        'link_premium' => $topicoMaisRelevante->link_premium,
+                    ]
+                ], 200);
             }
-        }
 
-        if ($topicoMaisRelevante) {
+            // Resposta padrão quando nada for encontrado
             return response()->json([
-                'resumo' => $topicoMaisRelevante->resumo,
-                'link_site' => $topicoMaisRelevante->link_site,
-                'link_premium' => $topicoMaisRelevante->link_premium,
-                'titulo' => $topicoMaisRelevante->titulo
-            ]);
-        }
+                'success' => true,
+                'status' => 200,
+                'data' => [
+                    'titulo' => 'Tópico não encontrado',
+                    'resumo' => "Não encontrei nada sobre isso ainda. Que tal explorar nossa galeria?",
+                    'link_site' => '/infoAgua',
+                    'link_premium' => null,
+                ]
+            ], 200);
 
-        // Resposta padrão
-        return response()->json([
-            'resumo' => "Não encontrei nada sobre isso ainda. Que tal explorar nossa galeria?",
-            'link_site' => '/infoAgua',
-            'link_premium' => null,
-            'titulo' => 'Tópico não encontrado'
-        ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Retorna mensagem de validação padronizada
+            return response()->json([
+                'success' => false,
+                'status' => 422,
+                'message' => 'Entrada inválida.',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            // Log da exceção pode ser adicionado se desejado (ex: Log::error($e))
+            return response()->json([
+                'success' => false,
+                'status' => 500,
+                'message' => 'Erro interno. Tente novamente mais tarde.'
+            ], 500);
+        }
     }
 
     /**
-     * Função utilitária para normalizar texto: remove acentos e converte para minúsculas
+     * Normaliza texto para comparação:
+     * - Converte para minúsculas
+     * - Remove acentuação (usa iconv quando disponível)
+     * - Remove caracteres repetidos e espaços extras
+     *
+     * @param string $texto
+     * @return string
      */
-    private function normalizarTexto($texto)
+    private static function normalizarTexto($texto)
     {
-        $texto = strtolower($texto);
-        $texto = preg_replace('/[áàãâä]/u','a',$texto);
-        $texto = preg_replace('/[éèêë]/u','e',$texto);
-        $texto = preg_replace('/[íìîï]/u','i',$texto);
-        $texto = preg_replace('/[óòõôö]/u','o',$texto);
-        $texto = preg_replace('/[úùûü]/u','u',$texto);
-        $texto = preg_replace('/[ç]/u','c',$texto);
-        return $texto;
+        if (!is_string($texto)) {
+            return '';
+        }
+
+        // Converte para minúsculas
+        $texto = mb_strtolower($texto, 'UTF-8');
+
+        // Tenta remover acentos com iconv quando disponível
+        if (function_exists('iconv')) {
+            $removido = @iconv('UTF-8', 'ASCII//TRANSLIT', $texto);
+            if ($removido !== false) {
+                $texto = $removido;
+            }
+        }
+
+        // Substituições manuais como fallback
+        $texto = preg_replace('/[áàãâäÁÀÃÂÄ]/u','a',$texto);
+        $texto = preg_replace('/[éèêëÉÈÊË]/u','e',$texto);
+        $texto = preg_replace('/[íìîïÍÌÎÏ]/u','i',$texto);
+        $texto = preg_replace('/[óòõôöÓÒÕÔÖ]/u','o',$texto);
+        $texto = preg_replace('/[úùûüÚÙÛÜ]/u','u',$texto);
+        $texto = preg_replace('/[çÇ]/u','c',$texto);
+
+        // Remove tudo que não seja letra/número/espaco/virgula para simplificar busca
+        $texto = preg_replace('/[^a-z0-9\s,]/i', ' ', $texto);
+
+        // Normaliza espaços múltiplos
+        $texto = preg_replace('/\s+/', ' ', $texto);
+
+        return trim($texto);
     }
 }

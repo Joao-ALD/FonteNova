@@ -2,3 +2,14 @@
 
 No terminal:
 powershell -ExecutionPolicy Bypass -File .\instalar-laravel.ps1
+
+Verificador de sintaxe (às vezes pode ocorrer um erro de interpretação ao baixar o arquivo, caso aconteça, execute o código no terminal PowerShell e encontre a linha do erro):
+powershell -NoProfile -Command {
+  try {
+    $code = Get-Content .\instalar-laravel.ps1 -Raw
+    [void][scriptblock]::Create($code)
+    'OK: sintaxe válida'
+  } catch {
+    Write-Host ('Erro de sintaxe: ' + $_.Exception.Message) -ForegroundColor Red
+  }
+}

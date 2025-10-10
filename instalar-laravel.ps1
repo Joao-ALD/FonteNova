@@ -1,34 +1,84 @@
-# Requires -Version 5.1
+﻿# Requires -Version 5.1
 # ------------------------------------------------
 # Utilitário para projetos Laravel (Windows PowerShell)
 # - Não requer permissão de administrador
 # - Execute a partir da pasta raiz do projeto (onde há 'artisan' e 'composer.json')
+# - Auto-correção na inicialização: remove Add-Type, corrige "$host:", "return bool", "&amp;" e salva em UTF-8 (BOM)
 # ------------------------------------------------
 
-# Codificação de console para UTF-8 (evita "Ã§/Ã£/Ã³")
+# --- Preferências globais ---
+$ErrorActionPreference = 'Stop'
+
+# --- Console UTF-8 (PS 5.1) ---
 try { chcp.com 65001 > $null } catch { }
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-Clear-Host
-Write-Host "=====================================" -ForegroundColor Cyan
-Write-Host "      UTILITÁRIO PROJETO LARAVEL     " -ForegroundColor Cyan
-Write-Host "=====================================" -ForegroundColor Cyan
+# --- Auto-correção do próprio script (idempotente) ---
+function SelfHeal-Script {
+    param([Parameter(Mandatory=$true)][string]$Path)
 
-# Garante execução a partir do diretório do script
-try {
-    $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-    if ($scriptDir -and (Test-Path $scriptDir)) { Set-Location $scriptDir }
+    try {
+        if (-not (Test-Path $Path)) { return }
+
+        $original = Get-Content -Path $Path -Raw -ErrorAction Stop
+        $fixed = $original
+
+        # 1) Remover Add-Type desnecessários (podem causar erro em PS 5.1)
+        $fixed = [regex]::Replace(
+            $fixed,
+            '^\s*Add-Type\s+-AssemblyName\s+System\.(?:IO|Text)\s*\r?\n',
+            '',
+            'Multiline'
+        )
+
+        # 2) Corrigir "$host:" (colide com var automática $host) -> usar ${host}
+        $fixed = $fixed -replace 'http://\$host:', 'http://${host}:'
+        $fixed = $fixed -replace 'https://\$host:', 'https://${host}:'
+
+        # 2.1) Corrigir 'return bool' na função Teste-Comando
+        $fixed = [regex]::Replace($fixed, 'return\s+bool\b', 'return bool')
+
+        # 3) Desescapar "&amp;" (cópias vindas de HTML quebram "& cmd")
+        $fixed = $fixed -replace '&amp;', '&'
+
+        # 4) Normalizar quebras de linha para CRLF (Windows) – opcional, mas ajuda
+        $fixed = $fixed -replace "(\r?\n)", "`r`n"
+
+        if ($fixed -ne $original) {
+            # Salva como UTF-8 COM BOM (em PS 5.1, -Encoding UTF8 grava com BOM)
+            Set-Content -Path $Path -Value $fixed -Encoding UTF8
+            Write-Host "[auto] Script ajustado (Add-Type/host/return bool/&). Reiniciando..." -ForegroundColor Yellow
+
+            # Relança e encerra esta instância
+            Start-Process -FilePath "powershell" -ArgumentList @("-ExecutionPolicy","Bypass","-File",$Path) -WindowStyle Normal
+            exit
+        }
+    } catch {
+        Write-Host "[auto] Aviso ao tentar auto-corrigir: $($_.Exception.Message)" -ForegroundColor DarkYellow
+        # Segue mesmo assim
+    }
 }
-catch { }
+
+# Garante execução a partir do diretório do script e executa auto-correção (pode reiniciar)
+try {
+    $scriptPath = $MyInvocation.MyCommand.Path
+    if ($scriptPath) {
+        $scriptDir = Split-Path -Parent $scriptPath
+        if ($scriptDir -and (Test-Path $scriptDir)) { Set-Location $scriptDir }
+        SelfHeal-Script -Path $scriptPath
+    }
+} catch { }
 
 # ---------- Utilitários de ambiente ----------
+# ENCONTRE ISTO:
 function Teste-Comando {
-    param([Parameter(Mandatory = $true)][string]$Nome)
-    return bool
+    param([Parameter(Mandatory=$true)][string]$Nome)
+    # Retorna $true se o comando for encontrado, $false caso contrário.
+    return [bool](Get-Command $Nome -ErrorAction SilentlyContinue)
 }
 
 function Caminho-Comando {
-    param([Parameter(Mandatory = $true)][string]$Nome)
+    param([Parameter(Mandatory=$true)][string]$Nome)
     $cmd = Get-Command $Nome -ErrorAction SilentlyContinue
     if ($cmd) { return $cmd.Path } else { return $null }
 }
@@ -44,7 +94,7 @@ function Exigir-ArquivosProjeto {
 
 function Checar-Basicos {
     Exigir-ArquivosProjeto
-    if (-not (Teste-Comando "php")) { throw "PHP não encontrado no PATH." }
+    if (-not (Teste-Comando "php"))      { throw "PHP não encontrado no PATH." }
     if (-not (Teste-Comando "composer")) { throw "Composer não encontrado no PATH." }
 }
 
@@ -57,11 +107,8 @@ function Ler-Segredo([string]$prompt) {
 }
 
 # ---------- I/O resiliente para o .env ----------
-Add-Type -AssemblyName System.IO
-Add-Type -AssemblyName System.Text
-
 function Read-TextShared {
-    param([Parameter(Mandatory = $true)][string]$Path)
+    param([Parameter(Mandatory=$true)][string]$Path)
     if (-not (Test-Path $Path)) { return "" }
     $fs = $null
     try {
@@ -70,26 +117,23 @@ function Read-TextShared {
         $text = $sr.ReadToEnd()
         $sr.Close()
         return $text
-    }
-    catch {
+    } catch {
         return (Get-Content -Path $Path -Raw -ErrorAction SilentlyContinue)
-    }
-    finally {
+    } finally {
         if ($fs) { $fs.Dispose() }
     }
 }
 
 function Write-TextSafe {
     param(
-        [Parameter(Mandatory = $true)][string]$Path,
-        [Parameter(Mandatory = $true)][string]$Text
+        [Parameter(Mandatory=$true)][string]$Path,
+        [Parameter(Mandatory=$true)][string]$Text
     )
 
     $dir = Split-Path -Parent $Path
     if (-not (Test-Path $dir)) { New-Item -Path $dir -ItemType Directory | Out-Null }
 
-    # Arquivo temporário no mesmo diretório (mesmo volume)
-    $temp = Join-Path $dir (".tmp-" + [guid]::NewGuid().ToString("N"))
+    $temp   = Join-Path $dir (".tmp-" + [guid]::NewGuid().ToString("N"))
     $backup = "$Path.bak"
     $encoding = New-Object System.Text.UTF8Encoding($false)  # UTF-8 sem BOM
     [System.IO.File]::WriteAllText($temp, $Text, $encoding)
@@ -98,18 +142,15 @@ function Write-TextSafe {
 
     # Retries maiores se for OneDrive
     $isOneDrive = ($Path -match "(?i)OneDrive")
-    $maxRetries = 10
-    $delayMs = 500
+    $maxRetries = 10; $delayMs = 500
     if ($isOneDrive) { $maxRetries = 20; $delayMs = 1000 }
 
     $ok = $false
-    for ($i = 1; $i -le $maxRetries; $i++) {
+    for ($i=1; $i -le $maxRetries; $i++) {
         try {
             [System.IO.File]::Replace($temp, $Path, $backup, $true)
-            $ok = $true
-            break
-        }
-        catch {
+            $ok = $true; break
+        } catch {
             Start-Sleep -Milliseconds $delayMs
         }
     }
@@ -119,22 +160,20 @@ function Write-TextSafe {
         try {
             if (Test-Path $pending) { Remove-Item $pending -Force -ErrorAction SilentlyContinue }
             [System.IO.File]::Move($temp, $pending)
-        }
-        catch {
+        } catch {
             Copy-Item $temp $pending -Force -ErrorAction SilentlyContinue
             Remove-Item $temp -Force -ErrorAction SilentlyContinue
         }
         throw "Não consegui atualizar '$Path' (arquivo possivelmente bloqueado). As alterações foram salvas em '$pending'. Feche editores/sincronizadores e use o menu para aplicar depois."
-    }
-    else {
+    } else {
         Remove-Item $backup -Force -ErrorAction SilentlyContinue
     }
 }
 
 function Set-EnvValores {
     param(
-        [Parameter(Mandatory = $true)][hashtable]$Pares,
-        [string]$Caminho = ".env"
+        [Parameter(Mandatory=$true)][hashtable]$Pares,
+        [string]$Caminho=".env"
     )
     $conteudo = Read-TextShared -Path $Caminho
     if ($null -eq $conteudo) { $conteudo = "" }
@@ -144,8 +183,7 @@ function Set-EnvValores {
         $padrao = "^(?i)\s*$([regex]::Escape($k))\s*=.*$"
         if ($conteudo -match $padrao) {
             $conteudo = [regex]::Replace($conteudo, $padrao, "$k=$v", 'Multiline')
-        }
-        else {
+        } else {
             if ($conteudo -and -not $conteudo.EndsWith("`n")) { $conteudo += "`n" }
             $conteudo += "$k=$v"
         }
@@ -162,8 +200,7 @@ function Criar-EnvSeNecessario {
             if ($null -eq $src) { $src = "" }
             Write-TextSafe -Path ".env" -Text $src
             Write-Host "Arquivo .env copiado de .env.example." -ForegroundColor Green
-        }
-        else {
+        } else {
             Write-TextSafe -Path ".env" -Text ""
             Write-Host "Arquivo .env criado (vazio)." -ForegroundColor Yellow
         }
@@ -191,7 +228,6 @@ function A_ConfigurarEnvBanco {
     Checar-Basicos
     Criar-EnvSeNecessario
 
-    # Mostra caminho do mysql se houver
     if (Teste-Comando "mysql") {
         $mx = Caminho-Comando "mysql"
         if ($mx) { Write-Host ("MySQL detectado em: " + $mx) -ForegroundColor DarkGray }
@@ -203,8 +239,8 @@ function A_ConfigurarEnvBanco {
     $op = Read-Host "Opção (1-2)"
     switch ($op) {
         "1" {
-            $db_host = Read-Host "Host do MySQL (padrão: 127.0.0.1)"; if ([string]::IsNullOrWhiteSpace($db_host)) { $db_host = "127.0.0.1" }
-            $db_port = Read-Host "Porta do MySQL (padrão: 3306)"; if ([string]::IsNullOrWhiteSpace($db_port)) { $db_port = "3306" }
+            $db_host = Read-Host "Host do MySQL (padrão: 127.0.0.1)"; if ([string]::IsNullOrWhiteSpace($db_host)) { $db_host="127.0.0.1" }
+            $db_port = Read-Host "Porta do MySQL (padrão: 3306)"; if ([string]::IsNullOrWhiteSpace($db_port)) { $db_port="3306" }
             $db_name = Read-Host "Nome do banco de dados"
             $db_user = Read-Host "Usuário do MySQL"
             $db_pass = Ler-Segredo "Senha do MySQL (pode deixar vazio)"
@@ -212,27 +248,19 @@ function A_ConfigurarEnvBanco {
             if (Teste-Comando "mysql") {
                 Write-Host "Criando banco de dados (se não existir)..." -ForegroundColor Yellow
 
-                # Monta SQL com crase segura via [char]96
                 $bt = [char]96
                 $sql = "CREATE DATABASE IF NOT EXISTS $bt$db_name$bt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
-                $args = @("--host=$db_host", "--port=$db_port", "--user=$db_user", "-e", $sql)
-                if ($db_pass -eq "") {
-                    $args += "--skip-password"    # NÃO pede prompt
-                }
-                else {
-                    $args += "--password=$db_pass"
-                }
+                $args = @("--host=$db_host","--port=$db_port","--user=$db_user","-e",$sql)
+                if ($db_pass -eq "") { $args += "--skip-password" } else { $args += "--password=$db_pass" }
 
                 & mysql @args
                 if ($LASTEXITCODE -ne 0) {
                     Write-Host "Aviso: Não foi possível criar o banco automaticamente. Crie manualmente ou verifique credenciais." -ForegroundColor Yellow
-                }
-                else {
+                } else {
                     Write-Host "Banco verificado/criado." -ForegroundColor Green
                 }
-            }
-            else {
+            } else {
                 Write-Host "Comando 'mysql' não está no PATH; pulando criação automática do DB." -ForegroundColor Yellow
             }
 
@@ -321,19 +349,19 @@ function A_Servir {
         Write-Host "Porta $portaDesejadaInt ocupada. Usando porta livre $porta." -ForegroundColor Yellow
     }
 
-    $url = "http://${bindHost}:$porta"
+    # Evita ambiguidade com ":" usando formato composto
+    $url = 'http://{0}:{1}' -f $bindHost, $porta
 
     Write-Host "Iniciando servidor Laravel em $url..." -ForegroundColor Cyan
-    Start-Process -FilePath "php" -ArgumentList @("artisan", "serve", "--host=$bindHost", "--port=$porta") -WindowStyle Normal
+    Start-Process -FilePath "php" -ArgumentList @("artisan","serve","--host=$bindHost","--port=$porta") -WindowStyle Normal
     Start-Sleep -Seconds 1
     Start-Process $url
     Write-Host "Servidor iniciado em nova janela." -ForegroundColor Green
 }
 
-
 function A_Frontend {
     if (-not (Teste-Comando "node")) { Write-Host "Node.js não encontrado; pulando." -ForegroundColor Yellow; return }
-    if (-not (Teste-Comando "npm")) { Write-Host "npm não encontrado; pulando." -ForegroundColor Yellow; return }
+    if (-not (Teste-Comando "npm"))  { Write-Host "npm não encontrado; pulando." -ForegroundColor Yellow; return }
 
     Write-Host "`nOpções frontend:" -ForegroundColor Cyan
     Write-Host "1) npm install"
@@ -361,8 +389,7 @@ function A_AplicarEnvPendencias {
         Write-TextSafe -Path ".env" -Text $conteudo
         Remove-Item $pending -Force -ErrorAction SilentlyContinue
         Write-Host "Pendências aplicadas ao .env com sucesso." -ForegroundColor Green
-    }
-    catch {
+    } catch {
         Write-Host "Falha ao aplicar pendências: $($_.Exception.Message)" -ForegroundColor Red
     }
 }
@@ -378,7 +405,12 @@ function A_InstalacaoCompleta {
     A_Servir
 }
 
-# ---------- Loop do Menu ----------
+# ---------- UI ----------
+Clear-Host
+Write-Host "=====================================" -ForegroundColor Cyan
+Write-Host "      UTILITÁRIO PROJETO LARAVEL     " -ForegroundColor Cyan
+Write-Host "=====================================" -ForegroundColor Cyan
+
 while ($true) {
     try {
         Write-Host ""
@@ -400,18 +432,18 @@ while ($true) {
 
         $opcao = Read-Host "Escolha uma opção"
         switch ($opcao) {
-            "1" { A_InstalarDependencias }
-            "2" { A_AtualizarDependencias }
-            "3" { A_ConfigurarEnvBanco }
-            "4" { A_GerarChave }
-            "5" { A_Migrar }
-            "6" { A_StorageLink }
-            "7" { A_OptimizeClear }
-            "8" { A_Servir }
-            "9" { A_Frontend }
+            "1"  { A_InstalarDependencias }
+            "2"  { A_AtualizarDependencias }
+            "3"  { A_ConfigurarEnvBanco }
+            "4"  { A_GerarChave }
+            "5"  { A_Migrar }
+            "6"  { A_StorageLink }
+            "7"  { A_OptimizeClear }
+            "8"  { A_Servir }
+            "9"  { A_Frontend }
             "10" { A_InstalacaoCompleta }
             "11" { A_AplicarEnvPendencias }
-            "0" { Write-Host "Saindo..." -ForegroundColor Gray; break }
+            "0"  { Write-Host "Saindo..." -ForegroundColor Gray; break }
             default { Write-Host "Opção inválida." -ForegroundColor Red }
         }
     }

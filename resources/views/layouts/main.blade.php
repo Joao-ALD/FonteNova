@@ -1,11 +1,10 @@
-{{-- <!-- resources/views/layouts/main.blade.php -->
 {{--
     Layout principal da aplicação (Blade)
     - Inclui head com meta tags, links para CSS/JS e navbar comum.
     - Usar `@stack('styles')` e `@yield('scripts')` para empilhar estilos e scripts
     - específicos por view sem editar diretamente este arquivo.
     - Atenção ao usar scripts externos: já incluímos bootstrap via CDN.
---> --}}
+--}}
 <!DOCTYPE html>
 <html lang="pt-br">
 

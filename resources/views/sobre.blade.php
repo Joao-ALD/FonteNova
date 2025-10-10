@@ -3,6 +3,12 @@
 @section('title', 'Fonte Nova - Sobre')
 
 @section('content')
+{{--
+    View: Sobre
+    - Página institucional que descreve missão, objetivos e pilares do projeto.
+    - Conteúdo editorial: ideal para material estático. Caso membros alterem
+    - textos, revisar consistência e imagens referenciadas em `public/assets/img`.
+--}}
 <link rel="stylesheet" href="{{ asset('assets/css/sobre.css') }}">
 
 {{-- NOSSO PROJETO --}}

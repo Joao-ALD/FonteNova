@@ -1,3 +1,10 @@
+{{--
+    View: Home (Início)
+    - Página inicial do projeto FonteNova. Agrupa chamadas para componentes e
+    - seções como Hero, Galeria Interativa, Mapa do Conhecimento e Educação Ambiental.
+    - Inclui chamadas para assets (CSS/JS) locais; caso altere classes ou ids,
+    - verifique compatibilidade com `public/assets/css/home.css`.
+--}}
 @extends('layouts.main')
 
 @section('title', 'FonteNova - Início')

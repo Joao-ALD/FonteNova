@@ -5,13 +5,50 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topico;
 
+/**
+ * ChatBotController
+ *
+ * Controlador responsável por exibir a interface do ChatBot e processar
+ * requisições de resposta (POST). A lógica aqui faz uma busca simples por
+ * palavras-chave nos tópicos cadastrados e devolve uma resposta JSON com
+ * campos padronizados para o front-end consumir.
+ *
+ * Observações importantes:
+ * - Este projeto é colaborativo: links retornados (link_site, link_premium)
+ *   podem apontar para rotas que não estão totalmente implementadas por
+ *   outros membros. O front-end trata esses valores como opcionais.
+ * - A normalização de texto tenta remover acentuação e caracteres especiais
+ *   para melhorar o matching por palavras-chave.
+ */
 class ChatBotController extends Controller
 {
+    /**
+     * Exibe a view do ChatBot.
+     *
+     * Retorna a página onde o usuário pode digitar uma pergunta ou escolher
+     * sugestões pré-definidas. A view realiza requisições AJAX para o método
+     * responder() para obter a resposta.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         return view('chatbot');
     }
 
+    /**
+     * Processa a requisição AJAX de resposta ao usuário.
+     *
+     * Valida a entrada, normaliza a mensagem e executa uma busca simples por
+     * palavras-chave nos tópicos. Retorna JSON com os campos:
+     * - success (bool)
+     * - status  (int HTTP)
+     * - data    (array) -> título, resumo, link_site, link_premium
+     * - message (string) em caso de erro
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function responder(Request $request)
     {
         // Validação via $request->validate para aproveitar mensagens padrão e segurança
@@ -49,6 +86,7 @@ class ChatBotController extends Controller
             }
 
             if ($topicoMaisRelevante) {
+                // Retorna dados padronizados para o front-end
                 return response()->json([
                     'success' => true,
                     'status' => 200,

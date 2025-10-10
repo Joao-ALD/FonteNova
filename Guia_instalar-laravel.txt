@@ -1,0 +1,4 @@
+-- O arquivo instalar-laravel.ps1 deve estar na RAIZ do PROJETO --
+
+No terminal:
+powershell -ExecutionPolicy Bypass -File .\instalar-laravel.ps1

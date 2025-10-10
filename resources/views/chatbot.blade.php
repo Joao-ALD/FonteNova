@@ -1,3 +1,12 @@
+{{--
+    View: ChatBot
+    - Página que exibe a interface do chatbot voltada ao usuário final.
+    - Contém campo de entrada, sugestões rápidas e área para exibir respostas.
+    - A view realiza chamadas AJAX para a rota nomeada `chatbot.responder` e
+        espera um JSON padronizado (success,status,data {...}).
+    - Nota: links retornados pelo backend podem ser placeholders enquanto o
+        trabalho dos demais membros estiver incompleto.
+--}}
 @extends('layouts.main')
 
 

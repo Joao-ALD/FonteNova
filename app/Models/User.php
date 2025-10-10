@@ -8,6 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * Model: User
+ *
+ * Modelo padrão de usuário estendido pelo Laravel. Mantive os casts e
+ * preenchíveis conforme scaffold; adicionei este comentário para clareza.
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;

@@ -3,7 +3,7 @@
 # ------------------------------------------------
 # Utilitário para projetos Laravel (Windows PowerShell)
 # - Não requer permissão de administrador
-# - Execute a partir da pasta raiz do projeto (onde há 'artisan' e 'composer.json')
+# - Execute a partir da pasta raiz do projeto (onde há 'artisan', 'composer.json', 'README.md' e '.env.example')
 # ------------------------------------------------
 
 # --- Preferências globais ---

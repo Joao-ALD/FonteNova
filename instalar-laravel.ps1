@@ -1,4 +1,5 @@
 ﻿# Requires -Version 5.1
+
 # ------------------------------------------------
 # Utilitário para projetos Laravel (Windows PowerShell)
 # - Não requer permissão de administrador
@@ -36,7 +37,7 @@ function SelfHeal-Script {
         $fixed = $fixed -replace 'https://\$host:', 'https://${host}:'
 
         # 2.1) Corrigir 'return bool' na função Teste-Comando
-        $fixed = [regex]::Replace($fixed, 'return\s+bool\b', 'return bool')
+        $fixed = [regex]::Replace($fixed, 'return\s+bool\b', 'return [bool](Get-Command $Nome -ErrorAction SilentlyContinue)')
 
         # 3) Desescapar "&amp;" (cópias vindas de HTML quebram "& cmd")
         $fixed = $fixed -replace '&amp;', '&'
@@ -58,7 +59,6 @@ function SelfHeal-Script {
         # Segue mesmo assim
     }
 }
-
 # Garante execução a partir do diretório do script e executa auto-correção (pode reiniciar)
 try {
     $scriptPath = $MyInvocation.MyCommand.Path
@@ -69,20 +69,18 @@ try {
     }
 } catch { }
 
+
 # ---------- Utilitários de ambiente ----------
-# ENCONTRE ISTO:
 function Teste-Comando {
     param([Parameter(Mandatory=$true)][string]$Nome)
     # Retorna $true se o comando for encontrado, $false caso contrário.
     return [bool](Get-Command $Nome -ErrorAction SilentlyContinue)
 }
-
 function Caminho-Comando {
     param([Parameter(Mandatory=$true)][string]$Nome)
     $cmd = Get-Command $Nome -ErrorAction SilentlyContinue
     if ($cmd) { return $cmd.Path } else { return $null }
 }
-
 function Exigir-ArquivosProjeto {
     if (-not (Test-Path ".\artisan")) {
         throw "Arquivo 'artisan' não encontrado. Rode este script na raiz do projeto Laravel."
@@ -91,13 +89,18 @@ function Exigir-ArquivosProjeto {
         throw "Arquivo 'composer.json' não encontrado. Rode este script na raiz do projeto Laravel."
     }
 }
-
 function Checar-Basicos {
     Exigir-ArquivosProjeto
     if (-not (Teste-Comando "php"))      { throw "PHP não encontrado no PATH." }
     if (-not (Teste-Comando "composer")) { throw "Composer não encontrado no PATH." }
-}
 
+    # Garante que o diretório de cache do Laravel exista para evitar erros no composer install/update
+    $cacheDir = ".\bootstrap\cache"
+    if (-not (Test-Path $cacheDir)) {
+        Write-Host "Diretório '$cacheDir' não encontrado. Criando automaticamente..." -ForegroundColor Yellow
+        New-Item -Path $cacheDir -ItemType Directory -Force | Out-Null
+    }
+}
 function Ler-Segredo([string]$prompt) {
     $secure = Read-Host $prompt -AsSecureString
     $bstr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
@@ -123,7 +126,6 @@ function Read-TextShared {
         if ($fs) { $fs.Dispose() }
     }
 }
-
 function Write-TextSafe {
     param(
         [Parameter(Mandatory=$true)][string]$Path,
@@ -131,7 +133,9 @@ function Write-TextSafe {
     )
 
     $dir = Split-Path -Parent $Path
-    if (-not (Test-Path $dir)) { New-Item -Path $dir -ItemType Directory | Out-Null }
+    if (-not ([string]::IsNullOrEmpty($dir)) -and -not (Test-Path $dir)) { 
+        New-Item -Path $dir -ItemType Directory | Out-Null 
+    }
 
     $temp   = Join-Path $dir (".tmp-" + [guid]::NewGuid().ToString("N"))
     $backup = "$Path.bak"
@@ -169,7 +173,6 @@ function Write-TextSafe {
         Remove-Item $backup -Force -ErrorAction SilentlyContinue
     }
 }
-
 function Set-EnvValores {
     param(
         [Parameter(Mandatory=$true)][hashtable]$Pares,
@@ -192,7 +195,6 @@ function Set-EnvValores {
 
     Write-TextSafe -Path $Caminho -Text $conteudo
 }
-
 function Criar-EnvSeNecessario {
     if (-not (Test-Path ".env")) {
         if (Test-Path ".env.example") {
@@ -207,6 +209,7 @@ function Criar-EnvSeNecessario {
     }
 }
 
+
 # ---------- Ações ----------
 function A_InstalarDependencias {
     Checar-Basicos
@@ -215,7 +218,6 @@ function A_InstalarDependencias {
     composer install --no-interaction
     if ($LASTEXITCODE -ne 0) { throw "Falha ao instalar dependências." }
 }
-
 function A_AtualizarDependencias {
     Checar-Basicos
     Write-Host "`nAtualizando dependências (composer update)..." -ForegroundColor Cyan
@@ -223,7 +225,6 @@ function A_AtualizarDependencias {
     composer update --no-interaction
     if ($LASTEXITCODE -ne 0) { throw "Falha ao atualizar dependências." }
 }
-
 function A_ConfigurarEnvBanco {
     Checar-Basicos
     Criar-EnvSeNecessario
@@ -276,7 +277,7 @@ function A_ConfigurarEnvBanco {
         }
         "2" {
             if (-not (Test-Path ".\database")) { New-Item ".\database" -ItemType Directory | Out-Null }
-            $sqlitePath = (Resolve-Path ".\database").Path + "\database.sqlite"
+            $sqlitePath = Join-Path -Path (Resolve-Path ".\database").Path -ChildPath "database.sqlite"
             if (-not (Test-Path $sqlitePath)) { New-Item $sqlitePath -ItemType File | Out-Null }
 
             Set-EnvValores @{
@@ -294,7 +295,6 @@ function A_ConfigurarEnvBanco {
         }
     }
 }
-
 function A_GerarChave {
     Checar-Basicos
     Criar-EnvSeNecessario
@@ -302,7 +302,6 @@ function A_GerarChave {
     php artisan key:generate
     if ($LASTEXITCODE -ne 0) { throw "Falha ao gerar chave da aplicação." }
 }
-
 function A_Migrar {
     Checar-Basicos
     Write-Host "`nDeseja rodar com --seed? (S/N)" -NoNewline
@@ -313,21 +312,18 @@ function A_Migrar {
     php artisan @args
     if ($LASTEXITCODE -ne 0) { throw "Falha ao executar migrations." }
 }
-
 function A_StorageLink {
     Checar-Basicos
     Write-Host "`nCriando link de storage..." -ForegroundColor Cyan
     php artisan storage:link
     if ($LASTEXITCODE -ne 0) { throw "Falha ao criar storage:link." }
 }
-
 function A_OptimizeClear {
     Checar-Basicos
     Write-Host "`nLimpando caches (optimize:clear)..." -ForegroundColor Cyan
     php artisan optimize:clear
     if ($LASTEXITCODE -ne 0) { throw "Falha ao limpar caches." }
 }
-
 function Porta-Disponivel {
     param([int]$inicio = 8000)
     $p = $inicio
@@ -336,7 +332,6 @@ function Porta-Disponivel {
     }
     return $p
 }
-
 function A_Servir {
     Checar-Basicos
 
@@ -358,7 +353,6 @@ function A_Servir {
     Start-Process $url
     Write-Host "Servidor iniciado em nova janela." -ForegroundColor Green
 }
-
 function A_Frontend {
     if (-not (Teste-Comando "node")) { Write-Host "Node.js não encontrado; pulando." -ForegroundColor Yellow; return }
     if (-not (Teste-Comando "npm"))  { Write-Host "npm não encontrado; pulando." -ForegroundColor Yellow; return }
@@ -377,7 +371,6 @@ function A_Frontend {
         default { Write-Host "Opção inválida." -ForegroundColor Red }
     }
 }
-
 function A_AplicarEnvPendencias {
     $pending = ".env.pending"
     if (-not (Test-Path $pending)) {
@@ -394,15 +387,32 @@ function A_AplicarEnvPendencias {
     }
 }
 
+# --- FUNÇÃO PRINCIPAL MODIFICADA (Sem configuração de banco) ---
 function A_InstalacaoCompleta {
+    Write-Host "`n--- Iniciando Instalação Completa (Etapas de código) ---" -ForegroundColor Magenta
     A_AtualizarDependencias
     A_InstalarDependencias
-    A_ConfigurarEnvBanco
+    
+    # Checa se o .env existe antes de tentar gerar a chave e migrar
+    Criar-EnvSeNecessario
+    
     A_GerarChave
     A_StorageLink
     A_OptimizeClear
-    A_Migrar
-    A_Servir
+    
+    Write-Host "`nExecutando migrations (sem seed)..." -ForegroundColor Cyan
+    php artisan migrate
+    if ($LASTEXITCODE -ne 0) { 
+        # O erro na migration aqui pode ser por falta de configuração do DB
+        Write-Host "Aviso: A migration falhou. Verifique se o seu arquivo .env está configurado corretamente." -ForegroundColor Yellow
+        # Não lança exceção fatal, pois o próximo passo é configurar
+    }
+    
+    Write-Host "`n==========================================================================" -ForegroundColor Green
+    Write-Host "    ✅ Instalação Completa (Etapas de Código) FINALIZADA!" -ForegroundColor Green
+    Write-Host "    👉 PRÓXIMO PASSO CRÍTICO: Configurar o acesso ao Banco de Dados." -ForegroundColor Green
+    Write-Host "    Use a OPÇÃO 3 do menu para configurar o seu .env com MySQL/XAMPP." -ForegroundColor Green
+    Write-Host "==========================================================================" -ForegroundColor Green
 }
 
 # ---------- UI ----------
@@ -425,7 +435,7 @@ while ($true) {
         Write-Host "8) Iniciar servidor (host/porta)"
         Write-Host "9) Frontend (npm install/dev/build) - opcional"
         Write-Host "-------------------------------------"
-        Write-Host "10) Executar tudo (instalação completa)"
+        Write-Host "10) Executar tudo (Instalação de Código Completa sem o .env)"
         Write-Host "11) Aplicar pendências do .env (se houver)"
         Write-Host "0) Sair"
         Write-Host "=====================================" -ForegroundColor Cyan

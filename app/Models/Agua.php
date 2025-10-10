@@ -14,4 +14,6 @@ use Illuminate\Database\Eloquent\Model;
 class Agua extends Model
 {
 	use HasFactory;
+
+
 }

@@ -42,21 +42,27 @@
           <div class="row g-4">
             @foreach ($cards as $card)
               <div class="mb-4">
-                <div class="card h-100 text-center bg-card">
-                  @if(!empty($card['image']))
-                  <img src="{{ asset('assets/img/' . $card['image']) }}" class="card-img-top img-fluid" style="max-height: 200px; width: 100%; object-fit: cover;" alt="{{ $card['title'] }}">
-                  @endif
-                  <div class="card-body">
-                    <h5 class="card-title text-white">{{ $card['title'] }}</h5>
-                    <p class="card-text text-white">{{ $card['text'] }}</p>
+                <div class="card h-100 bg-card">
+                  <div class="row g-0 align-items-center">
+                    @if(!empty($card['image']))
+                      <div class="col-md-4">
+                        {{ asset(
+                      </div>
+                    @endif
+                    <div class="col-md-8">
+                      <div class="card-body text-white">
+                        <h5 class="card-title">{{ $card['title'] }}</h5>
+                        <p class="card-text">{{ $card['text'] }}</p>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
-              </div>
             @endforeach
+            </div>
           </div>
-        </div>
       @endforeach
-    </div>
+      </div>
 
 
 

@@ -44,7 +44,7 @@
               <div class="mb-4">
                 <div class="card h-100 text-center bg-card">
                   @if(!empty($card['image']))
-                  <img src="{{ asset('assets/img/' . $card['image']) }}" class="card-img-top card-img-custom" alt="{{ $card['title'] }}">
+                  <img src="{{ asset('assets/img/' . $card['image']) }}" class="card-img-top img-fluid" style="max-height: 200px; width: 100%; object-fit: cover;" alt="{{ $card['title'] }}">
                   @endif
                   <div class="card-body">
                     <h5 class="card-title text-white">{{ $card['title'] }}</h5>

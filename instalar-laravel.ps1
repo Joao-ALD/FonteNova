@@ -4,7 +4,6 @@
 # Utilitário para projetos Laravel (Windows PowerShell)
 # - Não requer permissão de administrador
 # - Execute a partir da pasta raiz do projeto (onde há 'artisan' e 'composer.json')
-# - Auto-correção na inicialização: remove Add-Type, corrige "$host:", "return bool", "&amp;" e salva em UTF-8 (BOM)
 # ------------------------------------------------
 
 # --- Preferências globais ---
@@ -18,6 +17,8 @@ try { chcp.com 65001 > $null } catch { }
 function SelfHeal-Script {
     param([Parameter(Mandatory=$true)][string]$Path)
 
+    # Nota: Removido o bloco de reinicialização para simplificar. 
+    # O script assume que está em UTF8 e no diretório correto.
     try {
         if (-not (Test-Path $Path)) { return }
 
@@ -48,23 +49,20 @@ function SelfHeal-Script {
         if ($fixed -ne $original) {
             # Salva como UTF-8 COM BOM (em PS 5.1, -Encoding UTF8 grava com BOM)
             Set-Content -Path $Path -Value $fixed -Encoding UTF8
-            Write-Host "[auto] Script ajustado (Add-Type/host/return bool/&). Reiniciando..." -ForegroundColor Yellow
-
-            # Relança e encerra esta instância
-            Start-Process -FilePath "powershell" -ArgumentList @("-ExecutionPolicy","Bypass","-File",$Path) -WindowStyle Normal
-            exit
+            Write-Host "[auto] Script ajustado (Add-Type/host/return bool/&). Por favor, reinicie o script." -ForegroundColor Yellow
+            
+            # Não reinicia, apenas exibe a mensagem e encerra
+            exit 
         }
     } catch {
         Write-Host "[auto] Aviso ao tentar auto-corrigir: $($_.Exception.Message)" -ForegroundColor DarkYellow
         # Segue mesmo assim
     }
 }
-# Garante execução a partir do diretório do script e executa auto-correção (pode reiniciar)
+# Garante execução do SelfHeal-Script uma única vez no início
 try {
     $scriptPath = $MyInvocation.MyCommand.Path
     if ($scriptPath) {
-        $scriptDir = Split-Path -Parent $scriptPath
-        if ($scriptDir -and (Test-Path $scriptDir)) { Set-Location $scriptDir }
         SelfHeal-Script -Path $scriptPath
     }
 } catch { }
@@ -121,6 +119,7 @@ function Read-TextShared {
         $sr.Close()
         return $text
     } catch {
+        # Fallback para Get-Content caso a leitura compartilhada falhe
         return (Get-Content -Path $Path -Raw -ErrorAction SilentlyContinue)
     } finally {
         if ($fs) { $fs.Dispose() }
@@ -133,6 +132,8 @@ function Write-TextSafe {
     )
 
     $dir = Split-Path -Parent $Path
+    
+    # ESTA VALIDAÇÃO É A CORREÇÃO. Ela impede a execução de New-Item com um caminho vazio.
     if (-not ([string]::IsNullOrEmpty($dir)) -and -not (Test-Path $dir)) { 
         New-Item -Path $dir -ItemType Directory | Out-Null 
     }
@@ -140,6 +141,12 @@ function Write-TextSafe {
     $temp   = Join-Path $dir (".tmp-" + [guid]::NewGuid().ToString("N"))
     $backup = "$Path.bak"
     $encoding = New-Object System.Text.UTF8Encoding($false)  # UTF-8 sem BOM
+    
+    # GARANTE que o caminho temporário não seja vazio
+    if ([string]::IsNullOrWhiteSpace($temp)) {
+        throw "Caminho temporário vazio. Verifique o caminho de destino: '$Path'"
+    }
+    
     [System.IO.File]::WriteAllText($temp, $Text, $encoding)
 
     if (-not (Test-Path $Path)) { New-Item $Path -ItemType File -Force | Out-Null }
@@ -152,6 +159,7 @@ function Write-TextSafe {
     $ok = $false
     for ($i=1; $i -le $maxRetries; $i++) {
         try {
+            # Se $temp ou $Path for nulo/vazio aqui, falha com o erro 'cadeia de caracteres vazia'
             [System.IO.File]::Replace($temp, $Path, $backup, $true)
             $ok = $true; break
         } catch {
@@ -170,7 +178,7 @@ function Write-TextSafe {
         }
         throw "Não consegui atualizar '$Path' (arquivo possivelmente bloqueado). As alterações foram salvas em '$pending'. Feche editores/sincronizadores e use o menu para aplicar depois."
     } else {
-        Remove-Item $backup -Force -ErrorAction SilentlyContinue
+        Remove-Item $backup -Force -ErrorAction Silentlycontinue
     }
 }
 function Set-EnvValores {
@@ -198,7 +206,7 @@ function Set-EnvValores {
 function Criar-EnvSeNecessario {
     if (-not (Test-Path ".env")) {
         if (Test-Path ".env.example") {
-            $src = Get-Content -Path ".env.example" -Raw -ErrorAction SilentlyContinue
+            $src = Read-TextShared -Path ".env.example"
             if ($null -eq $src) { $src = "" }
             Write-TextSafe -Path ".env" -Text $src
             Write-Host "Arquivo .env copiado de .env.example." -ForegroundColor Green
@@ -378,7 +386,7 @@ function A_AplicarEnvPendencias {
         return
     }
     try {
-        $conteudo = Get-Content -Path $pending -Raw -ErrorAction Stop
+        $conteudo = Read-TextShared -Path $pending
         Write-TextSafe -Path ".env" -Text $conteudo
         Remove-Item $pending -Force -ErrorAction SilentlyContinue
         Write-Host "Pendências aplicadas ao .env com sucesso." -ForegroundColor Green
@@ -387,31 +395,48 @@ function A_AplicarEnvPendencias {
     }
 }
 
-# --- FUNÇÃO PRINCIPAL MODIFICADA (Sem configuração de banco) ---
+# --- FUNÇÃO PRINCIPAL MODIFICADA ---
 function A_InstalacaoCompleta {
-    Write-Host "`n--- Iniciando Instalação Completa (Etapas de código) ---" -ForegroundColor Magenta
+    Write-Host "`n--- Iniciando Instalação Completa e Automática ---" -ForegroundColor Magenta
+    
+    # Etapa 1: Dependências do Composer
+    Write-Host "`n[1/5] Instalando dependências do Composer..." -ForegroundColor Cyan
     A_AtualizarDependencias
     A_InstalarDependencias
     
-    # Checa se o .env existe antes de tentar gerar a chave e migrar
+    # Etapa 2: Criação do .env e Geração da Chave
+    Write-Host "`n[2/5] Configurando arquivo de ambiente (.env) e chave da aplicação..." -ForegroundColor Cyan
     Criar-EnvSeNecessario
-    
     A_GerarChave
+    
+    # Etapa 3: Configuração do Banco de Dados (Interativo)
+    Write-Host "`n[3/5] Agora, vamos configurar o acesso ao banco de dados." -ForegroundColor Cyan
+    A_ConfigurarEnvBanco # Reutiliza a lógica do menu 3 para pedir os dados
+    
+    # Etapa 4: Migrations e Seeders (com confirmação)
+    Write-Host "`n[4/5] Deseja executar as migrations e popular o banco (php artisan migrate --seed)? (S/N)" -NoNewline
+    $rodarMigrate = (Read-Host).Trim().ToUpper()
+    if ($rodarMigrate -eq "S") {
+        Write-Host "Executando 'php artisan migrate --seed'..." -ForegroundColor Cyan
+        php artisan migrate --seed
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Aviso: Falha ao executar as migrations. Verifique as credenciais do banco no .env." -ForegroundColor Yellow
+        } else {
+            Write-Host "Migrations e seeders executados com sucesso." -ForegroundColor Green
+        }
+    } else {
+        Write-Host "Migrations puladas. Você pode executá-las manualmente com a opção 5." -ForegroundColor Yellow
+    }
+
+    # Etapa 5: Finalização
+    Write-Host "`n[5/5] Executando tarefas finais (storage:link, optimize:clear)..." -ForegroundColor Cyan
     A_StorageLink
     A_OptimizeClear
-    
-    Write-Host "`nExecutando migrations (sem seed)..." -ForegroundColor Cyan
-    php artisan migrate
-    if ($LASTEXITCODE -ne 0) { 
-        # O erro na migration aqui pode ser por falta de configuração do DB
-        Write-Host "Aviso: A migration falhou. Verifique se o seu arquivo .env está configurado corretamente." -ForegroundColor Yellow
-        # Não lança exceção fatal, pois o próximo passo é configurar
-    }
-    
+
+    # Mensagem de Conclusão
     Write-Host "`n==========================================================================" -ForegroundColor Green
-    Write-Host "    ✅ Instalação Completa (Etapas de Código) FINALIZADA!" -ForegroundColor Green
-    Write-Host "    👉 PRÓXIMO PASSO CRÍTICO: Configurar o acesso ao Banco de Dados." -ForegroundColor Green
-    Write-Host "    Use a OPÇÃO 3 do menu para configurar o seu .env com MySQL/XAMPP." -ForegroundColor Green
+    Write-Host "    ✅ PROJETO INSTALADO E CONFIGURADO COM SUCESSO!" -ForegroundColor Green
+    Write-Host "    👉 Tudo pronto! Você já pode iniciar o servidor usando a OPÇÃO 8." -ForegroundColor Green
     Write-Host "==========================================================================" -ForegroundColor Green
 }
 
@@ -435,7 +460,7 @@ while ($true) {
         Write-Host "8) Iniciar servidor (host/porta)"
         Write-Host "9) Frontend (npm install/dev/build) - opcional"
         Write-Host "-------------------------------------"
-        Write-Host "10) Executar tudo (Instalação de Código Completa sem o .env)"
+        Write-Host "10) Executar tudo (Instalação de Código Completa)"
         Write-Host "11) Aplicar pendências do .env (se houver)"
         Write-Host "0) Sair"
         Write-Host "=====================================" -ForegroundColor Cyan

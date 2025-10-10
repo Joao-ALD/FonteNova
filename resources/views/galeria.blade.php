@@ -1,3 +1,10 @@
+{{--
+  View: Galeria Interativa
+  - Exibe cards interativos com dicas práticas. Os textos descritivos podem
+  - ser expandidos por contributors; a interação é controlada por JS inline.
+  - Evitar modificar o comportamento de aria-hidden e estrutura de botões sem
+  - verificar acessibilidade / leitores de tela.
+--}}
 @extends('layouts.main')
 
 @section('content')

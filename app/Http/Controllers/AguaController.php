@@ -109,7 +109,7 @@ class AguaController extends Controller
                 ],
             ],
             // 🌱 PRESERVAÇÃO
-            "Preservação" => [
+            "Preservacao" => [
                 [
                     "title" => "Educação Ambiental",
                     "text"  => "A educação ambiental é uma das ferramentas mais poderosas para preservar a água. Quando as pessoas entendem o valor desse recurso, passam a cuidar melhor dele. Escolas desempenham papel essencial nesse processo. Projetos comunitários também ajudam a espalhar conhecimento. Campanhas públicas estimulam mudanças de comportamento. Crianças educadas hoje se tornam adultos conscientes amanhã. A informação gera responsabilidade. Quanto mais pessoas envolvidas, maior o impacto positivo. A educação cria uma cultura de respeito à natureza. Preservar começa pelo conhecimento.",

@@ -1,52 +1,176 @@
-# Comandos Laravel e Git - Guia Rápido
+# 📗 Comandos Laravel e Git - Guia Rápido
 
-composer create-project — Cria um novo projeto Laravel
+**1. Criar um novo projeto Laravel**  
+Use o Composer para iniciar um novo projeto Laravel.
 
-php artisan serve — Inicia o servidor de desenvolvimento
+```bash
+composer create-project laravel/laravel nome-do-projeto
+```
 
-npm install — Instala dependências do front-end
+**2. Iniciar o servidor de desenvolvimento**  
+Executa o servidor local embutido do Laravel.
 
-npm run dev — Compila assets com Vite
+```bash
+php artisan serve
+```
 
-php artisan make:model Nome -mc — Cria Model, Migration e Controller
+**3. Instalar dependências do front-end**  
+Instala os pacotes definidos no `package.json`.
 
-php artisan migrate — Executa as migrations
+```bash
+npm install
+```
 
-php artisan db:seed — Popula o banco com dados de teste
+**4. Compilar assets com Vite**  
+Compila os arquivos front-end com hot reload.
 
-php artisan migrate:fresh --seed — Apaga e recria o banco com dados de teste
+```bash
+npm run dev
+```
 
-composer install — Instala dependências do Laravel
+**5. Criar Model, Migration e Controller**  
+Gera estrutura completa para uma entidade.
 
-php artisan key:generate — Gera chave de segurança no .env
+```bash
+php artisan make:model Nome -mc
+```
 
-git clone <url> — Clona repositório do GitHub
+**6. Executar as migrations**  
+Cria as tabelas no banco de dados.
 
-git add . — Adiciona arquivos modificados ao commit
+```bash
+php artisan migrate
+```
 
-git commit -m "mensagem" — Cria commit com mensagem
+**7. Popular o banco com dados de teste**  
+Executa os seeders definidos.
 
-git push — Envia alterações para o GitHub
+```bash
+php artisan db:seed
+```
 
-git pull — Recebe alterações do GitHub
+**8. Apagar e recriar o banco com dados de teste**  
+Limpa todas as tabelas e recria com seeders.
 
-php artisan route:list — Lista todas as rotas
+```bash
+php artisan migrate:fresh --seed
+```
 
-php artisan tinker — Abre terminal interativo do Laravel
+**9. Instalar dependências do Laravel**  
+Recria a pasta `vendor/` com todas as dependências.
 
-php artisan config:clear — Limpa cache de configurações
+```bash
+composer install
+```
 
-php artisan cache:clear — Limpa cache geral
+**10. Gerar chave de segurança no .env**  
+Cria a chave de criptografia da aplicação.
 
-php artisan migrate:status — Verifica status das migrations
+```bash
+php artisan key:generate
+```
 
-php artisan make:seeder NomeSeeder — Cria um seeder
+**11. Clonar repositório do GitHub**  
+Baixa o projeto remoto para sua máquina.
 
-php artisan db:seed --class=NomeSeeder — Executa seeder específico
+```bash
+git clone https://URL_DO_SEU_REPOSITORIO.git
+```
 
-php artisan make:controller NomeController — Cria um controller
+**12. Adicionar arquivos modificados ao commit**  
+Prepara os arquivos para serem versionados.
 
-php artisan migrate:rollback — Reverte última migration
+```bash
+git add .
+```
 
-cp .env.example .env — Cria arquivo .env a partir do exemplo
+**13. Criar commit com mensagem**  
+Salva as alterações localmente com uma descrição.
 
+```bash
+git commit -m "mensagem"
+```
+
+**14. Enviar alterações para o GitHub**  
+Publica suas alterações no repositório remoto.
+
+```bash
+git push
+```
+
+**15. Receber alterações do GitHub**  
+Atualiza seu projeto com as últimas mudanças.
+
+```bash
+git pull
+```
+
+**16. Listar todas as rotas**  
+Mostra todas as rotas registradas no projeto.
+
+```bash
+php artisan route:list
+```
+
+**17. Abrir terminal interativo do Laravel**  
+Permite testar comandos e interagir com os Models.
+
+```bash
+php artisan tinker
+```
+
+**18. Limpar cache de configurações**  
+Remove o cache das configurações da aplicação.
+
+```bash
+php artisan config:clear
+```
+
+**19. Limpar cache geral**  
+Remove todos os caches da aplicação.
+
+```bash
+php artisan cache:clear
+```
+
+**20. Verificar status das migrations**  
+Mostra quais migrations já foram executadas.
+
+```bash
+php artisan migrate:status
+```
+
+**21. Criar um seeder**  
+Gera um arquivo para popular o banco.
+
+```bash
+php artisan make:seeder NomeSeeder
+```
+
+**22. Executar seeder específico**  
+Roda apenas o seeder indicado.
+
+```bash
+php artisan db:seed --class=NomeSeeder
+```
+
+**23. Criar um controller**  
+Gera um controller para sua aplicação.
+
+```bash
+php artisan make:controller NomeController
+```
+
+**24. Reverter última migration**  
+Desfaz a última alteração no banco.
+
+```bash
+php artisan migrate:rollback
+```
+
+**25. Criar arquivo .env a partir do exemplo**  
+Copia o arquivo de ambiente padrão.
+
+```bash
+cp .env.example .env
+```

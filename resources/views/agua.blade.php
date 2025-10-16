@@ -41,17 +41,27 @@
         <div class="collapse" id="collapse{{ $topic }}" data-bs-parent="#infoPanels">
           <div class="row g-4">
             @foreach ($cards as $card)
-              <div class="mb-4">
-                <div class="card h-100 text-center bg-card">
-                  @if(!empty($card['image']))
-                  <img src="{{ asset('assets/img/' . $card['image']) }}" class="card-img-top img-fluid" style="max-height: 200px; width: 100%; object-fit: cover;" alt="{{ $card['title'] }}">
-                  @endif
-                  <div class="card-body">
-                    <h5 class="card-title text-white">{{ $card['title'] }}</h5>
-                    <p class="card-text text-white">{{ $card['text'] }}</p>
-                  </div>
-                </div>
-              </div>
+            <div class="mb-4">
+  <div class="card h-100 bg-card overflow-hidden" style="border: none;">
+    <div class="row g-0 align-items-center">
+      <!-- Imagem à esquerda -->
+      @if(!empty($card['image']))
+        <div class="col-md-5">
+          <img src="{{ asset('assets/img/' . $card['image']) }}" 
+               class="img-fluid rounded-start" 
+               alt="{{ $card['title'] }}" 
+               style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      @endif
+
+      <!-- Texto à direita -->
+      <div class="col-md-7 d-flex flex-column justify-content-center p-4">
+        <h5 class="card-title text-white fw-bold mb-3">{{ $card['title'] }}</h5>
+        <p class="card-text text-white">{{ $card['text'] }}</p>
+      </div>
+    </div>
+  </div>
+</div>
             @endforeach
           </div>
         </div>

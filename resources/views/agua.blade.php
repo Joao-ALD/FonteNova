@@ -37,35 +37,32 @@
 
     <!-- Container dinâmico que renderiza os cards -->
     <div class="container mt-5" id="infoPanels">
-      @foreach ($topics as $topic => $cards)
-        <div class="collapse" id="collapse{{ $topic }}" data-bs-parent="#infoPanels">
-          <div class="row g-4">
-            @foreach ($cards as $card)
-              <div class="mb-4">
-                <div class="card h-100 bg-card overflow-hidden border-0 shadow-sm">
-                  <div class="row g-0 align-items-stretch">
-                    <!-- Imagem à esquerda -->
-                    @if(!empty($card['image']))
-                      <div class="col-md-5">
-                        <img src="{{ asset('assets/img/' . $card['image']) }}" class="img-fluid rounded-start h-100 w-100"
-                          alt="{{ $card['title'] }}" style="object-fit: cover; min-height: 250px; max-height: 300px;">
-                      </div>
-                    @endif
-
-                    <!-- Texto à direita -->
-                    <div class="col-md-7 d-flex flex-column justify-content-center p-4">
-                      <h5 class="card-title text-white fw-bold mb-3 fs-3">{{ $card['title'] }}</h5>
-                      <p class="card-text text-white fs-5">{{ $card['text'] }}</p>
-                    </div>
+  @foreach ($topics as $topic => $cards)
+    <div class="collapse" id="collapse{{ $topic }}" data-bs-parent="#infoPanels">
+      <div class="row g-4">
+        @foreach ($cards as $card)
+          <div class="col-12"> 
+            <div class="card h-100 bg-card overflow-hidden border-0 shadow-sm">
+              <div class="row g-0 align-items-stretch">
+                @if(!empty($card['image']))
+                  <div class="col-md-5">
+                    <img src="{{ asset('assets/img/' . $card['image']) }}" class="img-fluid rounded-start h-100 w-100"
+                      alt="{{ $card['title'] }}" style="object-fit: cover;">
                   </div>
+                @endif
+
+                <div class="col-md-7 d-flex flex-column justify-content-center p-4">
+                  <h5 class="card-title text-white fw-bold mb-3 fs-3">{{ $card['title'] }}</h5>
+                  <p class="card-text text-white fs-5">{{ $card['text'] }}</p>
                 </div>
               </div>
-
-            @endforeach
+            </div>
           </div>
-        </div>
-      @endforeach
+        @endforeach
+      </div>
     </div>
+  @endforeach
+</div>
 
 
 

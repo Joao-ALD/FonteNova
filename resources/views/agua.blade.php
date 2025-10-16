@@ -42,23 +42,25 @@
           <div class="row g-4">
             @foreach ($cards as $card)
               <div class="mb-4">
-                <div class="card h-100 bg-card overflow-hidden" style="border: none;">
-                  <div class="row g-0 align-items-center">
+                <div class="card h-100 bg-card overflow-hidden border-0 shadow-sm">
+                  <div class="row g-0 align-items-stretch">
                     <!-- Imagem à esquerda -->
                     @if(!empty($card['image']))
                       <div class="col-md-5">
-                        <img src="{{ asset('assets/img/' . $card['image']) }}" class="img-fluid rounded-start"
-                          alt="{{ $card['title'] }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="{{ asset('assets/img/' . $card['image']) }}" class="img-fluid rounded-start h-100 w-100"
+                          alt="{{ $card['title'] }}" style="object-fit: cover; min-height: 250px; max-height: 300px;">
                       </div>
                     @endif
+
                     <!-- Texto à direita -->
                     <div class="col-md-7 d-flex flex-column justify-content-center p-4">
-                      <h5 class="card-title text-white fw-bold mb-3 fs-4">{{ $card['title'] }}</h5>
+                      <h5 class="card-title text-white fw-bold mb-3 fs-3">{{ $card['title'] }}</h5>
                       <p class="card-text text-white fs-5">{{ $card['text'] }}</p>
                     </div>
                   </div>
                 </div>
               </div>
+
             @endforeach
           </div>
         </div>

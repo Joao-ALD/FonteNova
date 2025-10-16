@@ -53,8 +53,8 @@
                     @endif
                     <!-- Texto à direita -->
                     <div class="col-md-7 d-flex flex-column justify-content-center p-4">
-                      <h5 class="card-title text-white fw-bold mb-3">{{ $card['title'] }}</h5>
-                      <p class="card-text text-white">{{ $card['text'] }}</p>
+                      <h5 class="card-title text-white fw-bold mb-3 fs-4">{{ $card['title'] }}</h5>
+                      <p class="card-text text-white fs-5">{{ $card['text'] }}</p>
                     </div>
                   </div>
                 </div>

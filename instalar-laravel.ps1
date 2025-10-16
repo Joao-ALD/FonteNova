@@ -3,22 +3,21 @@
 # ------------------------------------------------
 # Utilitário para projetos Laravel (Windows PowerShell)
 # - Não requer permissão de administrador
-# - Execute a partir da pasta raiz do projeto (onde há 'artisan', 'composer.json', 'README.md' e '.env.example')
+# - Execute a partir da pasta raiz do projeto (onde há 'artisan', 'composer.json', etc.)
 # ------------------------------------------------
 
 # --- Preferências globais ---
 $ErrorActionPreference = 'Stop'
 
-# --- Console UTF-8 (PS 5.1) ---
+# --- Garante que o console use UTF-8 (essencial para acentos e caracteres especiais) ---
 try { chcp.com 65001 > $null } catch { }
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 # --- Auto-correção do próprio script (idempotente) ---
+# Esta função verifica e corrige problemas comuns que podem surgir ao copiar/colar o script.
 function SelfHeal-Script {
     param([Parameter(Mandatory=$true)][string]$Path)
 
-    # Nota: Removido o bloco de reinicialização para simplificar. 
-    # O script assume que está em UTF8 e no diretório correto.
     try {
         if (-not (Test-Path $Path)) { return }
 
@@ -26,71 +25,60 @@ function SelfHeal-Script {
         $fixed = $original
 
         # 1) Remover Add-Type desnecessários (podem causar erro em PS 5.1)
-        $fixed = [regex]::Replace(
-            $fixed,
-            '^\s*Add-Type\s+-AssemblyName\s+System\.(?:IO|Text)\s*\r?\n',
-            '',
-            'Multiline'
-        )
+        $fixed = [regex]::Replace($fixed, '^\s*Add-Type\s+-AssemblyName\s+System\.(?:IO|Text)\s*\r?\n', '', 'Multiline')
 
         # 2) Corrigir "$host:" (colide com var automática $host) -> usar ${host}
         $fixed = $fixed -replace 'http://\$host:', 'http://${host}:'
         $fixed = $fixed -replace 'https://\$host:', 'https://${host}:'
 
-        # 2.1) Corrigir 'return bool' na função Teste-Comando
-        $fixed = [regex]::Replace($fixed, 'return\s+bool\b', 'return [bool](Get-Command $Nome -ErrorAction SilentlyContinue)')
-
-        # 3) Desescapar "&amp;" (cópias vindas de HTML quebram "& cmd")
+        # 3) Desescapar "&amp;" (cópias vindas de HTML quebram chamadas como "& cmd")
         $fixed = $fixed -replace '&amp;', '&'
 
-        # 4) Normalizar quebras de linha para CRLF (Windows) – opcional, mas ajuda
-        $fixed = $fixed -replace "(\r?\n)", "`r`n"
+        # 4) Normalizar quebras de linha para CRLF (padrão Windows)
+        $fixed = $fixed -replace "(?<!\r)\n", "`r`n"
 
         if ($fixed -ne $original) {
-            # Salva como UTF-8 COM BOM (em PS 5.1, -Encoding UTF8 grava com BOM)
+            # Salva como UTF-8 COM BOM (padrão do PowerShell 5.1 para -Encoding UTF8)
             Set-Content -Path $Path -Value $fixed -Encoding UTF8
-            Write-Host "[auto] Script ajustado (Add-Type/host/return bool/&). Por favor, reinicie o script." -ForegroundColor Yellow
-            
-            # Não reinicia, apenas exibe a mensagem e encerra
-            exit 
+            Write-Host "[AUTO-CORREÇÃO] O script foi ajustado. Por favor, reinicie-o." -ForegroundColor Yellow
+            exit
         }
     } catch {
-        Write-Host "[auto] Aviso ao tentar auto-corrigir: $($_.Exception.Message)" -ForegroundColor DarkYellow
-        # Segue mesmo assim
+        Write-Host "[AUTO-CORREÇÃO] Aviso ao tentar auto-corrigir: $($_.Exception.Message)" -ForegroundColor DarkYellow
     }
 }
-# Garante execução do SelfHeal-Script uma única vez no início
+
+# Garante a execução da auto-correção uma única vez no início
 try {
-    $scriptPath = $MyInvocation.MyCommand.Path
-    if ($scriptPath) {
-        SelfHeal-Script -Path $scriptPath
+    # $MyInvocation.MyCommand.Path só funciona quando o script é executado, não no ISE/VSCode com F5
+    if ($MyInvocation.MyCommand.Path) {
+        SelfHeal-Script -Path $MyInvocation.MyCommand.Path
     }
 } catch { }
 
 
-# ---------- Utilitários de ambiente ----------
-function Teste-Comando {
-    param([Parameter(Mandatory=$true)][string]$Nome)
-    # Retorna $true se o comando for encontrado, $false caso contrário.
-    return [bool](Get-Command $Nome -ErrorAction SilentlyContinue)
+# ---------- Utilitários de Ambiente ----------
+function Test-CommandExists {
+    param([Parameter(Mandatory=$true)][string]$Name)
+    # Retorna $true se o comando for encontrado no PATH, $false caso contrário.
+    return [bool](Get-Command $Name -ErrorAction SilentlyContinue)
 }
-function Caminho-Comando {
-    param([Parameter(Mandatory=$true)][string]$Nome)
-    $cmd = Get-Command $Nome -ErrorAction SilentlyContinue
-    if ($cmd) { return $cmd.Path } else { return $null }
+
+function Get-CommandPath {
+    param([Parameter(Mandatory=$true)][string]$Name)
+    return (Get-Command $Name -ErrorAction SilentlyContinue).Path
 }
-function Exigir-ArquivosProjeto {
-    if (-not (Test-Path ".\artisan")) {
-        throw "Arquivo 'artisan' não encontrado. Rode este script na raiz do projeto Laravel."
-    }
-    if (-not (Test-Path ".\composer.json")) {
-        throw "Arquivo 'composer.json' não encontrado. Rode este script na raiz do projeto Laravel."
+
+function Assert-ProjectRoot {
+    if (-not (Test-Path ".\artisan") -or -not (Test-Path ".\composer.json")) {
+        throw "Este script deve ser executado a partir do diretório raiz de um projeto Laravel (onde 'artisan' e 'composer.json' existem)."
     }
 }
-function Checar-Basicos {
-    Exigir-ArquivosProjeto
-    if (-not (Teste-Comando "php"))      { throw "PHP não encontrado no PATH." }
-    if (-not (Teste-Comando "composer")) { throw "Composer não encontrado no PATH." }
+
+function Check-Prerequisites {
+    Assert-ProjectRoot
+    if (-not (Test-CommandExists "php"))      { throw "Comando 'php' não encontrado no PATH." }
+    if (-not (Test-CommandExists "composer")) { throw "Comando 'composer' não encontrado no PATH." }
 
     # Garante que o diretório de cache do Laravel exista para evitar erros no composer install/update
     $cacheDir = ".\bootstrap\cache"
@@ -99,32 +87,39 @@ function Checar-Basicos {
         New-Item -Path $cacheDir -ItemType Directory -Force | Out-Null
     }
 }
-function Ler-Segredo([string]$prompt) {
-    $secure = Read-Host $prompt -AsSecureString
-    $bstr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
-    $plain = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($bstr)
-    [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr)
-    return $plain
+
+function Read-Secret {
+    param([string]$Prompt)
+    $secure = Read-Host $Prompt -AsSecureString
+    $bstr = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($secure)
+    try {
+        return [System.Runtime.InteropServices.Marshal]::PtrToStringBSTR($bstr)
+    } finally {
+        [System.Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr)
+    }
 }
 
-# ---------- I/O resiliente para o .env ----------
+
+# ---------- I/O Resiliente para Arquivos (.env) ----------
+# Lê um arquivo de texto mesmo que ele esteja aberto em outro programa.
 function Read-TextShared {
     param([Parameter(Mandatory=$true)][string]$Path)
-    if (-not (Test-Path $Path)) { return "" }
-    $fs = $null
+    if (-not (Test-Path $Path)) { return $null }
     try {
         $fs = New-Object System.IO.FileStream($Path, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::ReadWrite)
         $sr = New-Object System.IO.StreamReader($fs, [System.Text.Encoding]::UTF8, $true)
         $text = $sr.ReadToEnd()
-        $sr.Close()
         return $text
     } catch {
-        # Fallback para Get-Content caso a leitura compartilhada falhe
+        # Fallback para o método padrão caso a leitura compartilhada falhe.
         return (Get-Content -Path $Path -Raw -ErrorAction SilentlyContinue)
     } finally {
+        if ($sr) { $sr.Dispose() }
         if ($fs) { $fs.Dispose() }
     }
 }
+
+# Escreve em um arquivo de forma segura, com retentativas e fallback, ideal para ambientes com OneDrive ou IDEs ativas.
 function Write-TextSafe {
     param(
         [Parameter(Mandatory=$true)][string]$Path,
@@ -132,83 +127,90 @@ function Write-TextSafe {
     )
 
     $dir = Split-Path -Parent $Path
-    
-    # ESTA VALIDAÇÃO É A CORREÇÃO. Ela impede a execução de New-Item com um caminho vazio.
-    if (-not ([string]::IsNullOrEmpty($dir)) -and -not (Test-Path $dir)) { 
-        New-Item -Path $dir -ItemType Directory | Out-Null 
+    if (-not ([string]::IsNullOrEmpty($dir)) -and -not (Test-Path $dir)) {
+        New-Item -Path $dir -ItemType Directory | Out-Null
     }
 
-    $temp   = Join-Path $dir (".tmp-" + [guid]::NewGuid().ToString("N"))
-    $backup = "$Path.bak"
-    $encoding = New-Object System.Text.UTF8Encoding($false)  # UTF-8 sem BOM
-    
-    # GARANTE que o caminho temporário não seja vazio
-    if ([string]::IsNullOrWhiteSpace($temp)) {
-        throw "Caminho temporário vazio. Verifique o caminho de destino: '$Path'"
-    }
-    
-    [System.IO.File]::WriteAllText($temp, $Text, $encoding)
+    $tempPath = Join-Path $dir (".tmp-" + [guid]::NewGuid().ToString("N"))
+    $backupPath = "$Path.bak"
+    $encoding = New-Object System.Text.UTF8Encoding($false) # UTF-8 sem BOM
 
-    if (-not (Test-Path $Path)) { New-Item $Path -ItemType File -Force | Out-Null }
+    [System.IO.File]::WriteAllText($tempPath, $Text, $encoding)
 
-    # Retries maiores se for OneDrive
-    $isOneDrive = ($Path -match "(?i)OneDrive")
     $maxRetries = 10; $delayMs = 500
-    if ($isOneDrive) { $maxRetries = 20; $delayMs = 1000 }
+    if ($Path -match "(?i)OneDrive") { $maxRetries = 20; $delayMs = 1000 }
 
-    $ok = $false
-    for ($i=1; $i -le $maxRetries; $i++) {
+    for ($i = 1; $i -le $maxRetries; $i++) {
         try {
-            # Se $temp ou $Path for nulo/vazio aqui, falha com o erro 'cadeia de caracteres vazia'
-            [System.IO.File]::Replace($temp, $Path, $backup, $true)
-            $ok = $true; break
+            [System.IO.File]::Replace($tempPath, $Path, $backupPath, $true)
+            Remove-Item $backupPath -Force -ErrorAction SilentlyContinue
+            return # Sucesso
         } catch {
             Start-Sleep -Milliseconds $delayMs
         }
     }
 
-    if (-not $ok) {
-        $pending = "$Path.pending"
-        try {
-            if (Test-Path $pending) { Remove-Item $pending -Force -ErrorAction SilentlyContinue }
-            [System.IO.File]::Move($temp, $pending)
-        } catch {
-            Copy-Item $temp $pending -Force -ErrorAction SilentlyContinue
-            Remove-Item $temp -Force -ErrorAction SilentlyContinue
-        }
-        throw "Não consegui atualizar '$Path' (arquivo possivelmente bloqueado). As alterações foram salvas em '$pending'. Feche editores/sincronizadores e use o menu para aplicar depois."
-    } else {
-        Remove-Item $backup -Force -ErrorAction Silentlycontinue
+    # Se todas as tentativas falharem, move o arquivo temporário para .pending
+    $pendingPath = "$Path.pending"
+    try {
+        Move-Item -Path $tempPath -Destination $pendingPath -Force
+    } catch {
+        # Fallback se até o Move-Item falhar
+        Remove-Item -Path $pendingPath -Force -ErrorAction SilentlyContinue
+        Copy-Item -Path $tempPath -Destination $pendingPath -Force
+        Remove-Item -Path $tempPath -Force
     }
+    throw "Não foi possível atualizar '$Path' (arquivo pode estar bloqueado por um editor, antivírus ou sincronizador). As alterações foram salvas em '$pendingPath'. Feche os programas e use a opção 'Aplicar pendências' no menu."
 }
-function Set-EnvValores {
+
+# (REVISADO) Atualiza ou adiciona valores no arquivo .env de forma mais limpa.
+function Set-EnvValues {
     param(
-        [Parameter(Mandatory=$true)][hashtable]$Pares,
-        [string]$Caminho=".env"
+        [Parameter(Mandatory=$true)][hashtable]$Pairs,
+        [string]$Path = ".env"
     )
-    $conteudo = Read-TextShared -Path $Caminho
-    if ($null -eq $conteudo) { $conteudo = "" }
+    $content = Read-TextShared -Path $Path
+    if ($null -eq $content) { $content = "" }
 
-    foreach ($k in $Pares.Keys) {
-        $v = [string]$Pares[$k]
-        $padrao = "^(?i)\s*$([regex]::Escape($k))\s*=.*$"
-        if ($conteudo -match $padrao) {
-            $conteudo = [regex]::Replace($conteudo, $padrao, "$k=$v", 'Multiline')
-        } else {
-            if ($conteudo -and -not $conteudo.EndsWith("`n")) { $conteudo += "`n" }
-            $conteudo += "$k=$v"
+    $lines = $content -split '\r?\n'
+    $newContent = [System.Collections.Generic.List[string]]::new()
+    $keysToUpdate = $Pairs.Clone().Keys
+
+    # Atualiza as chaves existentes
+    foreach ($line in $lines) {
+        $updated = $false
+        foreach ($key in $keysToUpdate) {
+            if ($line -match "^(?i)\s*$([regex]::Escape($key))\s*=") {
+                $newContent.Add("$key=$($Pairs[$key])")
+                [void]$keysToUpdate.Remove($key)
+                $updated = $true
+                break
+            }
         }
-        if (-not $conteudo.EndsWith("`n")) { $conteudo += "`n" }
+        if (-not $updated) {
+            $newContent.Add($line)
+        }
     }
 
-    Write-TextSafe -Path $Caminho -Text $conteudo
+    # Adiciona novas chaves que não existiam
+    if ($keysToUpdate.Count -gt 0) {
+        if ($newContent.Count -gt 0 -and $newContent[-1].Trim() -ne "") {
+            $newContent.Add("") # Adiciona uma linha em branco antes das novas chaves
+        }
+        foreach ($key in $keysToUpdate) {
+            $newContent.Add("$key=$($Pairs[$key])")
+        }
+    }
+
+    # Garante que termine com uma única quebra de linha
+    $finalText = ($newContent -join "`r`n").TrimEnd() + "`r`n"
+    Write-TextSafe -Path $Path -Text $finalText
 }
-function Criar-EnvSeNecessario {
+
+function Create-EnvIfNeeded {
     if (-not (Test-Path ".env")) {
         if (Test-Path ".env.example") {
-            $src = Read-TextShared -Path ".env.example"
-            if ($null -eq $src) { $src = "" }
-            Write-TextSafe -Path ".env" -Text $src
+            Copy-Item -Path ".env.example" -Destination ".env"
             Write-Host "Arquivo .env copiado de .env.example." -ForegroundColor Green
         } else {
             Write-TextSafe -Path ".env" -Text ""
@@ -218,62 +220,65 @@ function Criar-EnvSeNecessario {
 }
 
 
-# ---------- Ações ----------
-function A_InstalarDependencias {
-    Checar-Basicos
+# ---------- Ações do Menu ----------
+function A_InstallDependencies {
+    Check-Prerequisites
     Write-Host "`nInstalando dependências (composer install)..." -ForegroundColor Cyan
     $env:COMPOSER_MEMORY_LIMIT = "-1"
-    composer install --no-interaction
-    if ($LASTEXITCODE -ne 0) { throw "Falha ao instalar dependências." }
+    composer install --no-interaction --prefer-dist --optimize-autoloader
+    if ($LASTEXITCODE -ne 0) { throw "Falha ao executar 'composer install'." }
+    Write-Host "Dependências instaladas com sucesso." -ForegroundColor Green
 }
-function A_AtualizarDependencias {
-    Checar-Basicos
+
+function A_UpdateDependencies {
+    Check-Prerequisites
     Write-Host "`nAtualizando dependências (composer update)..." -ForegroundColor Cyan
     $env:COMPOSER_MEMORY_LIMIT = "-1"
     composer update --no-interaction
-    if ($LASTEXITCODE -ne 0) { throw "Falha ao atualizar dependências." }
+    if ($LASTEXITCODE -ne 0) { throw "Falha ao executar 'composer update'." }
+    Write-Host "Dependências atualizadas com sucesso." -ForegroundColor Green
 }
-function A_ConfigurarEnvBanco {
-    Checar-Basicos
-    Criar-EnvSeNecessario
 
-    if (Teste-Comando "mysql") {
-        $mx = Caminho-Comando "mysql"
-        if ($mx) { Write-Host ("MySQL detectado em: " + $mx) -ForegroundColor DarkGray }
+function A_ConfigureDbEnv {
+    Check-Prerequisites
+    Create-EnvIfNeeded
+
+    if (Test-CommandExists "mysql") {
+        Write-Host ("MySQL client detectado em: " + (Get-CommandPath "mysql")) -ForegroundColor DarkGray
     }
 
-    Write-Host "`nSelecione o driver de banco para configurar no .env:" -ForegroundColor Cyan
-    Write-Host "1) MySQL/MariaDB"
-    Write-Host "2) SQLite (recomendado para dev simples, sem MySQL)"
-    $op = Read-Host "Opção (1-2)"
-    switch ($op) {
+    Write-Host "`nSelecione o driver de banco de dados para configurar no .env:" -ForegroundColor Cyan
+    Write-Host "1) MySQL / MariaDB"
+    Write-Host "2) SQLite (recomendado para desenvolvimento simples)"
+    $option = Read-Host "Opção (1-2)"
+    switch ($option) {
         "1" {
             $db_host = Read-Host "Host do MySQL (padrão: 127.0.0.1)"; if ([string]::IsNullOrWhiteSpace($db_host)) { $db_host="127.0.0.1" }
             $db_port = Read-Host "Porta do MySQL (padrão: 3306)"; if ([string]::IsNullOrWhiteSpace($db_port)) { $db_port="3306" }
             $db_name = Read-Host "Nome do banco de dados"
             $db_user = Read-Host "Usuário do MySQL"
-            $db_pass = Ler-Segredo "Senha do MySQL (pode deixar vazio)"
+            $db_pass = Read-Secret "Senha do MySQL (deixe em branco se não houver)"
 
-            if (Teste-Comando "mysql") {
-                Write-Host "Criando banco de dados (se não existir)..." -ForegroundColor Yellow
+            if (Test-CommandExists "mysql") {
+                Write-Host "Tentando criar o banco de dados '$db_name' (se não existir)..." -ForegroundColor Yellow
+                $backtick = [char]96
+                $sql = "CREATE DATABASE IF NOT EXISTS $backtick$db_name$backtick CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+                
+                # Para evitar problemas com senhas contendo caracteres especiais, usamos uma variável de ambiente.
+                $env:MYSQL_PWD = $db_pass
+                & mysql --host=$db_host --port=$db_port --user=$db_user -e $sql
+                $env:MYSQL_PWD = $null # Limpa a variável de ambiente
 
-                $bt = [char]96
-                $sql = "CREATE DATABASE IF NOT EXISTS $bt$db_name$bt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-
-                $args = @("--host=$db_host","--port=$db_port","--user=$db_user","-e",$sql)
-                if ($db_pass -eq "") { $args += "--skip-password" } else { $args += "--password=$db_pass" }
-
-                & mysql @args
                 if ($LASTEXITCODE -ne 0) {
-                    Write-Host "Aviso: Não foi possível criar o banco automaticamente. Crie manualmente ou verifique credenciais." -ForegroundColor Yellow
+                    Write-Host "Aviso: Não foi possível criar o banco automaticamente. Verifique as credenciais ou crie-o manualmente." -ForegroundColor Yellow
                 } else {
-                    Write-Host "Banco verificado/criado." -ForegroundColor Green
+                    Write-Host "Banco de dados verificado/criado com sucesso." -ForegroundColor Green
                 }
             } else {
-                Write-Host "Comando 'mysql' não está no PATH; pulando criação automática do DB." -ForegroundColor Yellow
+                Write-Host "Comando 'mysql' não encontrado no PATH. Criação automática do banco pulada." -ForegroundColor Yellow
             }
 
-            Set-EnvValores @{
+            Set-EnvValues @{
                 "DB_CONNECTION" = "mysql"
                 "DB_HOST"       = $db_host
                 "DB_PORT"       = $db_port
@@ -288,7 +293,7 @@ function A_ConfigurarEnvBanco {
             $sqlitePath = Join-Path -Path (Resolve-Path ".\database").Path -ChildPath "database.sqlite"
             if (-not (Test-Path $sqlitePath)) { New-Item $sqlitePath -ItemType File | Out-Null }
 
-            Set-EnvValores @{
+            Set-EnvValues @{
                 "DB_CONNECTION" = "sqlite"
                 "DB_DATABASE"   = $sqlitePath
                 "DB_HOST"       = ""
@@ -298,191 +303,208 @@ function A_ConfigurarEnvBanco {
             }
             Write-Host "Arquivo .env atualizado para SQLite: $sqlitePath" -ForegroundColor Green
         }
-        default {
-            Write-Host "Opção inválida." -ForegroundColor Red
-        }
+        default { Write-Host "Opção inválida." -ForegroundColor Red }
     }
 }
-function A_GerarChave {
-    Checar-Basicos
-    Criar-EnvSeNecessario
-    Write-Host "`nGerando APP_KEY..." -ForegroundColor Cyan
+
+function A_GenerateAppKey {
+    Check-Prerequisites
+    Create-EnvIfNeeded
+    Write-Host "`nGerando chave da aplicação (APP_KEY)..." -ForegroundColor Cyan
     php artisan key:generate
-    if ($LASTEXITCODE -ne 0) { throw "Falha ao gerar chave da aplicação." }
+    if ($LASTEXITCODE -ne 0) { throw "Falha ao gerar a chave da aplicação." }
 }
-function A_Migrar {
-    Checar-Basicos
-    Write-Host "`nDeseja rodar com --seed? (S/N)" -NoNewline
+
+function A_RunMigrations {
+    Check-Prerequisites
+    Write-Host "`nDeseja popular o banco de dados com os seeders (migrate --seed)? (S/N)" -NoNewline
     $withSeed = (Read-Host).Trim().ToUpper() -eq "S"
+    
     $args = @("migrate")
     if ($withSeed) { $args += "--seed" }
+    
     Write-Host "Executando: php artisan $($args -join ' ')" -ForegroundColor Cyan
     php artisan @args
-    if ($LASTEXITCODE -ne 0) { throw "Falha ao executar migrations." }
+    if ($LASTEXITCODE -ne 0) { throw "Falha ao executar as migrations." }
+    Write-Host "Migrations executadas com sucesso." -ForegroundColor Green
 }
-function A_StorageLink {
-    Checar-Basicos
-    Write-Host "`nCriando link de storage..." -ForegroundColor Cyan
+
+function A_CreateStorageLink {
+    Check-Prerequisites
+    Write-Host "`nCriando link simbólico de storage (storage:link)..." -ForegroundColor Cyan
     php artisan storage:link
-    if ($LASTEXITCODE -ne 0) { throw "Falha ao criar storage:link." }
+    if ($LASTEXITCODE -ne 0) { throw "Falha ao criar o link de storage." }
 }
+
 function A_OptimizeClear {
-    Checar-Basicos
-    Write-Host "`nLimpando caches (optimize:clear)..." -ForegroundColor Cyan
+    Check-Prerequisites
+    Write-Host "`nLimpando todos os caches (optimize:clear)..." -ForegroundColor Cyan
     php artisan optimize:clear
-    if ($LASTEXITCODE -ne 0) { throw "Falha ao limpar caches." }
+    if ($LASTEXITCODE -ne 0) { throw "Falha ao limpar os caches." }
+    Write-Host "Caches limpos com sucesso." -ForegroundColor Green
 }
-function Porta-Disponivel {
-    param([int]$inicio = 8000)
-    $p = $inicio
-    while (Test-NetConnection -ComputerName '127.0.0.1' -Port $p -InformationLevel Quiet) {
-        $p++
+
+function Get-AvailablePort {
+    param([int]$StartPort = 8000)
+    $port = $StartPort
+    while ($true) {
+        $connection = try { Test-NetConnection -ComputerName '127.0.0.1' -Port $port -InformationLevel Quiet -ErrorAction Stop } catch { $false }
+        if (-not $connection) {
+            return $port
+        }
+        $port++
     }
-    return $p
 }
-function A_Servir {
-    Checar-Basicos
 
-    $bindHost = Read-Host "Host (padrão: 127.0.0.1)"; if ([string]::IsNullOrWhiteSpace($bindHost)) { $bindHost = "127.0.0.1" }
-    $portaDesejada = Read-Host "Porta (padrão: 8000)"; if ([string]::IsNullOrWhiteSpace($portaDesejada)) { $portaDesejada = "8000" }
+function A_ServeProject {
+    Check-Prerequisites
 
-    $portaDesejadaInt = [int]$portaDesejada
-    $porta = Porta-Disponivel -inicio $portaDesejadaInt
-    if ($porta -ne $portaDesejadaInt) {
-        Write-Host "Porta $portaDesejadaInt ocupada. Usando porta livre $porta." -ForegroundColor Yellow
+    $bindHost = Read-Host "Host para o servidor (padrão: 127.0.0.1)"; if ([string]::IsNullOrWhiteSpace($bindHost)) { $bindHost = "127.0.0.1" }
+    $desiredPort = Read-Host "Porta para o servidor (padrão: 8000)"; if ([string]::IsNullOrWhiteSpace($desiredPort)) { $desiredPort = "8000" }
+
+    $port = Get-AvailablePort -StartPort ([int]$desiredPort)
+    if ($port -ne $desiredPort) {
+        Write-Host "A porta $desiredPort está ocupada. Usando a próxima porta livre: $port." -ForegroundColor Yellow
     }
 
-    # Evita ambiguidade com ":" usando formato composto
-    $url = 'http://{0}:{1}' -f $bindHost, $porta
-
-    Write-Host "Iniciando servidor Laravel em $url..." -ForegroundColor Cyan
-    Start-Process -FilePath "php" -ArgumentList @("artisan","serve","--host=$bindHost","--port=$porta") -WindowStyle Normal
+    $url = "http://$($bindHost):$($port)"
+    Write-Host "Iniciando servidor Laravel em $url ..." -ForegroundColor Cyan
+    
+    Start-Process -FilePath "php" -ArgumentList "artisan", "serve", "--host=$bindHost", "--port=$port"
     Start-Sleep -Seconds 1
+    Write-Host "Abrindo $url no seu navegador padrão." -ForegroundColor Green
     Start-Process $url
-    Write-Host "Servidor iniciado em nova janela." -ForegroundColor Green
 }
-function A_Frontend {
-    if (-not (Teste-Comando "node")) { Write-Host "Node.js não encontrado; pulando." -ForegroundColor Yellow; return }
-    if (-not (Teste-Comando "npm"))  { Write-Host "npm não encontrado; pulando." -ForegroundColor Yellow; return }
 
-    Write-Host "`nOpções frontend:" -ForegroundColor Cyan
-    Write-Host "1) npm install"
-    Write-Host "2) npm run dev"
-    Write-Host "3) npm run build"
-    Write-Host "0) Voltar"
-    $o = Read-Host "Opção"
-    switch ($o) {
+function A_FrontendMenu {
+    if (-not (Test-CommandExists "node")) { Write-Host "Node.js não encontrado. Pulando etapa de frontend." -ForegroundColor Yellow; return }
+    if (-not (Test-CommandExists "npm"))  { Write-Host "NPM não encontrado. Pulando etapa de frontend." -ForegroundColor Yellow; return }
+
+    Write-Host "`nOpções de Frontend:" -ForegroundColor Cyan
+    Write-Host "1) Instalar dependências (npm install)"
+    Write-Host "2) Iniciar modo de desenvolvimento (npm run dev)"
+    Write-Host "3) Compilar para produção (npm run build)"
+    Write-Host "0) Voltar ao menu principal"
+    $option = Read-Host "Opção"
+    switch ($option) {
         "1" { npm install; if ($LASTEXITCODE -ne 0) { throw "Falha no 'npm install'." } }
-        "2" { npm run dev }
+        "2" { Write-Host "Iniciando 'npm run dev'. Pressione Ctrl+C na nova janela para parar." -ForegroundColor Cyan; npm run dev }
         "3" { npm run build; if ($LASTEXITCODE -ne 0) { throw "Falha no 'npm run build'." } }
         "0" { return }
         default { Write-Host "Opção inválida." -ForegroundColor Red }
     }
 }
-function A_AplicarEnvPendencias {
-    $pending = ".env.pending"
-    if (-not (Test-Path $pending)) {
-        Write-Host "Nenhuma pendência encontrada ($pending)." -ForegroundColor Yellow
+
+function A_ApplyPendingEnv {
+    $pendingPath = ".env.pending"
+    if (-not (Test-Path $pendingPath)) {
+        Write-Host "Nenhuma pendência encontrada ($pendingPath)." -ForegroundColor Yellow
         return
     }
     try {
-        $conteudo = Read-TextShared -Path $pending
-        Write-TextSafe -Path ".env" -Text $conteudo
-        Remove-Item $pending -Force -ErrorAction SilentlyContinue
-        Write-Host "Pendências aplicadas ao .env com sucesso." -ForegroundColor Green
+        $content = Read-TextShared -Path $pendingPath
+        Write-TextSafe -Path ".env" -Text $content
+        Remove-Item $pendingPath -Force
+        Write-Host "Pendências do arquivo .env foram aplicadas com sucesso." -ForegroundColor Green
     } catch {
-        Write-Host "Falha ao aplicar pendências: $($_.Exception.Message)" -ForegroundColor Red
+        throw "Falha ao aplicar pendências do .env: $($_.Exception.Message)"
     }
 }
 
-# --- FUNÇÃO PRINCIPAL MODIFICADA ---
-function A_InstalacaoCompleta {
-    Write-Host "`n--- Iniciando Instalação Completa e Automática ---" -ForegroundColor Magenta
-    
+function A_RunArtisanCommand {
+    Check-Prerequisites
+    $command = Read-Host "Digite o comando artisan (sem 'php artisan')"
+    if ([string]::IsNullOrWhiteSpace($command)) {
+        Write-Host "Nenhum comando fornecido." -ForegroundColor Yellow
+        return
+    }
+    Write-Host "Executando: php artisan $command" -ForegroundColor Cyan
+    Invoke-Expression "php artisan $command"
+}
+
+
+# --- (REVISADO) Função Principal de Instalação ---
+function A_FullInstallation {
+    Write-Host "`n--- Iniciando Instalação Completa do Projeto ---" -ForegroundColor Magenta
+
     # Etapa 1: Dependências do Composer
     Write-Host "`n[1/5] Instalando dependências do Composer..." -ForegroundColor Cyan
-    A_AtualizarDependencias
-    A_InstalarDependencias
-    
+    A_InstallDependencies
+
     # Etapa 2: Criação do .env e Geração da Chave
     Write-Host "`n[2/5] Configurando arquivo de ambiente (.env) e chave da aplicação..." -ForegroundColor Cyan
-    Criar-EnvSeNecessario
-    A_GerarChave
-    
+    Create-EnvIfNeeded
+    A_GenerateAppKey
+
     # Etapa 3: Configuração do Banco de Dados (Interativo)
-    Write-Host "`n[3/5] Agora, vamos configurar o acesso ao banco de dados." -ForegroundColor Cyan
-    A_ConfigurarEnvBanco # Reutiliza a lógica do menu 3 para pedir os dados
-    
-    # Etapa 4: Migrations e Seeders (com confirmação)
-    Write-Host "`n[4/5] Deseja executar as migrations e popular o banco (php artisan migrate --seed)? (S/N)" -NoNewline
-    $rodarMigrate = (Read-Host).Trim().ToUpper()
-    if ($rodarMigrate -eq "S") {
-        Write-Host "Executando 'php artisan migrate --seed'..." -ForegroundColor Cyan
-        php artisan migrate --seed
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Aviso: Falha ao executar as migrations. Verifique as credenciais do banco no .env." -ForegroundColor Yellow
-        } else {
-            Write-Host "Migrations e seeders executados com sucesso." -ForegroundColor Green
-        }
-    } else {
-        Write-Host "Migrations puladas. Você pode executá-las manualmente com a opção 5." -ForegroundColor Yellow
-    }
+    Write-Host "`n[3/5] Configurando o acesso ao banco de dados..." -ForegroundColor Cyan
+    A_ConfigureDbEnv
+
+    # Etapa 4: Migrations e Seeders
+    Write-Host "`n[4/5] Executando as migrations do banco de dados..." -ForegroundColor Cyan
+    A_RunMigrations
 
     # Etapa 5: Finalização
     Write-Host "`n[5/5] Executando tarefas finais (storage:link, optimize:clear)..." -ForegroundColor Cyan
-    A_StorageLink
+    A_CreateStorageLink
     A_OptimizeClear
 
     # Mensagem de Conclusão
     Write-Host "`n==========================================================================" -ForegroundColor Green
-    Write-Host "    ✅ PROJETO INSTALADO E CONFIGURADO COM SUCESSO!" -ForegroundColor Green
-    Write-Host "    👉 Tudo pronto! Você já pode iniciar o servidor usando a OPÇÃO 8." -ForegroundColor Green
+    Write-Host "  ✅ PROJETO INSTALADO E CONFIGURADO COM SUCESSO!" -ForegroundColor Green
+    Write-Host "  👉 Tudo pronto! Use a OPÇÃO 8 para iniciar o servidor." -ForegroundColor Green
     Write-Host "==========================================================================" -ForegroundColor Green
 }
 
-# ---------- UI ----------
+
+# ---------- Interface do Usuário (UI) ----------
 Clear-Host
 Write-Host "=====================================" -ForegroundColor Cyan
-Write-Host "      UTILITÁRIO PROJETO LARAVEL     " -ForegroundColor Cyan
+Write-Host "      UTILITÁRIO PROJETO LARAVEL     "
 Write-Host "=====================================" -ForegroundColor Cyan
 
 while ($true) {
     try {
         Write-Host ""
-        Write-Host "============== MENU =================" -ForegroundColor Cyan
-        Write-Host "1) Instalar dependências (composer install)"
-        Write-Host "2) Atualizar dependências (composer update)"
-        Write-Host "3) Copiar/Configurar .env (MySQL/SQLite)"
-        Write-Host "4) Gerar chave da aplicação (key:generate)"
-        Write-Host "5) Rodar migrations (opcional --seed)"
-        Write-Host "6) Criar storage:link"
-        Write-Host "7) Limpar caches (optimize:clear)"
-        Write-Host "8) Iniciar servidor (host/porta)"
-        Write-Host "9) Frontend (npm install/dev/build) - opcional"
-        Write-Host "-------------------------------------"
-        Write-Host "10) Executar tudo (Instalação de Código Completa)"
-        Write-Host "11) Aplicar pendências do .env (se houver)"
-        Write-Host "0) Sair"
-        Write-Host "=====================================" -ForegroundColor Cyan
+        Write-Host "============== MENU PRINCIPAL ===============" -ForegroundColor Cyan
+        Write-Host "--- Instalação e Configuração ---"
+        Write-Host " 1) Instalar dependências (composer install)"
+        Write-Host " 2) Atualizar dependências (composer update)"
+        Write-Host " 3) Configurar .env (Banco de Dados)"
+        Write-Host " 4) Gerar chave da aplicação (key:generate)"
+        Write-Host " 5) Rodar migrations (+ seed opcional)"
+        Write-Host "--- Comandos do Dia a Dia ---"
+        Write-Host " 6) Criar link de storage (storage:link)"
+        Write-Host " 7) Limpar caches (optimize:clear)"
+        Write-Host " 8) Iniciar servidor (php artisan serve)"
+        Write-Host " 9) Menu de Frontend (NPM)"
+        Write-Host " 10) Executar Comando Artisan Avulso"
+        Write-Host "---------------------------------------------"
+        Write-Host " A) EXECUTAR INSTALAÇÃO COMPLETA (1 a 7)" -ForegroundColor White
+        Write-Host " B) Aplicar pendências do .env (se houver)" -ForegroundColor White
+        Write-Host " 0) Sair"
+        Write-Host "=============================================" -ForegroundColor Cyan
 
-        $opcao = Read-Host "Escolha uma opção"
-        switch ($opcao) {
-            "1"  { A_InstalarDependencias }
-            "2"  { A_AtualizarDependencias }
-            "3"  { A_ConfigurarEnvBanco }
-            "4"  { A_GerarChave }
-            "5"  { A_Migrar }
-            "6"  { A_StorageLink }
+        $option = Read-Host "Escolha uma opção"
+        switch ($option.ToUpper()) {
+            "1"  { A_InstallDependencies }
+            "2"  { A_UpdateDependencies }
+            "3"  { A_ConfigureDbEnv }
+            "4"  { A_GenerateAppKey }
+            "5"  { A_RunMigrations }
+            "6"  { A_CreateStorageLink }
             "7"  { A_OptimizeClear }
-            "8"  { A_Servir }
-            "9"  { A_Frontend }
-            "10" { A_InstalacaoCompleta }
-            "11" { A_AplicarEnvPendencias }
-            "0"  { Write-Host "Saindo..." -ForegroundColor Gray; break }
+            "8"  { A_ServeProject }
+            "9"  { A_FrontendMenu }
+            "10" { A_RunArtisanCommand }
+            "A"  { A_FullInstallation }
+            "B"  { A_ApplyPendingEnv }
+            "0"  { Write-Host "Saindo..."; break }
             default { Write-Host "Opção inválida." -ForegroundColor Red }
         }
     }
     catch {
-        Write-Host "`nErro: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "`nERRO: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "A operação foi interrompida." -ForegroundColor Red
     }
 }

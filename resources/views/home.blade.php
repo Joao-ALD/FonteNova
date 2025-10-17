@@ -109,58 +109,29 @@
 @endsection
 
 @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    {{-- Scripts do mapa. O jQuery já é carregado no layout principal (main.blade.php) --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/maps/jquery-jvectormap-br-mill.js"></script>
 
     <script>
         $(function () {
-            // Garante que a variável exista, mesmo que o controller falhe, evitando erros.
-            const dadosIniciativas = {!! $dadosIniciativasJson ?? '{}' !!};
-
-            let popoverAtual = null;
-
+            // PASSO 1: Tentar renderizar o mapa da forma mais simples possível.
+            // Removemos toda a lógica de clique e popover para isolar o problema.
+            // Se o mapa aparecer com este código, o problema está na interação com o Popover.
             $('#mapa-interativo-container').vectorMap({
                 map: 'br_mill',
                 backgroundColor: 'transparent',
                 regionStyle: {
-                    initial: { fill: '#014BA0' },
-                    hover: { fill: '#0066CC', cursor: 'pointer' }
+                    initial: {
+                        fill: '#014BA0' // Cor inicial dos estados
+                    },
+                    hover: {
+                        fill: '#0066CC', // Cor ao passar o mouse
+                        cursor: 'pointer'
+                    }
                 },
-                onRegionClick: function (event, code) {
-                    if (popoverAtual) {
-                        popoverAtual.dispose();
-                    }
-
-                    const regiaoClicada = event.target;
-                    const sigla = code.split('-')[1];
-                    let tituloPopover = 'Iniciativa não encontrada';
-                    let conteudoPopover = '<p>Ainda não temos iniciativas cadastradas para o estado de ' + sigla + '.</p>';
-
-                    if (dadosIniciativas[sigla]) {
-                        const dados = dadosIniciativas[sigla];
-                        tituloPopover = dados.titulo;
-                        conteudoPopover = `<p>${dados.descricao}</p>`;
-                    }
-
-                    popoverAtual = new bootstrap.Popover(regiaoClicada, {
-                        title: tituloPopover,
-                        content: conteudoPopover,
-                        html: true,
-                        trigger: 'manual',
-                        placement: 'auto',
-                    });
-
-                    popoverAtual.show();
-                }
-            });
-
-            $('body').on('click', function (e) {
-                if ($(e.target).closest('#mapa-interativo-container').length === 0 && popoverAtual) {
-                    popoverAtual.dispose();
-                    popoverAtual = null;
-                }
+                // A lógica onRegionClick foi removida temporariamente para o teste.
             });
         });
     </script>

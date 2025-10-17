@@ -34,7 +34,7 @@ class AguaController extends Controller
                 [
                     "title" => "Mudanças Climáticas",
                     "text"  => "As mudanças climáticas já estão afetando o ciclo da água no planeta. Regiões chuvosas podem enfrentar longos períodos de estiagem. Locais secos sofrem com tempestades inesperadas. O derretimento de geleiras aumenta o nível do mar e ameaça áreas costeiras. Rios que dependem do gelo derretido ficam com menos água. Agricultores precisam se adaptar a novos cenários. Muitas espécies de plantas e animais não conseguem sobreviver. O consumo humano também se torna um desafio. Fontes renováveis de energia ajudam a diminuir o problema. Mas a conscientização da população é igualmente necessária.",
-                    "image" => "mudancas.jpg"
+                    "image" => "mudancas.png"
                 ],
                 [
                     "title" => "Impactos Regionais",

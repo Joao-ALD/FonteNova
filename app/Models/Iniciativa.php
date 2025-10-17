@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Iniciativa extends Model
 {
     // use HasFactory;
-    
+    protected $fillable = [
+        'estado_sigla',
+        'titulo',
+        'descricao',
+    ];
 }

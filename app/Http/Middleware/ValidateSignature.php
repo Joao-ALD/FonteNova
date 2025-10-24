@@ -4,6 +4,14 @@ namespace App\Http\Middleware;
 
 use Illuminate\Routing\Middleware\ValidateSignature as Middleware;
 
+/**
+ * Middleware to validate signed URLs.
+ *
+ * This middleware ensures that incoming requests with a signed URL have a
+ * valid signature, protecting against URL manipulation. The $except property
+ * can be used to ignore certain query string parameters when validating the
+- * signature.
+ */
 class ValidateSignature extends Middleware
 {
     /**

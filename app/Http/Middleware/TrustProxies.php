@@ -5,6 +5,14 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Middleware\TrustProxies as Middleware;
 use Illuminate\Http\Request;
 
+/**
+ * Middleware to configure trusted proxies.
+ *
+ * This middleware is essential when running the application behind a load
+ * balancer or a reverse proxy. It helps to correctly identify the client's
+ * IP address and other request information by specifying which proxies
+ * can be trusted.
+ */
 class TrustProxies extends Middleware
 {
     /**

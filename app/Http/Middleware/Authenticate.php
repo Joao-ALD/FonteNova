@@ -4,6 +4,12 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
+/**
+ * Middleware to handle unauthenticated users.
+ *
+ * This middleware extends the default Laravel Authenticate middleware and
+ * specifies the redirection path for users who are not logged in.
+ */
 class Authenticate extends Middleware
 {
     /**

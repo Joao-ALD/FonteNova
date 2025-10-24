@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Route service provider.
+ *
+ * This provider is responsible for loading the application's routes.
+ * By default, it loads the web and API routes, and also configures
+ * rate limiting for the API routes.
+ */
 class RouteServiceProvider extends ServiceProvider
 {
     /**

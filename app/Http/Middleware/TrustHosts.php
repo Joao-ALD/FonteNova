@@ -4,6 +4,12 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Middleware\TrustHosts as Middleware;
 
+/**
+ * Middleware to configure trusted hosts.
+ *
+ * This middleware is used to prevent host header attacks by explicitly
+ * defining which hosts the application should respond to.
+ */
 class TrustHosts extends Middleware
 {
     /**

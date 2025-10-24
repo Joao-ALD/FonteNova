@@ -7,6 +7,13 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Middleware to redirect authenticated users.
+ *
+ * This middleware checks if a user is already authenticated and, if so,
+ * redirects them from pages that are intended for guests (like the login page)
+ * to the application's home screen.
+ */
 class RedirectIfAuthenticated
 {
     /**

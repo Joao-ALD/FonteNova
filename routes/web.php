@@ -42,3 +42,7 @@ Route::post('/chatbot/responder', [ChatBotController::class, 'responder'])->name
 // Rota para o mapa interativo
 Route::get('/mapa', [MapaController::class, 'index'])->name('mapa.index');
 Route::get('/mapa/info/{estado}', [MapaController::class, 'getEstadoInfo'])->name('mapa.info');
+
+//Rota Cursos
+Route::get('/cursos', [CursoController::class, 'index'])->name('curso.index');
+Route::get('/cursos/{aula}', [CursoController::class, 'mostrarAula'])->name('curso.aula');

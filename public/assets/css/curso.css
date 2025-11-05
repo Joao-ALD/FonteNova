@@ -1,0 +1,92 @@
+/* ======================================= */
+/* PÁGINA DE CURSO (Estilo FonteNova)      */
+/* ======================================= */
+
+/* * 1. DEFINIÇÃO DAS CORES (Extraídas do home.css)
+ * Usamos variáveis CSS para aplicar facilmente a paleta.
+ */
+:root {
+    --fn-azul-principal: #4A90E2;    /* Cor do Hero e seções de mapa */
+    --fn-azul-escuro: #0B2D5A;     /* Cor do .btn-cta e .edu-section */
+    --fn-azul-escuro-hover: #082245; /* Cor do :hover do .btn-cta */
+    --fn-fundo-claro: #f7f9fc;      /* Cor da .quote-section (ótimo para hovers) */
+}
+
+
+/* * 2. ÍNDICE DE AULAS (.list-group)
+ * Aqui usamos o Azul Principal para o item ATIVO.
+ */
+.list-group-item-action {
+    font-weight: 500;
+    color: #333;
+    /* Borda um pouco mais suave que a padrão do Bootstrap */
+    border: 1px solid #eee; 
+}
+
+/* Efeito HOVER (passar o mouse) */
+.list-group-item-action:hover, 
+.list-group-item-action:focus {
+    /* Usamos o fundo claro da seção de citação da home */
+    background-color: var(--fn-fundo-claro);
+    /* O texto fica com o tom azul escuro para dar destaque */
+    color: var(--fn-azul-escuro); 
+    z-index: 5; /* Garante que o item fique "acima" dos outros no hover */
+}
+
+/* Aula ATIVA */
+.list-group-item-action.active {
+    background-color: var(--fn-azul-principal);
+    border-color: var(--fn-azul-principal);
+    color: #fff;
+    font-weight: 700;
+}
+
+/* * 3. BOTÃO DE AÇÃO PRINCIPAL (Próxima Aula)
+ * Sobrescreve .btn-primary para ter o mesmo estilo do .btn-cta da home.
+ */
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--fn-azul-escuro);
+    --bs-btn-border-color: var(--fn-azul-escuro);
+    
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--fn-azul-escuro-hover);
+    --bs-btn-hover-border-color: var(--fn-azul-escuro-hover);
+
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--fn-azul-escuro-hover);
+    --bs-btn-active-border-color: var(--fn-azul-escuro-hover);
+
+    /* Copiado do .btn-cta para consistência de tamanho */
+    padding: 0.75rem 1.5rem; 
+    font-weight: 600;
+}
+
+/* * 4. BOTÃO SECUNDÁRIO (Aula Anterior)
+ * Um estilo mais leve que não compete com o botão principal.
+ */
+.btn-outline-secondary {
+    color: var(--fn-azul-escuro);
+    border-color: #ced4da;
+    padding: 0.75rem 1.5rem; /* Mesmo padding */
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--fn-fundo-claro);
+    color: var(--fn-azul-escuro);
+    border-color: #ced4da;
+}
+
+/* 5. TÍTULOS E VÍDEO (Polimento) */
+.col-md-8 h2 {
+    /* Usando o azul escuro para o título da aula, como na home */
+    color: var(--fn-azul-escuro);
+    font-weight: 800; /* Padrão dos títulos da home */
+}
+
+/* Adiciona a sombra e borda arredondada ao vídeo */
+.ratio {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}

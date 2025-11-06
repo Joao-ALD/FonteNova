@@ -1,4 +1,4 @@
-@extends('layouts.main') {{-- Ou o seu layout principal --}}
+@extends('layouts.main')
 
 @section('content')
 
@@ -71,5 +71,5 @@
 
     </div>
 </div>
-
+<link rel="stylesheet" href="{{ asset('assets/css/curso.css') }}">
 @endsection

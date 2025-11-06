@@ -2,6 +2,10 @@
 
 @section('title', 'Fonte Nova - Quizz')
 
+@push('styles')
+    @vite(['resources/css/quizz.css', 'resources/js/quizz.js'])
+@endpush
+
 @section('content')
   <div class="quiz-page">
     <div class="quiz-container">
@@ -52,9 +56,4 @@
       </div>
     </div>
   </div>
-@endsection
-
-@section('scripts')
-  <link rel="stylesheet" href="{{ asset('assets/css/quizz.css') }}">
-  <script src="{{ asset('assets/js/quizz.js') }}"></script>
 @endsection

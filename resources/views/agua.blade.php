@@ -10,7 +10,7 @@
     Ela sim pode ter min-vh-100 para centralizar o início.
   --}}
    
-  <section id="hero-agua" class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-90">
+  <section id="hero-agua" class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100">
     <h1 class="display-1 fw-bold p">Tudo sobre a Água</h1>
 
     <p class="lead mt-3">

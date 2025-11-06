@@ -41,7 +41,7 @@
     ESTE É O CONTAINER DOS CARDS.
     Ele fica FORA da seção anterior.
   --}}
-  <div class="container mt-5 mb-5" id="infoPanels"> {{-- <--- EU ADICIONEI mb-5 (margin-bottom) PARA DAR ESPAÇO DO FOOTER --}}
+  <div class="container  mb-5" id="infoPanels"> {{-- <--- EU ADICIONEI mb-5 (margin-bottom) PARA DAR ESPAÇO DO FOOTER --}}
     @foreach ($topics as $topic => $cards)
       <div class="collapse" id="collapse{{ $topic }}" data-bs-parent="#infoPanels">
         <div class="row g-4">

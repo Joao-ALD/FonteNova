@@ -1,4 +1,4 @@
-@extends('layouts.main') {{-- Ou o seu layout principal --}}
+@extends('layouts.main')
 
 @section('content')
 
@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <h1 style="color: #0B2D5A; font-weight: 800;">Módulos Educacionais</h1>
+            <h1 style="color: #000; font-weight: 800;">Módulos Educacionais</h1>
             <p class="lead mb-4">Explore nossos saberes. Selecione um módulo abaixo para começar a aprender.</p>
 
             <div class="list-group">
@@ -16,7 +16,7 @@
                        class="list-group-item list-group-item-action p-3">
                         
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1" style="color: #4A90E2;">{{ $aula->titulo }}</h5>
+                            <h5 class="mb-1" style="color: rgba(1, 75, 160, 1);">{{ $aula->titulo }}</h5>
                             <small>Aula {{ $aula->ordem }}</small>
                         </div>
                         <p class="mb-1">
@@ -34,5 +34,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

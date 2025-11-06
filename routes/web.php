@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\QuizzController;
 use App\Http\Controllers\GaleriaController;
+use App\Http\Controllers\MapaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,11 @@ Route::get('/curso', [CursoController::class, 'index'])->name('curso.index');
 // Rotas do ChatBot (padronizadas em lowercase e com referência correta ao controller)
 Route::get('/chatbot', [ChatBotController::class, 'index'])->name('chatbot.index');
 Route::post('/chatbot/responder', [ChatBotController::class, 'responder'])->name('chatbot.responder');
+
+// Rota para o mapa interativo
+Route::get('/mapa', [MapaController::class, 'index'])->name('mapa.index');
+Route::get('/mapa/info/{estado}', [MapaController::class, 'getEstadoInfo'])->name('mapa.info');
+
+//Rota Cursos
+Route::get('/cursos', [CursoController::class, 'index'])->name('curso.index');
+Route::get('/cursos/{aula}', [CursoController::class, 'mostrarAula'])->name('curso.aula');

@@ -103,6 +103,8 @@ answersBtns.forEach(button => {
             totalLiters += quizData[currentQuiz].liters;
         } else {
             button.style.backgroundColor = "#f44336";
+            const correctBtn = document.getElementById(quizData[currentQuiz].correct);
+            correctBtn.style.backgroundColor = "#4caf50";
         }
 
         nextBtn.style.display = "inline-block";

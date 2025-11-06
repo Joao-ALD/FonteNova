@@ -2,11 +2,15 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+// 1. Linha 5 "descomentada"
+use Illuminate\Foundation\Testing\RefreshDatabase; 
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    // 2. Linha 9 adicionada
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *

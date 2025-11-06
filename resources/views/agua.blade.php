@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@push('styles')
+  <link rel="stylesheet" href="{{ asset('assets/css/agua.css') }}">
+@endpush
 
 @section('content')
 
@@ -6,7 +9,7 @@
     ESTA SEÇÃO É SÓ PARA O TÍTULO E BOTÕES. 
     Ela sim pode ter min-vh-100 para centralizar o início.
   --}}
-  <section class="container d-flex flex-column align-items-center text-center pt-5 pb-3 mt-5 mb-3">
+  <section id="hero-agua" class="container d-flex flex-column align-items-center text-center">
     <h1 class="display-1 fw-bold p">Tudo sobre a Água</h1>
 
     <p class="lead mt-3">
@@ -41,7 +44,7 @@
     ESTE É O CONTAINER DOS CARDS.
     Ele fica FORA da seção anterior.
   --}}
-  <div class="container  mb-5" id="infoPanels"> {{-- <--- EU ADICIONEI mb-5 (margin-bottom) PARA DAR ESPAÇO DO FOOTER --}}
+  <div class="container" id="infoPanels"> {{-- <--- EU ADICIONEI mb-5 (margin-bottom) PARA DAR ESPAÇO DO FOOTER --}}
     @foreach ($topics as $topic => $cards)
       <div class="collapse" id="collapse{{ $topic }}" data-bs-parent="#infoPanels">
         <div class="row g-4">

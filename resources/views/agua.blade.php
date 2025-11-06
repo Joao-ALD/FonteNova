@@ -6,7 +6,7 @@
     ESTA SEÇÃO É SÓ PARA O TÍTULO E BOTÕES. 
     Ela sim pode ter min-vh-100 para centralizar o início.
   --}}
-  <section class="container d-flex flex-column justify-content-center align-items-center text-center min-vh-100">
+  <section class="container d-flex flex-column align-items-center text-center pt-5 pb-3 mt-5 mb-3">
     <h1 class="display-1 fw-bold p">Tudo sobre a Água</h1>
 
     <p class="lead mt-3">

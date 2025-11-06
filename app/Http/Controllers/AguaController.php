@@ -4,8 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * Controller for handling the water-related informational pages.
+ */
 class AguaController extends Controller
 {
+    /**
+     * Display the main water information page.
+     *
+     * This method returns the 'agua' view, passing a structured array of topics
+     * related to water, including climate, collection, consumption, and preservation.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index(){
 
         $topics = [

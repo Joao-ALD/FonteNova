@@ -1,123 +1,146 @@
-const quizData = [
-    {
-        question: "Quanto tempo você deve tomar banho para economizar água?",
-        a: "20 minutos",
-        b: "5 minutos",
-        c: "15 minutos",
-        correct: "b",
-        liters: 60
-    },
-    {
-        question: "O que é mais eficiente para escovar os dentes?",
-        a: "Deixar a torneira aberta",
-        b: "Fechar a torneira enquanto escova",
-        c: "Escovar rápido sem fechar",
-        correct: "b",
-        liters: 6
-    },
-    {
-        question: "Qual é a forma mais econômica de lavar roupa?",
-        a: "Usar máquina com carga completa",
-        b: "Lavar peça por peça",
-        c: "Lavar roupa manualmente",
-        correct: "a",
-        liters: 50
-    },
-    {
-        question: "Para que podemos reutilizar água da chuva em casa?",
-        a: "Beber",
-        b: "Regar plantas ou lavar áreas externas",
-        c: "Descartar no vaso sanitário",
-        correct: "b",
-        liters: 30
-    },
-    {
-        question: "Qual prática economiza mais água na cozinha?",
-        a: "Lavar louça com a torneira aberta",
-        b: "Lavar louça na pia com água acumulada",
-        c: "Lavar louça no microondas",
-        correct: "b",
-        liters: 15
-    }
-];
+document.addEventListener("DOMContentLoaded", () => {
+    const quizData = [
+        {
+            question: "Quanto tempo um banho de 5 minutos gasta em média?",
+            options: {
+                a: "15 litros de água",
+                b: "45 litros de água",
+                c: "100 litros de água",
+            },
+            correct: "b",
+            liters: 45,
+        },
+        {
+            question: "Deixar a torneira aberta ao escovar os dentes desperdiça em média:",
+            options: {
+                a: "1 litro de água",
+                b: "5 litros de água",
+                c: "12 litros de água",
+            },
+            correct: "c",
+            liters: 12,
+        },
+        {
+            question: "Qual eletrodoméstico consome mais água em um ciclo de lavagem?",
+            options: {
+                a: "Máquina de lavar louça",
+                b: "Máquina de lavar roupa",
+                c: "Ambos consomem a mesma quantidade",
+            },
+            correct: "b",
+            liters: 135,
+        },
+        {
+            question: "Uma pequena torneira a pingar pode desperdiçar até:",
+            options: {
+                a: "10 litros por dia",
+                b: "46 litros por dia",
+                c: "100 litros por dia",
+            },
+            correct: "b",
+            liters: 46,
+        },
+        {
+            question: "Qual a maneira mais eficiente de regar as plantas?",
+            options: {
+                a: "Durante o meio-dia, com sol forte",
+                b: "No início da manhã ou no final da tarde",
+                c: "A qualquer hora, com mangueira",
+            },
+            correct: "b",
+            liters: 20,
+        },
+    ];
 
-let currentQuiz = 0;
-let totalLiters = 0;
-let selectedAnswer = null;
+    let currentQuiz = 0;
+    let totalLiters = 0;
+    let selectedAnswer = null;
 
-const startBtn = document.getElementById("start-btn");
-const restartBtn = document.getElementById("restart-btn");
-const nextBtn = document.getElementById("next-btn");
+    const startBtn = document.getElementById("start-btn");
+    const restartBtn = document.getElementById("restart-btn");
+    const nextBtn = document.getElementById("next-btn");
 
-const startScreen = document.getElementById("start-screen");
-const quizScreen = document.getElementById("quiz-screen");
-const resultScreen = document.getElementById("result-screen");
+    const startScreen = document.getElementById("start-screen");
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
 
-const questionEl = document.getElementById("question");
-const a_btn = document.getElementById("a");
-const b_btn = document.getElementById("b");
-const c_btn = document.getElementById("c");
-const answersBtns = [a_btn, b_btn, c_btn];
+    const questionEl = document.getElementById("question");
+    const answerButtons = {
+        a: document.getElementById("a"),
+        b: document.getElementById("b"),
+        c: document.getElementById("c"),
+    };
+    const progressEl = document.getElementById("progress");
+    const scoreTextEl = document.getElementById("score-text");
 
-const scoreEl = document.getElementById("score");
+    const setActiveScreen = (screen) => {
+        [startScreen, quizScreen, resultScreen].forEach((s) =>
+            s.classList.remove("active")
+        );
+        screen.classList.add("active");
+    };
 
-startBtn.addEventListener("click", () => {
-    startScreen.classList.remove("active");
-    quizScreen.classList.add("active");
-    loadQuiz();
-});
+    const updateProgress = () => {
+        const progressPercentage = (currentQuiz / quizData.length) * 100;
+        progressEl.style.width = `${progressPercentage}%`;
+    };
 
-restartBtn.addEventListener("click", () => {
-    currentQuiz = 0;
-    totalLiters = 0;
-    resultScreen.classList.remove("active");
-    startScreen.classList.add("active");
-});
-
-function loadQuiz() {
-    resetAnswers();
-    const currentQuizData = quizData[currentQuiz];
-    questionEl.innerText = currentQuizData.question;
-    a_btn.innerText = currentQuizData.a;
-    b_btn.innerText = currentQuizData.b;
-    c_btn.innerText = currentQuizData.c;
-}
-
-function resetAnswers() {
-    selectedAnswer = null;
-    answersBtns.forEach(btn => {
-        btn.disabled = false;
-        btn.style.backgroundColor = "#f1f1f1";
-    });
-    nextBtn.style.display = "none";
-}
-
-answersBtns.forEach(button => {
-    button.addEventListener('click', () => {
-        selectedAnswer = button.id;
-
-        answersBtns.forEach(btn => btn.disabled = true);
-
-        if (selectedAnswer === quizData[currentQuiz].correct) {
-            button.style.backgroundColor = "#4caf50";
-            totalLiters += quizData[currentQuiz].liters;
-        } else {
-            button.style.backgroundColor = "#f44336";
-            const correctBtn = document.getElementById(quizData[currentQuiz].correct);
-            correctBtn.style.backgroundColor = "#4caf50";
+    const loadQuiz = () => {
+        selectedAnswer = null;
+        const currentQuizData = quizData[currentQuiz];
+        questionEl.innerText = currentQuizData.question;
+        for (const key in currentQuizData.options) {
+            answerButtons[key].innerText = currentQuizData.options[key];
         }
+        Object.values(answerButtons).forEach((btn) => {
+            btn.disabled = false;
+            btn.style.backgroundColor = "";
+            btn.style.borderColor = "";
+        });
+        nextBtn.style.display = "none";
+        updateProgress();
+    };
 
-        nextBtn.style.display = "inline-block";
-    });
-});
+    const showResult = () => {
+        setActiveScreen(resultScreen);
+        scoreTextEl.innerText = `Parabéns! Aplicando essas dicas, você pode economizar aproximadamente ${totalLiters} litros de água diariamente!`;
+    };
 
-nextBtn.addEventListener("click", () => {
-    currentQuiz++;
-    if (currentQuiz < quizData.length) {
+    startBtn.addEventListener("click", () => {
+        setActiveScreen(quizScreen);
         loadQuiz();
-    } else {
-        quizScreen.classList.remove("active");
-        resultScreen.classList.add("active");
-        scoreEl.innerText = `Parabéns! Aplicando essas dicas, você pode economizar aproximadamente ${totalLiters} litros de água diariamente!`;
-    }
+    });
+
+    restartBtn.addEventListener("click", () => {
+        currentQuiz = 0;
+        totalLiters = 0;
+        setActiveScreen(startScreen);
+    });
+
+    nextBtn.addEventListener("click", () => {
+        currentQuiz++;
+        if (currentQuiz < quizData.length) {
+            loadQuiz();
+        } else {
+            showResult();
+        }
+    });
+
+    Object.entries(answerButtons).forEach(([key, button]) => {
+        button.addEventListener("click", () => {
+            selectedAnswer = key;
+            const currentQuizData = quizData[currentQuiz];
+            Object.values(answerButtons).forEach((btn) => (btn.disabled = true));
+
+            if (selectedAnswer === currentQuizData.correct) {
+                button.style.backgroundColor = "#28a745";
+                totalLiters += currentQuizData.liters;
+            } else {
+                button.style.backgroundColor = "#dc3545";
+                answerButtons[currentQuizData.correct].style.backgroundColor =
+                    "#28a745";
+            }
+            nextBtn.style.display = "inline-block";
+        });
+    });
 });

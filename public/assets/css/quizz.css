@@ -1,93 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 .quiz-page {
-    background: #0288d1;
+    background: #007bff;
     width: 100%;
     min-height: calc(100vh - 100px);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px 15px;
+    padding: 20px;
     box-sizing: border-box;
-    font-family: 'Jersey 25', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .quiz-container {
-    background: #0288d1;
-    color: #fff;
+    background: #ffffff;
+    color: #333;
     border-radius: 15px;
-    padding: 50px;
-    max-width: 700px;
+    padding: 40px;
+    max-width: 600px;
     width: 100%;
     text-align: center;
-    overflow: hidden;
-    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Títulos grandes */
 h1 {
-    font-size: 48px;
-    margin-bottom: 30px;
+    font-size: 36px;
+    margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 36px;
-    margin-bottom: 25px;
-}
-
-h3 {
     font-size: 28px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
-/* Texto principal maior */
 p {
-    font-size: 24px;
-    line-height: 1.8;
-    color: #ffffff;
-    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
 }
 
-/* Botões principais */
 button {
-    padding: 18px 32px;
+    padding: 15px 30px;
     border: none;
-    border-radius: 10px;
-    background: #1466c3;
+    border-radius: 8px;
+    background: #007bff;
     color: #fff;
-    font-size: 22px;
+    font-size: 18px;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    background: #2575fc;
-}
-
-/* Botões de resposta */
-.answers button {
-    width: 100%;
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    font-size: 22px;
-    background-color: #f1f1f1;
-    color: #333;
     transition: background 0.3s ease;
 }
 
-.answers button:hover {
-    background-color: #ddd;
+button:hover {
+    background: #0056b3;
 }
 
-/* Controle de telas */
+.answers button {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.answers button:hover {
+    background-color: #e9e9e9;
+    border-color: #999;
+}
+
 .screen {
     display: none;
-    transition: all 0.5s ease;
 }
 
 .screen.active {
     display: block;
-}   
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 10px;
+    background-color: #007bff;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.score-container {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f0f8ff;
+    margin-bottom: 20px;
+}
+
+#score-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+@media (max-width: 600px) {
+    .quiz-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+
+    .answers button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    #score-text {
+        font-size: 18px;
+    }
+}

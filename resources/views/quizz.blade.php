@@ -7,22 +7,27 @@
     <div class="quiz-container">
       <!-- Tela inicial -->
       <div id="start-screen" class="screen active">
-        <h1>FonteNova</h1>
-        <h3>Salve a Água</h3>
+        <h1 class="quiz-title">FonteNova</h1>
+        <h3 class="quiz-subtitle">Salve a Água</h3>
         <br>
-        <p>
+        <p class="quiz-description">
           A água é um dos recursos mais preciosos do planeta — e também um dos mais desperdiçados.
         </p>
-        <p>
+        <p class="quiz-description">
           Neste quiz educativo, você irá responder a 5 perguntas simples sobre hábitos do dia a dia e descobrir quantos litros de água podem ser economizados com pequenas mudanças.
         </p>
-        <p><strong>Prepare-se para aprender e fazer a diferença!</strong></p>
+        <p class="quiz-cta"><strong>Prepare-se para aprender e fazer a diferença!</strong></p>
         <button id="start-btn">Começar</button>
       </div>
 
       <!-- Quiz -->
       <div id="quiz-screen" class="screen">
-        <h2 id="question">Pergunta</h2>
+        <div class="quiz-header">
+          <h2 id="question">Pergunta</h2>
+          <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+          </div>
+        </div>
         <div class="answers">
           <button class="answer" id="a"></button>
           <button class="answer" id="b"></button>
@@ -33,12 +38,14 @@
 
       <!-- Resultado -->
       <div id="result-screen" class="screen">
-        <h2>Resultado</h2>
-        <p id="score"></p>
-        <p>
+        <h2 class="quiz-result-title">Resultado</h2>
+        <div class="score-container">
+          <p id="score-text"></p>
+        </div>
+        <p class="quiz-result-description">
           Além de economizar água, atitudes conscientes ajudam a preservar o meio ambiente, reduzir sua conta de água e promover um futuro mais sustentável.
         </p>
-        <p>
+        <p class="quiz-result-share">
           Compartilhe este quiz com seus amigos e familiares para espalhar o conhecimento!
         </p>
         <button id="restart-btn">Refazer Quiz</button>

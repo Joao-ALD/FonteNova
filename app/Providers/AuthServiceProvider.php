@@ -5,6 +5,13 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+/**
+ * Authentication service provider.
+ *
+ * This provider is responsible for registering the application's authentication
+ * and authorization services. This is where you can define policies to
+ * authorize user actions against models and other resources.
+ */
 class AuthServiceProvider extends ServiceProvider
 {
     /**

@@ -5,6 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Model for ChatBot interactions.
+ *
+ * This model is not currently used for persisting chat logs, but defines the
+ * fillable fields that could be used for such a purpose in the future.
+ */
 class ChatBot extends Model
 {
     use HasFactory;

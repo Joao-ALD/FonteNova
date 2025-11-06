@@ -31,8 +31,8 @@ function SelfHeal-Script {
         $fixed = $fixed -replace 'http://\$host:', 'http://${host}:'
         $fixed = $fixed -replace 'https://\$host:', 'https://${host}:'
 
-        # 3) Desescapar "&amp;" (cópias vindas de HTML quebram chamadas como "& cmd")
-        $fixed = $fixed -replace '&amp;', '&'
+        # 3) Desescapar "&" (cópias vindas de HTML quebram chamadas como "& cmd")
+        $fixed = $fixed -replace '&', '&'
 
         # 4) Normalizar quebras de linha para CRLF (padrão Windows)
         $fixed = $fixed -replace "(?<!\r)\n", "`r`n"
@@ -79,6 +79,7 @@ function Check-Prerequisites {
     Assert-ProjectRoot
     if (-not (Test-CommandExists "php"))      { throw "Comando 'php' não encontrado no PATH." }
     if (-not (Test-CommandExists "composer")) { throw "Comando 'composer' não encontrado no PATH." }
+    if (-not (Test-CommandExists "git"))      { Write-Host "Aviso: Comando 'git' não encontrado no PATH. Algumas funcionalidades podem ser limitadas." -ForegroundColor Yellow }
 
     # Garante que o diretório de cache do Laravel exista para evitar erros no composer install/update
     $cacheDir = ".\bootstrap\cache"
@@ -174,7 +175,8 @@ function Set-EnvValues {
 
     $lines = $content -split '\r?\n'
     $newContent = [System.Collections.Generic.List[string]]::new()
-    $keysToUpdate = $Pairs.Clone().Keys
+    $keysToUpdate = [System.Collections.Generic.List[string]]::new()
+    $Pairs.Keys | ForEach-Object { $keysToUpdate.Add($_) }
 
     # Atualiza as chaves existentes
     foreach ($line in $lines) {
@@ -207,7 +209,7 @@ function Set-EnvValues {
     Write-TextSafe -Path $Path -Text $finalText
 }
 
-function Create-EnvIfNeeded {
+function Ensure-EnvFileExists {
     if (-not (Test-Path ".env")) {
         if (Test-Path ".env.example") {
             Copy-Item -Path ".env.example" -Destination ".env"
@@ -241,7 +243,7 @@ function A_UpdateDependencies {
 
 function A_ConfigureDbEnv {
     Check-Prerequisites
-    Create-EnvIfNeeded
+    Ensure-EnvFileExists
 
     if (Test-CommandExists "mysql") {
         Write-Host ("MySQL client detectado em: " + (Get-CommandPath "mysql")) -ForegroundColor DarkGray
@@ -262,13 +264,13 @@ function A_ConfigureDbEnv {
             if (Test-CommandExists "mysql") {
                 Write-Host "Tentando criar o banco de dados '$db_name' (se não existir)..." -ForegroundColor Yellow
                 $backtick = [char]96
-                $sql = "CREATE DATABASE IF NOT EXISTS $backtick$db_name$backtick CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+                $sql = "CREATE DATABASE IF NOT EXISTS ${backtick}${db_name}${backtick} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
                 
                 # Para evitar problemas com senhas contendo caracteres especiais, usamos uma variável de ambiente.
                 $env:MYSQL_PWD = $db_pass
-                & mysql --host=$db_host --port=$db_port --user=$db_user -e $sql
-                $env:MYSQL_PWD = $null # Limpa a variável de ambiente
-
+                try {
+                    & mysql --host=$db_host --port=$db_port --user=$db_user -e $sql
+                } finally { $env:MYSQL_PWD = $null } # Limpa a variável de ambiente
                 if ($LASTEXITCODE -ne 0) {
                     Write-Host "Aviso: Não foi possível criar o banco automaticamente. Verifique as credenciais ou crie-o manualmente." -ForegroundColor Yellow
                 } else {
@@ -309,7 +311,7 @@ function A_ConfigureDbEnv {
 
 function A_GenerateAppKey {
     Check-Prerequisites
-    Create-EnvIfNeeded
+    Ensure-EnvFileExists
     Write-Host "`nGerando chave da aplicação (APP_KEY)..." -ForegroundColor Cyan
     php artisan key:generate
     if ($LASTEXITCODE -ne 0) { throw "Falha ao gerar a chave da aplicação." }
@@ -327,6 +329,17 @@ function A_RunMigrations {
     php artisan @args
     if ($LASTEXITCODE -ne 0) { throw "Falha ao executar as migrations." }
     Write-Host "Migrations executadas com sucesso." -ForegroundColor Green
+}
+
+function A_ResetDatabase {
+    Check-Prerequisites
+    Write-Host "`nATENÇÃO: Esta ação irá APAGAR TODOS OS DADOS do banco de dados." -ForegroundColor Red
+    $confirmation = Read-Host "Tem certeza que deseja continuar e recriar o banco com as seeds? (S/N)"
+    if ($confirmation.Trim().ToUpper() -ne "S") { Write-Host "Operação cancelada."; return }
+
+    Write-Host "Executando: php artisan migrate:fresh --seed" -ForegroundColor Cyan
+    php artisan migrate:fresh --seed
+    if ($LASTEXITCODE -ne 0) { throw "Falha ao resetar o banco de dados." }
 }
 
 function A_CreateStorageLink {
@@ -433,19 +446,19 @@ function A_FullInstallation {
 
     # Etapa 2: Criação do .env e Geração da Chave
     Write-Host "`n[2/5] Configurando arquivo de ambiente (.env) e chave da aplicação..." -ForegroundColor Cyan
-    Create-EnvIfNeeded
+    Ensure-EnvFileExists
     A_GenerateAppKey
 
     # Etapa 3: Configuração do Banco de Dados (Interativo)
     Write-Host "`n[3/5] Configurando o acesso ao banco de dados..." -ForegroundColor Cyan
     A_ConfigureDbEnv
 
-    # Etapa 4: Migrations e Seeders
+    # Etapa 4: Migrations (com seeders)
     Write-Host "`n[4/5] Executando as migrations do banco de dados..." -ForegroundColor Cyan
-    A_RunMigrations
+    php artisan migrate --seed
 
     # Etapa 5: Finalização
-    Write-Host "`n[5/5] Executando tarefas finais (storage:link, optimize:clear)..." -ForegroundColor Cyan
+    Write-Host "`n[5/5] Executando tarefas finais..." -ForegroundColor Cyan
     A_CreateStorageLink
     A_OptimizeClear
 
@@ -473,30 +486,33 @@ while ($true) {
         Write-Host " 3) Configurar .env (Banco de Dados)"
         Write-Host " 4) Gerar chave da aplicação (key:generate)"
         Write-Host " 5) Rodar migrations (+ seed opcional)"
+        Write-Host " 6) Resetar Banco de Dados (migrate:fresh --seed)" -ForegroundColor Yellow
         Write-Host "--- Comandos do Dia a Dia ---"
-        Write-Host " 6) Criar link de storage (storage:link)"
-        Write-Host " 7) Limpar caches (optimize:clear)"
-        Write-Host " 8) Iniciar servidor (php artisan serve)"
-        Write-Host " 9) Menu de Frontend (NPM)"
-        Write-Host " 10) Executar Comando Artisan Avulso"
+        Write-Host " 7) Criar link de storage (storage:link)"
+        Write-Host " 8) Limpar caches (optimize:clear)"
+        Write-Host " 9) Iniciar servidor (php artisan serve)"
+        Write-Host " 10) Menu de Frontend (NPM)"
+        Write-Host " 11) Executar Comando Artisan Avulso"
         Write-Host "---------------------------------------------"
-        Write-Host " A) EXECUTAR INSTALAÇÃO COMPLETA (1 a 7)" -ForegroundColor White
+        Write-Host " A) EXECUTAR INSTALAÇÃO COMPLETA (Recomendado para início)" -ForegroundColor White
         Write-Host " B) Aplicar pendências do .env (se houver)" -ForegroundColor White
         Write-Host " 0) Sair"
         Write-Host "=============================================" -ForegroundColor Cyan
 
         $option = Read-Host "Escolha uma opção"
+        Clear-Host
         switch ($option.ToUpper()) {
             "1"  { A_InstallDependencies }
             "2"  { A_UpdateDependencies }
             "3"  { A_ConfigureDbEnv }
             "4"  { A_GenerateAppKey }
             "5"  { A_RunMigrations }
-            "6"  { A_CreateStorageLink }
-            "7"  { A_OptimizeClear }
-            "8"  { A_ServeProject }
-            "9"  { A_FrontendMenu }
-            "10" { A_RunArtisanCommand }
+            "6"  { A_ResetDatabase }
+            "7"  { A_CreateStorageLink }
+            "8"  { A_OptimizeClear }
+            "9"  { A_ServeProject }
+            "10" { A_FrontendMenu }
+            "11" { A_RunArtisanCommand }
             "A"  { A_FullInstallation }
             "B"  { A_ApplyPendingEnv }
             "0"  { Write-Host "Saindo..."; break }

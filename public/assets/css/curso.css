@@ -1,87 +1,87 @@
 /* ======================================= */
-/* PÁGINA DE CURSO (Estilo FonteNova)      */
+/* PÁGINA DE CURSO (Estilo FonteNova Oficial) */
 /* ======================================= */
 
-/* * 1. DEFINIÇÃO DAS CORES (Extraídas do home.css)
- * Usamos variáveis CSS para aplicar facilmente a paleta.
+/* * 1. CORES (Extraídas do style.css)
+ * Essas são as cores definidas no arquivo principal.
  */
 :root {
-    --fn-azul-principal: #4A90E2;    /* Cor do Hero e seções de mapa */
-    --fn-azul-escuro: #0B2D5A;     /* Cor do .btn-cta e .edu-section */
-    --fn-azul-escuro-hover: #082245; /* Cor do :hover do .btn-cta */
-    --fn-fundo-claro: #f7f9fc;      /* Cor da .quote-section (ótimo para hovers) */
+    --AzulEscuro: rgba(1, 75, 160, 1);
+    --Azul2: rgba(10, 92, 184, 1);
+    --Azul3: rgba(20, 102, 195, 1);
+    --Azul4: rgba(33, 116, 212, 1);
+    --AzulClaro: rgba(59, 142, 237, 1);
+    --BrancoPuro: #ffffff;
 }
 
 
 /* * 2. ÍNDICE DE AULAS (.list-group)
- * Aqui usamos o Azul Principal para o item ATIVO.
  */
 .list-group-item-action {
     font-weight: 500;
-    color: #333;
-    /* Borda um pouco mais suave que a padrão do Bootstrap */
-    border: 1px solid #eee; 
+    color: #000;
+    border: 1px solid #C7C8C9; 
 }
 
 /* Efeito HOVER (passar o mouse) */
 .list-group-item-action:hover, 
 .list-group-item-action:focus {
-    /* Usamos o fundo claro da seção de citação da home */
-    background-color: var(--fn-fundo-claro);
-    /* O texto fica com o tom azul escuro para dar destaque */
-    color: var(--fn-azul-escuro); 
-    z-index: 5; /* Garante que o item fique "acima" dos outros no hover */
+    /* Usamos o AzulEscuro para o texto */
+    color: var(--AzulEscuro);
+    /* Usamos o AzulClaro com 10% de opacidade como fundo */
+    background-color: rgba(59, 142, 237, 0.1);
+    z-index: 5;
 }
 
 /* Aula ATIVA */
 .list-group-item-action.active {
-    background-color: var(--fn-azul-principal);
-    border-color: var(--fn-azul-principal);
-    color: #fff;
+    /* O item ativo usa o AzulClaro, assim como os .bg-card */
+    background-color: var(--AzulEscuro);
+    border-color: var(--AzulEscuro);
+    color: var(--BrancoPuro);
     font-weight: 700;
 }
 
 /* * 3. BOTÃO DE AÇÃO PRINCIPAL (Próxima Aula)
- * Sobrescreve .btn-primary para ter o mesmo estilo do .btn-cta da home.
+ * Usamos o AzulEscuro para combinar com o Nav/Footer.
  */
 .btn-primary {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: var(--fn-azul-escuro);
-    --bs-btn-border-color: var(--fn-azul-escuro);
+    --bs-btn-color: var(--BrancoPuro);
+    --bs-btn-bg: var(--AzulEscuro);
+    --bs-btn-border-color: var(--AzulEscuro);
     
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: var(--fn-azul-escuro-hover);
-    --bs-btn-hover-border-color: var(--fn-azul-escuro-hover);
+    /* No hover, usamos o --Azul2 (um pouco mais claro) */
+    --bs-btn-hover-color: var(--BrancoPuro);
+    --bs-btn-hover-bg: var(--Azul2);
+    --bs-btn-hover-border-color: var(--Azul2);
 
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: var(--fn-azul-escuro-hover);
-    --bs-btn-active-border-color: var(--fn-azul-escuro-hover);
+    --bs-btn-active-color: var(--BrancoPuro);
+    --bs-btn-active-bg: var(--Azul2);
+    --bs-btn-active-border-color: var(--Azul2);
 
-    /* Copiado do .btn-cta para consistência de tamanho */
     padding: 0.75rem 1.5rem; 
     font-weight: 600;
 }
 
 /* * 4. BOTÃO SECUNDÁRIO (Aula Anterior)
- * Um estilo mais leve que não compete com o botão principal.
  */
 .btn-outline-secondary {
-    color: var(--fn-azul-escuro);
+    color: var(--AzulEscuro);
     border-color: #ced4da;
     padding: 0.75rem 1.5rem; /* Mesmo padding */
 }
 
 .btn-outline-secondary:hover {
-    background-color: var(--fn-fundo-claro);
-    color: var(--fn-azul-escuro);
+    background-color: rgba(59, 142, 237, 0.1); /* Mesmo hover do índice */
+    color: var(--AzulEscuro);
     border-color: #ced4da;
 }
 
 /* 5. TÍTULOS E VÍDEO (Polimento) */
 .col-md-8 h2 {
-    /* Usando o azul escuro para o título da aula, como na home */
-    color: var(--fn-azul-escuro);
-    font-weight: 800; /* Padrão dos títulos da home */
+    /* O título da aula usa o AzulEscuro, como o Nav */
+    color: #333;
+    font-weight: 800;
 }
 
 /* Adiciona a sombra e borda arredondada ao vídeo */

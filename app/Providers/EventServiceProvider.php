@@ -7,6 +7,14 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+/**
+ * Event service provider.
+ *
+ * This provider is the central place to register all of the event listeners
+ * for the application. Events are a great way to decouple various aspects of
+ * your application, since a single event can have multiple listeners that do
+
+ */
 class EventServiceProvider extends ServiceProvider
 {
     /**

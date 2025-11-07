@@ -241,16 +241,54 @@ function A_UpdateDependencies {
     Write-Host "Dependências atualizadas com sucesso." -ForegroundColor Green
 }
 
+function Test-MySQLConnection {
+    param(
+        [string]$Host,
+        [string]$Port,
+        [string]$User,
+        [string]$Pass
+    )
+    try {
+        $env:MYSQL_PWD = $Pass
+        $output = & mysql --host=$Host --port=$Port --user=$User --execute="SELECT 1;" 2>&1
+        $success = $LASTEXITCODE -eq 0
+        $env:MYSQL_PWD = $null
+        return $success
+    } catch {
+        return $false
+    }
+}
+
 function A_ConfigureDbEnv {
     Check-Prerequisites
     Ensure-EnvFileExists
 
+    $mysqlAvailable = $false
+    $mysqlPath = $null
     if (Test-CommandExists "mysql") {
-        Write-Host ("MySQL client detectado em: " + (Get-CommandPath "mysql")) -ForegroundColor DarkGray
+        $mysqlPath = Get-CommandPath "mysql"
+        $mysqlVersion = try { 
+            $output = & mysql --version
+            if ($output -match 'Ver\s+(\d+\.\d+\.\d+)') {
+                $matches[1]
+            } else {
+                "Versão desconhecida"
+            }
+        } catch { "Erro ao verificar versão" }
+        
+        Write-Host "MySQL client detectado:" -ForegroundColor DarkGray
+        Write-Host "→ Caminho: $mysqlPath" -ForegroundColor DarkGray
+        Write-Host "→ Versão: $mysqlVersion" -ForegroundColor DarkGray
+        $mysqlAvailable = $true
     }
 
     Write-Host "`nSelecione o driver de banco de dados para configurar no .env:" -ForegroundColor Cyan
-    Write-Host "1) MySQL / MariaDB"
+    Write-Host "1) MySQL / MariaDB" -NoNewline
+    if ($mysqlAvailable) { 
+        Write-Host " (Cliente instalado)" -ForegroundColor Green 
+    } else {
+        Write-Host " (Cliente não encontrado)" -ForegroundColor Yellow
+    }
     Write-Host "2) SQLite (recomendado para desenvolvimento simples)"
     $option = Read-Host "Opção (1-2)"
     switch ($option) {
@@ -358,15 +396,33 @@ function A_OptimizeClear {
 }
 
 function Get-AvailablePort {
-    param([int]$StartPort = 8000)
+    param(
+        [int]$StartPort = 8000,
+        [int]$MaxPort = 65535
+    )
+    
+    # Função auxiliar para verificar se uma porta está em uso
+    function Test-PortInUse {
+        param([int]$Port)
+        try {
+            $listener = New-Object System.Net.Sockets.TcpListener([System.Net.IPAddress]::Any, $Port)
+            $listener.Start()
+            $listener.Stop()
+            return $false
+        } catch {
+            return $true
+        }
+    }
+
     $port = $StartPort
-    while ($true) {
-        $connection = try { Test-NetConnection -ComputerName '127.0.0.1' -Port $port -InformationLevel Quiet -ErrorAction Stop } catch { $false }
-        if (-not $connection) {
+    while ($port -le $MaxPort) {
+        if (-not (Test-PortInUse -Port $port)) {
             return $port
         }
         $port++
     }
+    
+    throw "Não foi possível encontrar uma porta disponível entre $StartPort e $MaxPort"
 }
 
 function A_ServeProject {
@@ -439,28 +495,68 @@ function A_RunArtisanCommand {
 # --- (REVISADO) Função Principal de Instalação ---
 function A_FullInstallation {
     Write-Host "`n--- Iniciando Instalação Completa do Projeto ---" -ForegroundColor Magenta
+    
+    # Verificação inicial de requisitos
+    $requirements = Check-RequiredTools
+    $hasErrors = $false
+    foreach ($tool in $requirements.Keys) {
+        if (-not $requirements[$tool].Exists) {
+            Write-Host "❌ $tool não encontrado. Instalação não pode continuar." -ForegroundColor Red
+            $hasErrors = $true
+        } elseif (-not $requirements[$tool].OK) {
+            Write-Host "⚠️ $tool versão $($requirements[$tool].Version) pode ser incompatível (requer $($requirements[$tool].Required))" -ForegroundColor Yellow
+        }
+    }
+    if ($hasErrors) {
+        throw "Requisitos essenciais não atendidos. Instale as ferramentas necessárias e tente novamente."
+    }
 
-    # Etapa 1: Dependências do Composer
-    Write-Host "`n[1/5] Instalando dependências do Composer..." -ForegroundColor Cyan
-    A_InstallDependencies
+    # Backup do .env se existir
+    if (Test-Path ".env") {
+        $backupPath = ".env.backup-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+        Copy-Item ".env" $backupPath
+        Write-Host "Backup do .env criado: $backupPath" -ForegroundColor Yellow
+    }
 
-    # Etapa 2: Criação do .env e Geração da Chave
-    Write-Host "`n[2/5] Configurando arquivo de ambiente (.env) e chave da aplicação..." -ForegroundColor Cyan
-    Ensure-EnvFileExists
-    A_GenerateAppKey
+    try {
+        # Etapa 1: Dependências do Composer
+        Write-Host "`n[1/6] Instalando dependências do Composer..." -ForegroundColor Cyan
+        A_InstallDependencies
 
-    # Etapa 3: Configuração do Banco de Dados (Interativo)
-    Write-Host "`n[3/5] Configurando o acesso ao banco de dados..." -ForegroundColor Cyan
-    A_ConfigureDbEnv
+        # Etapa 2: NPM (se disponível)
+        if ($requirements["Node.js"].Exists -and $requirements["NPM"].Exists) {
+            Write-Host "`n[2/6] Instalando dependências NPM..." -ForegroundColor Cyan
+            npm install
+            if ($LASTEXITCODE -ne 0) { throw "Falha ao instalar dependências NPM" }
+        } else {
+            Write-Host "`n[2/6] Pulando instalação NPM (Node.js/NPM não encontrado)" -ForegroundColor Yellow
+        }
 
-    # Etapa 4: Migrations (com seeders)
-    Write-Host "`n[4/5] Executando as migrations do banco de dados..." -ForegroundColor Cyan
-    php artisan migrate --seed
+        # Etapa 3: Criação do .env e Geração da Chave
+        Write-Host "`n[3/6] Configurando arquivo de ambiente (.env) e chave da aplicação..." -ForegroundColor Cyan
+        Ensure-EnvFileExists
+        A_GenerateAppKey
 
-    # Etapa 5: Finalização
-    Write-Host "`n[5/5] Executando tarefas finais..." -ForegroundColor Cyan
-    A_CreateStorageLink
-    A_OptimizeClear
+        # Etapa 4: Configuração do Banco de Dados (Interativo)
+        Write-Host "`n[4/6] Configurando o acesso ao banco de dados..." -ForegroundColor Cyan
+        A_ConfigureDbEnv
+
+        # Etapa 5: Migrations (com seeders)
+        Write-Host "`n[5/6] Executando as migrations do banco de dados..." -ForegroundColor Cyan
+        php artisan migrate --seed
+
+        # Etapa 6: Finalização
+        Write-Host "`n[6/6] Executando tarefas finais..." -ForegroundColor Cyan
+        A_CreateStorageLink
+        A_OptimizeClear
+
+        if ($requirements["Node.js"].Exists -and $requirements["NPM"].Exists) {
+            Write-Host "`nCompilando assets..." -ForegroundColor Cyan
+            npm run build
+            if ($LASTEXITCODE -ne 0) { 
+                Write-Host "⚠️ Aviso: Falha ao compilar assets. Você pode tentar manualmente depois com 'npm run build'" -ForegroundColor Yellow
+            }
+        }
 
     # Mensagem de Conclusão
     Write-Host "`n==========================================================================" -ForegroundColor Green
@@ -470,16 +566,170 @@ function A_FullInstallation {
 }
 
 
+# ---------- Verificação de Requisitos ----------
+function Parse-Version {
+    param([string]$versionString)
+    if ([string]::IsNullOrWhiteSpace($versionString)) { return "0.0.0" }
+    
+    # Extrai números da versão (aceita formatos diferentes)
+    $match = [regex]::Match($versionString, '(\d+\.\d+\.\d+)')
+    if ($match.Success) {
+        return $match.Groups[1].Value
+    }
+    
+    # Tenta formato X.Y
+    $match = [regex]::Match($versionString, '(\d+\.\d+)')
+    if ($match.Success) {
+        return "$($match.Groups[1].Value).0"
+    }
+    
+    return "0.0.0"
+}
+
+function Compare-Versions {
+    param(
+        [string]$current,
+        [string]$required
+    )
+    try {
+        $currentVersion = [version](Parse-Version $current)
+        $requiredVersion = [version](Parse-Version $required)
+        return $currentVersion -ge $requiredVersion
+    } catch {
+        return $false
+    }
+}
+
+function Check-RequiredTools {
+    $tools = @{
+        "PHP" = {
+            $phpVersion = try { (php --version)[0] } catch { "" }
+            @{
+                Exists = Test-CommandExists "php"
+                Path = Get-CommandPath "php"
+                Version = Parse-Version $phpVersion
+                Required = "8.1.0"
+                OK = Compare-Versions $phpVersion "8.1.0"
+            }
+        }
+        "Composer" = {
+            $composerVersion = try { composer --version } catch { "" }
+            @{
+                Exists = Test-CommandExists "composer"
+                Path = Get-CommandPath "composer"
+                Version = Parse-Version $composerVersion
+                Required = "2.0.0"
+                OK = Compare-Versions $composerVersion "2.0.0"
+            }
+        }
+        "Node.js" = {
+            $nodeVersion = try { node --version } catch { "" }
+            @{
+                Exists = Test-CommandExists "node"
+                Path = Get-CommandPath "node"
+                Version = Parse-Version $nodeVersion
+                Required = "16.0.0"
+                OK = Compare-Versions $nodeVersion "16.0.0"
+            }
+        }
+        "NPM" = {
+            $npmVersion = try { npm --version } catch { "" }
+            @{
+                Exists = Test-CommandExists "npm"
+                Path = Get-CommandPath "npm"
+                Version = Parse-Version $npmVersion
+                Required = "8.0.0"
+                OK = Compare-Versions $npmVersion "8.0.0"
+            }
+        }
+        "Git" = {
+            $gitVersion = try { git --version } catch { "" }
+            @{
+                Exists = Test-CommandExists "git"
+                Path = Get-CommandPath "git"
+                Version = Parse-Version $gitVersion
+                Required = "2.0.0"
+                OK = Compare-Versions $gitVersion "2.0.0"
+            }
+        }
+    }
+
+    $results = @{}
+    foreach ($tool in $tools.Keys) {
+        try {
+            $results[$tool] = & $tools[$tool]
+        } catch {
+            $results[$tool] = @{
+                Exists = $false
+                Path = $null
+                Version = "0.0.0"
+                Required = $tools[$tool].Required
+                OK = $false
+            }
+        }
+    }
+
+    return $results
+}
+
+function Show-RequirementsStatus {
+    $results = Check-RequiredTools
+    $anyWarning = $false
+    $anyError = $false
+
+    Write-Host "`nVerificação de Requisitos:" -ForegroundColor Cyan
+    Write-Host "------------------------"
+    
+    foreach ($tool in $results.Keys) {
+        $status = $results[$tool]
+        $statusColor = "Red"
+        $statusText = "❌ Não encontrado"
+        
+        if ($status.Exists) {
+            if ($status.OK) {
+                $statusColor = "Green"
+                $statusText = "✅ $($status.Version)"
+            } else {
+                $statusColor = "Yellow"
+                $statusText = "⚠️ $($status.Version) (Requer $($status.Required))"
+                $anyWarning = $true
+            }
+        } else {
+            $anyError = $true
+        }
+
+        Write-Host "$tool".PadRight(10) -NoNewline
+        Write-Host $statusText -ForegroundColor $statusColor
+        
+        if ($status.Path) {
+            Write-Host "         → $($status.Path)" -ForegroundColor DarkGray
+        }
+    }
+
+    if ($anyError) {
+        Write-Host "`n⛔ Ferramentas essenciais faltando. Instale-as antes de continuar." -ForegroundColor Red
+    } elseif ($anyWarning) {
+        Write-Host "`n⚠️ Algumas ferramentas podem precisar de atualização." -ForegroundColor Yellow
+    } else {
+        Write-Host "`n✅ Todos os requisitos atendidos!" -ForegroundColor Green
+    }
+}
+
 # ---------- Interface do Usuário (UI) ----------
 Clear-Host
-Write-Host "=====================================" -ForegroundColor Cyan
-Write-Host "      UTILITÁRIO PROJETO LARAVEL     "
-Write-Host "=====================================" -ForegroundColor Cyan
+Write-Host @"
+=========================================
+      UTILITÁRIO PROJETO LARAVEL     
+      Versão: 1.0.0 (2025-11-07)
+=========================================
+"@ -ForegroundColor Cyan
+
+# Verifica requisitos no início
+Show-RequirementsStatus
 
 while ($true) {
     try {
-        Write-Host ""
-        Write-Host "============== MENU PRINCIPAL ===============" -ForegroundColor Cyan
+        Write-Host "`n============== MENU PRINCIPAL ===============" -ForegroundColor Cyan
         Write-Host "--- Instalação e Configuração ---"
         Write-Host " 1) Instalar dependências (composer install)"
         Write-Host " 2) Atualizar dependências (composer update)"
@@ -493,6 +743,8 @@ while ($true) {
         Write-Host " 9) Iniciar servidor (php artisan serve)"
         Write-Host " 10) Menu de Frontend (NPM)"
         Write-Host " 11) Executar Comando Artisan Avulso"
+        Write-Host "--- Ferramentas ---"
+        Write-Host " V) Verificar Requisitos" -ForegroundColor Gray
         Write-Host "---------------------------------------------"
         Write-Host " A) EXECUTAR INSTALAÇÃO COMPLETA (Recomendado para início)" -ForegroundColor White
         Write-Host " B) Aplicar pendências do .env (se houver)" -ForegroundColor White
@@ -515,7 +767,12 @@ while ($true) {
             "11" { A_RunArtisanCommand }
             "A"  { A_FullInstallation }
             "B"  { A_ApplyPendingEnv }
-            "0"  { Write-Host "Saindo..."; break }
+            "V"  { Show-RequirementsStatus }
+            "0"  { 
+                Write-Host "`n👋 Obrigado por usar o Utilitário Laravel!" -ForegroundColor Cyan
+                Write-Host "   Para sugestões/problemas: github.com/Joao-ALD/FonteNova/issues" -ForegroundColor Gray
+                exit 
+            }
             default { Write-Host "Opção inválida." -ForegroundColor Red }
         }
     }

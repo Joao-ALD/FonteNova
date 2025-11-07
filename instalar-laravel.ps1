@@ -557,6 +557,24 @@ function A_FullInstallation {
                 Write-Host "⚠️ Aviso: Falha ao compilar assets. Você pode tentar manualmente depois com 'npm run build'" -ForegroundColor Yellow
             }
         }
+    } catch {
+        Write-Host "`n❌ Erro durante a instalação: $($_.Exception.Message)" -ForegroundColor Red
+        if (Test-Path ".env.backup-*") {
+            $latestBackup = Get-ChildItem ".env.backup-*" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+            if ($latestBackup) {
+                Write-Host "Restaurando backup do .env: $($latestBackup.Name)" -ForegroundColor Yellow
+                Copy-Item $latestBackup.FullName ".env" -Force
+            }
+        }
+        throw
+    }
+
+    # Mensagem de sucesso
+    Write-Host "`n==========================================================================" -ForegroundColor Green
+    Write-Host "  ✅ PROJETO INSTALADO E CONFIGURADO COM SUCESSO!" -ForegroundColor Green
+    Write-Host "  👉 Tudo pronto! Use a OPÇÃO 8 para iniciar o servidor." -ForegroundColor Green
+    Write-Host "==========================================================================" -ForegroundColor Green
+}
 
     # Mensagem de Conclusão
     Write-Host "`n==========================================================================" -ForegroundColor Green

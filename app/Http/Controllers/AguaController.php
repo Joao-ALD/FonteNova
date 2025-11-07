@@ -58,7 +58,7 @@ class AguaController extends Controller
                 [
                     "title" => "Captação de Chuva",
                     "text"  => "A coleta de água da chuva é uma prática antiga e sustentável. Cisternas e calhas são formas simples de armazenar esse recurso. Essa água pode ser usada para regar plantas e limpar ambientes. Quando tratada, também serve para consumo humano. Essa prática ajuda a reduzir a dependência de sistemas públicos. É especialmente importante em regiões de seca. O aproveitamento da chuva diminui enchentes urbanas. Além disso, contribui para a economia doméstica. Governos incentivam projetos de captação em comunidades carentes. A valorização dessa prática é um passo importante para a sustentabilidade.",
-                    "image" => "chuva.jpg"
+                    "image" => "captacao.jpg"
                 ],
                 [
                     "title" => "Águas Subterrâneas",

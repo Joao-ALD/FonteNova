@@ -26,16 +26,13 @@
 /* Efeito HOVER (passar o mouse) */
 .list-group-item-action:hover, 
 .list-group-item-action:focus {
-    /* Usamos o AzulEscuro para o texto */
     color: var(--AzulEscuro);
-    /* Usamos o AzulClaro com 10% de opacidade como fundo */
     background-color: rgba(59, 142, 237, 0.1);
     z-index: 5;
 }
 
 /* Aula ATIVA */
 .list-group-item-action.active {
-    /* O item ativo usa o AzulClaro, assim como os .bg-card */
     background-color: var(--AzulEscuro);
     border-color: var(--AzulEscuro);
     color: var(--BrancoPuro);

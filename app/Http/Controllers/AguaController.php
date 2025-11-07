@@ -25,22 +25,22 @@ class AguaController extends Controller
                 [
                     "title" => "Chuvas",
                     "text"  => "As chuvas são fundamentais para manter o ciclo da água e a fertilidade do solo. Elas ajudam a recarregar aquíferos subterrâneos e rios que abastecem cidades. No entanto, quando caem de forma intensa em pouco tempo, podem provocar enchentes. A má gestão urbana aumenta os riscos, com ruas asfaltadas e pouca área verde. Em áreas rurais, a chuva garante a produção agrícola. Mas a irregularidade das precipitações gera perdas de colheitas. Com as mudanças climáticas, os padrões de chuva se tornaram imprevisíveis. Isso obriga a sociedade a investir em técnicas de aproveitamento sustentável. A captação de água da chuva em cisternas é uma alternativa prática. Dessa forma, as chuvas podem ser vistas mais como recurso do que como ameaça.",
-                    "image" => "chuvas.jpg"
+                    "image" => "chuvas.png"
                 ],
                 [
                     "title" => "Secas",
                     "text"  => "As secas são longos períodos sem chuva que afetam o abastecimento de água. Elas prejudicam a agricultura, diminuem safras e aumentam o preço dos alimentos. A pecuária também sofre, já que falta pastagem para os animais. Muitas famílias em áreas rurais migram em busca de melhores condições. O fenômeno é natural, mas tem sido agravado pelas mudanças climáticas. A falta de planejamento hídrico aumenta os impactos sociais e econômicos. Reservatórios secos dificultam a geração de energia elétrica. Em cidades, a seca pode levar ao racionamento de água. Tecnologias de irrigação inteligente ajudam a reduzir perdas. É essencial adotar medidas preventivas para conviver melhor com esse fenômeno.",
-                    "image" => "secas.jpg"
+                    "image" => "secas.png"
                 ],
                 [
                     "title" => "Temperatura",
                     "text"  => "O aumento da temperatura acelera a evaporação da água em lagos e rios. Isso compromete a disponibilidade hídrica em várias regiões. A agricultura precisa usar mais irrigação para manter a produção. Cidades enfrentam ondas de calor que aumentam o consumo doméstico de água. O calor excessivo também agrava problemas de saúde, como desidratação. Espécies aquáticas sofrem com o aquecimento dos rios. A biodiversidade fica ameaçada pela alteração dos habitats naturais. O aumento das temperaturas está diretamente ligado ao efeito estufa. Reduzir emissões de gases poluentes ajuda a equilibrar o clima. Esse desafio exige cooperação global e mudanças de hábitos de consumo.",
-                    "image" => "temperatura.jpg"
+                    "image" => "temperatura.png"
                 ],
                 [
                     "title" => "Eventos Extremos",
                     "text"  => "Furacões, enchentes e tempestades são exemplos de eventos climáticos extremos. Eles causam prejuízos milionários em poucas horas. Além da destruição de casas, afetam redes de água e esgoto. Comunidades vulneráveis sofrem mais nesses momentos. Muitas vezes, a recuperação leva anos. A infraestrutura urbana precisa ser adaptada para resistir a esses fenômenos. Sistemas de alerta precoce salvam vidas. A preservação de florestas e rios ajuda a reduzir danos. Investimentos em engenharia hidráulica são fundamentais. Esses eventos extremos mostram a urgência de políticas ambientais sérias.",
-                    "image" => "eventos.jpg"
+                    "image" => "eventos.png"
                 ],
                 [
                     "title" => "Mudanças Climáticas",
@@ -50,7 +50,7 @@ class AguaController extends Controller
                 [
                     "title" => "Impactos Regionais",
                     "text"  => "Cada região do mundo sente os efeitos climáticos de forma diferente. O Nordeste brasileiro, por exemplo, sofre com secas prolongadas. Já o Sul enfrenta enchentes constantes. Regiões montanhosas perdem suas geleiras rapidamente. O Ártico é um dos locais mais afetados pelo aquecimento global. Áreas costeiras estão em risco de submersão. Essa diversidade de impactos exige políticas específicas. Não existe solução única para todos os lugares. O planejamento deve considerar características locais. Só assim é possível reduzir os danos das mudanças climáticas.",
-                    "image" => "regionais.jpg"
+                    "image" => "regionais.png"
                 ],
             ],
             // 💧 COLETA

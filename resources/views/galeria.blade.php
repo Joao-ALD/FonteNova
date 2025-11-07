@@ -8,54 +8,82 @@
 @extends('layouts.main')
 
 @section('content')
-<main class="page">
+<main class="page mb-5 p" >
   <h1>Galeria Interativa</h1>
 
   <div class="gallery" role="list">
 
     <button class="card blueish" type="button" data-desc="Instalações simples como calhas e caixas de armazenamento permitem aproveitar a água da chuva para jardinagem e limpeza. Economiza até 30% do consumo doméstico se usado em irrigação e descargas.">
+      
       <div class="icon-wrap" aria-hidden="true">
-        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 4c0 0-12 12-12 20 0 8 5 12 12 12s12-4 12-12C44 16 32 4 32 4z" fill="#fff"/>
-          <rect x="14" y="40" width="36" height="12" rx="2" fill="#083e6b"/>
-        </svg>
+        <img class="img-fluid w-75" src="{{ asset('assets/img/icon_balde.svg') }}" alt="">
       </div>
+      
       <div class="caption">Coleta de chuva</div>
       <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#053659;"></div>
     </button>
 
     <button class="card dark" type="button" data-desc="Filtre e reutilize águas de pias e chuveiros (graywater) em sistemas de descarga ou para irrigação. Exige cuidados de tratamento simples — reduz sensivelmente o consumo de água potável.">
+     
       <div class="icon-wrap" aria-hidden="true">
-        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 6c-4 5-8 8-8 14 0 9 7 16 8 16s8-7 8-16c0-6-4-9-8-14z" fill="#fff" stroke="#07284a" stroke-width="2"/>
-          <path d="M28 36c3 3 7 3 10 0" stroke="#07284a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img class="img-fluid w-75" src="{{ asset('assets/img/icon_water.svg') }}" alt="">
       </div>
+    
       <div class="caption">Reuso de água</div>
       <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#fff;"></div>
     </button>
 
     <button class="card" type="button" data-desc="Ações simples: consertar vazamentos, usar descargas econômicas e torneiras com arejador. Pequenas mudanças na rotina podem reduzir o consumo diário por pessoa em até 40 litros.">
+     
       <div class="icon-wrap" aria-hidden="true">
-        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="22" r="8" fill="#083e6b"/>
-          <path d="M16 44s6-6 16-6 16 6 16 6" stroke="#07284a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img class="img-fluid w-75" src="{{ asset('assets/img/icon_hands.svg') }}" alt="">
       </div>
+     
       <div class="caption">Cuidados à água</div>
       <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#053659;"></div>
     </button>
 
     <button class="card dark" type="button" data-desc="Filtros com camadas de areia, carvão e cascalho são ótimos para purificar água de reúso ou de chuva. São econômicos e fáceis de montar para uso não potável ou como pré-filtro.">
+
       <div class="icon-wrap" aria-hidden="true">
-        <svg width="110" height="110" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="18" y="12" width="28" height="40" rx="4" fill="#fff" stroke="#07284a" stroke-width="2"/>
-          <circle cx="32" cy="26" r="2" fill="#07284a"/>
-          <circle cx="32" cy="34" r="2" fill="#07284a"/>
-          <circle cx="32" cy="42" r="2" fill="#07284a"/>
-        </svg>
+        <img class="img-fluid w-50" src="{{ asset('assets/img/icon_filter.svg') }}" alt="">
       </div>
+
       <div class="caption">Filtros naturais</div>
+      <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#fff;"></div>
+    </button>
+
+ <!-- NOVOS CARDS -->
+
+    <button class="card blueish" type="button" data-desc="O uso de sistemas de irrigação por gotejamento garante que apenas a quantidade necessária de água chegue às plantas, reduzindo desperdício e mantendo o solo sempre úmido.">
+      <div class="icon-wrap" aria-hidden="true">
+        <img class="img-fluid w-75" src="{{ asset('assets/img/icon_irrigation.svg') }}" alt="">
+      </div>
+      <div class="caption">Irrigação eficiente</div>
+      <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#053659;"></div>
+    </button>
+
+    <button class="card dark" type="button" data-desc="Compostar restos de alimentos e folhas reduz o lixo doméstico e produz adubo natural. Diminui o uso de fertilizantes químicos e melhora a absorção de água no solo.">
+      <div class="icon-wrap" aria-hidden="true">
+        <img class="img-fluid w-50" src="{{ asset('assets/img/icon_compost.svg') }}" alt="">
+      </div>
+      <div class="caption">Compostagem</div>
+      <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#fff;"></div>
+    </button>
+
+    <button class="card" type="button" data-desc="O uso de energia solar para bombear ou aquecer água reduz custos de energia elétrica e torna o sistema mais sustentável a longo prazo.">
+      <div class="icon-wrap" aria-hidden="true">
+        <img class="img-fluid w-75" src="{{ asset('assets/img/icon_solar.svg') }}" alt="">
+      </div>
+      <div class="caption">Energia solar</div>
+      <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#053659;"></div>
+    </button>
+
+    <button class="card dark" type="button" data-desc="O reaproveitamento de materiais, como baldes e garrafões, pode gerar soluções criativas para armazenamento e transporte de água. Sustentabilidade começa com a reutilização.">
+      <div class="icon-wrap" aria-hidden="true">
+        <img class="img-fluid w-75" src="{{ asset('assets/img/icon_reuse.svg') }}" alt="">
+      </div>
+      <div class="caption">Reaproveitamento</div>
       <div class="card-text" style="display:none; margin-top:10px; font-size:13px; color:#fff;"></div>
     </button>
 

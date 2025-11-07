@@ -16,7 +16,7 @@
         <p>
           Neste quiz educativo, você irá responder a 5 perguntas simples sobre hábitos do dia a dia e descobrir quantos litros de água podem ser economizados com pequenas mudanças.
         </p>
-        <p><strong>Prepare-se para aprender e fazer a diferença!</strong></p>
+        <p>Prepare-se para aprender e fazer a diferença!</p>
         <button id="start-btn">Começar</button>
       </div>
 
@@ -47,7 +47,7 @@
   </div>
 @endsection
 
-@section('scripts')
-  <link rel="stylesheet" href="{{ asset('assets/css/quizz.css') }}">
+@push('scripts')
   <script src="{{ asset('assets/js/quizz.js') }}"></script>
-@endsection
+@endpush
+<link rel="stylesheet" href="{{ asset('assets/css/quizz.css') }}">

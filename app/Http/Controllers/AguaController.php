@@ -50,7 +50,7 @@ class AguaController extends Controller
                 [
                     "title" => "Impactos Regionais",
                     "text"  => "Cada região do mundo sente os efeitos climáticos de forma diferente. O Nordeste brasileiro, por exemplo, sofre com secas prolongadas. Já o Sul enfrenta enchentes constantes. Regiões montanhosas perdem suas geleiras rapidamente. O Ártico é um dos locais mais afetados pelo aquecimento global. Áreas costeiras estão em risco de submersão. Essa diversidade de impactos exige políticas específicas. Não existe solução única para todos os lugares. O planejamento deve considerar características locais. Só assim é possível reduzir os danos das mudanças climáticas.",
-                    // "image" => "regionais.jpg"
+                    "image" => "regionais.jpg"
                 ],
             ],
             // 💧 COLETA

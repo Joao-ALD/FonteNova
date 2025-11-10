@@ -11,9 +11,15 @@ class MapaController extends Controller
         return view('mapa');
     }
 
+    /**
+     * Retorna informações sobre um estado específico.
+     *
+     * @param string $estado Sigla do estado (ex: SP, RJ, MG)
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getEstadoInfo($estado)
     {
-        // Esses dados podem vir de um banco de dados
+        // Array com informações dos estados - temporário até mover para o banco de dados
         $info = [
             'AC' => ['nome' => 'Acre', 'iniciativas' => 'Projeto de reflorestamento na nascente do Rio Acre.'],
             'AL' => ['nome' => 'Alagoas', 'iniciativas' => 'Programa de saneamento básico na região metropolitana de Maceió.'],
@@ -44,6 +50,6 @@ class MapaController extends Controller
             'TO' => ['nome' => 'Tocantins', 'iniciativas' => 'Programa de manejo integrado de bacias hidrográficas.']
         ];
 
-        return response()->json($info[$estado] ?? ['nome' => 'Informação não encontrada', 'iniciativas' => '']);
+        return response()->json($info[$estado] ?? ['nome' => 'Estado não encontrado', 'iniciativas' => 'Nenhuma iniciativa registrada.']);
     }
 }

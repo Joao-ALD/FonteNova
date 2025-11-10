@@ -66,17 +66,17 @@
             <h3 class="text-center fw-bold mb-5">Nossos Pilares</h3>
             <div class="row text-center gy-4">
                 <div class="col-md-4">
-                    <!-- <img src="{{ asset('assets/img/icon_educacao.svg') }}" alt="Educação" style="height: 60px;"> -->
+                    <img src="{{ asset('assets/img/icon_education.svg') }}" alt="Educação" style="height: 300px;">
                     <h5 class="mt-3 fw-bold">Educação</h5>
                     <p>Promovemos conhecimento acessível e transformador para todas as idades.</p>
                 </div>
                 <div class="col-md-4">
-                    <!-- <img src="{{ asset('assets/img/icon_consciencia.svg') }}" alt="Consciência" style="height: 60px;"> -->
+                    <img src="{{ asset('assets/img/icon_conscience.svg') }}" alt="Consciência" style="height: 300px;">
                     <h5 class="mt-3 fw-bold">Consciência</h5>
                     <p>Despertamos a responsabilidade coletiva sobre o uso da água.</p>
                 </div>
                 <div class="col-md-4">
-                    <!-- <img src="{{ asset('assets/img/icon_acao.svg') }}" alt="Ação" style="height: 60px;"> -->
+                    <img src="{{ asset('assets/img/icon_action.svg') }}" alt="Ação" style="height: 300px;">
                     <h5 class="mt-3 fw-bold">Ação</h5>
                     <p>Encorajamos atitudes práticas que fazem a diferença.</p>
                 </div>

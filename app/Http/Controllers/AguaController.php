@@ -91,32 +91,32 @@ class AguaController extends Controller
                 [
                     "title" => "Doméstico",
                     "text"  => "O consumo doméstico representa grande parte da demanda por água nas cidades. Ela é utilizada em atividades básicas como beber, cozinhar, tomar banho e limpar. Muitas vezes, esse uso é feito de forma exagerada, causando desperdício. O simples ato de deixar a torneira aberta pode gastar litros preciosos. Em casas e apartamentos, o uso de descargas e chuveiros é responsável pela maior parte do consumo. O desperdício também ocorre em vazamentos que passam despercebidos. Campanhas educativas têm mostrado alternativas para economizar. Instalar torneiras econômicas e sistemas de reaproveitamento faz diferença. A conscientização dentro das famílias é essencial para reduzir gastos. O consumo doméstico eficiente ajuda a garantir água para todos.",
-                    "image" => "domestico.jpg"
+                    "image" => "domestico.png"
                 ],
                 [
                     "title" => "Agrícola",
                     "text"  => "A agricultura é o setor que mais consome água no mundo. A irrigação intensiva garante o cultivo de alimentos, mas gasta enormes quantidades. Em muitas regiões, técnicas ultrapassadas aumentam as perdas. O uso de canais abertos, por exemplo, desperdiça água por evaporação. Novas tecnologias, como a irrigação por gotejamento, reduzem esse problema. Além disso, o plantio de espécies adaptadas ao clima local ajuda a economizar. A gestão da água na agricultura é um desafio global. Sem mudanças, será difícil alimentar toda a população no futuro. Incentivos governamentais podem estimular práticas mais eficientes. O equilíbrio entre produção e preservação é a chave.",
-                    "image" => "agricola.jpg"
+                    "image" => "agricola.png"
                 ],
                 [
                     "title" => "Industrial",
                     "text"  => "O setor industrial também é um grande consumidor de água. Ela é usada em processos de resfriamento, limpeza e produção de bens. Indústrias de papel, bebidas e têxteis estão entre as que mais consomem. Muitas vezes, a água retorna poluída aos rios. Essa poluição compromete ecossistemas inteiros. Empresas modernas já investem em tratamento e reuso. Isso reduz custos e melhora a imagem da marca. Tecnologias sustentáveis estão cada vez mais acessíveis. A responsabilidade social empresarial também pressiona por mudanças. Reduzir o consumo industrial é parte essencial da sustentabilidade.",
-                    "image" => "industrial.jpg"
+                    "image" => "industrial.png"
                 ],
                 [
                     "title" => "Energia",
                     "text"  => "A produção de energia está diretamente ligada ao uso da água. Usinas hidrelétricas dependem de rios e reservatórios. A seca pode comprometer o fornecimento elétrico de um país. Outras fontes, como as termelétricas, também usam grandes volumes para resfriamento. O avanço das energias renováveis ajuda a reduzir essa dependência. A energia solar e eólica consomem menos água. No entanto, a transição ainda é lenta em muitos países. Investir em alternativas é urgente para evitar crises. A integração entre setor hídrico e elétrico é fundamental. Água e energia caminham lado a lado na sustentabilidade.",
-                    "image" => "energia.jpg"
+                    "image" => "energia.png"
                 ],
                 [
                     "title" => "Turismo e Lazer",
                     "text"  => "O turismo também depende fortemente da água. Piscinas, parques aquáticos e hotéis consomem grandes volumes diariamente. Em regiões litorâneas, a demanda cresce na alta temporada. O turismo rural também depende de rios e cachoeiras limpos. Quando mal administrado, esse consumo causa impactos ambientais. O uso consciente pode transformar o turismo em aliado da preservação. Empreendimentos sustentáveis já adotam sistemas de reuso. Além disso, turistas conscientes ajudam a reduzir o desperdício. A valorização da água como patrimônio natural é essencial. Assim, o turismo pode ser um motor de preservação, e não de destruição.",
-                    "image" => "turismo.jpg"
+                    "image" => "turismo.png"
                 ],
                 [
                     "title" => "Consumo Sustentável",
                     "text"  => "O consumo sustentável de água é um desafio coletivo. Ele depende de mudanças de hábito em todos os setores. Significa usar apenas o necessário e evitar desperdícios. Tecnologias modernas ajudam nesse processo, mas a educação é fundamental. Nas cidades, pequenas atitudes fazem diferença. Nas indústrias, a inovação é o caminho. Na agricultura, a eficiência é indispensável. O consumo sustentável também envolve políticas públicas. Incentivos e legislações podem transformar a realidade. Garantir água para o futuro depende de escolhas conscientes no presente.",
-                    "image" => "sustentavel.jpg"
+                    "image" => "sustentavel.png"
                 ],
             ],
             // 🌱 PRESERVAÇÃO

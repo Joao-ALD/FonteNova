@@ -58,32 +58,32 @@ class AguaController extends Controller
                 [
                     "title" => "Captação de Chuva",
                     "text"  => "A coleta de água da chuva é uma prática antiga e sustentável. Cisternas e calhas são formas simples de armazenar esse recurso. Essa água pode ser usada para regar plantas e limpar ambientes. Quando tratada, também serve para consumo humano. Essa prática ajuda a reduzir a dependência de sistemas públicos. É especialmente importante em regiões de seca. O aproveitamento da chuva diminui enchentes urbanas. Além disso, contribui para a economia doméstica. Governos incentivam projetos de captação em comunidades carentes. A valorização dessa prática é um passo importante para a sustentabilidade.",
-                    "image" => "captacao.jpg"
+                    "image" => "captacao.png"
                 ],
                 [
                     "title" => "Águas Subterrâneas",
                     "text"  => "Os aquíferos são reservas naturais de água no subsolo. Muitas cidades dependem deles para abastecimento. No entanto, a exploração excessiva pode causar colapso. Poços artesianos são comuns em áreas rurais. A poluição do solo ameaça a qualidade dessas águas. Vazamentos de combustíveis e agrotóxicos contaminam os aquíferos. A recarga natural ocorre com chuvas, mas tem diminuído. O desmatamento prejudica essa reposição. É essencial monitorar o uso dos aquíferos. Assim, garantimos esse recurso para as futuras gerações.",
-                    "image" => "subterraneas.jpg"
+                    "image" => "subterraneas.png"
                 ],
                 [
                     "title" => "Rios e Nascentes",
                     "text"  => "Rios e nascentes são fontes tradicionais de água potável. Eles sustentam ecossistemas inteiros. No entanto, a poluição urbana e industrial ameaça sua qualidade. O desmatamento das margens prejudica a vazão. Muitas comunidades ainda dependem de nascentes locais. Programas de proteção ajudam a manter essas fontes vivas. O reflorestamento é uma medida eficaz. A fiscalização de despejo de resíduos é fundamental. A conscientização popular também faz diferença. Proteger rios e nascentes é proteger a vida.",
-                    "image" => "rios.jpg"
+                    "image" => "rios.png"
                 ],
                 [
                     "title" => "Desalinização",
                     "text"  => "A desalinização transforma água do mar em potável. É uma alternativa para regiões costeiras sem rios ou lagos. Porém, o processo consome muita energia. Países do Oriente Médio utilizam amplamente essa técnica. A tecnologia está avançando para reduzir custos. No Brasil, projetos começam a ser testados no Nordeste. A desalinização pode ser solução futura para a escassez. Mas precisa ser usada com cautela. Impactos ambientais devem ser considerados. É uma ferramenta complementar, não única.",
-                    "image" => "desalinizacao.jpg"
+                    "image" => "desalinizacao.png"
                 ],
                 [
                     "title" => "Reuso de Água",
                     "text"  => "O reuso de água trata esgotos para nova utilização. Essa prática reduz o desperdício em indústrias e cidades. A água de reuso serve para irrigação e limpeza urbana. Também ajuda em processos industriais. A tecnologia já é aplicada em diversos países. No Brasil, ainda está em crescimento. O preconceito cultural é uma barreira. Campanhas educativas podem mudar essa visão. Reaproveitar água é essencial em tempos de crise. Essa prática precisa ser cada vez mais comum.",
-                    "image" => "reuso.jpg"
+                    "image" => "reuso.png"
                 ],
                 [
                     "title" => "Tecnologias de Coleta",
                     "text"  => "Novas tecnologias melhoram a eficiência da coleta de água. Sensores monitoram a qualidade em tempo real. Sistemas inteligentes ajustam a captação conforme a demanda. Telhados verdes ajudam a armazenar chuva. Barragens modernas reduzem perdas de evaporação. A inovação também reduz custos operacionais. Pesquisadores buscam materiais mais resistentes. O futuro da coleta depende da ciência. Investimentos nesse setor são urgentes. A tecnologia é aliada na preservação da água.",
-                    "image" => "tecnologias.jpg"
+                    "image" => "tecnologias.png"
                 ],
             ],
             // 🚰 CONSUMO

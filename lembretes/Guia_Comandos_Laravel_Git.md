@@ -174,3 +174,4 @@ Copia o arquivo de ambiente padrão.
 ```bash
 cp .env.example .env
 ```
+test

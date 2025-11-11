@@ -1,32 +1,4 @@
 <?php return array (
-  'laravel-lang/attributes' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'LaravelLang\\Attributes\\ServiceProvider',
-    ),
-  ),
-  'laravel-lang/http-statuses' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'LaravelLang\\HttpStatuses\\ServiceProvider',
-    ),
-  ),
-  'laravel-lang/publisher' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'LaravelLang\\Publisher\\ServiceProvider',
-    ),
-  ),
-  'laravel/breeze' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Breeze\\BreezeServiceProvider',
-    ),
-  ),
   'laravel/sail' => 
   array (
     'providers' => 

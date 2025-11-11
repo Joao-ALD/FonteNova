@@ -13,13 +13,6 @@
       0 => 'LaravelLang\\HttpStatuses\\ServiceProvider',
     ),
   ),
-  'laravel-lang/lang' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'LaravelLang\\Lang\\ServiceProvider',
-    ),
-  ),
   'laravel-lang/publisher' => 
   array (
     'providers' => 

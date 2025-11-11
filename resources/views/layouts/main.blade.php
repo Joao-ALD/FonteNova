@@ -1,9 +1,9 @@
 {{--
-    Layout principal da aplicação (Blade)
-    - Inclui head com meta tags, links para CSS/JS e navbar comum.
-    - Usar `@stack('styles')` e `@yield('scripts')` para empilhar estilos e scripts
-    - específicos por view sem editar diretamente este arquivo.
-    - Atenção ao usar scripts externos: já incluímos bootstrap via CDN.
+Layout principal da aplicação (Blade)
+- Inclui head com meta tags, links para CSS/JS e navbar comum.
+- Usar `@stack('styles')` e `@yield('scripts')` para empilhar estilos e scripts
+- específicos por view sem editar diretamente este arquivo.
+- Atenção ao usar scripts externos: já incluímos bootstrap via CDN.
 --}}
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,9 +41,8 @@
             </a>
 
             <!-- Botão Hamburguer -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -54,10 +53,38 @@
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('agua.index') }}">Água</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('sobre.index') }}">Sobre</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('galeria.index') }}">Galeria</a></li>
-                {{-- <li class="nav-item"><a class="nav-link text-white" href="#">Mapa</a></li> --}}
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('chatbot.index') }}">ChatBot</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="{{ route('curso.index') }}">Curso</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="{{ route('quizz.index') }}">Quizz</a></li>
+
+                @guest
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('register') }}">Registrar</a></li>
+                @endguest
+
+                @auth
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('curso.index') }}">Curso</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('quizz.index') }}">Quizz</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownUserLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }} </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUserLink">
+                            <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                        {{ __('Sair') }}
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endauth
             </ul>
         </div>
     </nav>
@@ -91,7 +118,8 @@
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-uppercase fw-bold mb-4">Sobre o Projeto</h5>
                     <p class="footer-text-dim">
-                        Uma plataforma dedicada a disseminar o conhecimento sobre o uso consciente e sustentável da água,
+                        Uma plataforma dedicada a disseminar o conhecimento sobre o uso consciente e sustentável da
+                        água,
                         oferecendo soluções práticas para um futuro mais azul.
                     </p>
                 </div>
@@ -115,10 +143,12 @@
                             <span class="fa-li pe-2"><i class="fas fa-phone"></i></span><span>(99) 99999-9999</span>
                         </li>
                         <li class="mb-3 d-flex align-items-center">
-                            <span class="fa-li pe-2"><i class="fas fa-envelope"></i></span><span>contato@fontenova.com.br</span>
+                            <span class="fa-li pe-2"><i
+                                    class="fas fa-envelope"></i></span><span>contato@fontenova.com.br</span>
                         </li>
                         <li class="d-flex align-items-center">
-                            <span class="fa-li pe-2"><i class="fas fa-map-marker-alt"></i></span><span>Registro, SP - Brasil</span>
+                            <span class="fa-li pe-2"><i class="fas fa-map-marker-alt"></i></span><span>Registro, SP -
+                                Brasil</span>
                         </li>
                     </ul>
                 </div>
@@ -131,10 +161,11 @@
     </footer>
 
     <!-- Scripts -->
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
     @stack('scripts')
 </body>
+
 </html>

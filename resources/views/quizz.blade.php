@@ -49,6 +49,5 @@
 
 @push('scripts')
   <script src="{{ asset('assets/js/quizz.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('assets/css/quizz.css') }}">
 @endpush
-
+<link rel="stylesheet" href="{{ asset('assets/css/quizz.css') }}">

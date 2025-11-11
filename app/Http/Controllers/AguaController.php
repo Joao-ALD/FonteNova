@@ -149,7 +149,7 @@ class AguaController extends Controller
                 [
                     "title" => "Cooperação Internacional",
                     "text"  => "A água não respeita fronteiras. Muitos rios atravessam diferentes países. Isso exige cooperação internacional na gestão. Sem diálogo, conflitos podem surgir. A ONU promove acordos entre nações nesse sentido. Compartilhar tecnologias também é importante. Países com mais recursos podem ajudar os mais vulneráveis. A cooperação cria soluções conjuntas. Crises hídricas são problemas globais. Trabalhar em conjunto fortalece todos os povos. A água deve ser vista como patrimônio comum da humanidade.",
-                    "image" => "cooperacaossa.jpg"
+                    "image" => "cooperacao.jpg"
                 ],
             ],
         ];

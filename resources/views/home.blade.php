@@ -15,7 +15,7 @@
 @section('content')
 
     <section class="hero text-white">
-        <x-container>
+        <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7 text-center text-lg-start">
                     <h1 class="hero-title fw-bolder">
@@ -31,11 +31,11 @@
                         class="hero-illustration img-fluid">
                 </div>
             </div>
-        </x-container>
+</div>
     </section>
 
     <section class="section">
-        <x-container>
+        <div class="container">
             <h2 class="section-title">Galeria Interativa</h2>
             <div class="row g-4 justify-content-center">
                 @php
@@ -57,12 +57,12 @@
                     </div>
                 @endforeach
             </div>
-        </x-container>
+        </<div>
     </section>
 
     {{-- SEÇÃO DO MAPA CORRIGIDA E COMPLETA --}}
     <section class="map-section text-white">
-        <x-container>
+        <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7 text-center text-lg-start">
                     <h2 class="fw-bolder mb-3">Mapa do conhecimento</h2>
@@ -83,11 +83,11 @@
                     </div>
                 </div>
             </div>
-        </x-container>
+                </div>
     </section>
 
     <section class="section edu-section">
-        <x-container>
+        <div class="container">
             <h2 class="section-title text-white">Educação Ambiental</h2>
             <div class="row g-4 justify-content-center">
                 @php
@@ -108,15 +108,15 @@
                     </div>
                 @endforeach
             </div>
-        </x-container>
+        </div>
     </section>
 
     <section class="section quote-section">
-        <x-container>
+        <div class="container">
             <div class="quote-box bg-white p-md-4 rounded-3 mx-auto text-center">
                 <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
             </div>
-        </x-container>
+                </div>
     </section>
 @endsection
 

@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\ChatBotController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HomeController;
@@ -16,26 +15,15 @@ use App\Http\Controllers\MapaController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// --- ROTAS PÚBLICAS (Todos podem ver) ---
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/sobre',[SobreController::class, 'index'])->name('sobre.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
-Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index');
 Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');
-Route::get('/curso', [CursoController::class, 'index'])->name('curso.index');
-
 
 // Rotas ChatBot
-// Rotas do ChatBot (padronizadas em lowercase e com referência correta ao controller)
 Route::get('/chatbot', [ChatBotController::class, 'index'])->name('chatbot.index');
 Route::post('/chatbot/responder', [ChatBotController::class, 'responder'])->name('chatbot.responder');
 
@@ -43,6 +31,29 @@ Route::post('/chatbot/responder', [ChatBotController::class, 'responder'])->name
 Route::get('/mapa', [MapaController::class, 'index'])->name('mapa.index');
 Route::get('/mapa/info/{estado}', [MapaController::class, 'getEstadoInfo'])->name('mapa.info');
 
-//Rota Cursos
-Route::get('/cursos', [CursoController::class, 'index'])->name('curso.index');
-Route::get('/cursos/{aula}', [CursoController::class, 'mostrarAula'])->name('curso.aula');
+
+// --- ROTAS PROTEGIDAS (Exigem Login) ---
+// O middleware 'auth' força o usuário a estar logado.
+// Se não estiver, ele é redirecionado para a página de login.
+Route::middleware(['auth'])->group(function () {
+    
+    // Suas rotas de Curso
+    Route::get('/curso', [CursoController::class, 'index'])->name('curso.index'); // <-- Protegida
+    Route::get('/cursos', [CursoController::class, 'index'])->name('curso.index'); // <-- Protegida
+    Route::get('/cursos/{aula}', [CursoController::class, 'mostrarAula'])->name('curso.aula'); // <-- Protegida
+
+    // Sua rota do Quizz
+    Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index'); // <-- Protegida
+
+    // O Breeze cria uma rota de 'dashboard' por padrão. 
+    // Você pode usá-la ou deletá-la se não precisar.
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+});
+
+
+// --- ROTAS DE AUTENTICAÇÃO ---
+// Esta linha foi adicionada pelo Breeze e controla /login, /register, /logout, etc.
+require __DIR__.'/auth.php';

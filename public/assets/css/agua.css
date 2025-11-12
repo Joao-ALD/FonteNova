@@ -1,17 +1,92 @@
-
 #hero-agua {
-  padding-top: 5rem;    /* Espaço interno, para o título não colar no menu */
-  margin-top: 3rem;     /* Margem de cima, separando do menu */
-  
-  /* ESTA É A LINHA QUE VOCÊ QUER CONTROLAR: 
-    O espaço entre os botões e os cards 
-  */
-  margin-bottom: 2rem;  /* Experimente 2rem (32px) */
-}
+  padding-top: 5rem; /* Espaço interno, para o título não colar no menu */
+  margin-top: 3rem; /* Margem de cima, separando do menu */
 
-/* Este é o container dos cards 
-*/
+  /* Espaço entre os botões e os cards */
+  margin-bottom: 2rem; /* Experimente 2rem (32px) */
+};
+
+/* Este é o container dos cards */
 #infoPanels {
   /* Espaço entre os cards e o footer, lá embaixo */
-  margin-bottom: 5rem; 
-}
+  margin-bottom: 5rem;
+};
+
+/* ================================
+   🎨 PALETA DE CORES E VARIÁVEIS
+   ================================ */
+
+:root {
+  /* Paleta oficial do tema Água */
+  --AzulEscuro: rgba(1, 75, 160, 1);
+  --Azul2: rgba(10, 92, 184, 1);
+  --Azul3: rgba(20, 102, 195, 1);
+  --Azul4: rgba(33, 116, 212, 1);
+  --AzulClaro: rgba(59, 142, 237, 1);
+  --BrancoPuro: #ffffff;
+
+  /* Cores principais baseadas na paleta */
+  --cor-principal: var(--Azul3);          /* cor base dos botões e títulos */
+  --cor-principal-hover: var(--Azul4);    /* cor ao passar o mouse */
+  --cor-card: var(--AzulEscuro);          /* fundo dos cards */
+  --cor-texto-card: var(--BrancoPuro);    /* texto branco dentro dos cards */
+};
+
+/* ================================
+   BOTÕES PERSONALIZADOS
+   ================================ */
+.btn-outline-primary {
+  color: var(--cor-principal);
+  border-color: var(--cor-principal);
+  transition: all 0.3s ease;
+};
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+  background-color: var(--cor-principal);
+  color: white;
+  border-color: var(--cor-principal-hover);
+};
+
+.btn-outline-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(20, 102, 195, 0.25);
+};
+
+/* ================================
+   CARDS PERSONALIZADOS
+   ================================ */
+.bg-card {
+  background-color: var(--cor-card);
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+};
+
+.bg-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+};
+
+.card-title,
+.card-text {
+  color: var(--cor-texto-card);
+};
+
+/* ================================
+   TÍTULOS
+   ================================ */
+h1.display-1 {
+  color: var(--cor-principal);
+};
+
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+};

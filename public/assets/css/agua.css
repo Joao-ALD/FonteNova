@@ -18,7 +18,7 @@
 
 :root {
   /* Paleta oficial do tema Água */
-  --AzulEscuro: rgb(165, 16, 153);
+  --AzulEscuro: rgba(1, 75, 160, 1);
   --Azul2: rgba(10, 92, 184, 1);
   --Azul3: rgba(20, 102, 195, 1);
   --Azul4: rgba(33, 116, 212, 1);
@@ -26,7 +26,7 @@
   --BrancoPuro: #ffffff;
 
   /* Cores principais baseadas na paleta */
-  --cor-principal: var(--Azul3);          /* cor base dos botões e títulos */
+  --cor-principal: #eb15ab;          /* cor base dos botões e títulos */
   --cor-principal-hover: var(--Azul4);    /* cor ao passar o mouse */
   --cor-card: var(--AzulEscuro);          /* fundo dos cards */
   --cor-texto-card: var(--BrancoPuro);    /* texto branco dentro dos cards */
@@ -36,14 +36,14 @@
    BOTÕES PERSONALIZADOS
    ================================ */
 .btn-outline-primary {
-  color: var(--cor-principal);
-  border-color: var(--cor-principal);
+  color: #eb15ab;
+  border-color: #eb15ab;
   transition: all 0.3s ease;
 }
 
 .btn-outline-primary:hover,
 .btn-outline-primary.active {
-  background-color: var(--cor-principal);
+  background-color: #eb15ab;
   color: white;
   border-color: var(--cor-principal-hover);
 }
@@ -75,7 +75,7 @@
    TÍTULOS
    ================================ */
 h1.display-1 {
-  color: var(--cor-principal);
+  color: #eb15ab;
 }
 
 /* ================================

@@ -4,13 +4,13 @@
 
   /* Espaço entre os botões e os cards */
   margin-bottom: 2rem; /* Experimente 2rem (32px) */
-};
+}
 
 /* Este é o container dos cards */
 #infoPanels {
   /* Espaço entre os cards e o footer, lá embaixo */
   margin-bottom: 5rem;
-};
+}
 
 /* ================================
    🎨 PALETA DE CORES E VARIÁVEIS
@@ -30,7 +30,7 @@
   --cor-principal-hover: var(--Azul4);    /* cor ao passar o mouse */
   --cor-card: var(--AzulEscuro);          /* fundo dos cards */
   --cor-texto-card: var(--BrancoPuro);    /* texto branco dentro dos cards */
-};
+}
 
 /* ================================
    BOTÕES PERSONALIZADOS
@@ -39,18 +39,18 @@
   color: var(--cor-principal);
   border-color: var(--cor-principal);
   transition: all 0.3s ease;
-};
+}
 
 .btn-outline-primary:hover,
 .btn-outline-primary.active {
   background-color: var(--cor-principal);
   color: white;
   border-color: var(--cor-principal-hover);
-};
+}
 
 .btn-outline-primary:focus {
   box-shadow: 0 0 0 0.25rem rgba(20, 102, 195, 0.25);
-};
+}
 
 /* ================================
    CARDS PERSONALIZADOS
@@ -59,24 +59,24 @@
   background-color: var(--cor-card);
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-};
+}
 
 .bg-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-};
+}
 
 .card-title,
 .card-text {
   color: var(--cor-texto-card);
-};
+}
 
 /* ================================
    TÍTULOS
    ================================ */
 h1.display-1 {
   color: var(--cor-principal);
-};
+}
 
 /* ================================
    RESPONSIVIDADE
@@ -89,4 +89,4 @@ h1.display-1 {
   .card-text {
     font-size: 1rem;
   }
-};
+}

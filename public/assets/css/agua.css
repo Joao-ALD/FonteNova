@@ -15,9 +15,7 @@
 /* ================================
    🎨 PALETA DE CORES E VARIÁVEIS
    ================================ */
-
 :root {
-  /* Paleta oficial do tema Água */
   --AzulEscuro: rgba(1, 75, 160, 1);
   --Azul2: rgba(10, 92, 184, 1);
   --Azul3: rgba(20, 102, 195, 1);
@@ -25,11 +23,10 @@
   --AzulClaro: rgba(59, 142, 237, 1);
   --BrancoPuro: #ffffff;
 
-  /* Cores principais baseadas na paleta */
-  --cor-principal: var(--Azul3);          /* cor base dos botões e títulos */
-  --cor-principal-hover: var(--Azul4);    /* cor ao passar o mouse */
-  --cor-card: var(--AzulEscuro);          /* fundo dos cards */
-  --cor-texto-card: var(--BrancoPuro);    /* texto branco dentro dos cards */
+  --cor-principal: var(--Azul3);
+  --cor-principal-hover: var(--Azul4);
+  --cor-card: var(--AzulEscuro);
+  --cor-texto-card: var(--BrancoPuro);
 }
 
 /* ================================
@@ -79,28 +76,14 @@ h1.display-1 {
 }
 
 /* ================================
-   RESPONSIVIDADE
-   ================================ */
-@media (max-width: 768px) {
-  .card-title {
-    font-size: 1.5rem;
-  }
-
-  .card-text {
-    font-size: 1rem;
-  }
-
-
-  /* ================================
    AJUSTE DE TAMANHO E ALINHAMENTO DOS CARDS
    ================================ */
-
 .card {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   width: 100%;
-  min-height: 230px; /* mesma altura para todos */
+  min-height: 230px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -108,14 +91,12 @@ h1.display-1 {
   margin-bottom: 20px;
 }
 
-/* Imagem do card */
 .card img {
   width: 40%;
   object-fit: cover;
   height: 100%;
 }
 
-/* Corpo do card */
 .card-body {
   width: 60%;
   background-color: var(--cor-card);
@@ -127,7 +108,6 @@ h1.display-1 {
   text-align: left;
 }
 
-/* Título e texto */
 .card-title {
   font-size: 1.2rem;
   font-weight: 700;
@@ -140,16 +120,28 @@ h1.display-1 {
   margin: 0;
 }
 
-/* Efeito hover */
 .card:hover {
   transform: scale(1.02);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* ================================
-   RESPONSIVIDADE (CELULAR)
+   RESPONSIVIDADE (TABLET)
    ================================ */
 @media (max-width: 768px) {
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+}
+
+/* ================================
+   RESPONSIVIDADE (CELULAR)
+   ================================ */
+@media (max-width: 480px) {
   .card {
     flex-direction: column; /* imagem em cima, texto embaixo */
     min-height: auto;
@@ -173,6 +165,4 @@ h1.display-1 {
   .card-text {
     font-size: 1rem;
   }
-}
-
 }

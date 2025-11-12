@@ -26,7 +26,7 @@
   --BrancoPuro: #ffffff;
 
   /* Cores principais baseadas na paleta */
-  --cor-principal: #eb15ab;          /* cor base dos botões e títulos */
+  --cor-principal: var(--Azul3);          /* cor base dos botões e títulos */
   --cor-principal-hover: var(--Azul4);    /* cor ao passar o mouse */
   --cor-card: var(--AzulEscuro);          /* fundo dos cards */
   --cor-texto-card: var(--BrancoPuro);    /* texto branco dentro dos cards */
@@ -36,20 +36,20 @@
    BOTÕES PERSONALIZADOS
    ================================ */
 .btn-outline-primary {
-  color: #eb15ab;
-  border-color: #eb15ab;
+  color: var(--cor-principal);
+  border-color: var(--cor-principal);
   transition: all 0.3s ease;
 }
 
 .btn-outline-primary:hover,
 .btn-outline-primary.active {
-  background-color: #eb15ab;
+  background-color: var(--cor-principal);
   color: white;
   border-color: var(--cor-principal-hover);
 }
 
 .btn-outline-primary:focus {
-  box-shadow: 0 0 0 0.25rem rgba(20, 102, 195, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(58, 79, 158, 0.25);
 }
 
 /* ================================
@@ -75,7 +75,7 @@
    TÍTULOS
    ================================ */
 h1.display-1 {
-  color: #eb15ab;
+  color: var(--cor-principal);
 }
 
 /* ================================

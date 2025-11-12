@@ -124,32 +124,32 @@ class AguaController extends Controller
                 [
                     "title" => "Educação Ambiental",
                     "text"  => "A educação ambiental é uma das ferramentas mais poderosas para preservar a água. Quando as pessoas entendem o valor desse recurso, passam a cuidar melhor dele. Escolas desempenham papel essencial nesse processo. Projetos comunitários também ajudam a espalhar conhecimento. Campanhas públicas estimulam mudanças de comportamento. Crianças educadas hoje se tornam adultos conscientes amanhã. A informação gera responsabilidade. Quanto mais pessoas envolvidas, maior o impacto positivo. A educação cria uma cultura de respeito à natureza. Preservar começa pelo conhecimento.",
-                    "image" => "educacao.jpg"
+                    "image" => "educacao.png"
                 ],
                 [
                     "title" => "Legislação e Políticas",
                     "text"  => "As leis ambientais são fundamentais para proteger recursos hídricos. Elas determinam limites de uso e punem poluidores. Políticas públicas de saneamento melhoram a qualidade da água. Incentivos governamentais estimulam o uso racional. No entanto, a fiscalização precisa ser eficiente. Sem aplicação prática, leis se tornam ineficazes. A participação social também fortalece as políticas. Movimentos ambientais pressionam por melhorias. A legislação deve ser constantemente atualizada. Só assim é possível acompanhar os novos desafios.",
-                    "image" => "legislacao.jpg"
+                    "image" => "legislacao.png"
                 ],
                 [
                     "title" => "Gestão Integrada",
                     "text"  => "A gestão integrada da água considera todos os usos do recurso. Isso inclui agricultura, indústria, energia e consumo doméstico. Quando cada setor age isoladamente, surgem conflitos. A integração garante equilíbrio entre demandas. Conselhos de gestão hídrica já funcionam em alguns países. Eles reúnem governo, empresas e sociedade civil. O diálogo é fundamental para encontrar soluções. A gestão integrada também prevê crises futuras. Com planejamento, é possível reduzir impactos. Esse modelo é essencial para a preservação da água.",
-                    "image" => "gestao.jpg"
+                    "image" => "gestao.png"
                 ],
                 [
                     "title" => "Reflorestamento",
                     "text"  => "O reflorestamento ajuda diretamente na preservação da água. Árvores mantêm o solo úmido e reduzem a erosão. Elas também favorecem a infiltração da chuva nos aquíferos. Áreas de nascentes precisam de proteção especial. O desmatamento compromete a qualidade da água nos rios. Plantar árvores é um investimento no futuro. Projetos de reflorestamento têm crescido em várias regiões. Comunidades inteiras já participam dessas iniciativas. Além dos benefícios hídricos, há ganho para a biodiversidade. Reflorestar é restaurar o equilíbrio ambiental.",
-                    "image" => "reflorestamento.jpg"
+                    "image" => "reflorestamento.png"
                 ],
                 [
                     "title" => "Uso Consciente",
                     "text"  => "O uso consciente da água deve ser praticado diariamente. Significa pensar antes de gastar. Uma torneira fechada no momento certo evita desperdícios. Banhos rápidos economizam centenas de litros por mês. Empresas também precisam rever processos internos. A agricultura deve buscar eficiência sempre. O consumo consciente envolve responsabilidade coletiva. Cada pessoa tem papel nesse processo. A soma das pequenas atitudes gera grandes resultados. Preservar a água é preservar a vida.",
-                    "image" => "consciente.jpg"
+                    "image" => "consciente.png"
                 ],
                 [
                     "title" => "Cooperação Internacional",
                     "text"  => "A água não respeita fronteiras. Muitos rios atravessam diferentes países. Isso exige cooperação internacional na gestão. Sem diálogo, conflitos podem surgir. A ONU promove acordos entre nações nesse sentido. Compartilhar tecnologias também é importante. Países com mais recursos podem ajudar os mais vulneráveis. A cooperação cria soluções conjuntas. Crises hídricas são problemas globais. Trabalhar em conjunto fortalece todos os povos. A água deve ser vista como patrimônio comum da humanidade.",
-                    "image" => "cooperacao.jpg"
+                    "image" => "cooperacao.png"
                 ],
             ],
         ];

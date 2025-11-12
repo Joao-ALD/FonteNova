@@ -18,9 +18,9 @@
 
 :root {
   /* Paleta oficial do tema Água */
-  --AzulEscuro: rgba(1, 75, 160, 1);
+  --AzulEscuro: rgb(165, 16, 153);
   --Azul2: rgba(10, 92, 184, 1);
-  --Azul3: rgb(225, 124, 22);
+  --Azul3: rgba(20, 102, 195, 1);
   --Azul4: rgba(33, 116, 212, 1);
   --AzulClaro: rgba(59, 142, 237, 1);
   --BrancoPuro: #ffffff;

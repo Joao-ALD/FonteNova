@@ -4,20 +4,20 @@
 
 /* Esta é a seção do título e botões 
   (1rem = aproximadamente 16px)
-
+*/
 #hero-agua {
-  padding-top: 5rem;    Espaço interno, para o título não colar no menu
-  margin-top: 3rem;     Margem de cima, separando do menu
+  padding-top: 5rem;    /* Espaço interno, para o título não colar no menu */
+  margin-top: 3rem;     /* Margem de cima, separando do menu */
   
-  ESTA É A LINHA QUE VOCÊ QUER CONTROLAR: 
+  /* ESTA É A LINHA QUE VOCÊ QUER CONTROLAR: 
     O espaço entre os botões e os cards 
- 
-  margin-bottom: 2rem;  Experimente 2rem (32px)
+  */
+  margin-bottom: 2rem;  /* Experimente 2rem (32px) */
 }
 
-Este é o container dos cards 
-
+/* Este é o container dos cards 
+*/
 #infoPanels {
-  Espaço entre os cards e o footer, lá embaixo
+  /* Espaço entre os cards e o footer, lá embaixo */
   margin-bottom: 5rem; 
 }

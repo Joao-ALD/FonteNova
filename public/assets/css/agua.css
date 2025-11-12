@@ -92,7 +92,7 @@ h1.display-1 {
 
   /* ===== TESTE DE CONEXÃO DO CSS ===== */
 body {
-  background-color: var(--AzulClaro) !important;
+  background-color: red !important;
 }
 
 };

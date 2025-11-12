@@ -174,4 +174,4 @@ Copia o arquivo de ambiente padrão.
 ```bash
 cp .env.example .env
 ```
-test
+Veja também o [README](..\README.md).

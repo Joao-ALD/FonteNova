@@ -114,3 +114,5 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados na 
    ```
 
    Abra seu navegador e acesse [http://127.0.0.1:8000](http://127.0.0.1:8000) para ver a aplicação funcionando.
+
+   Para mais informações, veja o [Guia de Comandos Laravel e Git](lembretes/Guia_Comandos_Laravel_Git.md) para ver os comandos mais usados e o [Guia Completo Laravel](lembretes/Guia_Completo_Laravel_Git.md) para informações mais detalhadas.

@@ -141,7 +141,7 @@ h1.display-1 {
 /* ================================
    RESPONSIVIDADE (CELULAR)
    ================================ */
-@media (max-width: 480px) {
+@media (max-width: 176px) {
   .card {
     flex-direction: column; /* imagem em cima, texto embaixo */
     min-height: auto;

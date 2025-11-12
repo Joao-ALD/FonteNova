@@ -1,10 +1,4 @@
-/* Arquivo: assets/css/agua.css 
-   Define os espaçamentos para a página "Tudo sobre a Água"
-*/
 
-/* Esta é a seção do título e botões 
-  (1rem = aproximadamente 16px)
-*/
 #hero-agua {
   padding-top: 5rem;    /* Espaço interno, para o título não colar no menu */
   margin-top: 3rem;     /* Margem de cima, separando do menu */

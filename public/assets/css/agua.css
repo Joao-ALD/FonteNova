@@ -1,18 +1,15 @@
-/* ================================
-   SEÇÃO HERO
-   ================================ */
 #hero-agua {
   padding-top: 5rem; /* Espaço interno, para o título não colar no menu */
   margin-top: 3rem; /* Margem de cima, separando do menu */
-  margin-bottom: 2rem; /* Espaço entre os botões e os cards */
+
+  /* Espaço entre os botões e os cards */
+  margin-bottom: 2rem; /* Experimente 2rem (32px) */
 }
 
-/* Container dos cards */
+/* Este é o container dos cards */
 #infoPanels {
-  margin-bottom: 5rem; /* Espaço entre os cards e o footer */
-  display: grid;
-  grid-template-columns: 1fr; /* padrão: 1 coluna */
-  gap: 1.5rem; /* espaçamento entre cards */
+  /* Espaço entre os cards e o footer, lá embaixo */
+  margin-bottom: 5rem;
 }
 
 /* ================================
@@ -129,22 +126,30 @@ h1.display-1 {
 }
 
 /* ================================
+   RESPONSIVIDADE (TABLET)
+   ================================ */
+@media (max-width: 768px) {
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+}
+
+/* ================================
    RESPONSIVIDADE (CELULAR)
    ================================ */
 @media (max-width: 480px) {
-  #infoPanels {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
   .card {
-    flex-direction: column;
+    flex-direction: column; /* imagem em cima, texto embaixo */
     min-height: auto;
   }
 
   .card img {
     width: 100%;
-    height: 180px;
+    height: 180px; /* um pouco menor */
   }
 
   .card-body {
@@ -154,88 +159,28 @@ h1.display-1 {
   }
 
   .card-title {
-    font-size: 1rem;
+    font-size: 1rem; /* menor */
   }
 
   .card-text {
-    font-size: 0.85rem;
+    font-size: 0.85rem; /* mais leve no celular */
     line-height: 1.3;
   }
 }
 
 /* ================================
-   RESPONSIVIDADE (TABLET)
+   RESPONSIVIDADE (CELULARES MUITO PEQUENOS)
    ================================ */
-@media (min-width: 481px) and (max-width: 768px) {
-  #infoPanels {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+@media (max-width: 360px) {
+  .card-title {
+    font-size: 0.9rem;
+  }
+
+  .card-text {
+    font-size: 0.8rem;
   }
 
   .card img {
-    width: 45%;
-  }
-
-  .card-body {
-    width: 55%;
-  }
-
-  .card-title {
-    font-size: 1.3rem;
-  }
-
-  .card-text {
-    font-size: 1rem;
-  }
-}
-
-/* ================================
-   RESPONSIVIDADE (NOTEBOOK)
-   ================================ */
-@media (min-width: 769px) and (max-width: 1199px) {
-  #infoPanels {
-    grid-template-columns: 1fr;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .card-title {
-    font-size: 1.2rem;
-  }
-
-  .card-text {
-    font-size: 0.95rem;
-  }
-}
-
-/* ================================
-   RESPONSIVIDADE (DESKTOP GRANDE)
-   ================================ */
-@media (min-width: 1200px) {
-  #infoPanels {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 1400px;
-    margin: 0 auto;
-    gap: 2rem;
-  }
-
-  .card {
-    flex-direction: row;
-  }
-
-  .card img {
-    width: 40%;
-  }
-
-  .card-body {
-    width: 60%;
-  }
-
-  .card-title {
-    font-size: 1.3rem;
-  }
-
-  .card-text {
-    font-size: 1rem;
+    height: 160px;
   }
 }

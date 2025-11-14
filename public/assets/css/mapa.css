@@ -20,16 +20,17 @@
     border: 2px solid #014BA0;
     border-radius: 12px;
     padding: 1.5rem;
-    min-width: 280px;
-    max-width: 350px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.20);
+    min-width: 320px;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(1, 75, 160, 0.25);
     z-index: 1000;
     animation: slideInUp 0.3s ease-out;
 }
 
 #mapa-card-content {
-    max-height: 300px;
+    max-height: 350px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #mapa-card-content h5 {

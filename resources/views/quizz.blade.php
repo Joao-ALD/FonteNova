@@ -10,13 +10,13 @@
         <h1>FonteNova</h1>
         <h3>Salve a Água</h3>
         <br>
-        <p>
+        <p class="quizz">
           A água é um dos recursos mais preciosos do planeta — e também um dos mais desperdiçados.
         </p>
-        <p>
+        <p class="quizz">
           Neste quiz educativo, você irá responder a 7 perguntas simples sobre hábitos do dia a dia e descobrir quantos litros de água podem ser economizados com pequenas mudanças.
         </p>
-        <p>Prepare-se para aprender e fazer a diferença!</p>
+        <p class="quizz">Prepare-se para aprender e fazer a diferença!</p>
         <button id="start-btn">Começar</button>
       </div>
 

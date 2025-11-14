@@ -61,23 +61,24 @@ Layout principal da aplicação (Blade)
                 @endguest
 
                 @auth
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('curso.index') }}">Curso</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('quizz.index') }}">Quizz</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('curso.index') }}">Curso</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('quizz.index') }}">Quizz</a></li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownUserLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ Auth::user()->name }} </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUserLink">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownUserLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }} </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUserLink">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                            this.closest('form').submit();">
                                         {{ __('Sair') }}
                                     </a>
                                 </form>
-                            </li>
-                        </ul>
+                        </li>
+                    </ul>
                     </li>
                 @endauth
             </ul>
@@ -135,15 +136,13 @@ Layout principal da aplicação (Blade)
                     <h5 class="text-uppercase fw-bold mb-4">Contato</h5>
                     <ul class="list-unstyled">
                         <li class="mb-3 d-flex align-items-center">
-                            <span class="fa-li pe-2"><i class="fas fa-phone"></i></span><span>(99) 99999-9999</span>
+                            <i class="fas fa-phone me-1"></i><span>(99) 99999-9999</span>
                         </li>
                         <li class="mb-3 d-flex align-items-center">
-                            <span class="fa-li pe-2"><i
-                                    class="fas fa-envelope"></i></span><span>contato@fontenova.com.br</span>
+                            <i class="fas fa-envelope me-1"></i><span>contato@fontenova.com.br</span>
                         </li>
                         <li class="d-flex align-items-center">
-                            <span class="fa-li pe-2"><i class="fas fa-map-marker-alt"></i></span><span>Registro, SP -
-                                Brasil</span>
+                            <i class="fas fa-map-marker-alt me-1"></i><span>Registro, SP - Brasil</span>
                         </li>
                     </ul>
                 </div>

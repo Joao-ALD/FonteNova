@@ -14,7 +14,7 @@
           A água é um dos recursos mais preciosos do planeta — e também um dos mais desperdiçados.
         </p>
         <p>
-          Neste quiz educativo, você irá responder a 5 perguntas simples sobre hábitos do dia a dia e descobrir quantos litros de água podem ser economizados com pequenas mudanças.
+          Neste quiz educativo, você irá responder a 7 perguntas simples sobre hábitos do dia a dia e descobrir quantos litros de água podem ser economizados com pequenas mudanças.
         </p>
         <p>Prepare-se para aprender e fazer a diferença!</p>
         <button id="start-btn">Começar</button>

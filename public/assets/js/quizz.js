@@ -1,43 +1,59 @@
 const quizData = [
     {
-        question: "Quanto tempo você deve tomar banho para economizar água?",
-        a: "20 minutos",
-        b: "5 minutos",
-        c: "15 minutos",
+        question: "Um banho de 15 minutos gasta cerca de 135L. Quantos litros economizamos ao reduzir o banho para 5 minutos?",
+        a: "30 litros",
+        b: "90 litros",
+        c: "60 litros",
         correct: "b",
-        liters: 60
+        liters: 90
     },
     {
         question: "O que é mais eficiente para escovar os dentes?",
         a: "Deixar a torneira aberta",
-        b: "Fechar a torneira enquanto escova",
-        c: "Escovar rápido sem fechar",
+        b: "Usar um copo de água (ou fechar a torneira)",
+        c: "Escovar rápido com a torneira 'meio aberta'",
         correct: "b",
-        liters: 6
+        liters: 11
     },
     {
-        question: "Qual é a forma mais econômica de lavar roupa?",
-        a: "Usar máquina com carga completa",
-        b: "Lavar peça por peça",
-        c: "Lavar roupa manualmente",
+        question: "Ao usar a máquina de lavar, qual a forma mais econômica?",
+        a: "Acumular roupas e usar a capacidade máxima (carga cheia)",
+        b: "Lavar poucas peças em várias 'meias cargas'",
+        c: "Lavar roupa manualmente no tanque",
         correct: "a",
-        liters: 50
+        liters: 130
     },
     {
-        question: "Para que podemos reutilizar água da chuva em casa?",
-        a: "Beber",
-        b: "Regar plantas ou lavar áreas externas",
-        c: "Descartar no vaso sanitário",
+        question: "Uma torneira gotejando lentamente pode desperdiçar quantos litros por dia?",
+        a: "Cerca de 5 litros",
+        b: "Mais de 40 litros",
+        c: "Exatamente 10 litros",
         correct: "b",
-        liters: 30
+        liters: 46
     },
     {
-        question: "Qual prática economiza mais água na cozinha?",
-        a: "Lavar louça com a torneira aberta",
-        b: "Lavar louça na pia com água acumulada",
-        c: "Lavar louça no microondas",
+        question: "Qual prática economiza mais água ao lavar louça?",
+        a: "Lavar item por item com a torneira sempre aberta",
+        b: "Limpar restos, ensaboar tudo (torneira fechada) e enxaguar de vez",
+        c: "Usar a máquina de lavar louça meio vazia",
         correct: "b",
-        liters: 15
+        liters: 100
+    },
+    {
+        question: "Qual é a maneira mais econômica de lavar o carro?",
+        a: "Usar uma mangueira com a água correndo livremente.",
+        b: "Usar uma lavadora de alta pressão (WAP).",
+        c: "Usar um balde com água e pano.",
+        correct: "c",
+        liters: 180
+    },
+    {
+        question: "Qual é a forma mais econômica de limpar a calçada?",
+        a: "Usar uma vassoura e, se necessário, um balde com água.",
+        b: "Usar a mangueira com pressão, por 15 minutos.",
+        c: "Usar a mangueira com pouca pressão, mas por mais tempo.",
+        correct: "a",
+        liters: 280
     }
 ];
 

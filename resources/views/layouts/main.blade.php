@@ -69,11 +69,6 @@ Layout principal da aplicação (Blade)
                             data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }} </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUserLink">
-                            <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

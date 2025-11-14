@@ -215,7 +215,8 @@
                                             '<span style="display: inline-block; background: #014BA0; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.7rem; margin-right: 0.4rem; font-weight: 500;">' + iniciativa.tipo + '</span>' +
                                             '<span style="display: inline-block; background: #6c757d; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 500;">' + iniciativa.status.replace('_', ' ') + '</span>' +
                                             '</div>' +
-                                            '<p style="margin: 0; font-size: 0.85rem; color: #495057; line-height: 1.5;">' + iniciativa.descricao + '</p>' +
+                                            '<p style="margin: 0 0 0.5rem 0; font-size: 0.85rem; color: #495057; line-height: 1.5;">' + iniciativa.descricao + '</p>' +
+                                            (iniciativa.link_externo ? '<a href="' + iniciativa.link_externo + '" target="_blank" style="font-size: 0.8rem; color: #014BA0; text-decoration: none;">🔗 Saiba mais</a>' : '') +
                                             '</div>';
                                     });
                                     html += '</div>';

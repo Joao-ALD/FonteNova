@@ -21,7 +21,7 @@ class MapaController extends Controller
             return response()->json(['nome' => 'Estado não encontrado', 'iniciativas' => []]);
         }
 
-        $iniciativas = $estadoModel->iniciativas()->get(['titulo', 'descricao', 'tipo', 'status'])->toArray();
+        $iniciativas = $estadoModel->iniciativas()->get(['titulo', 'descricao', 'tipo', 'status', 'link_externo'])->toArray();
         
         return response()->json([
             'nome' => $estadoModel->nome,

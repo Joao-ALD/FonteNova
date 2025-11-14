@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
 
-            <h1 style="color: #000; font-weight: 800;">Módulos Educacionais</h1>
+            <h1 style="color: var(--Azul3); font-weight: 800;">Módulos Educacionais</h1>
             <p class="lead mb-4">Explore nossos saberes. Selecione um módulo abaixo para começar a aprender.</p>
 
             <div class="list-group">

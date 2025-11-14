@@ -11,9 +11,9 @@
     -   6. Tratamento de múltiplos cliques e clique fora do mapa para fechar o card.
 */
 $(function () {
-    const mapa = $('#mapa-interativo-container');
-    const card = $('#mapa-card');
-    const cardContent = $('#mapa-card-content');
+    const mapa = $('#mapa-container');
+    const card = $('#info-box');
+    const cardContent = $('#info-content');
 
     let mapaObject; // Para armazenar a instância do mapa
     let estadoSelecionado = null;
@@ -59,7 +59,7 @@ $(function () {
             cardContent.html('Carregando...');
 
             // Busca os dados da API
-            buscarIniciativas(code);
+            buscarIniciativas(code.toLowerCase());
         }
     });
 
@@ -86,24 +86,41 @@ $(function () {
     // Função para buscar dados da API
     function buscarIniciativas(uf) {
         $.ajax({
-            url: `/api/estados/${uf}/iniciativas`,
+            url: `/mapa/info/${uf}`,
             method: 'GET',
             success: function (data) {
-                if (data && data.length > 0) {
-                    let html = '<ul>';
-                    data.forEach(item => {
-                        html += `<li>${item.nome}</li>`;
+                if (data && data.iniciativas && data.iniciativas.length > 0) {
+                    let html = `<h6>${data.nome}</h6><div class="iniciativas-list">`;
+                    data.iniciativas.forEach(item => {
+                        html += `
+                            <div class="iniciativa-item mb-2 p-2 border-left border-primary">
+                                <strong>${item.titulo}</strong>
+                                <div class="mt-1">
+                                    <span class="badge badge-${getStatusColor(item.status)} mr-1">${item.status}</span>
+                                    <span class="badge badge-info">${item.tipo}</span>
+                                </div>
+                                <p class="small mt-2 mb-0">${item.descricao}</p>
+                            </div>`;
                     });
-                    html += '</ul>';
+                    html += '</div>';
                     cardContent.html(html);
                 } else {
-                    cardContent.html('<p class="sem-iniciativas">Nenhuma iniciativa encontrada.</p>');
+                    cardContent.html(`<h6>${data.nome}</h6><p class="text-muted">Nenhuma iniciativa encontrada.</p>`);
                 }
             },
             error: function () {
-                cardContent.html('<p class="sem-iniciativas">Erro ao carregar as iniciativas.</p>');
+                cardContent.html('<p class="text-danger">Erro ao carregar as iniciativas.</p>');
             }
         });
+    }
+
+    function getStatusColor(status) {
+        switch(status) {
+            case 'concluído': return 'success';
+            case 'em_andamento': return 'warning';
+            case 'planejado': return 'secondary';
+            default: return 'primary';
+        }
     }
 
     // Função para deselecionar o estado e esconder o card

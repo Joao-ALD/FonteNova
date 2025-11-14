@@ -6,12 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EstadoResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
@@ -19,7 +13,8 @@ class EstadoResource extends JsonResource
             'sigla' => $this->sigla,
             'nome' => $this->nome,
             'regiao' => $this->regiao,
-            'dados_geograficos' => json_decode($this->dados_geograficos),
+            'dados_geograficos' => $this->dados_geograficos,
+            'iniciativas_count' => $this->iniciativas()->count(),
         ];
     }
 }

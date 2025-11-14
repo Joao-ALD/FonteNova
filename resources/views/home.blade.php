@@ -203,25 +203,40 @@
                                 var card = $('#mapa-card');
                                 var cardContent = $('#mapa-card-content');
 
-                                cardContent.html(
-                                    '<h5 style="color: #014BA0; font-weight: bold; margin-bottom: 1rem;">' + 
-                                    (response.nome || code) + 
-                                    '</h5>' +
-                                    '<p style="color: #333; font-size: 0.95rem; line-height: 1.5; margin: 0;">' + 
-                                    (response.iniciativas || 'Sem informações') + 
-                                    '</p>'
-                                );
+                                var html = '<h5 style="color: #014BA0; font-weight: bold; margin-bottom: 1rem; font-size: 1.25rem;">' + 
+                                    (response.nome || code) + '</h5>';
+                                
+                                if (Array.isArray(response.iniciativas) && response.iniciativas.length > 0) {
+                                    html += '<div>';
+                                    response.iniciativas.forEach(function(iniciativa) {
+                                        html += '<div style="margin-bottom: 1.25rem; padding: 0.75rem; border-left: 4px solid #014BA0; background: #f8f9fa; border-radius: 4px;">' +
+                                            '<div style="font-weight: 600; color: #212529; margin-bottom: 0.5rem; font-size: 0.95rem;">' + iniciativa.titulo + '</div>' +
+                                            '<div style="margin-bottom: 0.5rem;">' +
+                                            '<span style="display: inline-block; background: #014BA0; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.7rem; margin-right: 0.4rem; font-weight: 500;">' + iniciativa.tipo + '</span>' +
+                                            '<span style="display: inline-block; background: #6c757d; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 500;">' + iniciativa.status.replace('_', ' ') + '</span>' +
+                                            '</div>' +
+                                            '<p style="margin: 0; font-size: 0.85rem; color: #495057; line-height: 1.5;">' + iniciativa.descricao + '</p>' +
+                                            '</div>';
+                                    });
+                                    html += '</div>';
+                                } else {
+                                    html += '<p style="color: #6c757d; font-style: italic; margin-top: 1rem;">Nenhuma iniciativa encontrada para este estado.</p>';
+                                }
+                                
+                                cardContent.html(html);
 
                                 // Position card above and centered on click point
-                                var cardWidth = 350;
-                                var cardHeight = card.outerHeight() || 200;
-                                var topPos = Math.max(10, clickY - cardHeight - 20);
+                                var cardWidth = 400;
+                                var cardHeight = card.outerHeight() || 250;
+                                var topPos = Math.max(10, clickY - cardHeight - 30);
                                 var leftPos = Math.max(10, Math.min(clickX - cardWidth/2, $container.width() - cardWidth - 10));
 
                                 card.css({
                                     'top': topPos + 'px',
                                     'left': leftPos + 'px',
-                                    'right': 'auto'
+                                    'right': 'auto',
+                                    'max-height': '450px',
+                                    'overflow': 'visible'
                                 });
 
                                 card.fadeIn(200);

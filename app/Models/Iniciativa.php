@@ -22,6 +22,7 @@ class Iniciativa extends Model
         'latitude',
         'longitude',
         'imagens',
+        'link_externo',
     ];
 
     public function estado()

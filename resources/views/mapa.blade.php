@@ -69,6 +69,39 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ asset('assets/js/mapa.js') }}"></script>
+    <script>
+        window.exibirInfoEstado = function(sigla) {
+            document.getElementById('info-content').innerHTML = '<p>Carregando...</p>';
+            
+            fetch(`/mapa/info/${sigla}`)
+                .then(response => response.json())
+                .then(data => {
+                    let html = `<h6>${data.nome}</h6>`;
+                    
+                    if (Array.isArray(data.iniciativas) && data.iniciativas.length > 0) {
+                        html += '<div class="mt-3">';
+                        data.iniciativas.forEach(iniciativa => {
+                            html += `
+                                <div class="mb-3 p-2 border-left border-primary">
+                                    <strong>${iniciativa.titulo}</strong>
+                                    <div class="mt-1">
+                                        <span class="badge badge-primary">${iniciativa.tipo}</span>
+                                        <span class="badge badge-secondary ml-1">${iniciativa.status}</span>
+                                    </div>
+                                    <p class="small mt-2 mb-0">${iniciativa.descricao}</p>
+                                </div>
+                            `;
+                        });
+                        html += '</div>';
+                    } else {
+                        html += '<p class="text-muted mt-2">Nenhuma iniciativa encontrada.</p>';
+                    }
+                    
+                    document.getElementById('info-content').innerHTML = html;
+                })
+                .catch(error => {
+                    document.getElementById('info-content').innerHTML = '<p class="text-danger">Erro ao carregar informações.</p>';
+                });
+        };
+    </script>
 @endpush

@@ -14,9 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ebook_progress', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+    $table->id();
+    $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+    $table->foreignId('ebook_id')->constrained()->cascadeOnDelete();
+    $table->unsignedInteger('pages_read')->default(0);
+    $table->boolean('purchased')->default(false); // marca compra
+    $table->timestamps();
+
+    $table->unique(['user_id','ebook_id']);
+});
+
     }
 
     /**

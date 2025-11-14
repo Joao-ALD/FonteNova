@@ -14,9 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ebook_pages', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+    $table->id();
+    $table->foreignId('ebook_id')->constrained()->cascadeOnDelete();
+    $table->unsignedInteger('page_number'); // 1,2,3...
+    $table->text('content'); // HTML/Markdown do conteúdo da página
+    $table->timestamps();
+    $table->unique(['ebook_id','page_number']);
+});
+
     }
 
     /**

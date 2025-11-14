@@ -23,6 +23,10 @@ $(function () {
         map: 'br_mill',
         backgroundColor: 'transparent',
         container: mapa,
+        // Força recarregamento do SVG após mudanças
+        mapData: {
+            version: Date.now() // Timestamp para cache busting
+        },
         regionStyle: {
             initial: {
                 fill: '#014BA0' // Cor inicial dos estados

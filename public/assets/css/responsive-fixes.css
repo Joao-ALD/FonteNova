@@ -1,0 +1,98 @@
+/* ========================================
+   CORREÇÕES MÍNIMAS DE RESPONSIVIDADE
+   Apenas corrige quebras, mantém design
+   ======================================== */
+
+/* Previne scroll horizontal */
+body {
+    overflow-x: hidden;
+}
+
+/* Imagens responsivas */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Navbar mobile */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: rgba(1, 75, 160, 0.95);
+        padding: 1rem;
+        margin-top: 0.5rem;
+        border-radius: 8px;
+    }
+}
+
+/* Mapa - card responsivo */
+@media (max-width: 768px) {
+    #mapa-card {
+        max-width: 95vw;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    #mapa-interativo-container {
+        min-height: 300px;
+    }
+}
+
+/* Tabelas responsivas */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Input groups em mobile */
+@media (max-width: 576px) {
+    .input-group {
+        flex-wrap: wrap;
+    }
+    
+    .input-group > .form-control {
+        flex: 1 1 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .input-group > .btn {
+        flex: 1 1 100%;
+    }
+}
+
+/* Quebra de texto em cards */
+.card {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Video embeds responsivos */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Modais em mobile */
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+}
+
+/* Footer responsivo */
+@media (max-width: 767px) {
+    footer .col-lg-3,
+    footer .col-md-6 {
+        margin-bottom: 2rem;
+    }
+}

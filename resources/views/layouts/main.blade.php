@@ -22,6 +22,7 @@ Layout principal da aplicação (Blade)
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrapLink.css') }}">
     @stack('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive-fixes.css') }}">
 
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">

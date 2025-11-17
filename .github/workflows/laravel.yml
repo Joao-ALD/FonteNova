@@ -28,6 +28,26 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+    - name: Create Vite manifest for tests
+      run: |
+        mkdir -p public/build
+        cat > public/build/manifest.json << 'EOF'
+{
+  "resources/css/app.css": {
+    "file": "assets/app.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
+EOF
+        mkdir -p public/build/assets
+        touch public/build/assets/app.css
+        touch public/build/assets/app.js
     - name: Run Database Migrations
       env:
         DB_CONNECTION: sqlite
@@ -37,4 +57,7 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        APP_ENV: testing
+        VITE_DEV_SERVER_KEY: 
+        VITE_DEV_SERVER_CERT: 
       run: php artisan test

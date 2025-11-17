@@ -39,15 +39,11 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan migrate --seed
-    - name: Test basic functionality
+    - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
         APP_ENV: testing
         VITE_DEV_SERVER_KEY: 
         VITE_DEV_SERVER_CERT: 
-      run: |
-        php artisan test --testsuite=Unit
-        php artisan test tests/Feature/ExampleTest.php
-        php artisan test tests/Feature/Auth/AuthenticationTest.php
-        php artisan test tests/Feature/Auth/RegistrationTest.php
+      run: php artisan test

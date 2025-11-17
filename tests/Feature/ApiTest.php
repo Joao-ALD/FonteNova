@@ -39,11 +39,12 @@ class ApiTest extends TestCase
     public function it_can_list_iniciativas_for_a_specific_estado()
     {
         $estado = Estado::where('sigla', 'SP')->first();
+        $expectedCount = Iniciativa::where('estado_id', $estado->id)->count();
 
         $response = $this->getJson('/api/estados/SP/iniciativas');
 
         $response->assertStatus(200)
-                 ->assertJsonCount(3, 'data');
+                 ->assertJsonCount($expectedCount, 'data');
     }
 
     /** @test */
@@ -65,9 +66,11 @@ class ApiTest extends TestCase
 
         $response->assertStatus(200)
                  ->assertJsonStructure([
-                     'total_por_regiao',
+                     'total_iniciativas',
                      'investimento_total',
-                     'distribuicao_por_tipo',
+                     'por_regiao',
+                     'por_tipo',
+                     'por_status',
                  ]);
     }
 }

@@ -34,7 +34,7 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section mt-5 mb-5">
         <div class="container">
             <h2 class="section-title">Galeria Interativa</h2>
             <div class="row g-4 justify-content-center">

@@ -6,17 +6,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class IniciativaResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
     public function toArray($request)
     {
         return [
             'id' => $this->id,
-            'estado' => new EstadoResource($this->whenLoaded('estado')),
             'titulo' => $this->titulo,
             'descricao' => $this->descricao,
             'tipo' => $this->tipo,
@@ -27,7 +20,10 @@ class IniciativaResource extends JsonResource
             'investimento' => $this->investimento,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
-            'imagens' => json_decode($this->imagens),
+            'estado' => [
+                'sigla' => $this->estado->sigla,
+                'nome' => $this->estado->nome,
+            ],
         ];
     }
 }

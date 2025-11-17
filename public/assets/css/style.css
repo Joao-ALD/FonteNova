@@ -88,9 +88,11 @@
     background-color: var(--AzulEscuro);
 }
 
-.bg-white {
-    background-color: var(--BrancoPuro);
-}
+/* CONFLITO RESOLVIDO:
+   Removida a classe .bg-white daqui para evitar conflito
+   com a classe .bg-white nativa do Bootstrap.
+*/
+
 
 /* ------------- CORES GERAIS ------------- */
 
@@ -143,4 +145,3 @@
     text-align: center;
     line-height: inherit;
 }
-

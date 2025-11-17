@@ -48,14 +48,7 @@ Route::middleware(['auth'])->group(function () {
     // Sua rota do Quizz
     Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index'); // <-- Protegida
 
-    //Sua rota do Ebook
-    Route::get('/ebooks', [EbookController::class, 'index'])->name('ebooks.index');
-    Route::get('/ebooks/{slug}', [EbookController::class, 'show'])->name('ebooks.show');
-    // EbookProgress Rotas de API/AJAX para atualizar progresso (auth)
-Route::middleware('auth')->group(function () {
-    Route::post('/ebooks/{ebook}/progress', [EbookProgressController::class,'update'])->name('ebooks.progress.update');
-    Route::post('/ebooks/{ebook}/purchase', [EbookProgressController::class,'purchase'])->name('ebooks.purchase'); // simulação compra
-});
+   
 
     // O Breeze cria uma rota de 'dashboard' por padrão. 
     // Você pode usá-la ou deletá-la se não precisar.

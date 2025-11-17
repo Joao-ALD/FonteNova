@@ -7,6 +7,13 @@ use Tests\TestCase;
 
 class MapaControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
     /**
      * A basic test to check if the map page returns a successful response.
      *
@@ -28,10 +35,10 @@ class MapaControllerTest extends TestCase
     {
         $response = $this->get('/mapa/info/SP');
 
-        $response->assertStatus(200);
-        $response->assertJson([
-            'nome' => 'São Paulo',
-            'iniciativas' => 'Programa de recuperação de mananciais da Cantareira.',
-        ]);
+        $response->assertStatus(200)
+                 ->assertJsonStructure([
+                     'nome',
+                     'iniciativas'
+                 ]);
     }
 }

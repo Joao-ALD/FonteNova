@@ -3,30 +3,29 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Estado;
 use App\Models\Iniciativa;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EstatisticasController extends Controller
 {
     public function index()
     {
-        $totalPorRegiao = DB::table('iniciativas')
-            ->join('estados', 'iniciativas.estado_id', '=', 'estados.id')
-            ->select('estados.regiao', DB::raw('count(*) as total'))
-            ->groupBy('estados.regiao')
-            ->get();
+        $estatisticas = [
+            'total_iniciativas' => Iniciativa::count(),
+            'investimento_total' => Iniciativa::sum('investimento'),
+            'por_regiao' => Estado::select('regiao', DB::raw('count(iniciativas.id) as total'))
+                ->leftJoin('iniciativas', 'estados.id', '=', 'iniciativas.estado_id')
+                ->groupBy('regiao')
+                ->get(),
+            'por_tipo' => Iniciativa::select('tipo', DB::raw('count(*) as total'))
+                ->groupBy('tipo')
+                ->get(),
+            'por_status' => Iniciativa::select('status', DB::raw('count(*) as total'))
+                ->groupBy('status')
+                ->get(),
+        ];
 
-        $investimentoTotal = Iniciativa::sum('investimento');
-
-        $distribuicaoPorTipo = Iniciativa::select('tipo', DB::raw('count(*) as total'))
-            ->groupBy('tipo')
-            ->get();
-
-        return response()->json([
-            'total_por_regiao' => $totalPorRegiao,
-            'investimento_total' => $investimentoTotal,
-            'distribuicao_por_tipo' => $distribuicaoPorTipo,
-        ]);
+        return response()->json($estatisticas);
     }
 }

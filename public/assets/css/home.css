@@ -83,11 +83,13 @@
     aspect-ratio: 1 / 1;
     width: 100%;
     height: auto;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .gallery-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
 }
 
 .gallery-card-icon {

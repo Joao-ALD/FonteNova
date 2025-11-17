@@ -31,7 +31,7 @@
                         class="hero-illustration img-fluid">
                 </div>
             </div>
-</div>
+        </div>
     </section>
 
     <section class="section">
@@ -40,24 +40,65 @@
             <div class="row g-4 justify-content-center">
                 @php
                     $cards = [
-                        ['img' => 'icon_balde.svg', 'label' => 'Coleta de chuva', 'bg' => '#3b8eed'],
-                        ['img' => 'icon_water.svg', 'label' => 'Reuso de água', 'bg' => '#014ba0'],
-                        ['img' => 'icon_hands.svg', 'label' => 'Cuidados à água', 'bg' => '#3b8eed'],
-                        ['img' => 'icon_filter.svg', 'label' => 'Filtros naturais', 'bg' => '#014ba0'],
+                        [
+                            'img' => 'icon_balde.svg',
+                            'label' => 'Coleta de chuva',
+                            'bg' => '#3b8eed',
+                            'desc' =>
+                                'Instalações simples como calhas e caixas de armazenamento permitem aproveitar a água da chuva para jardinagem e limpeza. Economiza até 30% do consumo doméstico se usado em irrigação e descargas.',
+                            'text_color' => '#053659',
+                        ],
+                        [
+                            'img' => 'icon_water.svg',
+                            'label' => 'Reuso de água',
+                            'bg' => '#014ba0',
+                            'desc' =>
+                                'Filtre e reutilize águas de pias e chuveiros (graywater) em sistemas de descarga ou para irrigação. Exige cuidados de tratamento simples — reduz sensivelmente o consumo de água potável.',
+                            'text_color' => '#fff',
+                        ],
+                        [
+                            'img' => 'icon_hands.svg',
+                            'label' => 'Cuidados à água',
+                            'bg' => '#3b8eed',
+                            'desc' =>
+                                'Ações simples: consertar vazamentos, usar descargas econômicas e torneiras com arejador. Pequenas mudanças na rotina podem reduzir o consumo diário por pessoa em até 40 litros.',
+                            'text_color' => '#053659',
+                        ],
+                        [
+                            'img' => 'icon_filter.svg',
+                            'label' => 'Filtros naturais',
+                            'bg' => '#014ba0',
+                            'desc' =>
+                                'Filtros com camadas de areia, carvão e cascalho são ótimos para purificar água de reúso ou de chuva. São econômicos e fáceis de montar para uso não potável ou como pré-filtro.',
+                            'text_color' => '#fff',
+                        ],
                     ];
                 @endphp
-                @foreach ($cards as $card)
-                    <div class="col-xl-3 col-lg-4 col-md-6 d-flex justify-content-center">
-                        <div class="gallery-card square-card d-flex flex-column justify-content-center align-items-center p-4 rounded-3 text-white"
-                            style="background-color: {{ $card['bg'] }};">
-                            <img src="{{ asset('assets/img/' . $card['img']) }}" alt="{{ $card['label'] }}"
-                                class="gallery-card-icon mb-3">
-                            <span class="gallery-card-label fw-bold">{{ $card['label'] }}</span>
+
+                @foreach ($cards as $index => $card)
+                    <div class="col-xl-3 col-lg-4 col-md-6 ">
+                        <div class="gallery-card square-card d-flex flex-column justify-content-center align-items-center p-4 rounded-3 text-white position-relative"
+                            style="background-color: {{ $card['bg'] }}; cursor: pointer;" data-bs-toggle="collapse"
+                            data-bs-target="#desc-{{ $index }}" aria-expanded="false"
+                            aria-controls="desc-{{ $index }}">
+
+                            <!-- Ícone + Título (centralizados) -->
+                            <div class="d-flex flex-column align-items-center w-100">
+                                <img src="{{ asset('assets/img/' . $card['img']) }}" alt="{{ $card['label'] }}"
+                                    class="gallery-card-icon mb-3">
+                                <span class="gallery-card-label fw-bold">{{ $card['label'] }}</span>
+                            </div>
+
+                            <!-- Descrição (alinhada à esquerda) -->
+                            <div id="desc-{{ $index }}" class="collapse mt-3 w-100 text-center"
+                                style="font-size: 13px; color: {{ $card['text_color'] }};">
+                                {{ $card['desc'] }}
+                            </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-        </<div>
+        </div>
     </section>
 
     {{-- SEÇÃO DO MAPA CORRIGIDA E COMPLETA --}}
@@ -83,7 +124,7 @@
                     </div>
                 </div>
             </div>
-                </div>
+        </div>
     </section>
 
     <section class="section edu-section">
@@ -93,7 +134,12 @@
                 @php
                     $eduItems = [
                         ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'highlight' => false],
-                        ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'highlight' => true, 'link' => route('ebooks.index')],
+                        [
+                            'img' => 'icon_ebook.svg',
+                            'label' => 'E-Books',
+                            'highlight' => true,
+                            'link' => route('ebooks.index'),
+                        ],
                         ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'highlight' => false],
                     ];
                 @endphp
@@ -114,18 +160,17 @@
     <section class="section quote-section">
         <div class="container">
             <div class="quote-box bg-white p-md-4 rounded-3 mx-auto text-center">
-                <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
+                <img src="{{ asset('assets/img/quote.svg') }}" alt="Ícone de citação" class="quote-icon">
             </div>
-                </div>
+        </div>
     </section>
 @endsection
 
 @push('scripts')
-
     <script>
         console.log('=== Carregando mapa SVG realista (icon_brasil.svg) ===');
 
-        $(function () {
+        $(function() {
             var $container = $('#mapa-interativo-container');
             if ($container.length === 0) {
                 console.error('❌ Container do mapa não encontrado');
@@ -135,7 +180,7 @@
             var svgUrl = "{{ asset('assets/img/icon_brasil.svg') }}";
 
             $.get(svgUrl)
-                .done(function (data) {
+                .done(function(data) {
                     // Extract the <svg> element from the returned XML
                     var $svg = $(data).filter('svg');
                     if ($svg.length === 0) $svg = $(data).find('svg').first();
@@ -152,15 +197,15 @@
 
                     // Add data-code and clickable class to path elements with ids (states)
                     // Handle both lowercase id= and uppercase ID= attributes
-                    $svg.find('path').each(function () {
+                    $svg.find('path').each(function() {
                         var $el = $(this);
                         var id = $el.attr('id') || $el.attr('ID');
-                        
+
                         if (!id) return;
-                        
+
                         // Normalize to lowercase for consistency
                         id = id.toUpperCase();
-                        
+
                         $el.attr('id', id); // Normalize to lowercase id attribute
                         $el.attr('data-code', id);
                         $el.addClass('estado');
@@ -169,7 +214,9 @@
                     });
 
                     // Wrap SVG in a container to properly handle positioning
-                    var $svgWrapper = $('<div style="position: relative; width: 100%; height: 100%; overflow: visible;"></div>');
+                    var $svgWrapper = $(
+                        '<div style="position: relative; width: 100%; height: 100%; overflow: visible;"></div>'
+                        );
                     $svgWrapper.append($svg);
 
                     // Inject CSS styling for hover effects
@@ -177,13 +224,13 @@
                         '#mapa-interativo-container svg path.estado:hover { fill: #0066CC !important; }' +
                         '#mapa-interativo-container svg { max-height: 100%; }' +
                         '</style>';
-                    
+
                     $container.html(css).append($svgWrapper);
 
                     // Click handler for states with tooltip positioning above click point
-                    $container.on('click', 'path.estado', function (e) {
+                    $container.on('click', 'path.estado', function(e) {
                         e.stopPropagation(); // Prevent triggering document click
-                        
+
                         var code = $(this).attr('data-code');
                         if (!code) return;
 
@@ -199,38 +246,51 @@
                             url: '/mapa/info/' + code,
                             type: 'GET',
                             dataType: 'json',
-                            success: function (response) {
+                            success: function(response) {
                                 var card = $('#mapa-card');
                                 var cardContent = $('#mapa-card-content');
 
-                                var html = '<h5 style="color: #014BA0; font-weight: bold; margin-bottom: 1rem; font-size: 1.25rem;">' + 
+                                var html =
+                                    '<h5 style="color: #014BA0; font-weight: bold; margin-bottom: 1rem; font-size: 1.25rem;">' +
                                     (response.nome || code) + '</h5>';
-                                
-                                if (Array.isArray(response.iniciativas) && response.iniciativas.length > 0) {
+
+                                if (Array.isArray(response.iniciativas) && response
+                                    .iniciativas.length > 0) {
                                     html += '<div>';
                                     response.iniciativas.forEach(function(iniciativa) {
-                                        html += '<div style="margin-bottom: 1.25rem; padding: 0.75rem; border-left: 4px solid #014BA0; background: #f8f9fa; border-radius: 4px;">' +
-                                            '<div style="font-weight: 600; color: #212529; margin-bottom: 0.5rem; font-size: 0.95rem;">' + iniciativa.titulo + '</div>' +
+                                        html +=
+                                            '<div style="margin-bottom: 1.25rem; padding: 0.75rem; border-left: 4px solid #014BA0; background: #f8f9fa; border-radius: 4px;">' +
+                                            '<div style="font-weight: 600; color: #212529; margin-bottom: 0.5rem; font-size: 0.95rem;">' +
+                                            iniciativa.titulo + '</div>' +
                                             '<div style="margin-bottom: 0.5rem;">' +
-                                            '<span style="display: inline-block; background: #014BA0; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.7rem; margin-right: 0.4rem; font-weight: 500;">' + iniciativa.tipo + '</span>' +
-                                            '<span style="display: inline-block; background: #6c757d; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 500;">' + iniciativa.status.replace('_', ' ') + '</span>' +
+                                            '<span style="display: inline-block; background: #014BA0; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.7rem; margin-right: 0.4rem; font-weight: 500;">' +
+                                            iniciativa.tipo + '</span>' +
+                                            '<span style="display: inline-block; background: #6c757d; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.7rem; font-weight: 500;">' +
+                                            iniciativa.status.replace('_', ' ') +
+                                            '</span>' +
                                             '</div>' +
-                                            '<p style="margin: 0 0 0.5rem 0; font-size: 0.85rem; color: #495057; line-height: 1.5;">' + iniciativa.descricao + '</p>' +
-                                            (iniciativa.link_externo ? '<a href="' + iniciativa.link_externo + '" target="_blank" style="font-size: 0.8rem; color: #014BA0; text-decoration: none;">🔗 Saiba mais</a>' : '') +
+                                            '<p style="margin: 0 0 0.5rem 0; font-size: 0.85rem; color: #495057; line-height: 1.5;">' +
+                                            iniciativa.descricao + '</p>' +
+                                            (iniciativa.link_externo ? '<a href="' +
+                                                iniciativa.link_externo +
+                                                '" target="_blank" style="font-size: 0.8rem; color: #014BA0; text-decoration: none;">🔗 Saiba mais</a>' :
+                                                '') +
                                             '</div>';
                                     });
                                     html += '</div>';
                                 } else {
-                                    html += '<p style="color: #6c757d; font-style: italic; margin-top: 1rem;">Nenhuma iniciativa encontrada para este estado.</p>';
+                                    html +=
+                                        '<p style="color: #6c757d; font-style: italic; margin-top: 1rem;">Nenhuma iniciativa encontrada para este estado.</p>';
                                 }
-                                
+
                                 cardContent.html(html);
 
                                 // Position card above and centered on click point
                                 var cardWidth = 400;
                                 var cardHeight = card.outerHeight() || 250;
                                 var topPos = Math.max(10, clickY - cardHeight - 30);
-                                var leftPos = Math.max(10, Math.min(clickX - cardWidth/2, $container.width() - cardWidth - 10));
+                                var leftPos = Math.max(10, Math.min(clickX - cardWidth / 2,
+                                    $container.width() - cardWidth - 10));
 
                                 card.css({
                                     'top': topPos + 'px',
@@ -242,9 +302,10 @@
 
                                 card.fadeIn(200);
                             },
-                            error: function () {
+                            error: function() {
                                 $('#mapa-card-content').html(
-                                    '<p style="color: #d32f2f; font-weight: bold;">Erro ao carregar informações do estado ' + code + '</p>'
+                                    '<p style="color: #d32f2f; font-weight: bold;">Erro ao carregar informações do estado ' +
+                                    code + '</p>'
                                 );
                                 $('#mapa-card').fadeIn(200);
                             }
@@ -252,11 +313,11 @@
                     });
 
                     // Close card when clicking outside the map
-                    $(document).on('click', function (e) {
+                    $(document).on('click', function(e) {
                         var card = $('#mapa-card');
                         var isClickOnMap = $container.find(e.target).length > 0;
                         var isClickOnCard = card.find(e.target).length > 0;
-                        
+
                         if (!isClickOnMap && !isClickOnCard) {
                             card.fadeOut(200);
                         }
@@ -265,8 +326,10 @@
                     console.log('✓✓✓ Mapa SVG realista (icon_brasil.svg) carregado com sucesso! ✓✓✓');
                     console.log('Total de estados clicáveis encontrados');
                 })
-                .fail(function () {
-                    $container.html('<p style="color: #d32f2f; padding: 2rem;">Falha ao carregar o mapa. Tente novamente mais tarde.</p>');
+                .fail(function() {
+                    $container.html(
+                        '<p style="color: #d32f2f; padding: 2rem;">Falha ao carregar o mapa. Tente novamente mais tarde.</p>'
+                        );
                     console.error('❌ Erro ao carregar SVG');
                 });
         });

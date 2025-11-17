@@ -93,7 +93,7 @@
                 @php
                     $eduItems = [
                         ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'highlight' => false],
-                        ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'highlight' => true, 'link' => route('ebooks.index')],
+                        ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'highlight' => true],
                         ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'highlight' => false],
                     ];
                 @endphp

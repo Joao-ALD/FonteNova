@@ -1,0 +1,47 @@
+{
+    "name": "Laravel PHP 8.0 Codespace (FonteNova)",
+    
+    // Indica que o ambiente sera iniciado usando o docker-compose nesta pasta
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    
+    // Serviço principal que o VS Code deve se conectar (nosso container PHP)
+    "service": "app",
+
+    // Pasta do projeto dentro do container
+    "workspaceFolder": "/var/www/html",
+    
+    // Comandos a serem executados APOS a criacao/start do container (automação do setup)
+    "postCreateCommand": {
+        "copy_env": "cp .env.example .env || true",
+        "key_generate": "docker exec codespace-app php artisan key:generate || true",
+        "migrate_seed": "docker exec codespace-app php artisan migrate --seed --force || true"
+    },
+
+    // Extensoes recomendadas para Laravel no VS Code
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "felixfbecker.php-debug",
+                "ikappas.composer",
+                "onecentlin.laravel5-snippets",
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    },
+    
+    // Mapeamento de portas que devem ser abertas
+    "portsAttributes": {
+        "80": {
+            "label": "Aplicação Laravel (Nginx)",
+            "onAutoForward": "notify"
+        },
+        "8025": {
+            "label": "Mailpit (Emails de Teste)",
+            "onAutoForward": "notify"
+        }
+    },
+    
+    "remoteUser": "root"
+}

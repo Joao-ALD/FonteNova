@@ -90,6 +90,9 @@ Layout principal da aplicação (Blade)
                                 <li>
                                     <a class="dropdown-item" href="{{ route('admin.cursos.index') }}">Gerenciar Cursos</a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.quizz.index') }}">Gerenciar Quizz</a>
+                                </li>
                             </ul>
                         </li>
 

@@ -9,6 +9,8 @@ services:
     working_dir: /var/www/html
     volumes:
       - ./:/var/www/html
+      - /var/www/html/vendor
+      - /var/www/html/node_modules
     networks:
       - app-network
 

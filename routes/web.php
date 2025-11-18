@@ -47,8 +47,8 @@ Route::middleware(['auth'])->group(function () {
     // Sua rota do Quizz
     Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index'); // <-- Protegida
 
-    // Rota da Página Inicial (Biblioteca)-Ebook
-    Route::get('/', [EbookController::class, 'index'])->name('ebooks.index');
+    // Rota da Biblioteca de E-Books
+    Route::get('/ebooks', [EbookController::class, 'index'])->name('ebooks.index');
 
     // Rota do Leitor (Reader)-pagina de leitura do Ebook
     Route::get('/ebooks/{id}/reader', [EbookController::class, 'reader'])->name('ebooks.reader');

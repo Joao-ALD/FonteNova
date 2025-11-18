@@ -48,13 +48,18 @@ Route::middleware(['auth'])->group(function () {
     // Sua rota do Quizz
     Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index'); // <-- Protegida
 
-   
-
-    // O Breeze cria uma rota de 'dashboard' por padrão. 
-    // Você pode usá-la ou deletá-la se não precisar.
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+// GRUPO DE ROTAS ADMINISTRATIVAS (Protegidas por login)
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+
+    Route::get('/cursos', [CursoController::class, 'adminIndex'])->name('admin.cursos.index');
+    Route::get('/cursos/{id}/editar', [CursoController::class, 'edit'])->name('admin.cursos.edit');
+    Route::put('/cursos/{id}', [CursoController::class, 'update'])->name('admin.cursos.update');
+
 });
 
 

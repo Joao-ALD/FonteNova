@@ -3,7 +3,9 @@
 @section('content')
 
 {{-- Link para o CSS específico desta página --}}
-<link rel="stylesheet" href="{{ asset('css/ebooks.css') }}">
+@push('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/ebooks.css') }}">
+@endpush
 
 <section class="page-header text-center">
     <div class="container">

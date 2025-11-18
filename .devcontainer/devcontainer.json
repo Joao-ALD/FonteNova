@@ -12,13 +12,12 @@
     // Pasta do projeto dentro do container
     "workspaceFolder": "/var/www/html",
     
-    // CORREÇÃO AQUI: Sequência de comandos em Array, com pausa para o MySQL.
+    // CORREÇÃO: Usando docker-compose exec e o caminho absoluto do PHP.
     "postCreateCommand": [
         "cp .env.example .env",
-        // Pausa de 10 segundos para garantir que o contêiner do MySQL esteja pronto.
         "sleep 10", 
-        "docker exec codespace-app php artisan key:generate",
-        "docker exec codespace-app php artisan migrate --seed --force"
+        "docker-compose exec app /usr/local/bin/php artisan key:generate",
+        "docker-compose exec app /usr/local/bin/php artisan migrate --seed --force"
     ],
 
     // Extensoes recomendadas para Laravel no VS Code

@@ -1,25 +1,13 @@
 {
     "name": "Laravel PHP 8.0 Codespace (FonteNova)",
     
-    // Indica que o ambiente sera iniciado usando o docker-compose nesta pasta
     "dockerComposeFile": [
         "docker-compose.yml"
     ],
     
-    // Serviço principal que o VS Code deve se conectar (nosso container PHP)
     "service": "app",
-
-    // Pasta do projeto dentro do container
     "workspaceFolder": "/var/www/html",
     
-    // Comandos a serem executados APOS a criacao/start do container (automação do setup)
-    "postCreateCommand": {
-        "copy_env": "cp .env.example .env || true",
-        "key_generate": "docker exec codespace-app php artisan key:generate || true",
-        "migrate_seed": "docker exec codespace-app php artisan migrate --seed --force || true"
-    },
-
-    // Extensoes recomendadas para Laravel no VS Code
     "customizations": {
         "vscode": {
             "extensions": [
@@ -31,7 +19,6 @@
         }
     },
     
-    // Mapeamento de portas que devem ser abertas
     "portsAttributes": {
         "80": {
             "label": "Aplicação Laravel (Nginx)",
@@ -42,6 +29,26 @@
             "onAutoForward": "notify"
         }
     },
+    
+    // Variaveis de ambiente para o Laravel se conectar ao MySQL e Mailpit dentro do Codespace
+    "containerEnv": {
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "mysql",
+        "DB_PORT": "3306",
+        "DB_DATABASE": "codespace_db",
+        "DB_USERNAME": "codespace_user",
+        "DB_PASSWORD": "codespace_password",
+        "MAIL_MAILER": "smtp",
+        "MAIL_HOST": "mailpit",
+        "MAIL_PORT": "1025"
+    },
+    
+    // Comandos de setup que serao executados automaticamente
+    "postCreateCommand": [
+        "cp .env.example .env",
+        "docker exec codespace-app php artisan key:generate",
+        "docker exec codespace-app php artisan migrate --seed --force"
+    ],
     
     "remoteUser": "root"
 }

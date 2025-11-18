@@ -26,7 +26,7 @@ COPY --from=composer/latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copia o codigo e executa o build
+# Copia o codigo e executa o build (o '..' se refere a pasta raiz do projeto)
 COPY .. /var/www/html 
 
 # Instala dependencias Composer e NPM, e constroi assets (Tailwind/Bootstrap)

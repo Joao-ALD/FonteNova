@@ -21,7 +21,7 @@ class Topico extends Model
 
     protected $table = 'topicos';
     protected $fillable = [
-        'nome',
+        'titulo',
         'palavras_chave',
         'resumo',
         'link_site',

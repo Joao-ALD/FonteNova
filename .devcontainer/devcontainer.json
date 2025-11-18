@@ -1,0 +1,62 @@
+{
+    "name": "Laravel PHP 8.0 Codespace (FonteNova)",
+    
+    // Indica que o ambiente sera iniciado usando o docker-compose nesta pasta
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    
+    // Serviço principal que o VS Code deve se conectar (nosso container PHP)
+    "service": "app",
+
+    // Pasta do projeto dentro do container
+    "workspaceFolder": "/var/www/html",
+    
+    // CORREÇÃO AQUI: Sequência de comandos em Array, com pausa para o MySQL.
+    "postCreateCommand": [
+        "cp .env.example .env",
+        // Pausa de 10 segundos para garantir que o contêiner do MySQL esteja pronto.
+        "sleep 10", 
+        "docker exec codespace-app php artisan key:generate",
+        "docker exec codespace-app php artisan migrate --seed --force"
+    ],
+
+    // Extensoes recomendadas para Laravel no VS Code
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "felixfbecker.php-debug",
+                "ikappas.composer",
+                "onecentlin.laravel5-snippets",
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    },
+    
+    // Mapeamento de portas que devem ser abertas
+    "portsAttributes": {
+        "80": {
+            "label": "Aplicação Laravel (Nginx)",
+            "onAutoForward": "notify"
+        },
+        "8025": {
+            "label": "Mailpit (Emails de Teste)",
+            "onAutoForward": "notify"
+        }
+    },
+    
+    // Variaveis de ambiente para o Laravel se conectar ao MySQL e Mailpit dentro do Codespace
+    "containerEnv": {
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "mysql",
+        "DB_PORT": "3306",
+        "DB_DATABASE": "codespace_db",
+        "DB_USERNAME": "codespace_user",
+        "DB_PASSWORD": "codespace_password",
+        "MAIL_MAILER": "smtp",
+        "MAIL_HOST": "mailpit",
+        "MAIL_PORT": "1025"
+    },
+    
+    "remoteUser": "root"
+}

@@ -1,0 +1,68 @@
+version: '3.8'
+services:
+  app:
+    # Usa o Dockerfile dentro da pasta .devcontainer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: codespace-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    # Mapeia a pasta raiz do projeto (..) para o container
+    volumes:
+      - ..:/var/www/html
+    networks:
+      - app-network
+    command: php-fpm -F 
+
+  webserver:
+    image: nginx:alpine
+    container_name: codespace-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ..:/var/www/html
+      # Mapeia a configuracao Nginx da pasta .devcontainer
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: codespace-mysql
+    restart: unless-stopped
+    environment:
+      # Credenciais hardcoded para o Codespace (seguro, ja que e um ambiente isolado)
+      MYSQL_DATABASE: codespace_db
+      MYSQL_ROOT_PASSWORD: codespace_root_password
+      MYSQL_PASSWORD: codespace_password
+      MYSQL_USER: codespace_user
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - app-network
+
+  redis:
+    image: redis:alpine
+    container_name: codespace-redis
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  mailpit:
+    image: axllent/mailpit
+    container_name: codespace-mailpit
+    ports:
+      - "8025:8025" # UI
+      - "1025:1025" # SMTP
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local

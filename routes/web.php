@@ -49,6 +49,14 @@ Route::middleware(['auth'])->group(function () {
     // Rotas do Quizz
     Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index'); // <-- Protegida
 
+    // Rota da Biblioteca de E-Books
+    Route::get('/ebooks', [EbookController::class, 'index'])->name('ebooks.index');
+
+    // Rota do Leitor (Reader)-pagina de leitura do Ebook
+    Route::get('/ebooks/{id}/reader', [EbookController::class, 'reader'])->name('ebooks.reader');
+
+    // O Breeze cria uma rota de 'dashboard' por padrão. 
+    // Você pode usá-la ou deletá-la se não precisar.
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

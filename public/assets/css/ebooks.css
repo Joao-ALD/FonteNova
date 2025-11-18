@@ -1,0 +1,43 @@
+/* Cabeçalho da Seção */
+.page-header {
+    background-color: #1a3b6e; /* Azul escuro da identidade visual */
+    color: white;
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+/* Card do Ebook */
+.ebook-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    overflow: hidden;
+}
+
+.ebook-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(26, 59, 110, 0.2); /* Sombra azulada suave */
+    border-color: #4a90e2; /* Borda azul clara no hover */
+}
+
+/* Capa do Ebook */
+.ebook-cover {
+    height: 220px;
+    object-fit: cover;
+    background-color: #f8f9fa;
+    border-bottom: 3px solid #4a90e2;
+}
+
+/* Botão Personalizado */
+.btn-custom {
+    background-color: #4a90e2; /* Azul claro */
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+.btn-custom:hover {
+    background-color: #1a3b6e; /* Azul escuro no hover */
+    color: white;
+}

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             EstadoSeeder::class,
             IniciativaSeeder::class,
             AulaSeeder::class,
+
+            EbookSeeder::class
         ]);
     }
 }

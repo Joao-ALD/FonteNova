@@ -25,6 +25,11 @@ Route::get('/sobre', [SobreController::class, 'index'])->name('sobre.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
 Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');
 
+
+// Rota da Página Inicial (Biblioteca)-Ebook e Rota do Leitor (Reader)-pagina de leitura do Ebook
+Route::get('/ebooks', [EbookController::class, 'index'])->name('ebooks.index');
+Route::get('/ebooks/{id}/reader', [EbookController::class, 'reader'])->name('ebooks.reader');
+
 // Rotas ChatBot
 Route::get('/chatbot', [ChatBotController::class, 'index'])->name('chatbot.index');
 Route::post('/chatbot/responder', [ChatBotController::class, 'responder'])->name('chatbot.responder');

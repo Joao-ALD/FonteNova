@@ -31,7 +31,7 @@
                         class="hero-illustration img-fluid">
                 </div>
             </div>
-</div>
+        </div>
     </section>
 
     <section class="section">
@@ -57,7 +57,7 @@
                     </div>
                 @endforeach
             </div>
-        </<div>
+            </<div>
     </section>
 
     {{-- SEÇÃO DO MAPA CORRIGIDA E COMPLETA --}}
@@ -83,27 +83,36 @@
                     </div>
                 </div>
             </div>
-                </div>
+        </div>
     </section>
 
     <section class="section edu-section">
         <div class="container">
             <h2 class="section-title text-white">Educação Ambiental</h2>
-            <div class="row g-4 justify-content-center">
+           <div class="row g-4 justify-content-center">
                 @php
                     $eduItems = [
-                        ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'highlight' => false],
-                        ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'highlight' => true],
-                        ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'highlight' => false],
-                    ];
+                        ['img' => 'icon_workshop.svg', 'label' => 'Oficinas', 'highlight' => false, 'url' => '#'], // Link vazio
+                        ['img' => 'icon_ebook.svg', 'label' => 'E-Books', 'highlight' => true, 'url' => route('ebooks.index')], // ✅ Rota para nossa biblioteca
+                        ['img' => 'icon_eventos.svg', 'label' => 'Eventos', 'highlight' => false, 'url' => '#'], // Link vazio
+                        ];
                 @endphp
+                
                 @foreach ($eduItems as $item)
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                        <div
-                            class="card square-card border-0 shadow-sm text-center edu-card d-flex flex-column justify-content-center align-items-center p-4 {{ $item['highlight'] ? 'edu-card--highlighted' : '' }}">
-                            <img src="{{ asset('assets/img/' . $item['img']) }}" alt="{{ $item['label'] }}"
-                                class="edu-card-icon mb-3">
+                        {{-- Adicionei 'position-relative' aqui para o link funcionar --}}
+                        <div class="card square-card border-0 shadow-sm text-center edu-card d-flex flex-column justify-content-center align-items-center p-4 position-relative {{ $item['highlight'] ? 'edu-card--highlighted' : '' }}">
+                            
+                            <img src="{{ asset('assets/img/' . $item['img']) }}" alt="{{ $item['label'] }}" class="edu-card-icon mb-3">
+                            
                             <h4 class="edu-card-label fw-bold">{{ $item['label'] }}</h4>
+
+                            {{-- ✅ O Link Mágico: Cobre todo o card sem quebrar o layout --}}
+                            @if($item['url'] !== '#')
+                                <a href="{{ $item['url'] }}" class="stretched-link">
+                                    <span class="visually-hidden">Ir para {{ $item['label'] }}</span>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 @endforeach
@@ -116,7 +125,7 @@
             <div class="quote-box bg-white p-md-4 rounded-3 mx-auto text-center">
                 <img src="{{ asset('assets/img/quote.svg')}}" alt="Ícone de citação" class="quote-icon">
             </div>
-                </div>
+        </div>
     </section>
 @endsection
 
@@ -155,12 +164,12 @@
                     $svg.find('path').each(function () {
                         var $el = $(this);
                         var id = $el.attr('id') || $el.attr('ID');
-                        
+
                         if (!id) return;
-                        
+
                         // Normalize to lowercase for consistency
                         id = id.toUpperCase();
-                        
+
                         $el.attr('id', id); // Normalize to lowercase id attribute
                         $el.attr('data-code', id);
                         $el.addClass('estado');
@@ -177,13 +186,13 @@
                         '#mapa-interativo-container svg path.estado:hover { fill: #0066CC !important; }' +
                         '#mapa-interativo-container svg { max-height: 100%; }' +
                         '</style>';
-                    
+
                     $container.html(css).append($svgWrapper);
 
                     // Click handler for states with tooltip positioning above click point
                     $container.on('click', 'path.estado', function (e) {
                         e.stopPropagation(); // Prevent triggering document click
-                        
+
                         var code = $(this).attr('data-code');
                         if (!code) return;
 
@@ -203,12 +212,12 @@
                                 var card = $('#mapa-card');
                                 var cardContent = $('#mapa-card-content');
 
-                                var html = '<h5 style="color: #014BA0; font-weight: bold; margin-bottom: 1rem; font-size: 1.25rem;">' + 
+                                var html = '<h5 style="color: #014BA0; font-weight: bold; margin-bottom: 1rem; font-size: 1.25rem;">' +
                                     (response.nome || code) + '</h5>';
-                                
+
                                 if (Array.isArray(response.iniciativas) && response.iniciativas.length > 0) {
                                     html += '<div>';
-                                    response.iniciativas.forEach(function(iniciativa) {
+                                    response.iniciativas.forEach(function (iniciativa) {
                                         html += '<div style="margin-bottom: 1.25rem; padding: 0.75rem; border-left: 4px solid #014BA0; background: #f8f9fa; border-radius: 4px;">' +
                                             '<div style="font-weight: 600; color: #212529; margin-bottom: 0.5rem; font-size: 0.95rem;">' + iniciativa.titulo + '</div>' +
                                             '<div style="margin-bottom: 0.5rem;">' +
@@ -223,14 +232,14 @@
                                 } else {
                                     html += '<p style="color: #6c757d; font-style: italic; margin-top: 1rem;">Nenhuma iniciativa encontrada para este estado.</p>';
                                 }
-                                
+
                                 cardContent.html(html);
 
                                 // Position card above and centered on click point
                                 var cardWidth = 400;
                                 var cardHeight = card.outerHeight() || 250;
                                 var topPos = Math.max(10, clickY - cardHeight - 30);
-                                var leftPos = Math.max(10, Math.min(clickX - cardWidth/2, $container.width() - cardWidth - 10));
+                                var leftPos = Math.max(10, Math.min(clickX - cardWidth / 2, $container.width() - cardWidth - 10));
 
                                 card.css({
                                     'top': topPos + 'px',
@@ -256,7 +265,7 @@
                         var card = $('#mapa-card');
                         var isClickOnMap = $container.find(e.target).length > 0;
                         var isClickOnCard = card.find(e.target).length > 0;
-                        
+
                         if (!isClickOnMap && !isClickOnCard) {
                             card.fadeOut(200);
                         }

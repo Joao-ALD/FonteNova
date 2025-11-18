@@ -91,5 +91,20 @@
         }
       });
     });
+
+    // Abre automaticamente o card se houver âncora na URL
+    window.addEventListener('load', function() {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetCollapse = document.querySelector(hash);
+        const targetButton = document.querySelector(`[data-bs-target="${hash}"]`);
+        if (targetCollapse && targetButton) {
+          targetButton.click();
+          setTimeout(() => {
+            targetCollapse.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 300);
+        }
+      }
+    });
   </script>
 @endsection

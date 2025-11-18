@@ -73,9 +73,13 @@ class ChatBotController extends Controller
                 $keywords = array_filter(array_map('trim', explode(',', self::normalizarTexto($topico->palavras_chave))));
 
                 foreach ($keywords as $kw) {
-                    // Busca por palavra inteira na mensagem normalizada
-                    if ($kw !== '' && preg_match('/\b' . preg_quote($kw, '/') . '\b/i', $mensagem)) {
-                        $pontuacao++;
+                    // Busca pela palavra exata ou sua forma plural (adicionando 's')
+                    if ($kw !== '') {
+                        // Expressão regular para encontrar a palavra exata ou com 's' no final
+                        $pattern = '/\b' . preg_quote($kw, '/') . '(s)?\b/i';
+                        if (preg_match($pattern, $mensagem)) {
+                            $pontuacao++;
+                        }
                     }
                 }
 
@@ -105,9 +109,9 @@ class ChatBotController extends Controller
                 'status' => 200,
                 'data' => [
                     'titulo' => 'Tópico não encontrado',
-                    'resumo' => "Não encontrei nada sobre isso ainda. Que tal explorar nossa galeria?",
-                    'link_site' => '/infoAgua',
-                    'link_premium' => null,
+                    'resumo' => "Não encontrei nada sobre isso ainda. Que tal explorar nossa galeria ou conhecer mais sobre água?",
+                    'link_site' => '/infoAgua#collapseClima',
+                    'link_premium' => '/galeria',
                 ]
             ], 200);
 

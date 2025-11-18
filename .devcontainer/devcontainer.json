@@ -1,0 +1,54 @@
+{
+    "name": "Laravel PHP 8.0 Codespace (FonteNova)",
+    
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    
+    "service": "app",
+    "workspaceFolder": "/var/www/html",
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "felixfbecker.php-debug",
+                "ikappas.composer",
+                "onecentlin.laravel5-snippets",
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    },
+    
+    "portsAttributes": {
+        "80": {
+            "label": "Aplicação Laravel (Nginx)",
+            "onAutoForward": "notify"
+        },
+        "8025": {
+            "label": "Mailpit (Emails de Teste)",
+            "onAutoForward": "notify"
+        }
+    },
+    
+    // Variaveis de ambiente para o Laravel se conectar ao MySQL e Mailpit dentro do Codespace
+    "containerEnv": {
+        "DB_CONNECTION": "mysql",
+        "DB_HOST": "mysql",
+        "DB_PORT": "3306",
+        "DB_DATABASE": "codespace_db",
+        "DB_USERNAME": "codespace_user",
+        "DB_PASSWORD": "codespace_password",
+        "MAIL_MAILER": "smtp",
+        "MAIL_HOST": "mailpit",
+        "MAIL_PORT": "1025"
+    },
+    
+    // Comandos de setup que serao executados automaticamente
+    "postCreateCommand": [
+        "cp .env.example .env",
+        "docker exec codespace-app php artisan key:generate",
+        "docker exec codespace-app php artisan migrate --seed --force"
+    ],
+    
+    "remoteUser": "root"
+}

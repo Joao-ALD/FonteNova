@@ -20,16 +20,16 @@
     <!-- Campo de pergunta: usamos um form para melhorar acessibilidade (Enter envia) -->
     <form id="chat-form" class="input-group my-4 w-75" onsubmit="event.preventDefault(); enviarMensagem();">
         <input type="text" id="mensagem" name="mensagem" class="form-control form-control-lg" placeholder="Digite sua pergunta..." required autofocus aria-label="Pergunta ao chatbot">
-        <button type="submit" class="btn btn-primary btn-lg" id="enviar">Enviar</button>
+        <button type="submit" class="btn btn-lg" id="enviar" style="background-color: rgba(20, 102, 195, 1); border-color: rgba(20, 102, 195, 1); color: white;" onmouseover="this.style.backgroundColor='rgba(33, 116, 212, 1)'; this.style.borderColor='rgba(33, 116, 212, 1)';" onmouseout="this.style.backgroundColor='rgba(20, 102, 195, 1)'; this.style.borderColor='rgba(20, 102, 195, 1)';">Enviar</button>
     </form>
 
     <!-- Botões de Sugestões -->
     <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-        <button class="btn btn-outline-primary btn-lg sugestao">Como reutilizar água da chuva?</button>
-        <button class="btn btn-outline-primary btn-lg sugestao">Como diminuir a conta de água?</button>
-        <button class="btn btn-outline-primary btn-lg sugestao">Quais métodos de economia posso usar?</button>
-        <button class="btn btn-outline-primary btn-lg sugestao">Preservação de rios e mananciais</button>
-        <button class="btn btn-outline-primary btn-lg sugestao">Educação para uso sustentável</button>
+        <button class="btn btn-outline-primary btn-lg sugestao" style="border-color: rgba(20, 102, 195, 1); color: rgba(20, 102, 195, 1);" onmouseover="this.style.backgroundColor='rgba(20, 102, 195, 1)'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgba(20, 102, 195, 1)';">Como reutilizar água da chuva?</button>
+        <button class="btn btn-outline-primary btn-lg sugestao" style="border-color: rgba(20, 102, 195, 1); color: rgba(20, 102, 195, 1);" onmouseover="this.style.backgroundColor='rgba(20, 102, 195, 1)'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgba(20, 102, 195, 1)';">Como diminuir a conta de água?</button>
+        <button class="btn btn-outline-primary btn-lg sugestao" style="border-color: rgba(20, 102, 195, 1); color: rgba(20, 102, 195, 1);" onmouseover="this.style.backgroundColor='rgba(20, 102, 195, 1)'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgba(20, 102, 195, 1)';">Quais métodos de economia posso usar?</button>
+        <button class="btn btn-outline-primary btn-lg sugestao" style="border-color: rgba(20, 102, 195, 1); color: rgba(20, 102, 195, 1);" onmouseover="this.style.backgroundColor='rgba(20, 102, 195, 1)'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgba(20, 102, 195, 1)';">Preservação de rios e mananciais</button>
+        <button class="btn btn-outline-primary btn-lg sugestao" style="border-color: rgba(20, 102, 195, 1); color: rgba(20, 102, 195, 1);" onmouseover="this.style.backgroundColor='rgba(20, 102, 195, 1)'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='rgba(20, 102, 195, 1)';">Educação para uso sustentável</button>
     </div>
 
     <!-- Resposta do Chatbot -->

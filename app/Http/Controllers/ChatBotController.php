@@ -109,9 +109,9 @@ class ChatBotController extends Controller
                 'status' => 200,
                 'data' => [
                     'titulo' => 'Tópico não encontrado',
-                    'resumo' => "Não encontrei nada sobre isso ainda. Que tal explorar nossa galeria?",
-                    'link_site' => '/infoAgua',
-                    'link_premium' => null,
+                    'resumo' => "Não encontrei nada sobre isso ainda. Que tal explorar nossa galeria ou conhecer mais sobre água?",
+                    'link_site' => '/infoAgua#collapseClima',
+                    'link_premium' => '/galeria',
                 ]
             ], 200);
 

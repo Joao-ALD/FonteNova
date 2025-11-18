@@ -20,7 +20,7 @@ use App\Http\Controllers\EbookController;
 */
 
 // --- ROTAS PÚBLICAS (Todos podem ver) ---
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/sobre', [SobreController::class, 'index'])->name('sobre.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
 Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');
@@ -47,10 +47,8 @@ Route::middleware(['auth'])->group(function () {
     // Sua rota do Quizz
     Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index'); // <-- Protegida
 
-    // Rota da Página Inicial (Biblioteca)-Ebook
+    // Rota da Página Inicial (Biblioteca)-Ebook e Rota do Leitor (Reader)-pagina de leitura do Ebook
     Route::get('/', [EbookController::class, 'index'])->name('ebooks.index');
-
-    // Rota do Leitor (Reader)-pagina de leitura do Ebook
     Route::get('/ebooks/{id}/reader', [EbookController::class, 'reader'])->name('ebooks.reader');
 
     // O Breeze cria uma rota de 'dashboard' por padrão. 

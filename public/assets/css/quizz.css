@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
 
 .quiz-page {
-    background: #0288d1;
+    background: #4A90E2;
     width: 100%;
     min-height: calc(100vh - 100px);
     display: flex;
@@ -13,7 +13,7 @@
 }
 
 .quiz-container {
-    background: #0288d1;
+    background: #4A90E2;
     color: #fff;
     border-radius: 15px;
     padding: 50px;

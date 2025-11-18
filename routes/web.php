@@ -20,7 +20,7 @@ use App\Http\Controllers\EbookController;
 */
 
 // --- ROTAS PÚBLICAS (Todos podem ver) ---
-Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/sobre', [SobreController::class, 'index'])->name('sobre.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
 Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');

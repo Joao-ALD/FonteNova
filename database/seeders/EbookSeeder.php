@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeder;
+namespace Database\Seeders; // <-- CORRIGIDO: Agora está no plural
 
 use Illuminate\Database\Seeder;
 use App\Models\Ebook;
@@ -107,7 +107,7 @@ class EbookSeeder extends Seeder
                     '<h2>Página 2: Degelo</h2><p>O derretimento de geleiras e calotas polares ameaça o fornecimento de água doce em regiões que dependem dessa fonte.</p>',
                     '<h2>Página 3: Impacto na Agricultura</h2><p>A irregularidade das chuvas compromete safras, exigindo maior irrigação e pressionando ainda mais os mananciais.</p>',
                     '<h2>Página 4: Desertificação</h2><p>O manejo incorreto do solo, somado às mudanças climáticas, transforma áreas férteis em desertos, esgotando recursos hídricos superficiais.</p>',
-                    '<h2>Página 5: Adaptação</h2><p>Precisamos de infraestrutura hídrica resiliente, como reservatórios e sistemas de reuso, para nos adaptar ao novo cenário climático.</p>',
+                    '<h2>Página <h2>Página 5: Adaptação</h2><p>Precisamos de infraestrutura hídrica resiliente, como reservatórios e sistemas de reuso, para nos adaptar ao novo cenário climático.</p>',
                     '<h2>Página 6: Mitigação</h2><p>Reduzir as emissões de carbono é a única solução de longo prazo para proteger o ciclo hidrológico global.</p>'
                 ]
             ],

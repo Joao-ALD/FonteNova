@@ -72,14 +72,31 @@ Layout principal da aplicação (Blade)
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                            this.closest('form').submit();">
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
                                         {{ __('Sair') }}
                                     </a>
                                 </form>
                         </li>
                     </ul>
                     </li>
+                    @if(auth()->user()->is_admin)
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="adminDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-shield-lock"></i> Área Admin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.cursos.index') }}">Gerenciar Cursos</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.quizz.index') }}">Gerenciar Quizz</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    @endif
                 @endauth
             </ul>
         </div>

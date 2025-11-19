@@ -50,4 +50,37 @@ class CursoController extends Controller
             'proximaAula' => $proximaAula
         ]);
     }
+
+    public function adminIndex()
+    {
+        $aulas = Aula::orderBy('ordem', 'asc')->get();
+        return view('admin.cursos.index', ['aulas' => $aulas]);
+    }
+
+    // 2. Mostra o formulário com os dados da aula preenchidos
+    public function edit($id)
+    {
+        $aula = Aula::findOrFail($id); // Busca a aula ou dá erro 404
+        return view('admin.cursos.edit', ['aula' => $aula]);
+    }
+
+    // 3. Recebe os dados do formulário e atualiza no banco
+    public function update(Request $request, $id)
+    {
+        // Validação simples para garantir que não venha vazio
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'video_embed_url' => 'required|string',
+            'ordem' => 'required|integer',
+            'descricao_html' => 'required', // Aceita texto longo
+        ]);
+
+        $aula = Aula::findOrFail($id);
+
+        // Atualiza os dados usando o $fillable que você já configurou no Model
+        $aula->update($request->all());
+
+        // Redireciona de volta para a lista com uma mensagem de sucesso
+        return redirect()->route('admin.cursos.index')->with('success', 'Aula atualizada com sucesso!');
+    }
 }

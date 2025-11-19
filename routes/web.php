@@ -11,6 +11,8 @@ use App\Http\Controllers\QuizzController;
 use App\Http\Controllers\GaleriaController;
 use App\Http\Controllers\MapaController;
 use App\Http\Controllers\EbookController;
+use App\Http\Controllers\EbookProgressController;
+use App\Http\Controllers\AdminQuizzController;
 
 
 /*
@@ -44,12 +46,12 @@ Route::get('/mapa/info/{estado}', [MapaController::class, 'getEstadoInfo'])->nam
 // Se não estiver, ele é redirecionado para a página de login.
 Route::middleware(['auth'])->group(function () {
 
-    // Suas rotas de Curso
+    // Rotas de Curso
     Route::get('/curso', [CursoController::class, 'index'])->name('curso.index'); // <-- Protegida
     Route::get('/cursos', [CursoController::class, 'index'])->name('curso.index'); // <-- Protegida
     Route::get('/cursos/{aula}', [CursoController::class, 'mostrarAula'])->name('curso.aula'); // <-- Protegida
 
-    // Sua rota do Quizz
+    // Rotas do Quizz
     Route::get('/quizz', [QuizzController::class, 'index'])->name('quizz.index'); // <-- Protegida
 
     
@@ -58,6 +60,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+// GRUPO DE ROTAS ADMINISTRATIVAS (Protegidas por login)
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+
+    Route::get('/cursos', [CursoController::class, 'adminIndex'])->name('admin.cursos.index');
+    Route::get('/cursos/{id}/editar', [CursoController::class, 'edit'])->name('admin.cursos.edit');
+    Route::put('/cursos/{id}', [CursoController::class, 'update'])->name('admin.cursos.update');
+    // Rotas para Gerenciamento do Quizz (Usando Resource para cobrir CRUD)
+    Route::resource('quizz', AdminQuizzController::class)
+        ->names('admin.quizz')
+        ->parameters(['quizz' => 'pergunta'])
+        ->except(['show']);
+
 });
 
 

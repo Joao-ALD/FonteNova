@@ -154,4 +154,5 @@ php artisan serve
 
 Abra seu navegador e acesse [http://127.0.0.1:8000](http://127.0.0.1:8000) para ver a aplicação funcionando.
 
-Para mais informações, veja o [Guia de Comandos Laravel e Git](https://www.google.com/search?q=lembretes/Guia_Comandos_Laravel_Git.md) para ver os comandos mais usados e o [Guia Completo Laravel](https://www.google.com/search?q=lembretes/Guia_Completo_Laravel_Git.md) para informações mais detalhadas. Veja o TRELLO do projeto [Fonte Nova](https://trello.com/b/LVVH5gKV/fonte-nova)
+Para mais informações, veja o [Guia de Comandos Laravel e Git](lembretes/Guia_Comandos_Laravel_Git.md) para ver os comandos mais usados e o [Guia Completo Laravel](lembretes/Guia_Completo_Laravel_Git.md) para informações mais detalhadas. 
+Veja o TRELLO do projeto [Fonte Nova](https://trello.com/b/LVVH5gKV/fonte-nova)

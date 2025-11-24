@@ -117,11 +117,11 @@ class EbookController extends Controller
     <rect width="300" height="400" fill="url(#grad2)"/>
     
     <!-- Círculos decorativos -->
-    <circle cx="250" cy="50" r="60" fill="{$theme['accent']}" opacity="0.2"/>
+    <circle cx="250" cy="80" r="60" fill="{$theme['accent']}" opacity="0.2"/>
     <circle cx="50" cy="320" r="80" fill="{$theme['accent']}" opacity="0.15"/>
     
     <!-- Ícone emoji grande -->
-    <text x="150" y="100" font-size="60" text-anchor="middle" fill="white" opacity="0.9">
+    <text x="150" y="140" font-size="70" text-anchor="middle" fill="white" opacity="0.95" font-family="Arial, sans-serif">
         {$theme['icon']}
     </text>
     

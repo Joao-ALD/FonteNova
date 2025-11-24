@@ -8,84 +8,107 @@
 <link rel="stylesheet" href="{{ asset('assets/css/ebooks.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-{{-- 
-    Container principal que define o layout de tela cheia para leitura.
-    O Ebook tem $ebook->pages, que é uma coleção ordenada (1 a 6).
---}}
-<div class="reader-container">
+{{-- Container principal do leitor --}}
+<div class="reader-container" id="reader-container">
     
     <!-- Cabeçalho Fixo do Leitor -->
-    <header class="reader-header shadow-sm bg-light">
-        <div class="container-fluid d-flex justify-content-between align-items-center py-3">
-            <a href="{{ route('ebooks.index') }}" class="btn btn-outline-secondary btn-sm me-3" title="Voltar para a biblioteca">
-                <i class="fas fa-arrow-left"></i> Voltar
-            </a>
-            <h1 class="h5 m-0 text-truncate text-center flex-grow-1" title="{{ $ebook->title }}">
-                {{ $ebook->title }}
-            </h1>
-            <span class="page-indicator text-muted ms-3 small">Página <span id="current-page-num">1</span> de {{ $ebook->pages->count() }}</span>
+    <header class="reader-header">
+        <div class="reader-header-content">
+            <div class="reader-header-left">
+                <a href="{{ route('ebooks.index') }}" class="btn-header-back" title="Voltar para a biblioteca">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+            </div>
+
+            <div class="reader-header-center">
+                <h1 class="reader-title">{{ $ebook->title }}</h1>
+            </div>
+
+            <div class="reader-header-right">
+                <button id="theme-toggle" class="btn-header-icon" title="Alternar modo noturno">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Barra de Progresso -->
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
         </div>
     </header>
 
-    <!-- Área de Conteúdo do Livro -->
-    <main class="reader-content-area py-5">
-        <div class="container reader-page-content shadow-lg rounded p-4 p-md-5">
+    <!-- Área de Conteúdo Principal -->
+    <main class="reader-main">
+        <div class="reader-page-wrapper">
             
-            {{-- Loop para renderizar todas as páginas (ocultas por padrão) --}}
+            {{-- Loop para renderizar todas as páginas --}}
             @foreach ($ebook->pages as $page)
-                {{-- O atributo data-page-number é crucial para o JS --}}
                 <div class="ebook-page" 
                      id="page-{{ $page->page_number }}" 
                      data-page-number="{{ $page->page_number }}"
                      style="display: none;">
                     
-                    <h2 class="text-center text-primary mb-4 fw-bold">Página {{ $page->page_number }}</h2>
-                    
-                    {{-- Conteúdo (Renderiza HTML/Markdown, se for o caso) --}}
-                    <div class="page-content-body">
-                        {!! $page->content !!} {{-- Use {!! !!} para renderizar HTML/Markdown --}}
+                    <div class="page-number-badge">
+                        {{ $page->page_number }}/{{ $ebook->pages->count() }}
                     </div>
+                    
+                    <article class="page-content">
+                        <div class="page-content-body">
+                            {!! $page->content !!}
+                        </div>
+                    </article>
                 </div>
             @endforeach
             
         </div>
     </main>
 
-    <!-- Controles de Navegação (Rodapé Fixo) -->
-    <footer class="reader-footer bg-white border-top shadow-sm py-2">
-        <div class="container-fluid d-flex justify-content-center align-items-center">
-            
+    <!-- Rodapé com Controles -->
+    <footer class="reader-footer">
+        <div class="footer-content">
             <!-- Botão Anterior -->
-            <button id="prev-btn" class="btn btn-custom mx-2" disabled>
-                <i class="fas fa-chevron-left"></i> Anterior
+            <button id="prev-btn" class="btn-nav btn-nav-prev" disabled title="Página anterior (Seta esquerda)">
+                <i class="fas fa-chevron-left"></i>
+                <span class="btn-label">Anterior</span>
             </button>
 
-            <!-- Links Numerados (Paginação) -->
-            <nav aria-label="Navegação de Página">
-                <ul class="pagination pagination-sm m-0 d-none d-md-flex">
-                    @for ($i = 1; $i <= $ebook->pages->count(); $i++)
-                        <li class="page-item" id="nav-item-{{ $i }}">
-                            <a class="page-link page-link-num" href="#" data-page="{{ $i }}">{{ $i }}</a>
-                        </li>
-                    @endfor
-                </ul>
-                <p class="d-md-none m-0 text-muted small">Use os botões ou as setas do teclado.</p>
-            </nav>
+            <!-- Indicador de Página -->
+            <div class="page-indicator">
+                <span id="current-page-num" class="page-num">1</span>
+                <span class="page-divider">/</span>
+                <span class="page-total">{{ $ebook->pages->count() }}</span>
+            </div>
+
+            <!-- Paginação (Visível em telas maiores) -->
+            <div class="pagination-dots" id="pagination-dots">
+                @for ($i = 1; $i <= $ebook->pages->count(); $i++)
+                    <button class="dot" 
+                            data-page="{{ $i }}" 
+                            title="Ir para página {{ $i }}"
+                            @if($i === 1) aria-current="page" @endif>
+                        {{ $i }}
+                    </button>
+                @endfor
+            </div>
 
             <!-- Botão Próxima -->
-            <button id="next-btn" class="btn btn-custom mx-2">
-                Próxima <i class="fas fa-chevron-right"></i>
+            <button id="next-btn" class="btn-nav btn-nav-next" title="Próxima página (Seta direita)">
+                <span class="btn-label">Próxima</span>
+                <i class="fas fa-chevron-right"></i>
             </button>
+        </div>
+
+        <!-- Info de Sugestão (Mobile) -->
+        <div class="footer-hint">
+            Use as setas do teclado ou botões para navegar
         </div>
     </footer>
 
 </div>
 
-{{-- Incluindo o JavaScript de Navegação --}}
+{{-- Scripts --}}
 <script>
-    // Armazena todas as 6 páginas como objetos JS para o script.
-    const EbookPages = @json($ebook->pages->pluck('page_number'));
-    const TotalPages = EbookPages.length;
+    const TotalPages = {{ $ebook->pages->count() }};
 </script>
 <script src="{{ asset('js/reader.js') }}"></script>
 @endsection

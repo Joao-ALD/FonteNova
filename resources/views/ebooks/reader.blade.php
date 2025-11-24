@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('title', 'Leitor: ' . $ebook->title)
 
 @section('content')
 
 {{-- Links de CSS --}}
-<link rel="stylesheet" href="{{ asset('css/ebooks.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/ebooks.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 {{-- 

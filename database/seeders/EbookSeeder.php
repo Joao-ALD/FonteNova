@@ -73,7 +73,7 @@ class EbookSeeder extends Seeder
                 ]
             ],
             [
-                'title' => 'Biodiversidade e Água Limpa',
+                'title' => 'Biodiversidade e Água Doce',
                 'description' => 'A relação essencial entre ecossistemas saudáveis e a disponibilidade de água para o consumo humano.',
                 'cover_color' => '6c757d', // Cinza
                 'pages' => [

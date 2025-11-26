@@ -47,6 +47,31 @@
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
+/* Dropdown customizado para navbar */
+.navbar .dropdown-menu {
+    background-color: var(--AzulEscuro);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-top: 8px;
+}
+
+.navbar .dropdown-item {
+    color: var(--BrancoPuro);
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+    background-color: var(--Azul2);
+    color: var(--BrancoPuro);
+}
+
+.navbar .dropdown-toggle::after {
+    border-top-color: var(--BrancoPuro);
+}
+
 
 
 /* ---------- PX-CUSTOM (Responsivo e Corrigido) ---------- */

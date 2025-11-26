@@ -42,6 +42,17 @@ class EbookController extends Controller
     {
         $ebook = Ebook::findOrFail($id);
 
+        // --- NOVO BLOCO: Tenta servir arquivo local primeiro --- adicionei novo
+        $coverPath = $ebook->cover_path;
+
+        // Verifica se existe algo escrito no banco E se o arquivo físico existe na pasta 'public'
+        if (!empty($coverPath) && file_exists(public_path($coverPath))) {
+            // Se existir, entrega o arquivo da imagem e ENCERRA a função aqui.
+            return response()->file(public_path($coverPath), [
+                'Cache-Control' => 'public, max-age=86400',
+            ]);
+        }                                                                       // FIM DO BLOCO ADICIONADO
+
         // Array de temas com gradientes bonitos
         $themes = [
             [

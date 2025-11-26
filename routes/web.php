@@ -25,7 +25,7 @@ use App\Http\Controllers\AdminQuizzController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/sobre', [SobreController::class, 'index'])->name('sobre.index');
 Route::get('/infoAgua', [AguaController::class, 'index'])->name('agua.index');
-Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');
+// Route::get('/galeria', [GaleriaController::class, 'index'])->name('galeria.index');
 
 
 // Rota da Página Inicial (Biblioteca)-Ebook e Rota do Leitor (Reader)-pagina de leitura do Ebook

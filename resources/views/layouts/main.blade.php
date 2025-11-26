@@ -52,8 +52,18 @@ Layout principal da aplicação (Blade)
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('agua.index') }}">Água</a></li>
                 <li class="nav-item"><a class="nav-link text-white" href="{{ route('sobre.index') }}">Sobre</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="{{ route('galeria.index') }}">Galeria</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="{{ route('chatbot.index') }}">ChatBot</a></li>
+                {{-- <li class="nav-item"><a class="nav-link text-white" href="{{ route('galeria.index') }}">Galeria</a></li> --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownUserLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Educação ambiental
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ route('oficinas.index') }}">Oficinas</a></li>
+                        <li><a class="dropdown-item" href="{{ route('ebooks.index') }}">E-Books</a></li>
+                        <li><a class="dropdown-item" href="{{ route('eventos.index') }}">Eventos</a></li>
+                    </ul>
+                </li>                <li class="nav-item"><a class="nav-link text-white" href="{{ route('chatbot.index') }}">ChatBot</a></li>
 
                 @guest
                     <li class="nav-item"><a class="nav-link text-white" href="{{ route('login') }}">Login</a></li>

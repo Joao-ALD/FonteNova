@@ -41,7 +41,7 @@ class EbookController extends Controller
     public function generateCover($id)
     {
         $ebook = Ebook::findOrFail($id);
-        
+
         // Array de temas com gradientes bonitos
         $themes = [
             [
@@ -81,17 +81,17 @@ class EbookController extends Controller
                 'icon' => '🌊'
             ],
         ];
-        
+
         // Seleciona um tema baseado no ID do ebook
         $theme = $themes[$id % count($themes)];
-        
+
         // Trunca título para SVG
         $title = substr($ebook->title, 0, 35);
         $lines = str_split($title, 20);
-        
+
         // Calcula posição Y para título (centralizado)
         $titleY = count($lines) === 1 ? 180 : 160;
-        
+
         // SVG com design profissional
         $svg = <<<SVG
 <?xml version="1.0" encoding="UTF-8"?>
@@ -128,13 +128,13 @@ class EbookController extends Controller
     <!-- Título -->
     <text x="150" y="{$titleY}" font-size="18" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif" style="word-wrap: break-word;">
 SVG;
-        
+
         // Adiciona linhas do título
         foreach ($lines as $index => $line) {
             $y = $titleY + ($index * 25);
             $svg .= "\n        <tspan x=\"150\" dy=\"" . ($index === 0 ? "0" : "1.2em") . "\">$line</tspan>";
         }
-        
+
         $svg .= <<<SVG
     </text>
     

@@ -486,87 +486,550 @@ Route::get('/cursos/{aula}', [CursoController::class, 'mostrarAula']);
 
 ### Como Funciona o Quiz Interativo
 
-#### 1. **Estrutura Frontend**
+#### 1. **Estrutura do Banco de Dados**
 
-**`quizz.blade.php`** contém 3 telas:
-```html
-<!-- Tela inicial -->
-<div id="start-screen" class="screen active">
-    <h1>FonteNova - Salve a Água</h1>
-    <p>Quiz educativo sobre economia de água...</p>
-    <button id="start-btn">Começar</button>
-</div>
-
-<!-- Tela do quiz -->
-<div id="quiz-screen" class="screen">
-    <h2 id="question">Pergunta</h2>
-    <div class="answers">
-        <button class="answer" id="a"></button>
-        <button class="answer" id="b"></button>
-        <button class="answer" id="c"></button>
-    </div>
-</div>
-
-<!-- Tela de resultado -->
-<div id="result-screen" class="screen">
-    <h2>Resultado</h2>
-    <p id="score"></p>
-    <button id="restart-btn">Refazer Quiz</button>
-</div>
+**Tabela `pergunta_quiz`**:
+```sql
+pergunta_quiz:
+- id, pergunta, opcao_a, opcao_b, opcao_c
+- resposta_correta, litros_economizados, ordem
 ```
 
-#### 2. **JavaScript do Quiz**
+#### 2. **Model PerguntaQuiz**
 
-**`quizz.js`** (estrutura típica):
-```javascript
-const questions = [
+**`PerguntaQuiz.php`**:
+```php
+class PerguntaQuiz extends Model
+{
+    protected $table = 'pergunta_quiz';
+    
+    protected $fillable = [
+        'pergunta', 'opcao_a', 'opcao_b', 'opcao_c',
+        'resposta_correta', 'litros_economizados', 'ordem'
+    ];
+    
+    // Accessor para formatar dados em JSON
+    public function getJsonDataAttribute()
     {
-        question: "Quanto tempo você demora no banho?",
-        answers: {
-            a: "Menos de 5 minutos",
-            b: "Entre 5-10 minutos", 
-            c: "Mais de 10 minutos"
-        },
-        correct: "a",
-        savings: [50, 25, 0] // Litros economizados
+        return [
+            'question' => $this->pergunta,
+            'a' => $this->opcao_a,
+            'b' => $this->opcao_b,
+            'c' => $this->opcao_c,
+            'correct' => $this->resposta_correta,
+            'liters' => $this->litros_economizados,
+        ];
     }
-];
-
-function showQuestion() {
-    // Exibe pergunta atual
-    // Configura botões de resposta
-}
-
-function selectAnswer(answer) {
-    // Calcula pontuação
-    // Avança para próxima pergunta
-}
-
-function showResult() {
-    // Exibe total de água economizada
-    // Mostra dicas de sustentabilidade
 }
 ```
 
-#### 3. **Fluxo do Quiz**
+#### 3. **Controller do Quiz**
+
+**`QuizzController.php`**:
+```php
+public function index()
+{
+    // Busca perguntas ordenadas
+    $perguntas = PerguntaQuiz::orderBy('ordem', 'asc')->get();
+    
+    // Passa para a view
+    return view('quizz', ['perguntas' => $perguntas]);
+}
+```
+
+#### 4. **Fluxo Completo**
 
 ```
-Tela Inicial → 7 Perguntas → Cálculo de Economia → Resultado Final
+Banco de Dados → Controller → View → JavaScript → Interface Interativa
 ```
 
-#### 4. **Sistema de Pontuação**
+1. **Backend**: Busca perguntas do banco
+2. **View**: Recebe array de perguntas
+3. **JavaScript**: Processa e exibe dinamicamente
+4. **Usuário**: Responde e vê resultado
 
-- **Perguntas sobre Hábitos**: Banho, torneira, descarga, etc.
-- **Cálculo de Economia**: Cada resposta tem valor em litros
+#### 5. **Sistema de Pontuação**
+
+- **Perguntas Dinâmicas**: Vêm do banco de dados
+- **Cálculo de Economia**: Campo `litros_economizados`
+- **Ordem Personalizada**: Campo `ordem` define sequência
 - **Resultado Educativo**: Mostra impacto das escolhas
+
+#### 6. **Características**
+
+- **Dinâmico**: Perguntas gerenciadas pelo admin
+- **Educativo**: Ensina sobre economia de água
+- **Interativo**: Interface com JavaScript
 - **Gamificação**: Incentiva melhores práticas
 
-#### 5. **Características**
+---
 
-- **Educativo**: Ensina sobre economia de água
-- **Interativo**: Interface dinâmica com JavaScript
-- **Responsivo**: Funciona em mobile e desktop
-- **Motivacional**: Mostra impacto positivo das ações
+## 📚 Sistema de Ebooks
+
+### Como Funciona a Biblioteca Digital
+
+#### 1. **Estrutura do Banco de Dados**
+
+**Tabela `ebooks`**:
+```sql
+ebooks:
+- id, title, slug, cover_path, short_description
+- created_at, updated_at
+```
+
+**Tabela `ebook_pages`**:
+```sql
+ebook_pages:
+- id, ebook_id, page_number, content
+- created_at, updated_at
+```
+
+#### 2. **Models e Relacionamentos**
+
+**`Ebook.php`**:
+```php
+class Ebook extends Model
+{
+    protected $fillable = ['title', 'slug', 'cover_path', 'short_description'];
+    
+    // Um ebook tem muitas páginas
+    public function pages(): HasMany
+    {
+        return $this->hasMany(EbookPage::class)->orderBy('page_number');
+    }
+}
+```
+
+**`EbookPage.php`**:
+```php
+class EbookPage extends Model
+{
+    protected $fillable = ['ebook_id', 'page_number', 'content'];
+    
+    // Uma página pertence a um ebook
+    public function ebook(): BelongsTo
+    {
+        return $this->belongsTo(Ebook::class);
+    }
+}
+```
+
+#### 3. **Controller do Ebook**
+
+**`EbookController.php`**:
+
+##### **Método index()** - Biblioteca
+```php
+public function index()
+{
+    // Lista todos os ebooks
+    $ebooks = Ebook::orderBy('created_at', 'desc')->get();
+    return view('ebooks.index', compact('ebooks'));
+}
+```
+
+##### **Método reader()** - Leitor
+```php
+public function reader($id)
+{
+    // Eager Loading: carrega ebook + páginas de uma vez
+    $ebook = Ebook::with('pages')->findOrFail($id);
+    return view('ebooks.reader', compact('ebook'));
+}
+```
+
+##### **Método generateCover()** - Capa Dinâmica
+```php
+public function generateCover($id)
+{
+    $ebook = Ebook::findOrFail($id);
+    
+    // 1. Tenta servir imagem local primeiro
+    if (!empty($ebook->cover_path) && file_exists(public_path($ebook->cover_path))) {
+        return response()->file(public_path($ebook->cover_path));
+    }
+    
+    // 2. Gera SVG dinâmico se não houver imagem
+    $svg = "<!-- SVG com gradientes e design profissional -->";
+    return response($svg)->header('Content-Type', 'image/svg+xml');
+}
+```
+
+#### 4. **Sistema de Capas Dinâmicas**
+
+**Características**:
+- **Prioridade**: Imagem local → SVG gerado
+- **Temas**: 6 gradientes diferentes baseados no ID
+- **Elementos**: Gradientes, círculos decorativos, emojis
+- **Cache**: Headers de cache para performance
+
+**Seleção de Tema**:
+```php
+$themes = [
+    ['gradient1' => '#4a90e2', 'icon' => '💧'],
+    ['gradient1' => '#2ecc71', 'icon' => '🌍'],
+    // ... 4 temas adicionais
+];
+$theme = $themes[$id % count($themes)];
+```
+
+#### 5. **Fluxo de Leitura**
+
+```
+Biblioteca → Seleção → Leitor → Navegação por Páginas
+```
+
+1. **Biblioteca**: Grid com todos os ebooks
+2. **Capa**: SVG dinâmico ou imagem local
+3. **Leitor**: Interface tipo livro digital
+4. **Páginas**: Conteúdo HTML ordenado
+
+#### 6. **Características**
+
+- **Eager Loading**: Otimização de queries
+- **Capas Dinâmicas**: SVG gerado automaticamente
+- **Conteúdo HTML**: Suporta formatação rica
+- **Ordenação**: Páginas sempre em ordem
+- **Responsivo**: Funciona em todos os dispositivos
+
+---
+
+## 🛠️ Painel Administrativo
+
+### Sistema de Gerenciamento Admin
+
+#### 1. **AdminQuizzController**
+
+**Funcionalidades CRUD**:
+```php
+class AdminQuizzController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('admin'); // Proteção dupla
+    }
+    
+    // Listar perguntas
+    public function index()
+    {
+        $perguntas = PerguntaQuiz::orderBy('ordem', 'asc')->get();
+        return view('admin.quizz.index', compact('perguntas'));
+    }
+    
+    // Criar nova pergunta
+    public function create()
+    {
+        return view('admin.quizz.create');
+    }
+    
+    // Salvar pergunta
+    public function store(Request $request)
+    {
+        $request->validate([
+            'pergunta' => 'required|string|max:500',
+            'opcao_a' => 'required|string|max:255',
+            'opcao_b' => 'required|string|max:255',
+            'opcao_c' => 'required|string|max:255',
+            'resposta_correta' => 'required|in:a,b,c',
+            'litros_economizados' => 'required|integer|min:0',
+            'ordem' => 'required|integer|min:1|unique:pergunta_quiz,ordem',
+        ]);
+        
+        PerguntaQuiz::create($request->all());
+        return redirect()->route('admin.quizz.index')
+            ->with('success', 'Pergunta criada!');
+    }
+    
+    // Editar pergunta
+    public function edit(PerguntaQuiz $pergunta)
+    {
+        return view('admin.quizz.edit', compact('pergunta'));
+    }
+    
+    // Atualizar pergunta
+    public function update(Request $request, PerguntaQuiz $pergunta)
+    {
+        $request->validate([/* validações */]);
+        $pergunta->update($request->all());
+        return redirect()->route('admin.quizz.index')
+            ->with('success', 'Pergunta atualizada!');
+    }
+    
+    // Deletar pergunta
+    public function destroy(PerguntaQuiz $pergunta)
+    {
+        $pergunta->delete();
+        return redirect()->route('admin.quizz.index')
+            ->with('success', 'Pergunta excluída!');
+    }
+}
+```
+
+#### 2. **Rotas Administrativas**
+
+```php
+// Grupo protegido por auth + admin
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    // Gerenciamento de Cursos
+    Route::get('/cursos', [CursoController::class, 'adminIndex']);
+    Route::get('/cursos/{id}/editar', [CursoController::class, 'edit']);
+    Route::put('/cursos/{id}', [CursoController::class, 'update']);
+    
+    // Gerenciamento de Quiz (Resource completo)
+    Route::resource('quizz', AdminQuizzController::class)
+        ->names('admin.quizz')
+        ->parameters(['quizz' => 'pergunta'])
+        ->except(['show']);
+});
+```
+
+#### 3. **Validações Personalizadas**
+
+**Ordem Única**:
+```php
+'ordem' => 'required|integer|min:1|unique:pergunta_quiz,ordem'
+```
+
+**Mensagens Customizadas**:
+```php
+[
+    'ordem.unique' => 'O número de ordem já está em uso.'
+]
+```
+
+#### 4. **Características do Painel**
+
+- **CRUD Completo**: Create, Read, Update, Delete
+- **Validação Robusta**: Regras de validação em todas as operações
+- **Proteção Dupla**: Middleware na rota + no constructor
+- **Feedback Visual**: Mensagens de sucesso/erro
+- **Route Model Binding**: Laravel injeta automaticamente o model
+
+---
+
+## 🌐 API REST
+
+### Sistema de API para Dados Públicos
+
+#### 1. **Estrutura da API**
+
+**Endpoints Disponíveis**:
+```
+GET /api/estados              → Lista todos os estados
+GET /api/estados/{uf}         → Detalhes de um estado
+GET /api/estados/{uf}/iniciativas → Iniciativas por estado
+GET /api/iniciativas          → Lista todas as iniciativas
+GET /api/iniciativas/search   → Busca com filtros
+GET /api/estatisticas         → Estatísticas gerais
+```
+
+#### 2. **Controllers da API**
+
+##### **EstadoController**
+```php
+class EstadoController extends Controller
+{
+    public function index()
+    {
+        // Cache de 60 segundos
+        $estados = Cache::remember('estados_list', 60, function () {
+            return Estado::all();
+        });
+        return EstadoResource::collection($estados);
+    }
+    
+    public function show($uf)
+    {
+        $estado = Estado::where('sigla', $uf)->firstOrFail();
+        return new EstadoResource($estado);
+    }
+}
+```
+
+##### **IniciativaController**
+```php
+class IniciativaController extends Controller
+{
+    public function index(IniciativaFilterRequest $request)
+    {
+        $query = Iniciativa::query();
+        
+        // Filtros dinâmicos
+        if ($request->filled('tipo')) {
+            $query->porTipo($request->tipo);
+        }
+        
+        if ($request->filled('status')) {
+            $query->porStatus($request->status);
+        }
+        
+        if ($request->filled('q')) {
+            $query->where('titulo', 'like', "%{$request->q}%")
+                  ->orWhere('descricao', 'like', "%{$request->q}%");
+        }
+        
+        return IniciativaResource::collection($query->get());
+    }
+    
+    public function porEstado(IniciativaFilterRequest $request, $uf)
+    {
+        $estado = Estado::where('sigla', $uf)->firstOrFail();
+        $query = $estado->iniciativas();
+        
+        // Aplica filtros
+        if ($request->filled('tipo')) {
+            $query->porTipo($request->tipo);
+        }
+        
+        return IniciativaResource::collection($query->get());
+    }
+}
+```
+
+##### **EstatisticasController**
+```php
+class EstatisticasController extends Controller
+{
+    public function index()
+    {
+        return response()->json([
+            'total_iniciativas' => Iniciativa::count(),
+            'investimento_total' => Iniciativa::sum('investimento'),
+            'por_regiao' => Estado::select('regiao', DB::raw('count(iniciativas.id) as total'))
+                ->leftJoin('iniciativas', 'estados.id', '=', 'iniciativas.estado_id')
+                ->groupBy('regiao')
+                ->get(),
+            'por_tipo' => Iniciativa::select('tipo', DB::raw('count(*) as total'))
+                ->groupBy('tipo')
+                ->get(),
+            'por_status' => Iniciativa::select('status', DB::raw('count(*) as total'))
+                ->groupBy('status')
+                ->get(),
+        ]);
+    }
+}
+```
+
+#### 3. **API Resources**
+
+**`EstadoResource.php`**:
+```php
+class EstadoResource extends JsonResource
+{
+    public function toArray($request)
+    {
+        return [
+            'id' => $this->id,
+            'sigla' => $this->sigla,
+            'nome' => $this->nome,
+            'regiao' => $this->regiao,
+            'dados_geograficos' => $this->dados_geograficos,
+            'iniciativas_count' => $this->iniciativas()->count(),
+        ];
+    }
+}
+```
+
+**`IniciativaResource.php`**:
+```php
+class IniciativaResource extends JsonResource
+{
+    public function toArray($request)
+    {
+        return [
+            'id' => $this->id,
+            'titulo' => $this->titulo,
+            'descricao' => $this->descricao,
+            'tipo' => $this->tipo,
+            'status' => $this->status,
+            'investimento' => $this->investimento,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'estado' => [
+                'sigla' => $this->estado->sigla,
+                'nome' => $this->estado->nome,
+            ],
+        ];
+    }
+}
+```
+
+#### 4. **Form Request Personalizado**
+
+**`IniciativaFilterRequest.php`**:
+```php
+class IniciativaFilterRequest extends FormRequest
+{
+    public function authorize()
+    {
+        return true; // API pública
+    }
+    
+    public function rules()
+    {
+        return [
+            'tipo' => 'sometimes|in:água,ecologia,saneamento,energia,conservação',
+            'status' => 'sometimes|in:em_andamento,concluído,planejado',
+            'data_inicio' => 'sometimes|date',
+            'data_fim' => 'sometimes|date',
+            'q' => 'sometimes|string|max:255',
+        ];
+    }
+}
+```
+
+#### 5. **Query Scopes no Model**
+
+**`Iniciativa.php`**:
+```php
+public function scopePorTipo($query, $tipo)
+{
+    return $query->where('tipo', $tipo);
+}
+
+public function scopePorStatus($query, $status)
+{
+    return $query->where('status', $status);
+}
+```
+
+#### 6. **Exemplos de Uso da API**
+
+**Listar estados**:
+```bash
+GET /api/estados
+```
+
+**Buscar iniciativas de SP**:
+```bash
+GET /api/estados/SP/iniciativas
+```
+
+**Filtrar por tipo**:
+```bash
+GET /api/iniciativas?tipo=água&status=em_andamento
+```
+
+**Buscar por texto**:
+```bash
+GET /api/iniciativas?q=cantareira
+```
+
+**Estatísticas**:
+```bash
+GET /api/estatisticas
+```
+
+#### 7. **Características da API**
+
+- **RESTful**: Segue padrões REST
+- **Resources**: Formatação consistente de dados
+- **Filtros Dinâmicos**: Query parameters flexíveis
+- **Validação**: Form Requests personalizados
+- **Cache**: Otimização com Laravel Cache
+- **Scopes**: Queries reutilizáveis
+- **Relacionamentos**: Eager loading automático
+- **Estatísticas**: Agregações com SQL
 
 ---
 

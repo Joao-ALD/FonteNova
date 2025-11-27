@@ -13,7 +13,7 @@
                 {{-- Loop para listar TODAS as aulas --}}
                 @forelse($aulas as $aula)
                     <a href="{{ route('curso.aula', $aula->id) }}" 
-                       class="list-group-item list-group-item-action p-3">
+                    class="list-group-item list-group-item-action p-3">
                         
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1" style="color: rgba(1, 75, 160, 1);">{{ $aula->titulo }}</h5>

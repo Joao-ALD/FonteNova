@@ -641,6 +641,117 @@ Route::middleware(['auth'])->group(function () {
 
 ---
 
+## 👑 Sistema de Administração
+
+### Como Promover Usuários para Administrador
+
+#### 1. **Estrutura do Sistema Admin**
+
+**Campo no Banco de Dados**:
+```sql
+-- Tabela users tem o campo is_admin
+users:
+- id, name, email, password
+- is_admin (boolean, padrão: false)
+```
+
+**Middleware de Proteção**:
+```php
+// AdminMiddleware.php
+if (auth()->check() && auth()->user()->is_admin) {
+    return $next($request); // Permite acesso
+}
+return redirect('/')->with('error', 'Acesso negado.');
+```
+
+#### 2. **Rotas Administrativas**
+
+```php
+// Rotas protegidas por ['auth', 'admin']
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/cursos', [CursoController::class, 'adminIndex']);
+    Route::resource('quizz', AdminQuizzController::class);
+});
+```
+
+#### 3. **Como Promover um Usuário**
+
+##### **Método 1: Via Tinker (Recomendado)**
+```bash
+php artisan tinker
+```
+```php
+$user = App\Models\User::where('email', 'usuario@email.com')->first();
+$user->is_admin = true;
+$user->save();
+```
+
+##### **Método 2: Via Banco de Dados**
+```sql
+UPDATE users SET is_admin = 1 WHERE email = 'usuario@email.com';
+```
+
+##### **Método 3: Criar Admin via Seeder**
+```bash
+php artisan make:seeder AdminUserSeeder
+```
+
+**`AdminUserSeeder.php`**:
+```php
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+public function run()
+{
+    User::updateOrCreate(
+        ['email' => 'admin@fontenova.com'],
+        [
+            'name' => 'Administrador',
+            'password' => Hash::make('admin123'),
+            'is_admin' => true,
+        ]
+    );
+}
+```
+
+Executar o seeder:
+```bash
+php artisan db:seed --class=AdminUserSeeder
+```
+
+#### 4. **Credenciais Admin Padrão**
+
+Após executar o `AdminUserSeeder`:
+- **Email**: admin@fontenova.com
+- **Senha**: admin123
+- **Acesso**: `/admin/cursos` e `/admin/quizz`
+
+#### 5. **Verificar Usuários Admin**
+
+```bash
+php artisan tinker
+```
+```php
+// Listar todos os admins
+App\Models\User::where('is_admin', true)->get();
+
+// Contar admins
+App\Models\User::where('is_admin', true)->count();
+```
+
+#### 6. **Remover Privilégios Admin**
+
+```bash
+php artisan tinker
+```
+```php
+$user = App\Models\User::where('email', 'usuario@email.com')->first();
+$user->is_admin = false;
+$user->save();
+```
+
+---
+
 ## 🔧 Comandos Úteis para Desenvolvimento
 
 ### Seeders

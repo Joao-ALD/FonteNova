@@ -1,7 +1,7 @@
 /* ==========================================================================
    ARQUIVO: public/assets/css/ebooks.css
    DESCRIÇÃO: Estilos para a biblioteca e leitor de e-books.
-   VERSÃO: Ajustada para exibir imagens completas (contain)
+   VERSÃO: Corrigida (Remoção de duplicatas e ajuste de altura da capa)
 ========================================================================== */
 
 /* ===== VARIÁVEIS DE COR E TEMA ===== */
@@ -66,11 +66,13 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow);
+    /* Sombra padrão */
 }
 
 .ebook-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
+    /* Sombra maior no hover */
     border-color: var(--primary-light);
 }
 
@@ -87,15 +89,17 @@ body {
 .ebook-cover {
     width: 100%;
     height: 100%;
-    /* MUDANÇA AQUI: 'contain' garante que a imagem apareça inteira */
-    /* Se a imagem for mais estreita que o card, vai aparecer o fundo cinza claro */
-    object-fit: contain;
+    /* IMPORTANTE: 'cover' corta a imagem para preencher. */
+    /* Se quiser ver a imagem inteira (com bordas), mude para 'contain'. */
+    object-fit: cover;
     transition: transform 0.4s ease;
-    background-color: #f8f9fa; /* Cor de fundo para preencher espaços vazios */
+    background-color: #f8f9fa;
+    /* Cor de fundo para imagens transparentes */
 }
 
 .ebook-card:hover .ebook-cover {
-    transform: scale(1.05); /* Zoom levemente reduzido para não cortar no hover */
+    transform: scale(1.08);
+    /* Efeito de zoom suave no hover */
 }
 
 /* Placeholder (Caso a imagem falhe) */
@@ -181,7 +185,7 @@ body {
 }
 
 /* ===== LEITOR (READER) ===== */
-/* Estilos do leitor mantidos iguais */
+/* Os estilos do leitor permanecem os mesmos, sem alterações */
 
 .reader-container {
     display: flex;
@@ -506,6 +510,7 @@ body {
 }
 
 /* ===== RESPONSIVIDADE E MODO ESCURO ===== */
+/* Mantidos os estilos de responsividade, dark mode, scrollbar e print do arquivo original */
 @media (max-width: 768px) {
     .reader-main {
         padding: 12px 15px 120px 15px;

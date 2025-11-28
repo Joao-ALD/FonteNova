@@ -15,8 +15,10 @@
     <header class="reader-header">
         <div class="reader-header-content">
             <div class="reader-header-left">
+                <!-- BOTÃO DE VOLTAR ATUALIZADO -->
                 <a href="{{ route('ebooks.index') }}" class="btn-header-back" title="Voltar para a biblioteca">
-                    <i class="fas fa-chevron-left"></i>
+                    <!-- <i class="fas fa-arrow-left"></i> -->
+                    <span class="btn-text">Voltar</span>
                 </a>
             </div>
 
@@ -108,7 +110,8 @@
 
 {{-- Scripts --}}
 <script>
-    const TotalPages = {{ $ebook->pages->count() }};
+    // Correção: Usa aspas e um fallback para evitar SyntaxError em ambientes sem Blade
+    const TotalPages = Number("{{ $ebook->pages->count() }}") || 6;
 </script>
 <script src="{{ asset('js/reader.js') }}"></script>
 @endsection

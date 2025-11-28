@@ -17,7 +17,7 @@ class EbookSeeder extends Seeder
             [
                 'title' => 'Guia Rápido da Sustentabilidade Hídrica',
                 'description' => 'Um breve guia sobre a importância da água e como preservá-la em nosso dia a dia.',
-                'cover_path' => 'img/covers/guia-rapido-sustentabilidade-hidrica.png',
+                'cover_path' => 'assets/img/covers/guia-rapido-sustentabilidade-hidrica.png', // <--- CAMINHO COM ASSETS
                 'pages' => [
                     '<h2>Página 1: Bem-vindo</h2><p class="lead">Bem-vindo(a) ao seu guia de Educação Ambiental! Neste mini e-book, exploraremos os fundamentos da gestão hídrica e por que cada gota conta para o nosso futuro.</p>',
                     '<h2>Página 2: O Ciclo Urbano da Água</h2><p>Entenda o caminho que a água faz: captação, tratamento, distribuição, uso e retorno ao ambiente. Conhecer o ciclo ajuda a identificar pontos de desperdício.</p><ul><li>Captação e Tratamento;</li><li>Distribuição e Uso;</li><li>Descarte consciente.</li></ul>',
@@ -30,7 +30,7 @@ class EbookSeeder extends Seeder
             [
                 'title' => 'Os 6 R\'s da Sustentabilidade',
                 'description' => 'Repense, Recuse, Reduza, Reutilize, Recicle e Repare. O guia completo para um consumo consciente.',
-                'cover_path' => 'img/covers/os-6-rs-da-sustentabilidade.png',
+                'cover_path' => 'assets/img/covers/os-6-rs-da-sustentabilidade.png', // <--- CAMINHO COM ASSETS
                 'pages' => [
                     '<h2>Página 1: Repense e Recuse</h2><p>Repensar é a etapa de avaliar a real necessidade de consumo. Antes de comprar, pergunte-se: "Eu realmente preciso disso?".</p><p>Recusar embalagens desnecessárias reduz significativamente o volume de resíduos.</p>',
                     '<h2>Página 2: Reduza</h2><p>Reduzir é sobre diminuir a quantidade de produtos e embalagens que compramos.</p><ul><li>Opte por produtos sem embalagens ou com menos plástico;</li><li>Escolha itens em embalagens recicláveis;</li><li>Prefira produtos duráveis.</li></ul>',
@@ -43,7 +43,7 @@ class EbookSeeder extends Seeder
             [
                 'title' => 'Biodiversidade e Água Doce',
                 'description' => 'A relação essencial entre ecossistemas saudáveis e a disponibilidade de água para o consumo humano.',
-                'cover_path' => 'img/covers/biodiversidade-e-agua-doce.png',
+                'cover_path' => 'assets/img/covers/biodiversidade-e-agua-doce.png', // <--- CAMINHO COM ASSETS
                 'pages' => [
                     '<h2>Página 1: Ecossistemas Hídricos</h2><p>Rios, lagos e pântanos abrigam diversidade e funcionam como filtros naturais que retêm sedimentos e purificam a água.</p><p>Preservar esses ecossistemas é garantir fornecimento de água.</p>',
                     '<h2>Página 2: A Importância das Matas Ciliares</h2><p>As matas ciliares reduzem erosão, filtram poluentes e oferecem habitat a espécies importantes.</p><p>Manter faixas de vegetação ao redor de corpos d\'água é essencial.</p>',
@@ -56,7 +56,7 @@ class EbookSeeder extends Seeder
             [
                 'title' => 'Monitoramento da Qualidade da Água',
                 'description' => 'Métodos simples e avançados para avaliar se a água é segura para o consumo e para a vida aquática.',
-                'cover_path' => 'img/covers/monitoramento-da-qualidade-da-agua.png',
+                'cover_path' => 'assets/img/covers/monitoramento-da-qualidade-da-agua.png', // <--- CAMINHO COM ASSETS
                 'pages' => [
                     '<h2>Página 1: Parâmetros Essenciais</h2><p>pH, oxigênio dissolvido, condutividade, turbidez e coliformes são parâmetros chaves para avaliar a água.</p><p>Conheça os intervalos típicos e o que cada parâmetro significa.</p>',
                     '<h2>Página 2: Testes de Campo</h2><p>Testes de campo rápidos podem indicar problemas: kits de pH, medidores de oxigênio dissolvido e turbidímetros portáteis são úteis.</p><p>Combine observações visuais com testes.</p>',
@@ -69,7 +69,7 @@ class EbookSeeder extends Seeder
             [
                 'title' => 'Água e Clima: A Conexão Vital',
                 'description' => 'Como as mudanças climáticas afetam o ciclo hidrológico e o que isso significa para o abastecimento.',
-                'cover_path' => 'img/covers/agua-e-clima-a-conexao-vital.png',
+                'cover_path' => 'assets/img/covers/agua-e-clima-a-conexao-vital.png', // <--- CAMINHO COM ASSETS
                 'pages' => [
                     '<h2>Página 1: Aquecimento Global e Chuvas</h2><p>O aumento da temperatura intensifica a evaporação e altera os padrões de chuvas, com eventos extremos mais frequentes.</p><p>O planejamento urbano precisa considerar isso.</p>',
                     '<h2>Página 2: Degelo</h2><p>O degelo de geleiras compromete fontes de água doce para milhões de pessoas. Regiões dependentes dessas reservas devem buscar adaptação.</p>',
@@ -82,7 +82,7 @@ class EbookSeeder extends Seeder
             [
                 'title' => 'Introdução à Pegada Hídrica',
                 'description' => 'Calcule o volume total de água necessário para produzir os bens e serviços que você consome diariamente.',
-                'cover_path' => 'img/covers/introducao-a-pegada-hidrica.png',
+                'cover_path' => 'assets/img/covers/introducao-a-pegada-hidrica.png', // <--- CAMINHO COM ASSETS
                 'pages' => [
                     '<h2>Página 1: O Que é Pegada Hídrica?</h2><p>É o volume total de água doce usada para produzir bens e serviços consumidos por um indivíduo, comunidade ou empresa.</p>',
                     '<h2>Página 2: Água Virtual</h2><p>Água virtual refere-se à água incorporada em alimentos e produtos. Exemplo: fabricar um quilo de arroz usa água na irrigação e processamento.</p>',

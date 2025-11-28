@@ -1,12 +1,11 @@
 /**
- * Script de Navegação do Leitor de E-Books
- * Gerencia a exibição de páginas, navegação por botões, links numerados e teclado
+ * Script de Navegação do Leitor de E-Books (Versão Limpa)
+ * Gerencia a exibição de páginas, navegação por botões e teclado.
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    
     // Elementos do DOM
-    const readerContainer = document.getElementById('reader-container');
-    const themeToggle = document.getElementById('theme-toggle');
     const progressBar = document.getElementById('progress-bar');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
@@ -15,44 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const pages = document.querySelectorAll('.ebook-page');
     
     // Estado da navegação
+    // Se não houver páginas encontradas, assume 1 para evitar erros de divisão por zero
+    const totalPages = pages.length || 1; 
     let currentPage = 1;
-    const totalPages = pages.length;
-    
-    // ========== INICIALIZAÇÃO ==========
-    
-    /**
-     * Inicializa o tema (modo escuro/claro)
-     */
-    function initTheme() {
-        const savedTheme = localStorage.getItem('ebook-theme') || 'light';
-        applyTheme(savedTheme);
-    }
-    
-    /**
-     * Aplica o tema
-     */
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            readerContainer.setAttribute('data-theme', 'dark');
-            themeToggle.classList.add('active');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            localStorage.setItem('ebook-theme', 'dark');
-        } else {
-            readerContainer.removeAttribute('data-theme');
-            themeToggle.classList.remove('active');
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            localStorage.setItem('ebook-theme', 'light');
-        }
-    }
-    
-    /**
-     * Alterna tema
-     */
-    function toggleTheme() {
-        const currentTheme = localStorage.getItem('ebook-theme') || 'light';
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        applyTheme(newTheme);
-    }
     
     // ========== NAVEGAÇÃO DE PÁGINAS ==========
     
@@ -61,23 +25,28 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function showPage(pageNumber) {
         // Validar número da página
-        if (pageNumber < 1 || pageNumber > totalPages) {
-            return;
-        }
+        if (pageNumber < 1) pageNumber = 1;
+        if (pageNumber > totalPages) pageNumber = totalPages;
         
-        // Ocultar todas as páginas
+        // Ocultar todas as páginas e remover classe ativa
         pages.forEach(page => {
             page.style.display = 'none';
             page.classList.remove('active');
         });
         
         // Mostrar página solicitada
-        const targetPage = document.getElementById(`page-${pageNumber}`);
+        // O seletor busca a div que tem o atributo data-page-number igual ao número atual
+        const targetPage = document.querySelector(`.ebook-page[data-page-number="${pageNumber}"]`);
+        
         if (targetPage) {
             targetPage.style.display = 'block';
-            targetPage.classList.add('active');
-            // Scroll para o topo da página
-            window.scrollTo(0, 0);
+            // Pequeno delay para garantir que o display:block foi aplicado antes da animação
+            setTimeout(() => {
+                targetPage.classList.add('active');
+            }, 10);
+            
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         // Atualizar estado
@@ -90,34 +59,39 @@ document.addEventListener('DOMContentLoaded', function() {
      * Atualiza o estado dos botões e indicadores
      */
     function updateUIState() {
-        // Atualizar indicador de página atual
+        // Atualizar texto do número da página
         if (currentPageSpan) {
             currentPageSpan.textContent = currentPage;
         }
         
         // Atualizar barra de progresso
-        const progress = (currentPage / totalPages) * 100;
         if (progressBar) {
+            const progress = (currentPage / totalPages) * 100;
             progressBar.style.width = progress + '%';
         }
         
         // Ativar/Desativar botão anterior
         if (prevBtn) {
-            prevBtn.disabled = currentPage === 1;
+            prevBtn.disabled = (currentPage === 1);
         }
         
         // Ativar/Desativar botão próximo
         if (nextBtn) {
-            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.disabled = (currentPage === totalPages);
         }
         
-        // Atualizar dots de navegação
-        pageDots.forEach((dot, index) => {
-            const pageNum = index + 1;
+        // Atualizar bolinhas (dots) de navegação
+        pageDots.forEach((dot) => {
+            const pageNum = parseInt(dot.getAttribute('data-page'));
             if (pageNum === currentPage) {
                 dot.setAttribute('aria-current', 'page');
+                // Estilo direto via JS para garantir visual sem depender de classes complexas
+                dot.style.backgroundColor = 'var(--primary)';
+                dot.style.color = '#fff';
             } else {
                 dot.removeAttribute('aria-current');
+                dot.style.backgroundColor = 'transparent';
+                dot.style.color = 'var(--primary-light)';
             }
         });
     }
@@ -146,21 +120,45 @@ document.addEventListener('DOMContentLoaded', function() {
      * Salva o progresso da leitura no localStorage
      */
     function saveLitProgress() {
-        const ebookId = window.location.pathname.split('/')[2]; // Extrai ID da URL
-        localStorage.setItem(`ebook-${ebookId}-page`, currentPage);
+        try {
+            // Tenta pegar o ID da URL (ex: /ebooks/15/reader -> pega o 15)
+            const pathParts = window.location.pathname.split('/');
+            // Procura onde está 'ebooks' e pega o próximo segmento
+            const index = pathParts.indexOf('ebooks');
+            if (index !== -1 && pathParts[index + 1]) {
+                const ebookId = pathParts[index + 1];
+                localStorage.setItem(`ebook-${ebookId}-page`, currentPage);
+            }
+        } catch (e) {
+            console.warn('Não foi possível salvar o progresso localmente.');
+        }
     }
     
     /**
      * Carrega o progresso salvo
      */
     function loadSavedProgress() {
-        const ebookId = window.location.pathname.split('/')[2];
-        const savedPage = localStorage.getItem(`ebook-${ebookId}-page`);
-        if (savedPage) {
-            const pageNum = Math.min(parseInt(savedPage), totalPages);
-            showPage(pageNum);
-            return;
+        try {
+            const pathParts = window.location.pathname.split('/');
+            const index = pathParts.indexOf('ebooks');
+            
+            if (index !== -1 && pathParts[index + 1]) {
+                const ebookId = pathParts[index + 1];
+                const savedPage = localStorage.getItem(`ebook-${ebookId}-page`);
+                
+                if (savedPage) {
+                    const pageNum = parseInt(savedPage);
+                    // Garante que a página salva ainda é válida
+                    if (pageNum > 0 && pageNum <= totalPages) {
+                        showPage(pageNum);
+                        return;
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn('Erro ao carregar progresso salvo.');
         }
+        // Se falhar ou não tiver salvo, mostra a página 1
         showPage(1);
     }
     
@@ -176,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Dots de navegação
-    pageDots.forEach((dot, index) => {
+    pageDots.forEach((dot) => {
         dot.addEventListener('click', function(e) {
             e.preventDefault();
             const pageNum = parseInt(this.getAttribute('data-page'));
@@ -184,36 +182,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Botão de tema
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
-    
     // Navegação por teclado
     document.addEventListener('keydown', function(event) {
-        // ArrowLeft = página anterior
         if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
             previousPage();
-        }
-        // ArrowRight = próxima página
-        else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        } else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
             nextPage();
-        }
-        // Home = primeira página
-        else if (event.key === 'Home') {
+        } else if (event.key === 'Home') {
             showPage(1);
-        }
-        // End = última página
-        else if (event.key === 'End') {
+        } else if (event.key === 'End') {
             showPage(totalPages);
         }
     });
     
     // ========== INICIALIZAÇÃO FINAL ==========
     
-    // Inicializar tema
-    initTheme();
-    
-    // Carregar progresso salvo ou mostrar primeira página
+    // Inicia carregando o progresso ou a página 1
     loadSavedProgress();
 });

@@ -81,20 +81,21 @@ body {
     position: relative;
     overflow: hidden;
     display: block;
-    /* ALTURA CORRIGIDA: Define a altura do card da capa */
-    height: 280px;
+    width: 100%;
+    /* REMOVIDO: height: 280px; -> Isso causava o corte ou as bordas */
+
+    /* NOVO: Força o container a ter a proporção exata de 3:4 (igual suas imagens 600x800) */
+    aspect-ratio: 3 / 4;
 }
 
 /* Imagem da Capa */
 .ebook-cover {
     width: 100%;
     height: 100%;
-    /* IMPORTANTE: 'cover' corta a imagem para preencher. */
-    /* Se quiser ver a imagem inteira (com bordas), mude para 'contain'. */
+    /* Como o container agora tem a proporção 3/4, o 'cover' vai encaixar perfeitamente sem cortar nada */
     object-fit: cover;
     transition: transform 0.4s ease;
     background-color: #f8f9fa;
-    /* Cor de fundo para imagens transparentes */
 }
 
 .ebook-card:hover .ebook-cover {

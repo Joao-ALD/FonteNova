@@ -212,7 +212,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 1.5rem;
+    /* ALTERADO: De 1.5rem para 2.5rem (Mais espaço em cima e embaixo do título) */
+    padding: 2.5rem 1.5rem; 
     gap: 1rem;
     flex-wrap: wrap;
     min-height: 70px;
@@ -295,7 +296,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 40px 20px 20px 20px;
+    /* ALTERADO: Topo de 40px -> 80px (Desce o card) */
+    /* ALTERADO: Base de 20px -> 60px (Afasta do rodapé/botões de navegação) */
+    padding: 80px 20px 60px 20px;
 }
 
 .reader-page-wrapper {

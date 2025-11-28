@@ -185,7 +185,10 @@ body {
 .reader-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    /* ALTERAÇÃO: Mudamos de height: 100vh para min-height: 100vh e height: auto.
+       Isso permite que a página cresça conforme o tamanho do texto do ebook. */
+    min-height: 100vh;
+    height: auto; 
     background-color: var(--bg-light);
     transition: background-color 0.3s ease;
 }
@@ -195,7 +198,8 @@ body {
     border-bottom: 1px solid var(--border-color);
     padding: 0;
     box-shadow: var(--shadow);
-    position: sticky;
+    /* Mantém o header fixo no topo enquanto rola a página */
+    position: sticky; 
     top: 0;
     z-index: 1000;
     flex-shrink: 0;
@@ -315,11 +319,11 @@ body {
 
 .reader-main {
     flex: 1;
-    overflow-y: visible;
+    /* ALTERAÇÃO: Removemos overflow-y para deixar a barra de rolagem ser a do navegador,
+       e não uma interna. */
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    /* Espaçamento aumentado para afastar conteúdo do topo e rodapé */
     padding: 80px 20px 60px 20px;
 }
 
@@ -421,12 +425,15 @@ body {
     background-color: var(--bg-white);
     border-top: 1px solid var(--border-color);
     box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05);
-
-    /* <<< VERSÃO BEM FININHA >>> */
-    padding: 8px 10px;   /* mínimo seguro */
-    min-height: -10px;    /* antes: 120px */
-
+    padding: 8px 10px;
+    
+    /* ALTERAÇÃO: Removemos min-height negativo estranho e garantimos que ele
+       seja apenas um bloco no final do fluxo */
+    position: relative; 
+    width: 100%;
+    margin-top: auto; /* Garante que empurre para baixo se o conteúdo for curto */
     flex-shrink: 0;
+    z-index: 100;
 }
 
 
